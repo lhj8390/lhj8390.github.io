@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const e = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0),
     t = document.querySelector('nav');
