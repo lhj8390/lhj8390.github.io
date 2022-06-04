@@ -185,7 +185,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/k8s_service\/",
-        "wordCount" : "617",
+        "wordCount" : "628",
         "genre" : [ 
       
       "Kubernetes"
@@ -416,7 +416,12 @@
 <p>파드는 고정된 엔드포인트로 호출이 어렵다.</p>
 <p>서비스를 사용하게 되면 파드가 클러스터내의 어디에 있는지에 상관없이 고정된 주소를 이용해서 접근이 가능하다.</p>
 <p>→ “<em>서비스를 통해 고정 IP 주소를 설정하여 내, 외부 클라이언트가 파드에 접속할 수 있다.”</em></p>
-<p><img src="/static/images/ab861e53f3e043aa808be27b243103e0/1.png" alt="외부 클라이언트가 frontend service에 접속, 내부 클라이언트(frontend pod)가 backend service에 접속"></p>
+<figure class="medium"><img src="/images/ab861e53f3e043aa808be27b243103e0/1.png"
+         alt="image"/><figcaption>
+            <p>외부 클라이언트가 frontend service에 접속, 내부 클라이언트(frontend pod)가 backend service에 접속</p>
+        </figcaption>
+</figure>
+
 <p><br/><br/></p>
 <h2 id="servicetype-종류">ServiceType 종류</h2>
 <ul>
@@ -459,7 +464,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
 <p>서비스가 80포트를 사용하여   <code>app=MyApp</code> 레이블을 가진 파드의 TCP 8080 포트를 대상으로 라우팅한다.</p>
-<p><img src="/static/images/ab861e53f3e043aa808be27b243103e0/2.png" alt="Untitled"></p>
+<p><img src="/images/ab861e53f3e043aa808be27b243103e0/2.png" alt="Untitled"></p>
 <p><strong>Cluster IP:</strong> 클러스터 안의 Pod끼리 통신하기 위한 Private IP</p>
 <p><strong>External IP</strong>: 클러스터 외부에 공개하는 IP 주소 (쿠버네티스 클러스터에서는 별도로 관리 X)</p>
 <p>서비스에 할당된 주소는 10.109.128.30으로 클러스터 내부, 컨테이너 내부에서 접속을 시도할 경우 my-service와 연결된 파드의 8080포트가 실행되는 것을 확인할 수 있다.
@@ -515,12 +520,12 @@
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
 <p>nodePort는 기본적으로 생략이 가능하다.</p>
 <p>생략 시, 쿠버네티스 컨트롤 플레인은 포트 범위에서 자동 할당해준다 (기본값: 30000-32767)</p>
-<p><br/><br/>
-💡 <strong>주의점</strong></p>
+<br/>
+<p>💡 <strong>주의점</strong></p>
 <p>nodePort를 생략할 경우 서비스 재시작 시 nodePort는 계속 변경된다.
 <br/><br/></p>
 <h3 id="내부-pod와-통신하는-방법">내부 POD와 통신하는 방법</h3>
-<p><img src="/static/images/ab861e53f3e043aa808be27b243103e0/3.png" alt="Untitled"></p>
+<p><img src="/images/ab861e53f3e043aa808be27b243103e0/3.png" alt="Untitled"></p>
 <p>◼️ <strong>설명</strong></p>
 <p>노드의 특정 IP 192.168.1.1 의 31000 포트에 접근한다면 트래픽이 가장 원활한 곳에 자동으로 연결을 시도한다.</p>
 <p>해당 트래픽은 서비스의 80포트를 찾고, 컨테이너 내부 80포트를 읽는 구조로 진행된다.</p>
@@ -584,13 +589,6 @@
 <p>서비스를 사용하는 파드에서 <em>실제 서비스 이름과 위치가 숨겨져</em>
 나중에 externalName 속성을 변경하거나 서비스 스펙을 수정하면 다른 서비스를 가리킬 수 있다.</p>
 <p><br/><br/></p>
-
-
-
-<h3>Posts in this Series</h3>
-<ul>
-  
-</ul>
 </div>
     <div class="post__footer">
       
