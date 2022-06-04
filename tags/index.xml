@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on lhj8390</title>
-    <link>https://example.com/tags/</link>
+    <link>https://lhj8390.github.io/tags/</link>
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>css</title>
-      <link>https://example.com/tags/css/</link>
+      <link>https://lhj8390.github.io/tags/css/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/css/</guid>
+      <guid>https://lhj8390.github.io/tags/css/</guid>
       
         <description></description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>html</title>
-      <link>https://example.com/tags/html/</link>
+      <link>https://lhj8390.github.io/tags/html/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/html/</guid>
+      <guid>https://lhj8390.github.io/tags/html/</guid>
       
         <description></description>
       
@@ -31,10 +31,10 @@
     
     <item>
       <title>markdown</title>
-      <link>https://example.com/tags/markdown/</link>
+      <link>https://lhj8390.github.io/tags/markdown/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/markdown/</guid>
+      <guid>https://lhj8390.github.io/tags/markdown/</guid>
       
         <description></description>
       
@@ -42,10 +42,10 @@
     
     <item>
       <title>index</title>
-      <link>https://example.com/tags/index/</link>
+      <link>https://lhj8390.github.io/tags/index/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/index/</guid>
+      <guid>https://lhj8390.github.io/tags/index/</guid>
       
         <description></description>
       

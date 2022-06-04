@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on lhj8390</title>
-    <link>https://example.com/series/</link>
+    <link>https://lhj8390.github.io/series/</link>
     <description>Recent content in Series on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Themes Guide</title>
-      <link>https://example.com/series/themes-guide/</link>
+      <link>https://lhj8390.github.io/series/themes-guide/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/series/themes-guide/</guid>
+      <guid>https://lhj8390.github.io/series/themes-guide/</guid>
       
         <description></description>
       
