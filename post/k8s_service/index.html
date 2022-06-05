@@ -114,8 +114,8 @@
 <meta property="og:description" content="쿠버네티스의 서비스 개념 및 종류에 대해 설명한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lhj8390.github.io/post/k8s_service/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-04-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-05T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+<meta property="article:published_time" content="2022-06-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-04T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
 
 
 
@@ -160,9 +160,9 @@
             "name": "lhj8390"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-04-05T00:00:00.00Z",
-        "datePublished": "2022-04-05T00:00:00.00Z",
-        "dateModified": "2022-04-05T00:00:00.00Z",
+        "dateCreated": "2022-06-04T00:00:00.00Z",
+        "datePublished": "2022-06-04T00:00:00.00Z",
+        "dateModified": "2022-06-04T00:00:00.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "lhj8390",
@@ -185,13 +185,45 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/k8s_service\/",
-        "wordCount" : "628",
+        "wordCount" : "627",
         "genre" : [ 
       
       "Kubernetes"
 
     ],
-        "keywords" : [ ]
+        "keywords" : [ 
+      
+      "DevOps"
+
+    
+      
+        ,
+
+      
+      "server"
+
+    
+      
+        ,
+
+      
+      "docker"
+
+    
+      
+        ,
+
+      
+      "kubernetes"
+
+    
+      
+        ,
+
+      
+      "k8s"
+
+    ]
     }
   </script>
 
@@ -395,7 +427,7 @@
             <em class="fas fa-calendar-day post__meta-icon"></em>
             <span class="post__meta-text"
               >
-                5/4/2022
+                4/6/2022
 
 
               
@@ -425,25 +457,17 @@
 <p><br/><br/></p>
 <h2 id="servicetype-종류">ServiceType 종류</h2>
 <ul>
-<li>
-<p><strong>ClusterIP</strong></p>
-<p>서비스를 클러스터 내부 IP에 노출시킨다.  ServiceTypes의 기본 값.</p>
-<p>클러스터 내에서는 이 서비스에 접근이 가능하지만, 클러스터 외부에서는 외부 IP 를 할당 받지 못했기 때문에 접근이 불가능하다.</p>
-</li>
-<li>
-<p><strong>NodePort</strong></p>
-<p>고정 포트로 각 노드의 IP에 서비스를 노출시킨다.</p>
-<p> <code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code> 를 요청하여, 클러스터 외부에서 NodePort 서비스에 접속할 수 있다.</p>
-</li>
-<li>
-<p><strong>LoadBalancer</strong></p>
-<p>클라우드 벤더에서 제공하는 설정 방식으로, 로드 밸런서를 사용하여 서비스를 외부에 노출시킨다.</p>
-<p>외부 로드 밸런서가 라우팅되는 NodePort와 ClusterIP 서비스가 자동으로 생성된다.</p>
-</li>
-<li>
-<p><strong>ExternalName</strong></p>
-<p>서비스를 externalName 필드의 콘텐츠 (예: foo.bar.example.com)에 매핑한다. 설정해둔 CNAME값이랑 연결된다.</p>
-</li>
+<li><strong>ClusterIP</strong>
+서비스를 클러스터 내부 IP에 노출시킨다. ServiceTypes의 기본 값.
+클러스터 내에서는 이 서비스에 접근이 가능하지만, 클러스터 외부에서는 외부 IP 를 할당 받지 못했기 때문에 접근이 불가능하다.</li>
+<li><strong>NodePort</strong>
+고정 포트로 각 노드의 IP에 서비스를 노출시킨다.
+<code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code> 를 요청하여, 클러스터 외부에서 NodePort 서비스에 접속할 수 있다.</li>
+<li><strong>LoadBalancer</strong>
+클라우드 벤더에서 제공하는 설정 방식으로, 로드 밸런서를 사용하여 서비스를 외부에 노출시킨다.
+외부 로드 밸런서가 라우팅되는 NodePort와 ClusterIP 서비스가 자동으로 생성된다.</li>
+<li><strong>ExternalName</strong>
+서비스를 externalName 필드의 콘텐츠 (예: foo.bar.example.com)에 매핑한다. 설정해둔 CNAME값이랑 연결된다.</li>
 </ul>
 <p><br/><br/></p>
 <h2 id="서비스-생성-clusterip">서비스 생성 (ClusterIP)</h2>
@@ -463,7 +487,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
-<p>서비스가 80포트를 사용하여   <code>app=MyApp</code> 레이블을 가진 파드의 TCP 8080 포트를 대상으로 라우팅한다.</p>
+<p>서비스가 80포트를 사용하여 <code>app=MyApp</code> 레이블을 가진 파드의 TCP 8080 포트를 대상으로 라우팅한다.</p>
 <p><img src="/images/ab861e53f3e043aa808be27b243103e0/2.png" alt="Untitled"></p>
 <p><strong>Cluster IP:</strong> 클러스터 안의 Pod끼리 통신하기 위한 Private IP</p>
 <p><strong>External IP</strong>: 클러스터 외부에 공개하는 IP 주소 (쿠버네티스 클러스터에서는 별도로 관리 X)</p>
@@ -502,8 +526,8 @@
 <br/>
 → 서비스를 클러스터 밖에 위치한 외부 IP 주소에 노출하고 싶은 경우에 사용한다.
 <br/>
-</blockquote>
 <br/>
+</blockquote>
 <h3 id="nodeport-생성">NodePort 생성</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
@@ -541,11 +565,12 @@
 </blockquote>
 <p>일반적인 셀렉터에 대한 서비스가 아닌, DNS 이름에 대한 서비스에 매핑한다</p>
 <blockquote>
-</blockquote>
 <br/>
-- FQDN(Fully Qualified Domain Name)이란?
-<pre><code>호스트 이름과 도메인 이름을 포함한 전체 도메인 이름을 일컫는 용어이다.
-</code></pre>
+</blockquote>
+<ul>
+<li>FQDN(Fully Qualified Domain Name)이란?
+호스트 이름과 도메인 이름을 포함한 전체 도메인 이름을 일컫는 용어이다.</li>
+</ul>
 <p><br/><br/></p>
 <h3 id="externalname-생성"><strong>ExternalName 생성</strong></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
@@ -598,6 +623,12 @@
 
 
       
+
+      
+        <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a></span>
+
+
+
 
       
     </div>

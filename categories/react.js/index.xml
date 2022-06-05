@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React.js on lhj8390</title>
+    <link>https://lhj8390.github.io/categories/react.js/</link>
+    <description>Recent content in React.js on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/react.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Webpack 개념 및 설정</title>
+      <link>https://lhj8390.github.io/post/react-webpack/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react-webpack/</guid>
+      
+        <description>React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

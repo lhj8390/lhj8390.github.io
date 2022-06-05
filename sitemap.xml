@@ -3,24 +3,54 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2022-04-05T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2022-04-05T00:00:00+00:00</lastmod>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/frontend/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/react-webpack/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/react.js/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/categories/react.js/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/webpack/</loc>
+    <lastmod>2022-06-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/devops/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/docker/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/k8s/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/kubernetes/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/categories/kubernetes/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/server/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/k8s_service/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/index/</loc>
     <lastmod>2022-04-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/categories/kubernetes/</loc>
-    <lastmod>2022-04-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://lhj8390.github.io/post/</loc>
-    <lastmod>2022-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/</loc>
-    <lastmod>2022-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/post/k8s_service/</loc>
     <lastmod>2022-04-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/css/</loc>

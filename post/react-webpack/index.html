@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        React Webpack 개념 및 설정 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.cdd4e1f9882a1045e802be96f22ead7d7feb9c2ddb1e5eb393b6268ff4658acc.css"
+      integrity="sha256-zdTh&#43;YgqEEXoAr6W8i6tfX/rnC3bHl6zk7Ymj/Rlisw="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.50e30c8e578e61742eba66a54b3ab5b2181087aac9caebee47ffbe0017c9a8c7.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/react-webpack/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="React Webpack 개념 및 설정"/>
+<meta name="twitter:description" content="React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="React Webpack 개념 및 설정" />
+<meta property="og:description" content="React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/react-webpack/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-05T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "React Webpack 개념 및 설정",
+        "headline": "React Webpack 개념 및 설정",
+        "alternativeHeadline": "",
+        "description": "
+      React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/react-webpack\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-06-05T00:00:00.00Z",
+        "datePublished": "2022-06-05T00:00:00.00Z",
+        "dateModified": "2022-06-05T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/react-webpack\/",
+        "wordCount" : "423",
+        "genre" : [ 
+      
+      "React.js"
+
+    ],
+        "keywords" : [ 
+      
+      "frontend"
+
+    
+      
+        ,
+
+      
+      "webpack"
+
+    
+      
+        ,
+
+      
+      "react.js"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="instagram"
+            title="instagram"
+          >
+            <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>React Webpack 개념 및 설정</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                5/6/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 2분</span>
+          </li>
+        </ul>
+
+      <h2 id="웹팩webpack이란">웹팩(Webpack)이란?</h2>
+<hr>
+<blockquote>
+<p><strong>모듈 번들링</strong></p>
+<p>한 프로그램으로 작동하는 하나의 파일을 여러 파일로 분할하고 구성할 수 있는 자바스크립트 모듈 <br>
+→ 다수의 js 파일을 하나의 js 파일로 만들어주는 것   <br/></p>
+</blockquote>
+<br/>
+<h3 id="webpack-사용-이유">Webpack 사용 이유</h3>
+<ol>
+<li><strong>SPA 사용 확대</strong> : 하나의 html 페이지에 여러개의 자바스크립트 파일들이 포함되는 경우가 많아졌다.</li>
+<li><strong>관리의 이점</strong> : 연관 되어 있는 자바스크립트 종송석 있는 파일들을 하나의 파일로 묶어줘서 관리하기 편하다.</li>
+<li><strong>시간 단축</strong> : 컴파일 시 여러 모듈들의 파일을 읽어오는데 시간이 오래 걸리는데, 그 부분을 해결하기 위해 여러 파일을 하나의 파일로 번들링 해준다.</li>
+<li><strong>웹페이지 성능 최적화</strong>
+<br/><br/></li>
+</ol>
+<h2 id="babel이란">Babel이란?</h2>
+<hr>
+<blockquote>
+<p><strong>최신 ES6버전을 구 버전인 ES5로 변환해주는 역할.</strong></p>
+<p>최신 버전의 자바스크립트 문법은 브라우저가 이해하지 못한다.<br>
+→ babel이 브라우저가 이해할 수 있는 문법으로 변환</p>
+<p>ES6, ES7 등의 최신 문법을 사용해서 코딩을 할 수 있기 때문에 <strong>생산성이 향상</strong></p>
+</blockquote>
+<p><br/><br/></p>
+<h2 id="webpack-기본-명령어">Webpack 기본 명령어</h2>
+<hr>
+<h3 id="webpack-설치">Webpack 설치</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ npm install webpack webpack-cli html-webpack-plugin webpack-dev-server --save-dev
+</span></span></code></pre></div><ul>
+<li><strong>html-webpack-plugin</strong> : 웹팩으로 빌드한 결과물을 HTML 파일로 생성해주는 플러그인</li>
+<li><strong>webpack-dev-server</strong> : 웹팩으로 빌드 후 빌드한 파일을 서버로 띄어주는 역할
+<br/><br/></li>
+</ul>
+<h2 id="webpack-설정-파일-생성">Webpack 설정 파일 생성</h2>
+<hr>
+<h3 id="webpack-기본-설정">Webpack 기본 설정</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>                                        
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>                                      
+</span></span><span class="line"><span class="cl">    <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>                            
+</span></span><span class="line"><span class="cl">    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>                                           
+</span></span><span class="line"><span class="cl">        <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>            
+</span></span><span class="line"><span class="cl">        <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>entry</strong> : entry를 통해 Reack 파일이 시작하는 entry 포인트를 지정해주었다. <br>
+<strong>output</strong> : __dirname은 현재 디렉터리로, /dist 폴더에 번들링한 index_bundle.js 이름의 파일을 넣어주겠다고 명시.
+<br /><br /></p>
+<h3 id="babel-설정">babel 설정</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>                                      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>                                          
+</span></span><span class="line"><span class="cl">        <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>                          
+</span></span><span class="line"><span class="cl">                <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>                 
+</span></span><span class="line"><span class="cl">                <span class="nx">use</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span>			
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>webpack 설정 내부에서 babel loader가 실행할 규칙을 지정하였다.</p>
+<p><strong>test</strong> : .js, .jsx로 끝나는 파일은 babel loader가 컴파일해준다고 명시 <br>
+<strong>exclude</strong> : /node_module/은 babel 컴파일에서 제외
+<br /><br /></p>
+<h3 id="devserver-설정">devServer 설정</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">		<span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;/api&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;target&#34;</span><span class="o">:</span> <span class="s2">&#34;http://localhost:8000&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>webpack-dev-server가 사용할 host와 port를 지정하였다. <br>
+proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 요청을 받아주도록 설정!
+<br /><br /></p>
+<aside>
+💡 CORS 에러?
+<pre><code> 개발 편의상 로컬에 webpack-dev-server를 띄어놓는 경우가 많은데, 
+ 보통 다른 도메인에서 요청을 보낼 경우 브라우저 보안으로 인해 CORS 에러가 발생한다.
+ 하지만 프록시 설정을 할 경우 같은 도메인에서 온 요청으로 인식하여 CORS 에러가 나지 않는다.
+</code></pre>
+</aside>
+<br /><br />
+<h2 id="webpack-실행">Webpack 실행</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack --config ./webpack.config.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack-dev-server --config ./webpack.config.js&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></div><p><strong>npm start</strong> : webpack.config.js 설정 파일을 이용하여 webpack-dev-server를 구동한다. <br>
+<strong>npm build</strong> : webpack.config.js 설정 파일을 이용하여 webpack 빌드를 수행한다.
+<br /><br /></p>
+<h3 id="전체-webpackconfigjs-코드">전체 webpack.config.js 코드</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>                                        
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">)</span>          
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>                                      
+</span></span><span class="line"><span class="cl">    <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>                            
+</span></span><span class="line"><span class="cl">    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>                                           
+</span></span><span class="line"><span class="cl">        <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>            
+</span></span><span class="line"><span class="cl">        <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>                                           
+</span></span><span class="line"><span class="cl">        <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>                          
+</span></span><span class="line"><span class="cl">                <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>                 
+</span></span><span class="line"><span class="cl">                <span class="nx">use</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span>				
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;/api&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;target&#34;</span><span class="o">:</span> <span class="s2">&#34;http://localhost:8000&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;./src/index.html&#39;</span>                
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div></div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/react%2ejs/">React.js</a></span>
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/webpack/">webpack</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

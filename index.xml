@@ -6,11 +6,22 @@
     <description>Recent content on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Webpack 개념 및 설정</title>
+      <link>https://lhj8390.github.io/post/react-webpack/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react-webpack/</guid>
+      
+        <description>React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>쿠버네티스 서비스</title>
       <link>https://lhj8390.github.io/post/k8s_service/</link>
-      <pubDate>Tue, 05 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/post/k8s_service/</guid>
       
