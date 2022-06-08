@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.a88b622d33267e367ec5b7834f6778af434af490fdd7bbc23fafcdc38d185421.css"
-      integrity="sha256-qItiLTMmfjZ&#43;xbeDT2d4r0NK9JD917vCP6/Nw40YVCE="
+      href="/scss/main.min.9d8ad44778bfb558cae9b850978e1d2f33a61d9efcf9604a1b5c7e2948bcb182.css"
+      integrity="sha256-nYrUR3i/tVjK6bhQl44dLzOmHZ78&#43;WBKG1x&#43;KUi8sYI="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -498,15 +498,32 @@
     crossorigin="anonymous"
   ></script></body>
   <script>
+    const tags = document.getElementById('tags');
+    const tagBtn = document.getElementsByClassName('tag__btn')[0];
+
+    window.addEventListener('resize', function() {
+      let height = window.innerWidth >= 961 ? 15 : 40;
+      
+      if (window.innerWidth >= 961 && tags.scrollHeight <= 80) {        
+        tagBtn.style.display = "none";
+      } 
+      else if (window.innerWidth <= 961 && tags.scrollHeight <= 32) {   
+        tagBtn.style.display = "none";
+      }
+      else {
+        tagBtn.style.display = "flex";  
+      }
+    });
+
     const openTagList = function (el) {
-      var tags = document.getElementById('tags');
+      let height = window.innerWidth >= 961 ? 15 : 40;
     
       if (document.querySelector('.tags').classList.contains('hide')) {
         tags.style.maxHeight = tags.scrollHeight + "px";
         el.innerHTML = "태그 접기";
       }
       else {
-        tags.style.maxHeight = "15px";
+        tags.style.maxHeight = height + "px";
         el.innerHTML = "태그 펼치기";
       }
       document.querySelector('.tags').classList.toggle('hide');
