@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        redux |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      블로그
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.bef38c5711fa10d26d9730684b5c2eefc551259cb99ef106afd54efc612d3a8f.css"
+      integrity="sha256-vvOMVxH6ENJtlzBoS1wu78VRJZy5nvEGr9VO/GEtOo8="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.50e30c8e578e61742eba66a54b3ab5b2181087aac9caebee47ffbe0017c9a8c7.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/tags/redux/" />
+
+  
+  <link rel="alternate" type="application/rss+xml" href="/tags/redux/index.xml" title="lhj8390" />
+
+
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.929d946b62ac2a8a53dfad9594510464ed1de9cb4ca2a7316acac48210f7fb6b.js" integrity="sha256-kp2Ua2KsKopT362VlFEEZO0d6ctMoqcxasrEghD3&#43;2s="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="redux"/>
+<meta name="twitter:description" content="블로그"/>
+
+
+
+  
+  <meta property="og:title" content="redux" />
+<meta property="og:description" content="블로그" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://lhj8390.github.io/tags/redux/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="instagram"
+            title="instagram"
+          >
+            <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+    <ul class="nav__list categories">
+      
+        <li>
+          <a href="/categories/kubernetes">kubernetes <span>(1)</span></a>
+        </li>
+
+      
+        <li>
+          <a href="/categories/react.js">react.js <span>(2)</span></a>
+        </li>
+
+      
+        <li>
+          <a href="/categories/syntax">syntax <span>(1)</span></a>
+        </li>
+
+      
+        <li>
+          <a href="/categories/themes">themes <span>(1)</span></a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div class="
+      animated fadeInDown
+    ">
+    <ul id="tags" class="nav__list tags hide">
+      
+        <li>
+          <a href="/tags/css">#css <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/devops">#devops <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/docker">#docker <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/frontend">#frontend <span>(2)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/html">#html <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/index">#index <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/k8s">#k8s <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/kubernetes">#kubernetes <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/markdown">#markdown <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/middleware">#middleware <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/react.js">#react.js <span>(2)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/redux">#redux <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/server">#server <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/webpack">#webpack <span>(1)</span></a>
+        </li>
+      
+    </ul>
+    <a class="tag__btn" onclick="openTagList(this);">태그 펼치기</a>
+
+  </div>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post__content">
+      
+    </div>
+
+    
+  </div>
+
+  
+
+  
+  
+    <div
+      class="post 
+        animated fadeInDown
+
+      "
+    >
+      
+      <div class="post__content">
+        <h3><a href="/post/redux-thunk/">REDUX-THUNK를 이용한 상태관리</a></h3>
+        
+          <p>개요 Redux-Thunk란 Redux에서 비동기 작업을 처리할 때 사용하는 미들웨어. 액션 객체가 아닌 함수 자체를 dispatch할 수 있다는 특징이 있다.</p>
+
+        
+        </div>
+
+      
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
+          >
+            11/6/2022
+
+
+          </span
+        >
+        
+          <span><a class="category" href="/categories/react%2ejs/">React.js</a></span>
+
+
+
+
+        
+
+        
+          <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/redux/">redux</a><a class="tag" href="/tags/middleware/">middleware</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+  
+    <div
+      class="post 
+        animated fadeInDown
+
+      "
+    >
+      
+      <div class="post__content">
+        <h3><a href="/post/react-webpack/">REACT WEBPACK 개념 및 설정</a></h3>
+        
+          <p>웹팩(Webpack)이란? 모듈 번들링
+한 프로그램으로 작동하는 하나의 파일을 여러 파일로 분할하고 구성할 수 있는 자바스크립트 모듈 → 다수의 js 파일을 하나의 js 파일로 만들어주는 것 Webpack 사용 이유 SPA 사용 확대 : 하나의 html 페이지에 여러개의 자바스크립트 파일들이 포함되는 경우가 많아졌다.</p>
+
+        
+        </div>
+
+      
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
+          >
+            5/6/2022
+
+
+          </span
+        >
+        
+          <span><a class="category" href="/categories/react%2ejs/">React.js</a></span>
+
+
+
+
+        
+
+        
+          <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/webpack/">webpack</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+  
+    <div
+      class="post 
+        animated fadeInDown
+
+      "
+    >
+      
+      <div class="post__content">
+        <h3><a href="/post/k8s_service/">쿠버네티스 서비스</a></h3>
+        
+          <p>서비스 서비스의 개념 동일한 서비스를 제공하는 파드 그룹에 지속적인 단일 접점을 만들려고 할 때 생성하는 리소스 ◼ 서비스의 필요성 파드는 비영구적 리소스이기 때문에 파드 내의 IP 주소는 랜덤하게 지정되고, 리스타트 될 때마다 변경될 수 있다.</p>
+
+        
+        </div>
+
+      
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
+          >
+            4/6/2022
+
+
+          </span
+        >
+        
+          <span><a class="category" href="/categories/kubernetes/">Kubernetes</a></span>
+
+
+
+
+        
+
+        
+          <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+  
+    <div
+      class="post 
+        animated fadeInDown
+
+      "
+    >
+      
+      <div class="post__content">
+        <h3><a href="/post/markdown-syntax/">MARKDOWN SYNTAX GUIDE</a></h3>
+        
+          <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
+
+        
+        </div>
+
+      
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
+          >
+            11/3/2019
+
+
+          </span
+        >
+        
+          <span><a class="category" href="/categories/themes/">themes</a><a class="category" href="/categories/syntax/">syntax</a></span>
+
+
+
+
+        
+
+        
+          <span><a class="tag" href="/tags/markdown/">markdown</a><a class="tag" href="/tags/css/">css</a><a class="tag" href="/tags/html/">html</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+  
+  <div class="pagination">
+    
+
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const tags = document.getElementById('tags');
+    const tagBtn = document.getElementsByClassName('tag__btn')[0];
+
+    window.addEventListener('resize', function() {
+      let height = window.innerWidth >= 961 ? 15 : 40;
+      
+      if (window.innerWidth >= 961 && tags.scrollHeight <= 80) {        
+        tagBtn.style.display = "none";
+      } 
+      else if (window.innerWidth <= 961 && tags.scrollHeight <= 32) {   
+        tagBtn.style.display = "none";
+      }
+      else {
+        tagBtn.style.display = "flex";  
+      }
+    });
+
+    const openTagList = function (el) {
+      let height = window.innerWidth >= 961 ? 15 : 40;
+    
+      if (document.querySelector('.tags').classList.contains('hide')) {
+        tags.style.maxHeight = tags.scrollHeight + "px";
+        el.innerHTML = "태그 접기";
+      }
+      else {
+        tags.style.maxHeight = height + "px";
+        el.innerHTML = "태그 펼치기";
+      }
+      document.querySelector('.tags').classList.toggle('hide');
+    }
+    
+  </script>
+</html>

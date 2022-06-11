@@ -6,11 +6,11 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>frontend</title>
       <link>https://lhj8390.github.io/tags/frontend/</link>
-      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/frontend/</guid>
       
@@ -19,11 +19,33 @@
     </item>
     
     <item>
+      <title>middleware</title>
+      <link>https://lhj8390.github.io/tags/middleware/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/middleware/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
       <title>react.js</title>
       <link>https://lhj8390.github.io/tags/react.js/</link>
-      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/react.js/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>redux</title>
+      <link>https://lhj8390.github.io/tags/redux/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/redux/</guid>
       
         <description></description>
       
