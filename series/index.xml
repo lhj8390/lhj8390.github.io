@@ -6,7 +6,18 @@
     <description>Recent content in Series on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>쿠버네티스 개념</title>
+      <link>https://lhj8390.github.io/series/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B0%9C%EB%85%90/</link>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/series/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B0%9C%EB%85%90/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>Themes Guide</title>
       <link>https://lhj8390.github.io/series/themes-guide/</link>
