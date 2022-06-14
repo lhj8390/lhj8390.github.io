@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.7755b93e1c6a52f89769506fe5742ef475ea088032d0efb79bd67987b6d45e76.css"
-      integrity="sha256-d1W5PhxqUviXaVBv5XQu9HXqCIAy0O&#43;3m9Z5h7bUXnY="
+      href="/scss/main.min.86f1683e18784a3228324b0b1d48c627f1c68b8ca3a5ff164e59428f98935fa6.css"
+      integrity="sha256-hvFoPhh4SjIoMksLHUjGJ/HGi4yjpf8WTllCj5iTX6Y="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -376,18 +376,49 @@
         
       >
         <header class="header"><div
-  class="
+  class="menu 
     animated fadeInDown
 
   "
 >
+<div id="searchbox">
+  <input id="searchInput" autofocus placeholder="search"
+      aria-label="search" type="search" autocomplete="off">
+  <ul id="searchResults" aria-label="search results"></ul>
+</div>
   <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
     <span aria-hidden="true" class="navbar-burger__line"></span>
     <span aria-hidden="true" class="navbar-burger__line"></span>
     <span aria-hidden="true" class="navbar-burger__line"></span>
   </a>
   <nav class="nav">
-    <ul class="nav__list" id="navMenu">
+     
+    <div class="nav__opener">
+      <ul class="nav__list" id="navMenu">
+        
+          <li class="nav__list-item">
+            <a href="/categories/kubernetes">kubernetes <span>(1)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/react.js">react.js <span>(2)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/syntax">syntax <span>(1)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/themes">themes <span>(1)</span></a>
+          </li>
+        
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
       
       
         
@@ -426,11 +457,7 @@
     <ul class="nav__list nav__list--end">
       
       <li>
-        <div id="searchbox">
-          <input id="searchInput" autofocus placeholder="search"
-              aria-label="search" type="search" autocomplete="off">
-          <ul id="searchResults" aria-label="search results"></ul>
-        </div>
+        
       </li>
       
         <li class="nav__list-item">
