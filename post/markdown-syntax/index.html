@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.86f1683e18784a3228324b0b1d48c627f1c68b8ca3a5ff164e59428f98935fa6.css"
-      integrity="sha256-hvFoPhh4SjIoMksLHUjGJ/HGi4yjpf8WTllCj5iTX6Y="
+      href="/scss/main.min.4a7bdf38a3d6af6dce4f59ebf2a8bf2dd323e0b36ece71cf5a63eb9e5480f70c.css"
+      integrity="sha256-SnvfOKPWr23OT1nr8qi/LdMj4LNuznHPWmPrnlSA9ww="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -234,6 +234,13 @@
     
   >
     <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
       <aside
         
           class="wrapper__sidebar"
@@ -374,15 +381,14 @@
 
   "
 >
-<div id="searchbox">
-  <input id="searchInput" autofocus placeholder="search"
-      aria-label="search" type="search" autocomplete="off">
-  <ul id="searchResults" aria-label="search results"></ul>
-</div>
   <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
     <span aria-hidden="true" class="navbar-burger__line"></span>
     <span aria-hidden="true" class="navbar-burger__line"></span>
     <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
   </a>
   <nav class="nav">
      
@@ -465,6 +471,8 @@
     </ul>
   </nav>
 </div>
+
+
 </header>
   <div
     class="post 
@@ -692,35 +700,18 @@
     crossorigin="anonymous"
   ></script></body>
   <script>
-    const tags = document.getElementById('tags');
-    const tagBtn = document.getElementsByClassName('tag__btn')[0];
-
-    window.addEventListener('resize', function() {
-      let height = window.innerWidth >= 961 ? 15 : 40;
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
       
-      if (window.innerWidth >= 961 && tags.scrollHeight <= 80) {        
-        tagBtn.style.display = "none";
-      } 
-      else if (window.innerWidth <= 961 && tags.scrollHeight <= 32) {   
-        tagBtn.style.display = "none";
-      }
-      else {
-        tagBtn.style.display = "flex";  
-      }
-    });
-
-    const openTagList = function (el) {
-      let height = window.innerWidth >= 961 ? 15 : 40;
+      if (searchWrapper.style.display == 'none') 
+        searchWrapper.style.display = 'block';
+      else
+        searchWrapper.style.display = 'none';
     
-      if (document.querySelector('.tags').classList.contains('hide')) {
-        tags.style.maxHeight = tags.scrollHeight + "px";
-        el.innerHTML = "태그 접기";
-      }
-      else {
-        tags.style.maxHeight = height + "px";
-        el.innerHTML = "태그 펼치기";
-      }
-      document.querySelector('.tags').classList.toggle('hide');
+      
     }
     
   </script>
