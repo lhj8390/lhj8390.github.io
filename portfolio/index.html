@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.19b4c5a0de4492dd6fa3f63d7fb00a40e5d8b9c32967ac0b099c717e8a663ed9.css"
-      integrity="sha256-GbTFoN5Ekt1vo/Y9f7AKQOXYucMpZ6wLCZxxfopmPtk="
+      href="/scss/main.min.9c5ccbe3af48bb104baa882026642f2e00eae44f38846b37287651adc569da1b.css"
+      integrity="sha256-nFzL469IuxBLqoggJmQvLgDq5E84hGs3KHZRrcVp2hs="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -762,10 +762,15 @@
       if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
         return;
       
-      if (searchWrapper.style.display == 'none') 
+      if (searchWrapper.style.display == 'none') {
         searchWrapper.style.display = 'block';
-      else
+        document.getElementsByClassName('wrapper')[0].style.overflow = 'hidden';
+
+      }
+      else {
         searchWrapper.style.display = 'none';
+        document.getElementsByClassName('wrapper')[0].style.overflow = 'auto';
+      }
     
       
     }
