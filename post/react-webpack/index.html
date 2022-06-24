@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.3038ecd5bfa9e37f395fb920a5e240ad08d5a552725fd333effd3525c1931f0a.css"
-      integrity="sha256-MDjs1b&#43;p4385X7kgpeJArQjVpVJyX9Mz7/01JcGTHwo="
+      href="/scss/main.min.0c2d8da841a9d87c755eb325da1dc88124120493e45dc40fa7e642490c3075f3.css"
+      integrity="sha256-DC2NqEGp2Hx1XrMl2h3IgSQSBJPkXcQPp&#43;ZCSQwwdfM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -473,6 +473,38 @@
     "
   >
     
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#웹팩webpack이란">웹팩(Webpack)이란?</a>
+      <ul>
+        <li><a href="#webpack-사용-이유">Webpack 사용 이유</a></li>
+      </ul>
+    </li>
+    <li><a href="#babel이란">Babel이란?</a></li>
+    <li><a href="#webpack-기본-명령어">Webpack 기본 명령어</a>
+      <ul>
+        <li><a href="#webpack-설치">Webpack 설치</a></li>
+      </ul>
+    </li>
+    <li><a href="#webpack-설정-파일-생성">Webpack 설정 파일 생성</a>
+      <ul>
+        <li><a href="#webpack-기본-설정">Webpack 기본 설정</a></li>
+        <li><a href="#babel-설정">babel 설정</a></li>
+        <li><a href="#devserver-설정">devServer 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#webpack-실행">Webpack 실행</a>
+      <ul>
+        <li><a href="#전체-webpackconfigjs-코드">전체 webpack.config.js 코드</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
     <div class="post__content">
       <h1>React Webpack 개념 및 설정</h1>
       
@@ -673,6 +705,33 @@ proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 �
 
     
   </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    window.addEventListener('resize', function() {
+      
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    });
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[5].split('#')[1]);
+        const target = document.getElementById(id);
+        
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
 
 
       </main>
