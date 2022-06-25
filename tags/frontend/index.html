@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.0434e72e158bdda3bd76e9ef2d713cecda68df8a445a1fdc2f4eaee837020ab3.css"
-      integrity="sha256-BDTnLhWL3aO9dunvLXE87Npo34pEWh/cL06u6DcCCrM="
+      href="/scss/main.min.3fbebf4b60285db317b723891fa9fe87d2fd0743116396da48d5a57196f75a18.css"
+      integrity="sha256-P76/S2AoXbMXtyOJH6n&#43;h9L9B0MRY5baSNWlcZb3Whg="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -200,19 +200,6 @@
       
         <li class="sidebar__list-item">
           <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener"
-            aria-label="instagram"
-            title="instagram"
-          >
-            <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-          </a>
-        </li>
-
-      
-        <li class="sidebar__list-item">
-          <a
             href="mailto:mail@example.com"
             target="_blank"
             rel="noopener"
@@ -225,29 +212,59 @@
 
       
     </ul>
-    <ul class="nav__list categories">
+  
+    <div class="nav__list categories">
       
-        <li>
-          <a href="/categories/kubernetes">kubernetes <span>(1)</span></a>
-        </li>
-
       
-        <li>
-          <a href="/categories/react.js">react.js <span>(2)</span></a>
-        </li>
-
       
-        <li>
-          <a href="/categories/syntax">syntax <span>(1)</span></a>
-        </li>
-
       
-        <li>
-          <a href="/categories/themes">themes <span>(1)</span></a>
-        </li>
-
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+            </div>
+          
+        
       
-    </ul>
+        <a href="/categories/frontend" class=" watched ">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+            </div>
+          
+        
+      
+    </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
     <li class="footer__item">
@@ -269,6 +286,29 @@
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
   ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  const expands = document.querySelectorAll('.expand__list');
+  for (i = 0; i < expands.length; i++) {
+    const classes = expands[i].firstElementChild.classList;
+    const icon = expands[i].previousElementSibling.lastElementChild;
+    if (classes.contains('watched')) {
+      icon.classList.add('up');
+      icon.classList.add('down');
+      expands[i].classList.add('expand--open');
+    }
+  }
+</script>
 </aside>
       <main
         
@@ -297,19 +337,11 @@
       <ul class="nav__list" id="navMenu">
         
           <li class="nav__list-item">
-            <a href="/categories/kubernetes">kubernetes <span>(1)</span></a>
+            <a href="/categories/devops">devops <span>(1)</span></a>
           </li>
         
           <li class="nav__list-item">
-            <a href="/categories/react.js">react.js <span>(2)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/syntax">syntax <span>(1)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/themes">themes <span>(1)</span></a>
+            <a href="/categories/frontend">frontend <span>(2)</span></a>
           </li>
         
         
@@ -381,10 +413,6 @@
     <ul id="tags" class="nav__list tags hide">
       
         <li>
-          <a href="/tags/css">#css <span>(1)</span></a>
-        </li>
-      
-        <li>
           <a href="/tags/devops">#devops <span>(1)</span></a>
         </li>
       
@@ -397,10 +425,6 @@
         </li>
       
         <li>
-          <a href="/tags/html">#html <span>(1)</span></a>
-        </li>
-      
-        <li>
           <a href="/tags/index">#index <span>(1)</span></a>
         </li>
       
@@ -410,10 +434,6 @@
       
         <li>
           <a href="/tags/kubernetes">#kubernetes <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/markdown">#markdown <span>(1)</span></a>
         </li>
       
         <li>
@@ -482,12 +502,12 @@
           </span
         >
         
-          <span><a class="category" href="/categories/react%2ejs/">React.js</a></span>
-
-
+        
+          <span><a class="subcategory" href="/subcategories/react%2ejs/">React.js</a></span>
 
 
         
+
 
         
           <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/redux/">redux</a><a class="tag" href="/tags/middleware/">middleware</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>
@@ -527,12 +547,12 @@
           </span
         >
         
-          <span><a class="category" href="/categories/react%2ejs/">React.js</a></span>
-
-
+        
+          <span><a class="subcategory" href="/subcategories/react%2ejs/">React.js</a></span>
 
 
         
+
 
         
           <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/webpack/">webpack</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>

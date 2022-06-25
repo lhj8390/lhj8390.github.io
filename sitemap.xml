@@ -11,19 +11,25 @@
     <loc>https://lhj8390.github.io/tags/frontend/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://lhj8390.github.io/categories/frontend/</loc>
+    <lastmod>2022-06-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://lhj8390.github.io/tags/middleware/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/react.js/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/categories/react.js/</loc>
+    <loc>https://lhj8390.github.io/subcategories/react.js/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/redux/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/redux-thunk/</loc>
+    <lastmod>2022-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/</loc>
@@ -38,6 +44,9 @@
     <loc>https://lhj8390.github.io/tags/devops/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://lhj8390.github.io/categories/devops/</loc>
+    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://lhj8390.github.io/tags/docker/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
@@ -47,7 +56,7 @@
     <loc>https://lhj8390.github.io/tags/kubernetes/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/categories/kubernetes/</loc>
+    <loc>https://lhj8390.github.io/subcategories/kubernetes/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/series/</loc>
@@ -67,27 +76,6 @@
   </url><url>
     <loc>https://lhj8390.github.io/post/</loc>
     <lastmod>2022-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/css/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/html/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/markdown/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/post/markdown-syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/categories/syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/categories/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/series/themes-guide/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/portfolio/</loc>
   </url>

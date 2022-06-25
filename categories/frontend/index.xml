@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>lhj8390</title>
-    <link>https://lhj8390.github.io/</link>
-    <description>Recent content on lhj8390</description>
+    <title>frontend on lhj8390</title>
+    <link>https://lhj8390.github.io/categories/frontend/</link>
+    <description>Recent content in frontend on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redux-Thunk를 이용한 상태관리</title>
       <link>https://lhj8390.github.io/post/redux-thunk/</link>
@@ -26,17 +26,6 @@
       <guid>https://lhj8390.github.io/post/react-webpack/</guid>
       
         <description>React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.</description>
-      
-    </item>
-    
-    <item>
-      <title>쿠버네티스 서비스</title>
-      <link>https://lhj8390.github.io/post/k8s_service/</link>
-      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/post/k8s_service/</guid>
-      
-        <description>쿠버네티스의 서비스 개념 및 종류에 대해 설명한다.</description>
       
     </item>
     
