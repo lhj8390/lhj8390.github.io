@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.5abebe3a172c891dd4d2dd55f31c3fd097839be1ef05f5b5b5d26adac944c399.css"
-      integrity="sha256-Wr6&#43;OhcsiR3U0t1V8xw/0JeDm&#43;HvBfW1tdJq2slEw5k="
+      href="/scss/main.min.0434e72e158bdda3bd76e9ef2d713cecda68df8a445a1fdc2f4eaee837020ab3.css"
+      integrity="sha256-BDTnLhWL3aO9dunvLXE87Npo34pEWh/cL06u6DcCCrM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -526,7 +526,7 @@
 </nav>
     </div>
     
-    <div class="post__content">
+    <div class="post__content detail">
       <h1>Markdown Syntax Guide</h1>
       
         <ul class="post__meta">
@@ -700,12 +700,12 @@
   <div class="related--list">
     
       
-        <a href="/post/redux-thunk/"><span>이전 게시물</span> <p>Redux-Thunk를 이용한 상태관리</p></a>
+        <a href="/post/redux-thunk/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Redux-Thunk를 이용한 상태관리</p></a>
       
 
     
       
-        <a href="/post/react-webpack/"><span>다음 게시물</span> <p>React Webpack 개념 및 설정</p></a>
+        <a href="/post/react-webpack/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>React Webpack 개념 및 설정</p></a>
       
 
     
@@ -754,7 +754,7 @@
         e.preventDefault();
         let id = decodeURI(this.href.split('/')[5].split('#')[1]);
         const target = document.getElementById(id);
-        
+
         window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
       });
     }
