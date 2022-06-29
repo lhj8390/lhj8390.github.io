@@ -19,17 +19,6 @@
     </item>
     
     <item>
-      <title>[스프링인액션] 스프링 초기 설정</title>
-      <link>https://lhj8390.github.io/post/spring-basic/</link>
-      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/post/spring-basic/</guid>
-      
-        <description>스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.</description>
-      
-    </item>
-    
-    <item>
       <title>React Webpack 개념 및 설정</title>
       <link>https://lhj8390.github.io/post/react-webpack/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
