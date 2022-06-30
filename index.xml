@@ -6,7 +6,18 @@
     <description>Recent content on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[스프링인액션] 데이터로 작업하기</title>
+      <link>https://lhj8390.github.io/post/spring-db/</link>
+      <pubDate>Thu, 30 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring-db/</guid>
+      
+        <description>스프링에서 JDBC, JPA를 이용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>Redux-Thunk를 이용한 상태관리</title>
       <link>https://lhj8390.github.io/post/redux-thunk/</link>
