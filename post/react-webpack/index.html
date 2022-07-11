@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.be2d3fa0b685c4d5438bcf188c6e6a5ed6ebcda0bb8e0817c3c58ba9cbe79b42.css"
-      integrity="sha256-vi0/oLaFxNVDi88YjG5qXtbrzaC7jggXw8WLqcvnm0I="
+      href="/scss/main.min.471023e919caa3604b2e9784f0b6e0315861f9a56ea614d5bd7b97573b5f30f6.css"
+      integrity="sha256-RxAj6RnKo2BLLpeE8LbgMVhh&#43;aVuphTVvXuXVztfMPY="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -670,20 +670,18 @@
 proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 요청을 받아주도록 설정!
 <br /><br /></p>
 <aside>
-💡 CORS 에러?
-<pre><code> 개발 편의상 로컬에 webpack-dev-server를 띄어놓는 경우가 많은데,
- 보통 다른 도메인에서 요청을 보낼 경우 브라우저 보안으로 인해 CORS 에러가 발생한다.
- 하지만 프록시 설정을 할 경우 같은 도메인에서 온 요청으로 인식하여 CORS 에러가 나지 않는다.
-</code></pre>
+💡 <strong>CORS 에러?</strong>
+<p>개발 편의상 로컬에 webpack-dev-server를 띄어놓는 경우가 많은데,
+보통 다른 도메인에서 요청을 보낼 경우 브라우저 보안으로 인해 CORS 에러가 발생한다.
+하지만 프록시 설정을 할 경우 같은 도메인에서 온 요청으로 인식하여 CORS 에러가 나지 않는다.</p>
 </aside>
 <br /><br />
 <h2 id="webpack-실행">Webpack 실행</h2>
 <hr>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack --config ./webpack.config.js&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack-dev-server --config ./webpack.config.js&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack --config ./webpack.config.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;start&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-dev-server --config ./webpack.config.js&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span></code></pre></div><p><strong>npm start</strong> : webpack.config.js 설정 파일을 이용하여 webpack-dev-server를 구동한다. <br>
 <strong>npm build</strong> : webpack.config.js 설정 파일을 이용하여 webpack 빌드를 수행한다.
 <br /><br /></p>

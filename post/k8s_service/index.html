@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.be2d3fa0b685c4d5438bcf188c6e6a5ed6ebcda0bb8e0817c3c58ba9cbe79b42.css"
-      integrity="sha256-vi0/oLaFxNVDi88YjG5qXtbrzaC7jggXw8WLqcvnm0I="
+      href="/scss/main.min.471023e919caa3604b2e9784f0b6e0315861f9a56ea614d5bd7b97573b5f30f6.css"
+      integrity="sha256-RxAj6RnKo2BLLpeE8LbgMVhh&#43;aVuphTVvXuXVztfMPY="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/k8s_service\/",
-        "wordCount" : "627",
+        "wordCount" : "626",
         "genre" : [ 
       
       "DevOps"
@@ -569,7 +569,7 @@
         <li><a href="#내부-pod와-통신하는-방법">내부 POD와 통신하는 방법</a></li>
       </ul>
     </li>
-    <li><a href="#externalname"><strong>ExternalName</strong></a>
+    <li><a href="#externalname">ExternalName</a>
       <ul>
         <li><a href="#externalname-생성"><strong>ExternalName 생성</strong></a></li>
         <li><a href="#다른-네임스페이스의-서비스-참조">다른 네임스페이스의 서비스 참조</a></li>
@@ -599,12 +599,11 @@
           </li>
         </ul>
 
-      <h1 id="서비스">서비스</h1>
-<h2 id="서비스의-개념">서비스의 개념</h2>
+      <h2 id="서비스의-개념">서비스의 개념</h2>
 <p>동일한 서비스를 제공하는 파드 그룹에 지속적인 단일 접점을 만들려고 할 때 생성하는 리소스
 <br/><br/></p>
 <h3 id="-서비스의-필요성">◼ <strong>서비스의 필요성</strong></h3>
-<p>파드는 비영구적 리소스이기 때문에 파드 내의 IP 주소는 랜덤하게 지정되고, 리스타트 될 때마다 변경될 수 있다.</p>
+<p>파드는 <strong>비영구적 리소스</strong>이기 때문에 파드 내의 IP 주소는 랜덤하게 지정되고, 리스타트 될 때마다 변경될 수 있다.</p>
 <p>파드는 고정된 엔드포인트로 호출이 어렵다.</p>
 <p>서비스를 사용하게 되면 파드가 클러스터내의 어디에 있는지에 상관없이 고정된 주소를 이용해서 접근이 가능하다.</p>
 <p>→ “<em>서비스를 통해 고정 IP 주소를 설정하여 내, 외부 클라이언트가 파드에 접속할 수 있다.”</em></p>
@@ -617,16 +616,16 @@
 <p><br/><br/></p>
 <h2 id="servicetype-종류">ServiceType 종류</h2>
 <ul>
-<li><strong>ClusterIP</strong>
-서비스를 클러스터 내부 IP에 노출시킨다. ServiceTypes의 기본 값.
+<li><strong>ClusterIP</strong><br/>
+서비스를 <span class="red">클러스터 내부 IP</span>에 노출시킨다. ServiceTypes의 기본 값.
 클러스터 내에서는 이 서비스에 접근이 가능하지만, 클러스터 외부에서는 외부 IP 를 할당 받지 못했기 때문에 접근이 불가능하다.</li>
-<li><strong>NodePort</strong>
-고정 포트로 각 노드의 IP에 서비스를 노출시킨다.
+<li><strong>NodePort</strong><br/>
+고정 포트로 <span class="red">각 노드의 IP</span>에 서비스를 노출시킨다.
 <code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code> 를 요청하여, 클러스터 외부에서 NodePort 서비스에 접속할 수 있다.</li>
-<li><strong>LoadBalancer</strong>
+<li><strong>LoadBalancer</strong><br/>
 클라우드 벤더에서 제공하는 설정 방식으로, 로드 밸런서를 사용하여 서비스를 외부에 노출시킨다.
 외부 로드 밸런서가 라우팅되는 NodePort와 ClusterIP 서비스가 자동으로 생성된다.</li>
-<li><strong>ExternalName</strong>
+<li><strong>ExternalName</strong><br/>
 서비스를 externalName 필드의 콘텐츠 (예: foo.bar.example.com)에 매핑한다. 설정해둔 CNAME값이랑 연결된다.</li>
 </ul>
 <p><br/><br/></p>
@@ -672,19 +671,21 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">443</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">9090</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
-<p>서비스는 동시에 하나의 포트 뿐 아니라 여러개의 포트를 동시에 지원한다.</p>
-<p>하나의 서비스를 이용해 포트 80과 443을 각각 8080, 9090 포트와 연결할 수 있다.</p>
+<p>서비스는 동시에 하나의 포트 뿐 아니라 여러개의 포트를 동시에 지원한다.<br/>
+하나의 서비스를 이용해 포트 80과 443을 각각 8080, 9090 포트와 연결할 수 있다.<br/></p>
 <p>→ “단일 클러스터 IP로 모든 서비스 포트가 노출된다.”
 <br/><br/></p>
-<p>💡 <strong>주의점</strong></p>
+<aside>
+💡 <strong>주의점</strong>
 <p>멀티포트 서비스를 만들 때는 각 포트의 이름을 지정해주어야 한다.</p>
-<p><br/><br/></p>
+</aside>
+<br/><br/>
 <h2 id="nodeport">NodePort</h2>
 <blockquote>
-<p>모든 노드에 특정 포트를 할당하고 서비스를 구성하는 파드로 들어오는 연결을 전달한다.</p>
-<p>Cluster IP와 유사하지만 서비스의 내부 클러스터IP 뿐만 아니라 모든 노드의 IP와 할당된 NodePort로 서비스에 액세스할 수 있다.</p>
+<p>모든 노드에 특정 포트를 할당하고 서비스를 구성하는 파드로 들어오는 연결을 전달한다.<br/>
+Cluster IP와 유사하지만 서비스의 내부 클러스터IP 뿐만 아니라 모든 노드의 IP와 할당된 NodePort로 서비스에 액세스할 수 있다.</p>
 <br/>
-→ 서비스를 클러스터 밖에 위치한 외부 IP 주소에 노출하고 싶은 경우에 사용한다.
+→ <span class="bg_y">서비스를 클러스터 밖에 위치한 외부 IP 주소에 노출하고 싶은 경우에 사용한다.</span>
 <br/>
 <br/>
 </blockquote>
@@ -702,23 +703,26 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">31000</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
-<p>nodePort는 기본적으로 생략이 가능하다.</p>
-<p>생략 시, 쿠버네티스 컨트롤 플레인은 포트 범위에서 자동 할당해준다 (기본값: 30000-32767)</p>
+<p>nodePort는 기본적으로 생략이 가능하다.<br/>
+생략 시, 쿠버네티스 컨트롤 플레인은 포트 범위에서 자동 할당해준다 (기본값: 30000-32767)</p>
 <br/>
-<p>💡 <strong>주의점</strong></p>
-<p>nodePort를 생략할 경우 서비스 재시작 시 nodePort는 계속 변경된다.
-<br/><br/></p>
+<aside>
+💡 <strong>주의점</strong>
+<p>nodePort를 생략할 경우 서비스 재시작 시 nodePort는 계속 변경된다.</p>
+</aside>
+<br/><br/>
 <h3 id="내부-pod와-통신하는-방법">내부 POD와 통신하는 방법</h3>
 <p><img src="/images/ab861e53f3e043aa808be27b243103e0/3.png" alt="Untitled"></p>
 <p>◼️ <strong>설명</strong></p>
-<p>노드의 특정 IP 192.168.1.1 의 31000 포트에 접근한다면 트래픽이 가장 원활한 곳에 자동으로 연결을 시도한다.</p>
-<p>해당 트래픽은 서비스의 80포트를 찾고, 컨테이너 내부 80포트를 읽는 구조로 진행된다.</p>
-<p><br/><br/>
-💡 <strong>주의점</strong></p>
+<p>노드의 특정 IP 192.168.1.1 의 31000 포트에 접근한다면 <span class="bg_y">트래픽이 가장 원활한 곳</span>에 자동으로 연결을 시도한다.<br/>
+해당 트래픽은 서비스의 80포트를 찾고, 컨테이너 내부 80포트를 읽는 구조로 진행된다.</p>
+<aside>
+💡 <strong>주의점</strong>
 <p>특정 노드에 장애가 발생 시, 클라이언트는 해당 서비스에 액세스할 수 없게 되고 자동으로 다른 노드를 통해 접근이 불가능하다.
 이를 해결하기 위해서는 별도의 로드밸런서가 필요하다.</p>
+</aside>
 <br/>
-<h2 id="externalname"><strong>ExternalName</strong></h2>
+<h2 id="externalname">ExternalName</h2>
 <blockquote>
 <p>FQDN(정규화된 도메인 이름)으로 외부 서비스를 참조하는 방법 <br/>
 쿠버네티스 내부에서 외부 서비스를 호출하고자 할때 사용한다.</p>
@@ -741,9 +745,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ExternalName</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">externalName</span><span class="p">:</span><span class="w"> </span><span class="l">my.database.example.com</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
-<p>서비스를 <code>my.database.example.com</code>에 매핑한다.</p>
-<p>서비스 프록시를 완전히 무시하고 외부 서비스에 직접 연결된다.</p>
-<p>→ 따라서 ClusterIP를 얻지 못한다.</p>
+<p>서비스를 <code>my.database.example.com</code>에 매핑한다. <br/>
+서비스 프록시를 완전히 무시하고 외부 서비스에 직접 연결된다.</p>
+<p>→ 따라서 ClusterIP를 얻지 못한다.
+<br/><br/></p>
 <h3 id="다른-네임스페이스의-서비스-참조">다른 네임스페이스의 서비스 참조</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
@@ -767,13 +772,15 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">externalName</span><span class="p">:</span><span class="w"> </span><span class="l">my-service.a.svc.cluster.local</span><span class="w">
 </span></span></span></code></pre></div><p>◼️ <strong>설명</strong></p>
 <p>파드가 다른 namespace의 서비스에 접근해야 하는 경우에도 ExternalName을 이용할 수 있다.</p>
-<p>b 네임스페이스의 external-service:8080 포트로 연결되는 모든 트래픽은</p>
-<p>a 네임스페이스의 my-service로 라우팅된다. <strong>(my-service.a.svc.cluster.local)</strong></p>
-<p><br/><br/>
-💡 <strong>특징</strong></p>
+<p>b 네임스페이스의 external-service:8080 포트로 연결되는 모든 트래픽은<br/>
+a 네임스페이스의 my-service로 라우팅된다. <strong>(my-service.a.svc.cluster.local)</strong></p>
+<p><br/><br/></p>
+<aside>
+💡 <strong>특징</strong>
 <p>서비스를 사용하는 파드에서 <em>실제 서비스 이름과 위치가 숨겨져</em>
 나중에 externalName 속성을 변경하거나 서비스 스펙을 수정하면 다른 서비스를 가리킬 수 있다.</p>
-<p><br/><br/></p>
+</aside>
+<br/><br/>
 
 
 
