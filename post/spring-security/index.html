@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 스프링 시큐리티 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 스프링 시큐리티를 이용하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.8bc3eafa5367e58b992ee3a37f3fa71e8ec79d254356b5d5c23a8dfbed1e1f68.css"
+      integrity="sha256-i8Pq&#43;lNn5YuZLuOjfz&#43;nHo7HnSVDVrXVwjqN&#43;&#43;0eH2g="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring-security/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 스프링 시큐리티"/>
+<meta name="twitter:description" content="스프링에서 스프링 시큐리티를 이용하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 스프링 시큐리티" />
+<meta property="og:description" content="스프링에서 스프링 시큐리티를 이용하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring-security/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-14T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 스프링 시큐리티",
+        "headline": "[스프링인액션] 스프링 시큐리티",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 스프링 시큐리티를 이용하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring-security\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-07-14T00:00:00.00Z",
+        "datePublished": "2022-07-14T00:00:00.00Z",
+        "dateModified": "2022-07-14T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring-security\/",
+        "wordCount" : "1816",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+            </div>
+          
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(3)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+            </div>
+          
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+            </div>
+          
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  const expands = document.querySelectorAll('.expand__list');
+  for (i = 0; i < expands.length; i++) {
+    const classes = expands[i].firstElementChild.classList;
+    const icon = expands[i].previousElementSibling.lastElementChild;
+    if (classes.contains('watched')) {
+      icon.classList.add('up');
+      icon.classList.add('down');
+      expands[i].classList.add('expand--open');
+    }
+  }
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <ul class="nav__list" id="navMenu">
+        
+          <li class="nav__list-item">
+            <a href="/categories/devops">devops <span>(1)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/framework">framework <span>(3)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/frontend">frontend <span>(2)</span></a>
+          </li>
+        
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#스프링-시큐리티-구성하기">스프링 시큐리티 구성하기</a>
+      <ul>
+        <li><a href="#빌드-명세">빌드 명세</a></li>
+        <li><a href="#스프링-시큐리티-구성-클래스">스프링 시큐리티 구성 클래스</a></li>
+      </ul>
+    </li>
+    <li><a href="#사용자-스토어-구성">사용자 스토어 구성</a>
+      <ul>
+        <li><a href="#인메모리-사용자-스토어"><strong>인메모리 사용자 스토어</strong></a></li>
+        <li><a href="#jdbc-기반의-사용자-스토어"><strong>JDBC 기반의 사용자 스토어</strong></a></li>
+        <li><a href="#ldap-기반의-사용자-스토어"><strong>LDAP 기반의 사용자 스토어</strong></a></li>
+        <li><a href="#사용자-인증-커스터마이징"><strong>사용자 인증 커스터마이징</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#암호화된-비밀번호-사용하기">암호화된 비밀번호 사용하기</a>
+      <ul>
+        <li><a href="#passwordencoder-인터페이스-정의">PasswordEncoder 인터페이스 정의</a></li>
+        <li><a href="#jdbc-기반-암호화">JDBC 기반 암호화</a></li>
+        <li><a href="#ldap-비밀번호-비교-구성">LDAP 비밀번호 비교 구성</a></li>
+      </ul>
+    </li>
+    <li><a href="#스프링-시큐리티-보안-구성">스프링 시큐리티 보안 구성</a>
+      <ul>
+        <li><a href="#특정-페이지에-한해-인증-수행하기">특정 페이지에 한해 인증 수행하기</a></li>
+        <li><a href="#로그인-페이지-경로-지정하기">로그인 페이지 경로 지정하기</a></li>
+        <li><a href="#로그아웃-페이지-경로-지정하기">로그아웃 페이지 경로 지정하기</a></li>
+        <li><a href="#csrf-설정하기">CSRF 설정하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#사용자-정보-취득">사용자 정보 취득</a>
+      <ul>
+        <li><a href="#principal-객체-이용">Principal 객체 이용</a></li>
+        <li><a href="#authentication-객체-이용">Authentication 객체 이용</a></li>
+        <li><a href="#securitycontextholder-를-사용">SecurityContextHolder 를 사용</a></li>
+        <li><a href="#authenticationprincipal-어노테이션-사용">@AuthenticationPrincipal 어노테이션 사용</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 스프링 시큐리티</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                14/7/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 9분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링 시큐리티를 이용하여 스프링 애플리케이션에 보안 기능을 구현한다.</p>
+<ul>
+<li>스프링 시큐리티 구성하기</li>
+<li>여러 방법을 사용하여 사용자 스토어 구성해보기</li>
+<li>password encoder 적용하기</li>
+<li>스프링 시큐리티 보안 구성하기</li>
+<li>사용자 정보 취득하기</li>
+</ul>
+<p>에 대해 기술해보았다.</p>
+</blockquote>
+<h2 id="스프링-시큐리티-구성하기">스프링 시큐리티 구성하기</h2>
+<hr>
+<h3 id="빌드-명세">빌드 명세</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-security&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.security:spring-security-test&#39;</span>
+</span></span></code></pre></div><p>스프링 부트 보안 스타터 의존성을 추가하였다.</p>
+<h3 id="스프링-시큐리티-구성-클래스">스프링 시큐리티 구성 클래스</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@EnableWebSecurity</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>사용자의 HTTP 요청 경로에 대해 접근 제한과 같은 보안 처리를 원하는 대로 처리할 수 있게 도와준다.<br/>
+SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdaper의 서브 클래스이다.</p>
+<ul>
+<li><strong>configure(HttpSecurity)</strong> : HTTP 보안을 구성하는 메서드</li>
+<li><strong>configure(AuthenticationManagerBuilder)</strong> : 사용자 인증 정보를 구성하는 메서드</li>
+</ul>
+<h2 id="사용자-스토어-구성">사용자 스토어 구성</h2>
+<hr>
+<blockquote>
+<p>보안을 구성하기에 사용자를 처리할 수 있도록 사용자 정보를 유지/관리하는 사용자 스토어를 구성할 수 있다.<br/>
+스프링 시큐리티에서는 4가지의 사용자 스토어 구성 방법을 제공한다.</p>
+<ul>
+<li>인메모리 사용자 스토어</li>
+<li>JDBC 기반 사용자 스토어</li>
+<li>LDAP 기반 사용자 스토어</li>
+<li>커스텀 사용자 명세 서비스</li>
+</ul>
+<p>사용자 스토어는 SecurityConfig 클래스에서 <strong>configure(AuthenticationManagerBuilder)</strong> 메서드를 오버라이딩하여 구성할 수 있다.</p>
+</blockquote>
+<h3 id="인메모리-사용자-스토어"><strong>인메모리 사용자 스토어</strong></h3>
+<p>user1, user2라는 사용자를 인메모리 사용자 스토어에 구성하는 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>inMemoryAuthentication() 메서드를 사용하여 보안 구성 자체에 사용자 정보를 직접 지정할 수 있다.</p>
+<ul>
+<li>withUser() : 사용자의 구성 시작</li>
+<li>passwrd() : 비밀번호 설정</li>
+<li>authorities() : 권한 설정 - <span class="gray it">roles(”user”) 로도 사용할 수 있다.</span></li>
+<li>and() : 연속해서 withUser() 호출 가능</li>
+</ul>
+<h3 id="jdbc-기반의-사용자-스토어"><strong>JDBC 기반의 사용자 스토어</strong></h3>
+<p>관계형 데이터베이스에 유지되는 사용자 정보를 스토어에 구성하는 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>jdbcAuthentication() 메서드 호출과 함께 데이터베이스에 액세스할 수 있도록 DataSource를 설정하였다.<br/>
+스프링 시큐리티는 사전 지정된 데이터베이스 테이블이 존재하는데, 우리가 사용하고 싶은 데이터베이스를 커스터마이징할 수도 있다.</p>
+<p><span class="red">→ usersByUsernameQuery() 와 authoritiesByUsernameQuery() 메서드를 사용하여 사용자 정보와 권한 쿼리를 대체하였다.</span>
+<br/><br/></p>
+<aside>
+💡  <span class="red">스프링 시큐리티의 SQL 쿼리를 대체할 때의 주의사항!</span>
+<pre><code>1.  스프링 시큐리티의 기본 데이터베이스 테이블 이름이 달라도 되지만 테이블이 갖는 데이터 타입과 길이는 일치해야 한다.
+2.  where 절에서 사용되는 매개변수는 하나이고, 그 매개변수는 username이어야 한다.
+3. 사용자 정보 인증 쿼리에서는 username, password, enabled 열의 값을 반환하여야 한다.
+4. 사용자 권한 쿼리에서는 username과 authority을 포함하는 0 또는 다수의 행을 반환할 수 있다.
+5. 그룹 권한 쿼리에서는 group id, group_name, authority을 포함하는 0 또는 다수의 행을 반환할 수 있다.
+</code></pre>
+</aside>
+<h3 id="ldap-기반의-사용자-스토어"><strong>LDAP 기반의 사용자 스토어</strong></h3>
+<p>LDAP 인증의 간단한 구성방법에 대한 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>userSearchFilter()</strong> 와 <strong>groupSearchFilter()</strong> 메서드 : LDAP 기본 쿼리의 필터를 제공하기 위해 사용한다. 사용자와 그룹을 검색할 수 있다.<br/>
+<strong>userSearchBase()</strong> 와 <strong>groupSearchBase()</strong> 메서드 : 사용자와 그룹을 찾기 위한 기준점 쿼리를 지정할 수 있다. - <span class="gray it">루트로부터 검색하지 않고 사용자는 people 구성 단위(OU), 그룹은 groups 구성 단위부터 검색이 시작된다.</span></p>
+<h3 id="사용자-인증-커스터마이징"><strong>사용자 인증 커스터마이징</strong></h3>
+<p>사용자 데이터를 JPA를 통해 처리하기 위해서는 사용자 도메인 객체와 퍼시스턴스를 직접 정의해야 한다.<br/>
+사용자 데이터를 구현하는 User 객체와 user 데이터를 넣는 repository를 만든 다음,  스프링 시큐리티 구성 내부에 UserDetailsService 구현체를 넘겨줘서 구현한다.</p>
+<br/>
+<p><strong>사용자 도메인 객체 정의</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span><span class="o">=</span><span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">UserDetails</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">street</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">city</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">state</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">zip</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span>
+</span></span><span class="line"><span class="cl">            <span class="n">GrantedAuthority</span><span class="o">&gt;</span> <span class="nf">getAuthorities</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SimpleGrantedAuthority</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 시큐리티에서 제공하는 UserDetails 인터페이스를 구현하였다. 이를 통해 User 클래스는 기본 사용자 정보를 프레임워크에게 제공할 수 있다.</p>
+<ul>
+<li>getAuthorities() : 사용자에게 부여된 권한을 저장한 컬렉션을 반환하는 메서드이다.</li>
+<li>isAccountNonExpired(), isAccountNonLocked(), isCredentialsNonExpired(), isEnabled() : 사용자 계정의 활성화, 비활성화 여부를 나타내는 메서드이다.
+<br/></li>
+</ul>
+<p><strong>사용자 명세 서비스 생성하기</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepositoryUserDetailsService</span> <span class="kd">implements</span> <span class="n">UserDetailsService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">UserRepositoryUserDetailsService</span><span class="o">(</span><span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userRepo</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UsernameNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">user</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UsernameNotFoundException</span><span class="o">(</span><span class="s">&#34;User &#39;&#34;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">&#34;&#39; not found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 시큐리티에서 제공하는 UserDetailsService 인터페이스를 구현한 클래스이다.</p>
+<ul>
+<li>loadUserByUsername() : findByUsername() 에서 null을 반환하면 UsernameNotFoundException을 발생시키며 null이 아닌 경우 UserDetail의 구현체인 User 값이 반환된다. - <em>UserDetails 인터페이스에 User Entity 삽입</em>
+<br/><br/></li>
+</ul>
+<p><strong>스프링 시큐리티 구성하기</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">UserDetailsService</span> <span class="n">userDetailsService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">PasswordEncoder</span> <span class="nf">encoder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">userDetailsService</span><span class="o">).</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">encoder</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>userDetailsService() : SecurityConfig로 자동 주입된 UserDetailService 인스턴스를 인자로 전달하여 호출한다.</li>
+<li>passwordEncoder() : 데이터베이스에 비밀번호가 암호화되어 저장될 수 있도록 인코더를 구성한다.</li>
+</ul>
+<h2 id="암호화된-비밀번호-사용하기">암호화된 비밀번호 사용하기</h2>
+<hr>
+<blockquote>
+<p>스프링 시큐리티 5 버전부터는 의무적으로 PasswordEncoder를 이용해서 비밀번호를 암호화해야 한다.</p>
+<p>비밀번호를 데이터베이스에 저장할 때와 사용자가 입력한 비밀번호는 모두 같은 암호화 알고리즘을 사용해 인증을 수행한다.</p>
+</blockquote>
+<h3 id="passwordencoder-인터페이스-정의">PasswordEncoder 인터페이스 정의</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PasswordEncoder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * rawPassword를 인코딩합니다. 일반적으로 좋은 인코딩 알고리즘은 
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 무작위로 생성된 8바이트 이상의 솔트와 결합된 SHA-1 이상의 해시를 적용합니다.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">String</span> <span class="nf">encode</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 저장소에서 가져온 인코딩된 암호가 인코딩된 후 제출된 원시 암호와 일치하는지 확인합니다. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 암호가 일치하면 true를 반환하고 일치하지 않으면 false를 반환합니다. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">   	 * 저장된 암호 자체는 디코딩되지 않습니다.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @param rawPassword - 인코딩 및 비교할 원시 암호
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @param encodedPassword - 스토리지에서 인코딩된 암호를 추출하여 비교
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @return true - 인코딩 후 원시 암호가 스토리지의 인코딩된 암호와 일치할 경우
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">,</span> <span class="n">String</span> <span class="n">encodedPassword</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>encode : 패스워드를 암호화할 때 사용한다.</li>
+<li>matches : 사용자에게 입력받은 패스워드를 비교하고자 할 때 사용한다.</li>
+</ul>
+<h3 id="jdbc-기반-암호화">JDBC 기반 암호화</h3>
+<p>비밀번호를 암호화할 때는 아래와 같이 paswrdEncoder() 메소드를 호출하여 비밀번호 인코더를 지정한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">NoEncodingPasswordEncoder</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>passwordEncoder() 메서드는 스프링 시큐리티의 PasswordEncoder 인터페이스를 구현한 모든 객체를 인자로 받을 수 있다.</p>
+<ul>
+<li>BCryptPasswordEncoder : bcrypt를 해싱 암호화한다.</li>
+<li>NoOpPaswordEncoder : 암호화하지 않는다.</li>
+<li>Pbkdf2PasswordEncoder : PBKDF2를 암호화한다.</li>
+<li>SCryptPasswordEncoder : scrypt를 해싱 암호화한다.</li>
+<li>StandardPasswordEncoder : SHA-256을 해싱 암호화한다.</li>
+</ul>
+<h3 id="ldap-비밀번호-비교-구성">LDAP 비밀번호 비교 구성</h3>
+<p>LDAP의 기본 인증 전략은 사용자가 직접 LDAP 서버에서 인증받도록 하지만, 하단처럼 비밀번호를 비교하는 방법도 존재한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>입력된 비밀번호를 LDAP 디렉터리에 전송하고, 이 비밀번호를 사용자의 비밀번호 속성 값과 비교하도록 LDAP 서버에 요청한다.</p>
+<ul>
+<li><strong>passwordCompare</strong>() : 로그인 폼에 입력된 비밀번호가 사용자의 LDAP 서버에 있는 userPassword 값과 비교하도록 요청하는 메서드이다.</li>
+<li><strong>passwordAttribute</strong>() : 비밀번호가 userPassword 속성이 아닌 다른 속성의 이름을 사용하고 있다면 해당 메서드를 통해 속성 값을 명시해준다. - <span class="gray it">여기서는 속성 값이 userPasscode</span></li>
+<li><strong>passwordEncoder</strong>() : 비밀번호가 LDAP 서버에 전달될 때 해당 인코더를 통해 암호화된다는 것을 의미한다.</li>
+</ul>
+<h2 id="스프링-시큐리티-보안-구성">스프링 시큐리티 보안 구성</h2>
+<hr>
+<blockquote>
+<p>configure(HttpSecurity) 메서드를 통해 다음과 같이 웹 수준에서 보안을 처리하는 방법을 구성할 수 있다.</p>
+<ul>
+<li>HTTP 요청 처리를 허용하기 전에 충족되어야 할 보안 조건을 구성한다.</li>
+<li>커스텀 로그인 페이지를 구성한다.</li>
+<li>사용자가 로그아웃을 할 수 있도록 한다.</li>
+<li>CSRF 공격으로부터 보호하도록 구성한다.</li>
+</ul>
+</blockquote>
+<h3 id="특정-페이지에-한해-인증-수행하기">특정 페이지에 한해 인증 수행하기</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>authorizeRequests() 메서드를 통해 /design 과 /order 페이지의 요청은 ROLE_USER의 권한을 갖는 사용자만 접근 가능하도록 허용하고 이외의 요청은 모든 사용자에게 허용하였다.</p>
+<p><strong>요청 경로가 보안 처리되는 방법을 정의하는 메소드</strong></p>
+<table>
+<thead>
+<tr>
+<th>메서드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>access(String)</td>
+<td>인자로 전달된 SpEL 표현식이 true 이면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>anonymous()</td>
+<td>익명의 사용자에게 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>authenticated()</td>
+<td>익명이 아닌 사용자로 인증된 경우 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>denyAll()</td>
+<td>무조건 접근을 거부한다.</td>
+</tr>
+<tr>
+<td>fullyAuthenticated()</td>
+<td>익명이 아니거나 remember-me가 아닌 사용자로 인증되면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>hasAnyAuthority(String…)</td>
+<td>지정된 권한 중 어떤 것이라도 사용자가 가지고 있으면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>hasAnyRole(String…)</td>
+<td>지정된 역할 중 어느 하나라도 사용자가 가지고 있으면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>hasAuthority(String)</td>
+<td>지정된 권한을 사용자가 가지고 있으면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>hasIpAddress(String)</td>
+<td>지정된 IP 주소로부터 요청이 오면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>hasRole(String)</td>
+<td>지정된 역할을 사용자가 가지고 있으면 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>not()</td>
+<td>다른 접근 메서드들의 효력을 무효화한다.</td>
+</tr>
+<tr>
+<td>permitAll()</td>
+<td>무조건 접근을 허용한다.</td>
+</tr>
+<tr>
+<td>rememberMe()</td>
+<td>이전 로그인 정보를 쿠키나 데이터베이스로 저장한 후 일정 기간내에 재 접근하여 자동 로그인 된 사용자의 접근을 허용한다.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="로그인-페이지-경로-지정하기">로그인 페이지 경로 지정하기</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">formLogin</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">&#34;/login&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">loginProcessingUrl</span><span class="o">(</span><span class="s">&#34;/authenticate&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usernameParameter</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordParameter</span><span class="o">(</span><span class="s">&#34;pwd&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>기본 로그인 페이지를 교체하려면 스프링 시큐리티 구성을 통해 커스텀 로그인 페이지 경로를 알려주어야 한다.<br/>
+formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고, loginPage() 메서드를 통해 로그인 페이지 경로를 지정할 수 있다.<br/>
+스프링 시큐리티가 인증이 필요하다고 판단될 경우 loginPage() 메서드에 적용한 경로로 연결해준다.</p>
+<ul>
+<li><strong>loginProcessingUrl</strong>() : 로그인을 처리하는 경로를 지정할 때 사용한다.</li>
+<li><strong>defaultSuccessUrl</strong>() : 로그인이 성공적으로 처리되었을 경우 리다이렉트할 페이지 경로를 지정할 때 사용한다. <span class="gray it">- 로그인 페이지에 다이렉트로 접근했을 경우</span>
+※ 스프링 시큐리티는 기본적으로 사용자가 머물던 페이지로 이동하는데, 강제적으로 페이지 경로를 지정할 경우에는 <strong>defaultSuccessUrl(”페이지 경로”, true)</strong> 로 지정해준다.</li>
+<li><strong>usrenameParameter</strong>() : 로그인 폼에서 기본 사용자 이름 필드 이름은 “username”이다. 이 필드 이름을 변경할 경우 사용한다.</li>
+<li><strong>passwordParameter</strong>() : 로그인 폼에서 기본 비밀번호 필드 이름은 “password”이다. 이 필드 이름을 변경할 경우 사용한다.</li>
+</ul>
+<h3 id="로그아웃-페이지-경로-지정하기">로그아웃 페이지 경로 지정하기</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logout</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">&#34;/logout&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">invalidateHttpSession</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">deleteCookies</span><span class="o">(</span><span class="s">&#34;JSESSIONID&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>로그아웃 설정은 logout() 메서드를 호출하고 logoutUrl() 메서드를 통해 logout을 요청하기 위한 url을 설정할 수 있다. <span class="gray it">- login의 loginProcessingUrl() 메서드와 비슷</span></p>
+<ul>
+<li><strong>logoutSuccessUrl</strong>() : 로그아웃 성공 시 리다이렉트할 페이지 경로를 지정할 때 사용한다.</li>
+<li><strong>invalidateHttpSession</strong>() : 로그아웃이 될 때 세션을 무효화할 것인지 지정할 때 사용한다. 기본 값은 true이다.</li>
+<li><strong>deleteCookies</strong>() : 로그아웃 될 때 삭제할 쿠키 목록을 지정할 때 사용한다.</li>
+</ul>
+<h3 id="csrf-설정하기">CSRF 설정하기</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">th:action</span><span class="o">=</span><span class="s">&#34;@{/login}&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;loginForm&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>스프링 시큐리티에는 내장된 CSRF 방어 기능이 있는데, 스프링에 내장된 Thymeleaf 등을 사용한다면 숨김 필드 설정 필요 없이 csrf 필드가 자동으로 생성된다.<br/>
+폼 전송을 수행할 때 자동으로 생성된 csrf 필드를 포함시킬 경우 <code>th:action</code> 속성을 지정하면 된다.
+<br/>
+<br/></p>
+<p><strong>csrf 비활성화하기</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">disable</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>단, REST API로 실행되는 애플리케이션의 경우에는 csrf 를 disable 처리해야 한다.</p>
+<h2 id="사용자-정보-취득">사용자 정보 취득</h2>
+<hr>
+<blockquote>
+<p>인증된 사용자가 누구인지 사용자 정보를 취득하기 위해서는 4가지 방법이 존재한다.</p>
+<ul>
+<li>Principal 객체를 컨트롤러 메서드에 주입한다.</li>
+<li>Authentication 객체를 컨트롤러 메서드에 주입한다.</li>
+<li>SecurityContextHolder를 사용하여 보안 컨텍스트를 얻는다.</li>
+<li>@AuthenticationPrincipal 어노테이션을 메서드에 지정한다.</li>
+</ul>
+</blockquote>
+<h3 id="principal-객체-이용">Principal 객체 이용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Principal</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">principal</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Principal 객체를 컨트롤러의 인자로 받아 사용자 정보를 받아오는 코드이다.</p>
+<h3 id="authentication-객체-이용">Authentication 객체 이용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserDetails</span><span class="o">)</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User has authorities: &#34;</span> <span class="o">+</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Authentication 객체를 컨트롤러의 인자로 받아 사용자 정보를 받아올 수 있다. <br/>
+Authentication 객체의 getPrincipal() 메서드는 Object 타입을 반환하는데 UserDetails 타입으로 변환하여 원하는 데이터를 받아올 수도 있다.</p>
+<h3 id="securitycontextholder-를-사용">SecurityContextHolder 를 사용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">currentPrincipalName</span> <span class="o">=</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span></code></pre></div><p>보안 컨텍스트로부터 Authentication 객체를 얻은 후 Principal 객체를 받아와 사용자 정보를 받아올 수 있다. <br/>
+어플리케이션의 어디든 사용할 수는 있지만 코드를 검증하는 데에 있어서 안 좋은 요소이다.</p>
+<h3 id="authenticationprincipal-어노테이션-사용">@AuthenticationPrincipal 어노테이션 사용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="nd">@AuthenticationPrincipal</span> <span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>@AuthenticationPrincipal은 타입 변환이 필요 없고 Authentication과 동일하게 보안 특정 코드만 갖는다.<br/>
+메서드에 어노테이션만 지정하면 되어서 편리하게 UserDetails 구현체를 받아올 수 있다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring-db/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 데이터로 작업하기</p></a>
+      
+
+    
+      
+        <a href="/post/spring-basic/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 스프링 초기 설정</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[5].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    
+      
+    }
+    
+  </script>
+</html>

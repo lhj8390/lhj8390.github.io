@@ -6,11 +6,11 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 30 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>java</title>
       <link>https://lhj8390.github.io/tags/java/</link>
-      <pubDate>Thu, 30 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/java/</guid>
       
@@ -21,7 +21,7 @@
     <item>
       <title>spring</title>
       <link>https://lhj8390.github.io/tags/spring/</link>
-      <pubDate>Thu, 30 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/spring/</guid>
       
@@ -30,9 +30,20 @@
     </item>
     
     <item>
+      <title>spring boot</title>
+      <link>https://lhj8390.github.io/tags/spring-boot/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/spring-boot/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
       <title>web</title>
       <link>https://lhj8390.github.io/tags/web/</link>
-      <pubDate>Thu, 30 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/web/</guid>
       
