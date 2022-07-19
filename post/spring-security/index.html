@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.8bc3eafa5367e58b992ee3a37f3fa71e8ec79d254356b5d5c23a8dfbed1e1f68.css"
-      integrity="sha256-i8Pq&#43;lNn5YuZLuOjfz&#43;nHo7HnSVDVrXVwjqN&#43;&#43;0eH2g="
+      href="/scss/main.min.7a100540ed751cd129d4c7f6a6182866acf524ecc18b82e14a26d323c876ab81.css"
+      integrity="sha256-ehAFQO11HNEp1Mf2phgoZqz1JOzBi4LhSibTI8h2q4E="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -791,7 +791,7 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 <ul>
 <li>getAuthorities() : 사용자에게 부여된 권한을 저장한 컬렉션을 반환하는 메서드이다.</li>
 <li>isAccountNonExpired(), isAccountNonLocked(), isCredentialsNonExpired(), isEnabled() : 사용자 계정의 활성화, 비활성화 여부를 나타내는 메서드이다.
-<br/></li>
+<br/><br/></li>
 </ul>
 <p><strong>사용자 명세 서비스 생성하기</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
@@ -926,7 +926,8 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>authorizeRequests() 메서드를 통해 /design 과 /order 페이지의 요청은 ROLE_USER의 권한을 갖는 사용자만 접근 가능하도록 허용하고 이외의 요청은 모든 사용자에게 허용하였다.</p>
+</span></span></code></pre></div><p>authorizeRequests() 메서드를 통해 /design 과 /order 페이지의 요청은 ROLE_USER의 권한을 갖는 사용자만 접근 가능하도록 허용하고 이외의 요청은 모든 사용자에게 허용하였다.
+<br/><br/></p>
 <p><strong>요청 경로가 보안 처리되는 방법을 정의하는 메소드</strong></p>
 <table>
 <thead>
@@ -990,6 +991,7 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </tr>
 </tbody>
 </table>
+<br/>
 <h3 id="로그인-페이지-경로-지정하기">로그인 페이지 경로 지정하기</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
 </span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
@@ -1010,10 +1012,11 @@ formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고
 스프링 시큐리티가 인증이 필요하다고 판단될 경우 loginPage() 메서드에 적용한 경로로 연결해준다.</p>
 <ul>
 <li><strong>loginProcessingUrl</strong>() : 로그인을 처리하는 경로를 지정할 때 사용한다.</li>
-<li><strong>defaultSuccessUrl</strong>() : 로그인이 성공적으로 처리되었을 경우 리다이렉트할 페이지 경로를 지정할 때 사용한다. <span class="gray it">- 로그인 페이지에 다이렉트로 접근했을 경우</span>
+<li><strong>defaultSuccessUrl</strong>() : 로그인이 성공적으로 처리되었을 경우 리다이렉트할 페이지 경로를 지정할 때 사용한다. <span class="gray it">- 로그인 페이지에 다이렉트로 접근했을 경우</span> 
 ※ 스프링 시큐리티는 기본적으로 사용자가 머물던 페이지로 이동하는데, 강제적으로 페이지 경로를 지정할 경우에는 <strong>defaultSuccessUrl(”페이지 경로”, true)</strong> 로 지정해준다.</li>
 <li><strong>usrenameParameter</strong>() : 로그인 폼에서 기본 사용자 이름 필드 이름은 “username”이다. 이 필드 이름을 변경할 경우 사용한다.</li>
-<li><strong>passwordParameter</strong>() : 로그인 폼에서 기본 비밀번호 필드 이름은 “password”이다. 이 필드 이름을 변경할 경우 사용한다.</li>
+<li><strong>passwordParameter</strong>() : 로그인 폼에서 기본 비밀번호 필드 이름은 “password”이다. 이 필드 이름을 변경할 경우 사용한다.
+<br/></li>
 </ul>
 <h3 id="로그아웃-페이지-경로-지정하기">로그아웃 페이지 경로 지정하기</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
