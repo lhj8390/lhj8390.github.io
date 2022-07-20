@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 구성 속성 사용 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.e23618edf55bec40fa77c64e25ca5b31d5dd6ac6256f3daf3441dc23967db04f.css"
+      integrity="sha256-4jYY7fVb7ED6d8ZOJcpbMdXdasYlbz2vNEHcI5Z9sE8="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring-config/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 구성 속성 사용"/>
+<meta name="twitter:description" content="스프링에서 구성 속성을 사용하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 구성 속성 사용" />
+<meta property="og:description" content="스프링에서 구성 속성을 사용하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring-config/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-20T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 구성 속성 사용",
+        "headline": "[스프링인액션] 구성 속성 사용",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring-config\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-07-20T00:00:00.00Z",
+        "datePublished": "2022-07-20T00:00:00.00Z",
+        "dateModified": "2022-07-20T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring-config\/",
+        "wordCount" : "539",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+            </div>
+          
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(4)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+            </div>
+          
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+          
+            <div class="expand__list">
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+            </div>
+          
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  const expands = document.querySelectorAll('.expand__list');
+  for (i = 0; i < expands.length; i++) {
+    const classes = expands[i].firstElementChild.classList;
+    const icon = expands[i].previousElementSibling.lastElementChild;
+    if (classes.contains('watched')) {
+      icon.classList.add('up');
+      icon.classList.add('down');
+      expands[i].classList.add('expand--open');
+    }
+  }
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <ul class="nav__list" id="navMenu">
+        
+          <li class="nav__list-item">
+            <a href="/categories/devops">devops <span>(1)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/framework">framework <span>(4)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/frontend">frontend <span>(2)</span></a>
+          </li>
+        
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#스프링의-구성">스프링의 구성</a>
+      <ul>
+        <li><a href="#데이터-소스-구성하기">데이터 소스 구성하기</a></li>
+        <li><a href="#내장-서버-구성하기">내장 서버 구성하기</a></li>
+        <li><a href="#로깅-구성하기">로깅 구성하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#프로파일-설정하기">프로파일 설정하기</a>
+      <ul>
+        <li><a href="#프로파일-속성-정의">프로파일 속성 정의</a></li>
+        <li><a href="#프로파일-활성화">프로파일 활성화</a></li>
+        <li><a href="#빈-생성하기">빈 생성하기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 구성 속성 사용</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                20/7/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 4장을 읽고 스프링 부트 구성 속성에 대해 작성해본다.</p>
+<ul>
+<li>자동-구성되는 빈 조정하기</li>
+<li>구성 속성을 애플리케이션 컴포넌트에 적용하기</li>
+<li>스프링 프로파일 사용하기</li>
+</ul>
+<p>에 대해 알 수 있다.</p>
+</blockquote>
+<h2 id="스프링의-구성">스프링의 구성</h2>
+<hr>
+<p>스프링 구성에는 두 가지 형태가 존재한다.</p>
+<ul>
+<li>빈 연결 : 스프링 애플리케이션 컨텍스트에서 빈으로 생성되는 애플리케이션 컴포넌트 및 상호 간에 주입되는 방법을 선언하는 구성</li>
+<li>속성 주입 : 스프링 애플리케이션 컨텍스트에서 빈의 속성 값을 설정하는 구성</li>
+</ul>
+<aside>
+💡 스프링에서 자바 기반 구성을 사용하고 있다면 <strong>@Bean</strong> 애노테이션을 통해 빈의 인스턴스를 생성하고 속성 값도 설정한다.<br/>
+</aside>
+<h3 id="데이터-소스-구성하기">데이터 소스 구성하기</h3>
+<p>스프링 부트에서 구성 속성을 통해 간단히 데이터베이스의 URL과 인증을 구성할 수 있다.
+<br/><br/>
+MySQL 데이터베이스를 설정하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.jdbc.Driver</span><span class="w">
+</span></span></span></code></pre></div><p>이 DataSource 빈을 자동-구성할 때 스프링 부트가 이 속성을 연결 데이터로 사용한다.
+<br/><br/>
+데이터베이스를 초기화하는 SQL 스크립트를 실행해야 할 경우 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">schema</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">order-schema.sql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredient-schema.sql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredients.sql</span><span class="w">
+</span></span></span></code></pre></div><h3 id="내장-서버-구성하기">내장 서버 구성하기</h3>
+<p>스프링 부트는 자체적으로 톰캣 내장 서버가 존재한다. 이 내장 서버도 구성 속성을 사용해 구성할 수 있다.
+<br/><br/>
+포트를 무작위로 설정하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span></code></pre></div><p>server 포트를 0으로 설정한다면 내장 서버가 0번 포트로 시작하지 않고 사용 가능한 포트로 무작위로 선택하여 실행된다.<br/>
+해당 구성을 통해 (1)<span class="ul">자동화된(동적) 테스트를 실행</span>하거나, (2) <span class="ul">마이크로서비스를 이용</span>할 때 유용하다.
+<br/><br/>
+내장 서버의 HTTS를 활성화시키는 방법이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ssl</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store</span><span class="p">:</span><span class="w"> </span><span class="l">file:///path/to/mykeys/jks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
+</span></span></span></code></pre></div><p>ssl.key-store : 키스토어 파일이 생성된 경로로 설정 (파일 시스템: <code>file://</code>, JAR 파일: <code>classpath:</code>)<br/>
+ssl.key-store-password, ssl.key-password : 키스토어를 생성할 때 지정했던 비밀번호 설정</p>
+<h3 id="로깅-구성하기">로깅 구성하기</h3>
+<p>스프링 부트는 logback.xml 파일을 생성하지 않고 로그 구성을 변경할 수 있다.<br/><br/></p>
+<p>로그를 설정하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span></span></span></code></pre></div><p>루트의 로깅 수준은 WARN으로 하되, 스프링 시큐리티의 로그는 DEBUG 수준으로 설정한다는 의미이다.<br/><br/></p>
+<p>로그들을 logging.log 파일에 저장하도록 설정할 경우 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/logs/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l">logging.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span></span></span></code></pre></div><p>애플리케이션이 /var/logs/ 경로에 대해 권한을 가지고 있다면 로그 항목들이 해당 경로에 저장된다.</p>
+<h2 id="프로파일-설정하기">프로파일 설정하기</h2>
+<hr>
+<p>애플리케이션이 서로 다른 런타임 환경에 배포될 때에는 구성 명세가 달라진다.<br/>
+프로파일을 이용해서 환경에 따라 서로 다른 빈, 구성 클래스, 구성 속성들이 적용, 무시되도록 설정할 수 있다.</p>
+<h3 id="프로파일-속성-정의">프로파일 속성 정의</h3>
+<p>프로파일에 특정한 속성을 정의하는 방법은 두 가지가 존재한다.</p>
+<ol>
+<li>
+<p>특정 환경의 속성들만 포함하는 또다른 .yml 파일이나 .properties 파일을 생성한다.<br/>
+※ 파일 이름은 application-{파일이름}.yml 이런 식의 규칙을 따라야 한다.</p>
+</li>
+<li>
+<p>공통으로 적용되는 기본 속성과 함께 프로파일 특정 속성을 .yml 에 지정할 수 있다.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">prod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+</span></span></span></code></pre></div><p>3개의 하이픈(—-)을 통해 yml 파일을 두 부분으로 구분짓는다.<br/>
+첫번째 부분은 공통 영역, 두 번째 부분은 prod 프로파일만 적용되는 부분이다.</p>
+<h3 id="프로파일-활성화">프로파일 활성화</h3>
+<p>프로파일은 기본적으로 다음과 같이 활성화할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>-<span class="l">dev</span><span class="w">
+</span></span></span></code></pre></div><p>하지만 이처럼 구성할 경우 해당 프로파일이 기본 프로파일로 지정되어 프로덕션 환경과 개발 속성을 분리할 수 없게 된다.</p>
+<p>이를 해결하기 위해서는 다음과 같이 명령행 인자로 활성화 프로파일을 설정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">% java -jar app.jar --spring.profiles.active<span class="o">=</span>prod
+</span></span></code></pre></div><p>이 명령어를 통해 기본 프로파일 속성(dev)보다 더 높은 우선순위를 부여받을 수 있게 된다.</p>
+<h3 id="빈-생성하기">빈 생성하기</h3>
+<p>빈은 활성화되는 프로파일과는 무관하게 생성되지만 특정 프로파일이 활성화될 때만 생성되어야 하는 빈들이 존재한다.<br/>
+이 경우에는 @Profile 어노테이션을 활용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;dev&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">CommandLineRunner</span> <span class="nf">dataLoader</span><span class="o">(</span><span class="n">IngredientRepository</span> <span class="n">repo</span><span class="o">,</span> <span class="n">serRepository</span> <span class="n">userRepo</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                                     <span class="n">PasswordEncoder</span> <span class="n">encoder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>해당 빈은 데이터를 내장 데이터베이스에 로드할 때 사용하는 것으로, 개발환경에서는 필요하지만 프로덕션 환경에서는 불필요하다.<br/>
+따라서 이 메서드에 @Profile을 지정하여 개발 환경에서만 실행되도록 설정하였다.<br/><br/></p>
+<p>여러가지 Profile을 지정할 경우에는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">({</span><span class="s">&#34;dev&#34;</span><span class="o">,</span> <span class="s">&#34;qa&#34;</span><span class="o">})</span>
+</span></span></code></pre></div><br/>
+특정 Profile을 제외할 경우에는 다음과 같다.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;!prod&#34;</span><span class="o">)</span>
+</span></span></code></pre></div>
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring-security/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 스프링 시큐리티</p></a>
+      
+
+    
+      
+        <a href="/post/spring-db/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 데이터로 작업하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[5].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    
+      
+    }
+    
+  </script>
+</html>
