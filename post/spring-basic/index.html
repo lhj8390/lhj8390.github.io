@@ -322,22 +322,31 @@
             <i class="fa-solid fa-infinity"></i>
           
           Devops 
-          <span>(1)</span>
+          <span>(2)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/kubernetes" class="">
                 
                   <i class="fa-solid fa-dharmachakra"></i>
                 
                 Kubernetes
               </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/framework" class="">
@@ -351,16 +360,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/spring" class=" watched ">
                 
                   <i class="fa-solid fa-leaf"></i>
                 
                 Spring
               </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/frontend" class="">
@@ -374,16 +385,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/react.js" class="">
                 
                   <i class="fa-brands fa-react"></i>
                 
                 React.Js
               </a>
+              
             </div>
-          
+         
         
       
     </div>
@@ -422,13 +435,18 @@
 
   const expands = document.querySelectorAll('.expand__list');
   for (i = 0; i < expands.length; i++) {
-    const classes = expands[i].firstElementChild.classList;
+    const nodes = expands[i].children;
     const icon = expands[i].previousElementSibling.lastElementChild;
-    if (classes.contains('watched')) {
-      icon.classList.add('up');
-      icon.classList.add('down');
-      expands[i].classList.add('expand--open');
+
+    for (j = 0; j < nodes.length; j++) {
+      if (nodes[j].classList.contains('watched')) {
+        icon.classList.add('up');
+        icon.classList.add('down');
+        expands[i].classList.add('expand--open');
+        break;
+      }
     }
+    
   }
 </script>
 </aside>
@@ -459,7 +477,7 @@
       <ul class="nav__list" id="navMenu">
         
           <li class="nav__list-item">
-            <a href="/categories/devops">devops <span>(1)</span></a>
+            <a href="/categories/devops">devops <span>(2)</span></a>
           </li>
         
           <li class="nav__list-item">
@@ -667,7 +685,7 @@ id &lsquo;java’ : Java 프로그램을 위한 기능을 제공하는 플러그
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter&#39;</span>      <span class="c1">// 2
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span></code></pre></div><p>의존관계를 설정하는 부분이다. 빌드 스크립트에서 직접 의존성을 지정한다.</p>
-<p>1️⃣  패키지화되어 있는 라이브러리 모듈의 의존을 정의하는 방법이다.
+<p>1️⃣  패키지화되어 있는 라이브러리 모듈의 의존을 정의하는 방법이다. 
 [프로젝트]/libs/&quot; 폴더 내의 JAR 파일들과의 의존성을 선언하였다.</p>
 <p>2️⃣  라이브러리가 Local에 존재하지 않는다면 정의된 원격 저장소(ex: Maven repository, Nexus 등)에서 라이브러리를 다운받아 빌드할 수 있는 환경을 제공한다.
 <br/><br/></p>

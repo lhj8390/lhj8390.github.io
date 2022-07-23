@@ -223,22 +223,31 @@
             <i class="fa-solid fa-infinity"></i>
           
           Devops 
-          <span>(1)</span>
+          <span>(2)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/kubernetes" class="">
                 
                   <i class="fa-solid fa-dharmachakra"></i>
                 
                 Kubernetes
               </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/framework" class="">
@@ -252,16 +261,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/spring" class="">
                 
                   <i class="fa-solid fa-leaf"></i>
                 
                 Spring
               </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/frontend" class="">
@@ -275,16 +286,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/react.js" class="">
                 
                   <i class="fa-brands fa-react"></i>
                 
                 React.Js
               </a>
+              
             </div>
-          
+         
         
       
     </div>
@@ -323,13 +336,18 @@
 
   const expands = document.querySelectorAll('.expand__list');
   for (i = 0; i < expands.length; i++) {
-    const classes = expands[i].firstElementChild.classList;
+    const nodes = expands[i].children;
     const icon = expands[i].previousElementSibling.lastElementChild;
-    if (classes.contains('watched')) {
-      icon.classList.add('up');
-      icon.classList.add('down');
-      expands[i].classList.add('expand--open');
+
+    for (j = 0; j < nodes.length; j++) {
+      if (nodes[j].classList.contains('watched')) {
+        icon.classList.add('up');
+        icon.classList.add('down');
+        expands[i].classList.add('expand--open');
+        break;
+      }
     }
+    
   }
 </script>
 </aside>
@@ -360,7 +378,7 @@
       <ul class="nav__list" id="navMenu">
         
           <li class="nav__list-item">
-            <a href="/categories/devops">devops <span>(1)</span></a>
+            <a href="/categories/devops">devops <span>(2)</span></a>
           </li>
         
           <li class="nav__list-item">
@@ -440,11 +458,11 @@
     <ul id="tags" class="nav__list tags hide">
       
         <li>
-          <a href="/tags/devops">#devops <span>(1)</span></a>
+          <a href="/tags/devops">#devops <span>(2)</span></a>
         </li>
       
         <li>
-          <a href="/tags/docker">#docker <span>(1)</span></a>
+          <a href="/tags/docker">#docker <span>(2)</span></a>
         </li>
       
         <li>
@@ -480,7 +498,7 @@
         </li>
       
         <li>
-          <a href="/tags/server">#server <span>(1)</span></a>
+          <a href="/tags/server">#server <span>(2)</span></a>
         </li>
       
         <li>
@@ -518,6 +536,51 @@
   
 
   
+  
+    <div
+      class="post 
+        animated fadeInDown
+
+      "
+    >
+      
+      <div class="post__content">
+        <h3><a href="/post/docker-basic/">DOCKER 개념</a></h3>
+        
+          <p>Docker란? linux 기반의 Container RunTime 오픈소스.
+소프트웨어를 컨테이너라는 표준화된 유닛으로 패키징하며, 소프트웨어를 실행하는 데 필요한 모든 것이 포함되어 있다.</p>
+
+        
+        </div>
+
+      
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
+          >
+            23/7/2022
+
+
+          </span
+        >
+        
+        
+          <span><a class="subcategory" href="/subcategories/docker/">docker</a></span>
+
+
+        
+
+
+        
+          <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/docker/">docker</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
   
     <div
       class="post 

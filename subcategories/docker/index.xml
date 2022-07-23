@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on lhj8390</title>
-    <link>https://lhj8390.github.io/tags/docker/</link>
+    <link>https://lhj8390.github.io/subcategories/docker/</link>
     <description>Recent content in docker on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/subcategories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>docker 개념</title>
       <link>https://lhj8390.github.io/post/docker-basic/</link>
@@ -15,17 +15,6 @@
       <guid>https://lhj8390.github.io/post/docker-basic/</guid>
       
         <description>도커의 개념 및 VM과의 차이점을 설명한다.</description>
-      
-    </item>
-    
-    <item>
-      <title>쿠버네티스 서비스</title>
-      <link>https://lhj8390.github.io/post/k8s_service/</link>
-      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/post/k8s_service/</guid>
-      
-        <description>쿠버네티스의 서비스 개념 및 종류에 대해 설명한다.</description>
       
     </item>
     

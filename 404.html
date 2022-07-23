@@ -220,22 +220,31 @@
             <i class="fa-solid fa-infinity"></i>
           
           Devops 
-          <span>(1)</span>
+          <span>(2)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/kubernetes" class="">
                 
                   <i class="fa-solid fa-dharmachakra"></i>
                 
                 Kubernetes
               </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/framework" class="">
@@ -249,16 +258,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/spring" class="">
                 
                   <i class="fa-solid fa-leaf"></i>
                 
                 Spring
               </a>
+              
             </div>
-          
+         
         
       
         <a href="/categories/frontend" class="">
@@ -272,16 +283,18 @@
           </div>
         </a>
         
-          
+        
             <div class="expand__list">
+              
               <a href="/subcategories/react.js" class="">
                 
                   <i class="fa-brands fa-react"></i>
                 
                 React.Js
               </a>
+              
             </div>
-          
+         
         
       
     </div>
@@ -320,13 +333,18 @@
 
   const expands = document.querySelectorAll('.expand__list');
   for (i = 0; i < expands.length; i++) {
-    const classes = expands[i].firstElementChild.classList;
+    const nodes = expands[i].children;
     const icon = expands[i].previousElementSibling.lastElementChild;
-    if (classes.contains('watched')) {
-      icon.classList.add('up');
-      icon.classList.add('down');
-      expands[i].classList.add('expand--open');
+
+    for (j = 0; j < nodes.length; j++) {
+      if (nodes[j].classList.contains('watched')) {
+        icon.classList.add('up');
+        icon.classList.add('down');
+        expands[i].classList.add('expand--open');
+        break;
+      }
     }
+    
   }
 </script>
 </aside>
@@ -357,7 +375,7 @@
       <ul class="nav__list" id="navMenu">
         
           <li class="nav__list-item">
-            <a href="/categories/devops">devops <span>(1)</span></a>
+            <a href="/categories/devops">devops <span>(2)</span></a>
           </li>
         
           <li class="nav__list-item">

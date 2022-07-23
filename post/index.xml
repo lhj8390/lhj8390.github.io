@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>docker 개념</title>
+      <link>https://lhj8390.github.io/post/docker-basic/</link>
+      <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/docker-basic/</guid>
+      
+        <description>도커의 개념 및 VM과의 차이점을 설명한다.</description>
+      
+    </item>
+    
+    <item>
       <title>[스프링인액션] 구성 속성 사용</title>
       <link>https://lhj8390.github.io/post/spring-config/</link>
       <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
