@@ -6,7 +6,18 @@
     <description>Recent content in java on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[스프링인액션] REST API 생성하기</title>
+      <link>https://lhj8390.github.io/post/spring-add-restapi/</link>
+      <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring-add-restapi/</guid>
+      
+        <description>스프링에서 REST API를 생성하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>[스프링인액션] 구성 속성 사용</title>
       <link>https://lhj8390.github.io/post/spring-config/</link>
@@ -15,17 +26,6 @@
       <guid>https://lhj8390.github.io/post/spring-config/</guid>
       
         <description>스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.</description>
-      
-    </item>
-    
-    <item>
-      <title>[스프링인액션] REST API 생성하기</title>
-      <link>https://lhj8390.github.io/post/spring-add-restapi/</link>
-      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/post/spring-add-restapi/</guid>
-      
-        <description>스프링에서 REST API를 생성하는 방법에 대해 설명한다.</description>
       
     </item>
     

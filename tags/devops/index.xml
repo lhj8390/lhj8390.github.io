@@ -6,7 +6,18 @@
     <description>Recent content in DevOps on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker 기본 경로 변경</title>
+      <link>https://lhj8390.github.io/post/docker-edit-path/</link>
+      <pubDate>Sun, 24 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/docker-edit-path/</guid>
+      
+        <description>도커의 기본 경로를 변경하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>docker 개념</title>
       <link>https://lhj8390.github.io/post/docker-basic/</link>
