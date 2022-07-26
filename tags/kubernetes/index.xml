@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>쿠버네티스 서비스</title>
-      <link>https://lhj8390.github.io/post/k8s_service/</link>
+      <link>https://lhj8390.github.io/post/kubernetes/k8s_service/</link>
       <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/k8s_service/</guid>
+      <guid>https://lhj8390.github.io/post/kubernetes/k8s_service/</guid>
       
         <description>쿠버네티스의 서비스 개념 및 종류에 대해 설명한다.</description>
       

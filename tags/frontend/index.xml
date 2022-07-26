@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redux-Thunk를 이용한 상태관리</title>
-      <link>https://lhj8390.github.io/post/redux-thunk/</link>
+      <link>https://lhj8390.github.io/post/react/redux-thunk/</link>
       <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/redux-thunk/</guid>
+      <guid>https://lhj8390.github.io/post/react/redux-thunk/</guid>
       
         <description>Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다.</description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>React Webpack 개념 및 설정</title>
-      <link>https://lhj8390.github.io/post/react-webpack/</link>
+      <link>https://lhj8390.github.io/post/react/react-webpack/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/react-webpack/</guid>
+      <guid>https://lhj8390.github.io/post/react/react-webpack/</guid>
       
         <description>React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.</description>
       

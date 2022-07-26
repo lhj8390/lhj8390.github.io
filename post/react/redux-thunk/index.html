@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Redux-Thunk를 이용한 상태관리 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.e23618edf55bec40fa77c64e25ca5b31d5dd6ac6256f3daf3441dc23967db04f.css"
+      integrity="sha256-4jYY7fVb7ED6d8ZOJcpbMdXdasYlbz2vNEHcI5Z9sE8="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/react/redux-thunk/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Redux-Thunk를 이용한 상태관리"/>
+<meta name="twitter:description" content="Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다."/>
+
+
+
+  
+  <meta property="og:title" content="Redux-Thunk를 이용한 상태관리" />
+<meta property="og:description" content="Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/react/redux-thunk/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-11T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Redux-Thunk를 이용한 상태관리",
+        "headline": "Redux-Thunk를 이용한 상태관리",
+        "alternativeHeadline": "",
+        "description": "
+      Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/react\/redux-thunk\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-06-11T00:00:00.00Z",
+        "datePublished": "2022-06-11T00:00:00.00Z",
+        "dateModified": "2022-06-11T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/react\/redux-thunk\/",
+        "wordCount" : "466",
+        "genre" : [ 
+      
+      "frontend"
+
+    ],
+        "keywords" : [ 
+      
+      "frontend"
+
+    
+      
+        ,
+
+      
+      "redux"
+
+    
+      
+        ,
+
+      
+      "middleware"
+
+    
+      
+        ,
+
+      
+      "react.js"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(3)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  const expands = document.querySelectorAll('.expand__list');
+  for (i = 0; i < expands.length; i++) {
+    const nodes = expands[i].children;
+    const icon = expands[i].previousElementSibling.lastElementChild;
+
+    for (j = 0; j < nodes.length; j++) {
+      if (nodes[j].classList.contains('watched')) {
+        icon.classList.add('up');
+        icon.classList.add('down');
+        expands[i].classList.add('expand--open');
+        break;
+      }
+    }
+    
+  }
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <ul class="nav__list" id="navMenu">
+        
+          <li class="nav__list-item">
+            <a href="/categories/devops">devops <span>(3)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/framework">framework <span>(5)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/frontend">frontend <span>(2)</span></a>
+          </li>
+        
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#redux-thunk-사용-이유">Redux-Thunk 사용 이유</a>
+      <ul>
+        <li><a href="#async--await-호출">async / await 호출</a></li>
+        <li><a href="#promise로-호출">promise로 호출</a></li>
+      </ul>
+    </li>
+    <li><a href="#redux-thunk-작동-원리">Redux-thunk 작동 원리</a></li>
+    <li><a href="#redux-적용">Redux 적용</a>
+      <ul>
+        <li><a href="#미들웨어-설치">미들웨어 설치</a></li>
+        <li><a href="#미들웨어-적용">미들웨어 적용</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Redux-Thunk를 이용한 상태관리</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                11/6/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p><strong>Redux-Thunk</strong>란 Redux에서 비동기 작업을 처리할 때 사용하는 미들웨어. <br>
+액션 객체가 아닌 함수 자체를 dispatch할 수 있다는 특징이 있다.</p>
+<p>Redux 미들웨어를 사용하면 액션이 dispatch 된 다음, 리듀서에서 해당 액션을 받아와 업데이트하기 전에 추가적인 작업을 할 수 있다.</p>
+</blockquote>
+<br/>
+<aside>
+💡 <strong>middleware란?</strong>
+<p>dispatch 함수를 결합해서 새 dispatch 함수를 반환하는 고차함수.
+비동기 API 호출을 일련의 동기 action으로 바꾸는데 유용하다.</p>
+<p>즉, 미들웨어는 redux 저장소의 action을 변형하는 기능으로, 미들웨어를 통해 redux에 새로운 기능을 추가하며, 네트워크 요청을 만드는데 도움이 된다.</p>
+</aside>
+<br/>
+<h2 id="redux-thunk-사용-이유">Redux-Thunk 사용 이유</h2>
+<hr>
+<p>redux-thunk는 API 호출이 필요할 때 사용한다.</p>
+<h3 id="async--await-호출">async / await 호출</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListFailed</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Redux-thunk를 사용하지 않고 해당 코드로 action 호출 시 하단의 에러 코드가 노출된다.</p>
+<p><mark>action must be plain objects. Use custom middleware for async actions</mark> <br>
+→ 액션 생성함수는 오직 plain object 형태만 리턴해야 하는데, 위와 같이 비동기적인 코드에선 함수도 리턴하기 때문.</p>
+<br/>
+<aside>
+❓  <strong>console에 찍어보면 객체인데??</strong>
+<p>console에 찍히는 response 객체는 해당 함수가 종료되고 return되는 값으로 
+리듀서로 dispatch되는 최초의 액션 형태는 plain이 아닌 async await 함수의 형태가 된다.</p>
+</aside>
+<br/>
+<h3 id="promise로-호출">promise로 호출</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET_POST_LIST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">payload</span><span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>액션 함수를 비동기적으로 처리를 하지 않는다면 에러는 발생하지 않지만, 데이터가 API Fetch되기 전에 액션이 리듀서에게 전달하기 때문에 data를 받아서 랜더링할 수 없다.</p>
+<p><strong>Promise를 사용하면 순식간에 실행된 reducer에서 &lsquo;반환된 데이터가 아직 없다&rsquo;(객체에 아무것도 없다!)라고 판단한다.</strong></p>
+<br/>
+<h2 id="redux-thunk-작동-원리">Redux-thunk 작동 원리</h2>
+<hr>
+<blockquote>
+<p>액션을 반환할 때 객체가 아니라 함수를 반환할 수 있게 해준다.</p>
+<p>다른 말로 <strong>액션이 함수의 형태일 때 그 함수를 실행하고 또 실행하여 객체가 되었을 때 reducer로 dispatch 한다.</strong></p>
+</blockquote>
+<p><strong>dispatch 이후에 Redux thunk가 실행된다.</strong></p>
+<pre><code>⚫ action creator -&gt; action -&gt; dispatch -&gt; Redux Thunk
+</code></pre>
+<p><strong>Redux thunk에서 dispatch 된 액션이 함수인지 아닌지 판단한다.</strong></p>
+<pre><code>⚫ Redux Thunk -&gt; 함수인가? -&gt; 아니요.(Plain Object) -&gt; dispatch -&gt; Reducer
+
+⚫ Redux Thunk -&gt; 함수인가? -&gt; 예 -&gt; 함수실행 -&gt; dispatch -&gt; 함수인가? -&gt; 아니요(Plain Object) -&gt; Reducer
+</code></pre>
+<p>→ <em>즉, Redux-thunk가 API 요청이 끝날때까지 대기하고 반환값의 형태가 Plain Objects일 경우 이를 dispatch하는 역할을 담당한다.</em></p>
+<br/>
+<h2 id="redux-적용">Redux 적용</h2>
+<hr>
+<h3 id="미들웨어-설치">미들웨어 설치</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ npm i redux-logger
+</span></span><span class="line"><span class="cl">$ npm i redux-thunk
+</span></span><span class="line"><span class="cl">$ npm i reudx-devtools-extension
+</span></span></code></pre></div><p>스토어에 적용해주기 전에 라이브러리를 설치했다.</p>
+<p>redux-thunk 뿐만 아니라 State, Props 등을 콘솔에서 보여주는 <strong>Logger,</strong> 크롬 익스텐션인 <strong>Redux-devtools</strong> 를 사용할 수 있도록 하는 <strong>composeWithDevTools</strong> 를 설치한다.</p>
+<figure class="medium"><img src="/images/redux-thunk/1.png"
+         alt="image"/><figcaption>
+            <p>Logger 적용 사진</p>
+        </figcaption>
+</figure>
+
+<br/>
+<h3 id="미들웨어-적용">미들웨어 적용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">applyMiddleware</span><span class="p">,</span> <span class="nx">compose</span><span class="p">,</span> <span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="nx">from</span> <span class="s1">&#39;../reducers&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s2">&#34;redux-thunk&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">createLogger</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-logger/src&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">composeWithDevTools</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-devtools-extension&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>  <span class="c1">// thunk와 logger를 미들웨어에 추가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">createStore</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">rootReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">initialState</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">compose</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">))</span>  <span class="c1">//middlewares 배열을 넣어주었다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>createStore 마지막 인자는 리덕스에 미들웨어를 추가할 수 있도록 도와준다.</p>
+<p>middleware 배열에 thunk와 logger를 넣고 <code>applyMiddleware(...middlewares)</code> 를 사용하여 middleware 배열의 미들웨어를 사용하겠다고 명시한다.</p>
+<p>크롬 익스텐션인 Redux-devtools를 사용하려면  applyMiddleware(..) 함수 자체를 composeWithDevTools로 감싸주면 된다.</p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/react/react-webpack/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>React Webpack 개념 및 설정</p></a>
+      
+
+    
+      
+        <a href="/post/docker/docker-edit-path/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>docker 기본 경로 변경</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/frontend/">frontend</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/redux/">redux</a><a class="tag" href="/tags/middleware/">middleware</a><a class="tag" href="/tags/react%2ejs/">react.js</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    
+      
+    }
+    
+  </script>
+</html>

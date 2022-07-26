@@ -20,7 +20,7 @@
     <loc>https://lhj8390.github.io/subcategories/docker/</loc>
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/docker-edit-path/</loc>
+    <loc>https://lhj8390.github.io/post/docker/docker-edit-path/</loc>
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/server/</loc>
@@ -32,10 +32,10 @@
     <loc>https://lhj8390.github.io/tags/</loc>
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/docker-basic/</loc>
+    <loc>https://lhj8390.github.io/post/docker/docker-basic/</loc>
     <lastmod>2022-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/spring-add-restapi/</loc>
+    <loc>https://lhj8390.github.io/post/spring/spring-add-restapi/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/framework/</loc>
@@ -62,13 +62,13 @@
     <loc>https://lhj8390.github.io/series/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%B8%EC%95%A1%EC%85%98/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/spring-config/</loc>
+    <loc>https://lhj8390.github.io/post/spring/spring-config/</loc>
     <lastmod>2022-07-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/spring-security/</loc>
+    <loc>https://lhj8390.github.io/post/spring/spring-security/</loc>
     <lastmod>2022-07-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/spring-db/</loc>
+    <loc>https://lhj8390.github.io/post/spring/spring-db/</loc>
     <lastmod>2022-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/frontend/</loc>
@@ -89,13 +89,13 @@
     <loc>https://lhj8390.github.io/tags/redux/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/redux-thunk/</loc>
+    <loc>https://lhj8390.github.io/post/react/redux-thunk/</loc>
     <lastmod>2022-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/spring-basic/</loc>
+    <loc>https://lhj8390.github.io/post/spring/spring-basic/</loc>
     <lastmod>2022-06-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/react-webpack/</loc>
+    <loc>https://lhj8390.github.io/post/react/react-webpack/</loc>
     <lastmod>2022-06-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/webpack/</loc>
@@ -113,7 +113,7 @@
     <loc>https://lhj8390.github.io/series/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B0%9C%EB%85%90/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/k8s_service/</loc>
+    <loc>https://lhj8390.github.io/post/kubernetes/k8s_service/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/index/</loc>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 스프링 초기 설정 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.e23618edf55bec40fa77c64e25ca5b31d5dd6ac6256f3daf3441dc23967db04f.css"
+      integrity="sha256-4jYY7fVb7ED6d8ZOJcpbMdXdasYlbz2vNEHcI5Z9sE8="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-basic/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 스프링 초기 설정"/>
+<meta name="twitter:description" content="스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 스프링 초기 설정" />
+<meta property="og:description" content="스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-basic/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-05T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 스프링 초기 설정",
+        "headline": "[스프링인액션] 스프링 초기 설정",
+        "alternativeHeadline": "",
+        "description": "
+      스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-basic\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-06-05T00:00:00.00Z",
+        "datePublished": "2022-06-05T00:00:00.00Z",
+        "dateModified": "2022-06-05T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-basic\/",
+        "wordCount" : "613",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(3)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  const expands = document.querySelectorAll('.expand__list');
+  for (i = 0; i < expands.length; i++) {
+    const nodes = expands[i].children;
+    const icon = expands[i].previousElementSibling.lastElementChild;
+
+    for (j = 0; j < nodes.length; j++) {
+      if (nodes[j].classList.contains('watched')) {
+        icon.classList.add('up');
+        icon.classList.add('down');
+        expands[i].classList.add('expand--open');
+        break;
+      }
+    }
+    
+  }
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <ul class="nav__list" id="navMenu">
+        
+          <li class="nav__list-item">
+            <a href="/categories/devops">devops <span>(3)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/framework">framework <span>(5)</span></a>
+          </li>
+        
+          <li class="nav__list-item">
+            <a href="/categories/frontend">frontend <span>(2)</span></a>
+          </li>
+        
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#초기의-gradle-빌드-명세">초기의 gradle 빌드 명세</a>
+      <ul>
+        <li><a href="#플러그인">플러그인</a></li>
+        <li><a href="#저장소">저장소</a></li>
+        <li><a href="#의존-라이브러리"><strong>의존 라이브러리</strong></a></li>
+        <li><a href="#스프링-부트-스타터-의존성">스프링 부트 스타터 의존성</a></li>
+      </ul>
+    </li>
+    <li><a href="#어플리케이션-구동">어플리케이션 구동</a>
+      <ul>
+        <li><a href="#springbootapplication-이란"><strong>@SpringBootApplication</strong> 이란?</a></li>
+        <li><a href="#main">main()</a></li>
+      </ul>
+    </li>
+    <li><a href="#스프링부트-devtools">스프링부트 DevTools</a>
+      <ul>
+        <li><a href="#intellij-적용-방법">Intellij 적용 방법</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 스프링 초기 설정</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                5/6/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 1장을 읽고 스프링 부트 어플리케이션을 구축하기 위한 초기 설정 등을 기록하였다.</p>
+<p>이 문서를 통해</p>
+<ul>
+<li>초기의 gradle 빌드 명세 설명</li>
+<li>부트스트랩(구동) 클래스 설명</li>
+<li>스프링부트 DevTools</li>
+</ul>
+<p>에 대해 알 수 있다.</p>
+</blockquote>
+<h2 id="초기의-gradle-빌드-명세">초기의 gradle 빌드 명세</h2>
+<hr>
+<blockquote>
+<p>Spring Initalizr를 이용하여 초기 스프링 프로젝트를 생성하면 (gradle으로 빌드)<br/>
+해당 build.gradle 파일이 생긴다.</p>
+<p><em>Spring Initalizr에서 Spring Web, Thymeleaf, Spring Boot DevTools, Lombok을 선택.</em></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>                                                                                                                          
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;org.springframework.boot&#39;</span> <span class="n">version</span> <span class="s1">&#39;2.7.0&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;io.spring.dependency-management&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.11.RELEASE&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;tacos&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1-SNAPSHOT&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">&#39;1.8&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">configurations</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compileOnly</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">extendsFrom</span> <span class="n">annotationProcessor</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;</span>       
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-web&#39;</span>                
+</span></span><span class="line"><span class="cl">    <span class="n">compileOnly</span> <span class="s1">&#39;org.projectlombok:lombok&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">developmentOnly</span> <span class="s1">&#39;org.springframework.boot:spring-boot-devtools&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">annotationProcessor</span> <span class="s1">&#39;org.projectlombok:lombok&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-test&#39;</span>           
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">tasks</span><span class="o">.</span><span class="na">named</span><span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">useJUnitPlatform</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br/>
+<h3 id="플러그인">플러그인</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;org.springframework.boot&#39;</span> <span class="n">version</span> <span class="s1">&#39;2.7.0&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;io.spring.dependency-management&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.11.RELEASE&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>plugins 영역의 3개 플러그인 → 자바와 스프링 부트를 사용하기 위한 필수 플러그인</p>
+<p>id ‘org.springframework.boot’ : 스프링 부트 프로젝트를 실행할 수 있게 만들어주는 스프링 부트 관련 플러그인 <br/>
+id ‘io.spring.dependency-management’ : 스프링 부트의 의존성들을 관리해 주는 플러그인<br/>
+id &lsquo;java’ : Java 프로그램을 위한 기능을 제공하는 플러그인 - <em>compileJava, classes, test 등의 task 제공</em>
+<br/><br/></p>
+<h3 id="저장소">저장소</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>온라인으로 접속하여 사용할 수 있는 저장소로 Gradle은 대체로 다음 2개의 저장소 서비스를 이용한다.</p>
+<ul>
+<li>메이븐 중앙 저장소 추가를 위한 <code>mavenCentral()</code> 메소드</li>
+<li>Bintray의 jCenter 저장소 추가를 위한 <code>jcenter()</code> 메소드를 제공</li>
+</ul>
+<br/>
+<h3 id="의존-라이브러리"><strong>의존 라이브러리</strong></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="nf">fileTree</span><span class="o">(</span><span class="nl">dir:</span> <span class="s1">&#39;libs&#39;</span><span class="o">,</span> <span class="nl">include:</span> <span class="o">[</span><span class="s1">&#39;*.jar&#39;</span><span class="o">])</span>           <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter&#39;</span>      <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>의존관계를 설정하는 부분이다. 빌드 스크립트에서 직접 의존성을 지정한다.</p>
+<p>1️⃣  패키지화되어 있는 라이브러리 모듈의 의존을 정의하는 방법이다.
+[프로젝트]/libs/&quot; 폴더 내의 JAR 파일들과의 의존성을 선언하였다.</p>
+<p>2️⃣  라이브러리가 Local에 존재하지 않는다면 정의된 원격 저장소(ex: Maven repository, Nexus 등)에서 라이브러리를 다운받아 빌드할 수 있는 환경을 제공한다.
+<br/><br/></p>
+<h3 id="스프링-부트-스타터-의존성">스프링 부트 스타터 의존성</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;</span>       
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-web&#39;</span>               
+</span></span><span class="line"><span class="cl">    <span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-test&#39;</span>            
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Spring Web, Thymeleaf, Test 의존성 항목은 starter 단어를 포함하고 있는데, 이는 스프링 부트 스타터 의존성을 나타낸다.</p>
+<p>스타터 의존성의 장점은,</p>
+<ol>
+<li>필요한 모든 라이브러리의 의존성을 선언하지 않아도 되어 빌드 파일이 더 작아지고 관리의 이점.</li>
+<li>기능의 관점 : 웹 어플리케이션을 개발한다면 일일이 라이브러리를 지정하는 대신 웹 스타터 의존성만 추가하면 된다.</li>
+<li>라이브러리의 버전 호환성 보장</li>
+</ol>
+<h2 id="어플리케이션-구동">어플리케이션 구동</h2>
+<hr>
+<blockquote>
+<p>어플리케이션의 구동을 위해서는 부트스트랩(구동) 클래스가 있어야 한다.<br/>
+또한 최소한의 스프링 구성도 있어야 한다.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCloudApplication</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">TacoCloudApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br/>
+<h3 id="springbootapplication-이란"><strong>@SpringBootApplication</strong> 이란?</h3>
+<p><strong>@SpringBootApplication은 다음 세 개의 어노테이션이 결합한 것.</strong></p>
+<ul>
+<li>@SpringBootConfiguration : 현재 클래스를 구성 클래스로 지정.</li>
+<li>@EnableAutoConfiguration : 스프링 자동-구성 활성화. - <em>필요로 하는 컴포넌트를 자동으로 구성하도록 스프링부트에게 알려준다.</em></li>
+<li>@ComponentScan : 컴포넌트 검색 활성화. - <em>@Component, @Controller, @Service 등의 어노테이션과 함께 클래스를 선언할 수 있도록 도와줌.</em>
+<br/><br/></li>
+</ul>
+<h3 id="main">main()</h3>
+<p>실제로 어플리케이션을 시작시키고 스프링 어플리케이션 컨텍스트를 생성하는 SpringApplication 클래스의 run() 메서드 호출.<br/>
+run() 메서드의 두 개의 매개변수는 구성 클래스와 명령행 인자.</p>
+<h2 id="스프링부트-devtools">스프링부트 DevTools</h2>
+<hr>
+<blockquote>
+<p>스프링 부트 DevTools는 개발 시점의 편리한 도구를 제공한다.</p>
+<ul>
+<li>코드가 변경될 때, 자동으로 어플리케이션을 재시작시킨다.</li>
+<li>리소스(템플릿, 자바스크립트, 스타일시트)가 변경될 때 자동으로 브라우저를 새로고침한다.</li>
+<li>탬플릿 캐시를 자동으로 비활성화한다.</li>
+<li>H2 콘솔을 활성화시킨다.
+<br/><br/></li>
+</ul>
+</blockquote>
+<p><strong>어플리케이션 재시작</strong></p>
+<p>자바 코드, 속성 파일, 프로젝트의 src/main/ 경로에 있는 모든 것들은 DevTools가 다시 재시작시킨다.</p>
+<p>다만, 의존성 라이브러리를 포함하는 클래스 로더는 자동으로 다시 로드되지 않는다.</p>
+<p>→ 빌드 명세(gradle 등)에 의존성을 추가, 변경, 삭제할 때는 어플리케이션을 재시작해야만 적용된다.
+<br/><br/></p>
+<p><strong>템플릿 캐시 비활성화</strong></p>
+<p>Thymeleaf나 freeMarker 같은 템플릿은 모든 웹 요청마다 매번 파싱하지 않기 위해 파싱 결과를 캐시에 저장한다. (성능의 이점)</p>
+<p>하지만 템플릿 캐싱은 브라우저를 새로고침하더라도 이전의 캐시를 사용하기 때문에 변경된 효과를 볼 수 없다.</p>
+<p>DevTools는 템플릿 캐싱을 비활성화하여 브라우저를 새로고침하면 변경된 템플릿이 적용된다.</p>
+<aside>
+💡 <strong>LiveReload</strong> 플러그인을 사용한다면 템플릿, 이미지, 자바스크립트 등 변경이 생길 때 브라우저가 자동으로 새로고침된다.<br/>
+</aside>
+<br/>
+<h3 id="intellij-적용-방법">Intellij 적용 방법</h3>
+<blockquote>
+<p>준비 사항 : build.gradle에 org.springframework.boot:spring-boot-devtools 라이브러리 추가 필수!</p>
+</blockquote>
+<ol>
+<li>
+<p>application.properties 파일에 spring.thymeleaf.cache = <strong>false</strong> 추가</p>
+</li>
+<li>
+<p>[Edit Configurations] 구성 편집 창에서 [Modify options] 설정 변경</p>
+<ol>
+<li>
+<p>상단 구성을 클릭하여 [Edit Configurations] 클릭
+<figure class="left"><img src="/images/spring-basic/1.png"
+                 alt="image"/>
+        </figure>
+
+<br/>
+<br/>
+<br/></p>
+</li>
+<li>
+<p>구성 편집 창에서 [Modify options] 클릭</p>
+<figure class="large"><img src="/images/spring-basic/2.png"
+                 alt="image"/>
+        </figure>
+
+</li>
+<li>
+<p><strong>On ‘Update’ action 에서 Update classess and resources 선택 (On frame deactivation도 동일 선택)</strong></p>
+<figure class="large"><img src="/images/spring-basic/3.png"
+                 alt="image"/>
+        </figure>
+
+<p>이러한 설정을 통해 DevTools를 적용시킬 수 있다.
+<br/><br/></p>
+</li>
+</ol>
+</li>
+</ol>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-add-restapi/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] REST API 생성하기</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-config/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 구성 속성 사용</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    
+      
+    }
+    
+  </script>
+</html>

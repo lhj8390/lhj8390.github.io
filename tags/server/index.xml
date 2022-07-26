@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 24 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/server/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>docker 기본 경로 변경</title>
-      <link>https://lhj8390.github.io/post/docker-edit-path/</link>
+      <link>https://lhj8390.github.io/post/docker/docker-edit-path/</link>
       <pubDate>Sun, 24 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/docker-edit-path/</guid>
+      <guid>https://lhj8390.github.io/post/docker/docker-edit-path/</guid>
       
         <description>도커의 기본 경로를 변경하는 방법에 대해 설명한다.</description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>docker 개념</title>
-      <link>https://lhj8390.github.io/post/docker-basic/</link>
+      <link>https://lhj8390.github.io/post/docker/docker-basic/</link>
       <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/docker-basic/</guid>
+      <guid>https://lhj8390.github.io/post/docker/docker-basic/</guid>
       
         <description>도커의 개념 및 VM과의 차이점을 설명한다.</description>
       
@@ -31,10 +31,10 @@
     
     <item>
       <title>쿠버네티스 서비스</title>
-      <link>https://lhj8390.github.io/post/k8s_service/</link>
+      <link>https://lhj8390.github.io/post/kubernetes/k8s_service/</link>
       <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/k8s_service/</guid>
+      <guid>https://lhj8390.github.io/post/kubernetes/k8s_service/</guid>
       
         <description>쿠버네티스의 서비스 개념 및 종류에 대해 설명한다.</description>
       
