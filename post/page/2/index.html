@@ -8,7 +8,7 @@
   <title>
     
       
-        Portfolio |
+        Posts |
 
       
       lhj8390
@@ -23,7 +23,7 @@
   <meta
     name="description"
     content="
-      Welcome to my Portfolio!
+      블로그
 
 
     "
@@ -72,10 +72,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://lhj8390.github.io/portfolio/" />
+  <link rel="canonical" href="https://lhj8390.github.io/post/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/portfolio/index.xml" title="lhj8390" />
+  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="lhj8390" />
 
 
   
@@ -110,16 +110,16 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="Portfolio"/>
-<meta name="twitter:description" content="Welcome to my Portfolio!"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content="블로그"/>
 
 
 
   
-  <meta property="og:title" content="Portfolio" />
-<meta property="og:description" content="Welcome to my Portfolio!" />
+  <meta property="og:title" content="Posts" />
+<meta property="og:description" content="블로그" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://lhj8390.github.io/portfolio/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="og:site_name" content="lhj8390" />
+<meta property="og:url" content="https://lhj8390.github.io/post/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="og:site_name" content="lhj8390" />
 
 
 
@@ -419,6 +419,9 @@
           <li class="nav__list-item">
             <a
               
+                class="nav__link--active"
+
+              
               href="/post/"
               
               title=""
@@ -452,6 +455,90 @@
 
 
 </header>
+  <div class="
+      animated fadeInDown
+    ">
+    <ul id="tags" class="nav__list tags hide">
+      
+        <li>
+          <a href="/tags/devops">#devops <span>(3)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/docker">#docker <span>(3)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/frontend">#frontend <span>(2)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/index">#index <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/java">#java <span>(6)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/k8s">#k8s <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/kubernetes">#kubernetes <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/middleware">#middleware <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/react.js">#react.js <span>(2)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/redux">#redux <span>(1)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/server">#server <span>(3)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/spring">#spring <span>(6)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/spring-boot">#spring-boot <span>(6)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/web">#web <span>(6)</span></a>
+        </li>
+      
+        <li>
+          <a href="/tags/webpack">#webpack <span>(1)</span></a>
+        </li>
+      
+    </ul>
+    <a class="tag__btn" onclick="openTagList(this);">태그 펼치기</a>
+
+  </div>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post__content">
+      
+    </div>
+
+    
+  </div>
+  
+
+  
   
     <div
       class="post 
@@ -460,355 +547,115 @@
       "
     >
       
-      <h2 class="portfolio__title" id="codingprojects">Coding Projects</h2>
-      
-        <div class="portfolio">
-          
-            <div
-              class="portfolio__image-wrapper 
-                portfolio__image-wrapper--right
+      <div class="post__content">
+        <h3><a href="/post/kubernetes/k8s_service/">쿠버네티스 서비스</a></h3>
+        
+          <p>서비스의 개념 동일한 서비스를 제공하는 파드 그룹에 지속적인 단일 접점을 만들려고 할 때 생성하는 리소스 ◼ 서비스의 필요성 파드는 비영구적 리소스이기 때문에 파드 내의 IP 주소는 랜덤하게 지정되고, 리스타트 될 때마다 변경될 수 있다.</p>
 
-              "
-            >
-              
-                <a href="https://gohugo.io/" target="_blank" rel="noopener">
-                  <img class="portfolio__image" src="/images/portfolio/code.jpg" alt="Project 1" />
-                </a>
-
-              
-            </div>
-
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--left
-
-            "
-          >
-            <h2>Project 1</h2>
-            <ul class="portfolio__meta">
-              
-                <li class="portfolio__meta-item">
-                  <em class="fas fa-flag-checkered"></em>
-                  <span>Finished</span>
-                </li>
-
-              
-              
-              
-                <li class="portfolio__meta-item">
-                  <em class="fas fa-arrow-up"></em>
-                  <span>2020</span>
-                </li>
-
-              
-              
-                <li class="portfolio__meta-item">
-                  <em class="fas fa-arrow-down"></em>
-                  <span>2021</span>
-                </li>
-
-              
-              
-                
-                  <li class="portfolio__meta-item">
-                    <em class="fas fa-at"></em>
-                    <span>lxndrblz</span>
-                  </li>
-
-                
-                  <li class="portfolio__meta-item">
-                    <em class="fas fa-at"></em>
-                    <span>alexanderdavide</span>
-                  </li>
-
-                
-
-
-              
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            
-              <div class="portfolio__button-wrapper">
-                <a class="portfolio__button" href="https://gohugo.io/" target="_blank" rel="noopener">Visit project website</a>
-              </div>
-
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
-
-              
-                <p class="tag">Tag 2</p>
-
-              
-            </div>
-          </div>
+        
         </div>
 
       
-        <div class="portfolio">
-          
-            <div
-              class="portfolio__image-wrapper 
-                portfolio__image-wrapper--left
-
-              "
-            >
-              
-                <a href="https://gohugo.io/" target="_blank" rel="noopener">
-                  <img class="portfolio__image" src="/images/portfolio/code.jpg" alt="Project 2" />
-                </a>
-
-              
-            </div>
-
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--right
-
-            "
+      <div class="post__footer">
+        <em class="fas fa-calendar-day"></em>
+        <span class="post__footer-date"
           >
-            <h2>Project 2</h2>
-            <ul class="portfolio__meta">
-              
-                <li class="portfolio__meta-item">
-                  <em class="fas fa-flag-checkered"></em>
-                  <span>On Hold</span>
-                </li>
+            4/6/2022
 
-              
-              
-              
-              
-              
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            
-              <div class="portfolio__button-wrapper">
-                <a class="portfolio__button" href="https://gohugo.io/" target="_blank" rel="noopener">Visit Site</a>
-              </div>
 
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
+          </span
+        >
+        
+        
+          <span><a class="subcategory" href="/subcategories/kubernetes/">kubernetes</a></span>
 
-              
-                <p class="tag">Tag 2</p>
 
-              
-            </div>
-          </div>
-        </div>
+        
 
-      
-        <div class="portfolio">
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--left
 
-            "
-          >
-            <h2>Project 3</h2>
-            <ul class="portfolio__meta">
-              
-                <li class="portfolio__meta-item">
-                  <em class="fas fa-flag-checkered"></em>
-                  <span>Finished</span>
-                </li>
+        
+          <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/kubernetes/">kubernetes</a><a class="tag" href="/tags/k8s/">k8s</a></span>
 
-              
-              
-              
-              
-              
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            
-              <div class="portfolio__button-wrapper">
-                <a class="portfolio__button" href="https://gohugo.io/" target="_blank" rel="noopener">Visit Site</a>
-              </div>
 
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
 
-              
-                <p class="tag">Tag 2</p>
 
-              
-            </div>
-          </div>
-        </div>
-
-      
+        
+      </div>
     </div>
 
   
-    <div
-      class="post 
-        animated fadeInDown
+  <div class="pagination">
+    
+  <ul class="pagination__list">
+    
+    
+    
+      <li class="pagination__list-item">
+        <a class="page-link" href="/post/">
+          <i class="fa fa-angle-left" aria-label="Previous"></i>
+        </a>
+      </li>
 
-      "
-    >
+    
+    
       
-      <h2 class="portfolio__title" id="research">Research</h2>
-      
-        <div class="portfolio">
-          
-            <div
-              class="portfolio__image-wrapper 
-                portfolio__image-wrapper--right
-
-              "
-            >
-              
-                <img class="portfolio__image" src="/images/portfolio/code.jpg" alt="Project 1" />
-
-              
-            </div>
-
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--left
-
-            "
-          >
-            <h2>Project 1</h2>
-            <ul class="portfolio__meta">
-              
-              
-              
-              
-              
-            </ul>
-            <p>This project does not have a link attribute</p>
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
-
-              
-                <p class="tag">Tag 2</p>
-
-              
-            </div>
-          </div>
-        </div>
+        <li class="pagination__list-item">
+          <a class="page-link" href="/post/">1</a>
+        </li>
 
       
-        <div class="portfolio">
-          
-            <div
-              class="portfolio__image-wrapper 
-                portfolio__image-wrapper--left
 
-              "
-            >
-              
-                <a href="https://gohugo.io/" target="_blank" rel="noopener">
-                  <img class="portfolio__image" src="/images/portfolio/code.jpg" alt="Project 2" />
-                </a>
 
-              
-            </div>
-
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--right
-
-            "
-          >
-            <h2>Project 2</h2>
-            <ul class="portfolio__meta">
-              
-              
-              
-              
-              
-            </ul>
-            <p>You can click on <a href="#codingprojects"><strong>this link</strong></a> to scroll to my Coding Projects portfolio</p>
-            
-              <div class="portfolio__button-wrapper">
-                <a class="portfolio__button" href="https://gohugo.io/" target="_blank" rel="noopener">Visit Site</a>
-              </div>
-
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
-
-              
-                <p class="tag">Tag 2</p>
-
-              
-            </div>
-          </div>
-        </div>
+    
+      
+        <li class="pagination__list-item">
+          <span class="page-link current">2</span>
+        </li>
 
       
-        <div class="portfolio">
-          
-            <div
-              class="portfolio__image-wrapper 
-                portfolio__image-wrapper--right
 
-              "
-            >
-              
-                <a href="https://gohugo.io/" target="_blank" rel="noopener">
-                  <img class="portfolio__image" src="/images/portfolio/code.jpg" alt="Project 3" />
-                </a>
 
-              
-            </div>
+    
+    
+  </ul>
 
-          
-          <div
-            class="portfolio__description 
-              portfolio__description--left
 
-            "
-          >
-            <h2>Project 3</h2>
-            <ul class="portfolio__meta">
-              
-              
-              
-              
-              
-            </ul>
-            <p>A description</p>
-            
-              <div class="portfolio__button-wrapper">
-                <a class="portfolio__button" href="https://gohugo.io/" target="_blank" rel="noopener">Visit Site</a>
-              </div>
 
-            
-            <div class="seperator">
-              
-                <p class="tag">Tag 1</p>
+  </div>
 
-              
-                <p class="tag">Tag 2</p>
+  <script>
+    const tags = document.getElementById('tags');
+    const tagBtn = document.getElementsByClassName('tag__btn')[0];
 
-              
-            </div>
-          </div>
-        </div>
-
+    window.addEventListener('resize', function() {
+      let height = window.innerWidth >= 961 ? 15 : 40;
       
-    </div>
+      if (window.innerWidth >= 961 && tags.scrollHeight <= 80) {        
+        tagBtn.style.display = "none";
+      } 
+      else if (window.innerWidth <= 961 && tags.scrollHeight <= 32) {   
+        tagBtn.style.display = "none";
+      }
+      else {
+        tagBtn.style.display = "flex";  
+      }
+    });
 
-  
-
-
+    const openTagList = function (el) {
+      let height = window.innerWidth >= 961 ? 15 : 40;
+    
+      if (document.querySelector('.tags').classList.contains('hide')) {
+        tags.style.maxHeight = tags.scrollHeight + "px";
+        el.innerHTML = "태그 접기";
+      }
+      else {
+        tags.style.maxHeight = height + "px";
+        el.innerHTML = "태그 펼치기";
+      }
+      document.querySelector('.tags').classList.toggle('hide');
+    }
+    
+  </script>
 
       </main>
     </div><footer class="footer footer__base">
