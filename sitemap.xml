@@ -3,16 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/devops/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/devops/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/linux/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/server/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/server/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/ubuntu/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/server/ubuntu-port-open/</loc>
+    <lastmod>2022-07-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/docker/</loc>
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
@@ -21,15 +42,6 @@
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/docker/docker-edit-path/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/server/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/subcategories/</loc>
-    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/</loc>
     <lastmod>2022-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/docker/docker-basic/</loc>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/linux/</link>
+    <description>Recent content in linux on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Thu, 28 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu 포트 사용 확인하는 법</title>
+      <link>https://lhj8390.github.io/post/server/ubuntu-port-open/</link>
+      <pubDate>Thu, 28 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/server/ubuntu-port-open/</guid>
+      
+        <description>ubuntu에서 포트가 사용중인지 확인하는 방법을 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
