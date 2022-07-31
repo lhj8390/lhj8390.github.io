@@ -6,7 +6,18 @@
     <description>Recent content in linux on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 28 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nginx에서 ssl 설정</title>
+      <link>https://lhj8390.github.io/post/server/nginx_ssl/</link>
+      <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/server/nginx_ssl/</guid>
+      
+        <description>nginx에서 ssl 보안 인증서를 설정하는 법을 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>ubuntu 포트 사용 확인하는 법</title>
       <link>https://lhj8390.github.io/post/server/ubuntu-port-open/</link>

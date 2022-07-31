@@ -8,7 +8,7 @@
   <title>
     
       
-        Framework |
+        nginx에서 ssl 설정 |
 
       
       lhj8390
@@ -23,7 +23,7 @@
   <meta
     name="description"
     content="
-      블로그
+      nginx에서 ssl 보안 인증서를 설정하는 법을 설명한다.
 
 
     "
@@ -72,12 +72,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://lhj8390.github.io/categories/framework/" />
+  <link rel="canonical" href="https://lhj8390.github.io/post/server/nginx_ssl/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/categories/framework/index.xml" title="lhj8390" />
-
-
   
   
   
@@ -110,22 +107,123 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="Framework"/>
-<meta name="twitter:description" content="블로그"/>
+<meta name="twitter:title" content="nginx에서 ssl 설정"/>
+<meta name="twitter:description" content="nginx에서 ssl 보안 인증서를 설정하는 법을 설명한다."/>
 
 
 
   
-  <meta property="og:title" content="Framework" />
-<meta property="og:description" content="블로그" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lhj8390.github.io/categories/framework/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="og:site_name" content="lhj8390" />
+  <meta property="og:title" content="nginx에서 ssl 설정" />
+<meta property="og:description" content="nginx에서 ssl 보안 인증서를 설정하는 법을 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/server/nginx_ssl/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-31T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
 
 
 
 
   
   
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "nginx에서 ssl 설정",
+        "headline": "nginx에서 ssl 설정",
+        "alternativeHeadline": "",
+        "description": "
+      nginx에서 ssl 보안 인증서를 설정하는 법을 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/server\/nginx_ssl\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-07-31T00:00:00.00Z",
+        "datePublished": "2022-07-31T00:00:00.00Z",
+        "dateModified": "2022-07-31T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/server\/nginx_ssl\/",
+        "wordCount" : "140",
+        "genre" : [ 
+      
+      "DevOps"
+
+    ],
+        "keywords" : [ 
+      
+      "DevOps"
+
+    
+      
+        ,
+
+      
+      "server"
+
+    
+      
+        ,
+
+      
+      "linux"
+
+    
+      
+        ,
+
+      
+      "nginx"
+
+    ]
+    }
+  </script>
+
+
 
 </head>
 <body
@@ -246,7 +344,7 @@
                 Docker
               </a>
               
-              <a href="/subcategories/server" class="">
+              <a href="/subcategories/server" class=" watched ">
                 
                   <i class="fa-solid fa-server"></i>
                 
@@ -257,7 +355,7 @@
          
         
       
-        <a href="/categories/framework" class=" watched ">
+        <a href="/categories/framework" class="">
           
             <i class="fa-solid fa-cube"></i>
           
@@ -459,407 +557,158 @@
 
 
 </header>
-  <div class="
-      animated fadeInDown
-    ">
-    <ul id="tags" class="nav__list tags hide">
-      
-        <li>
-          <a href="/tags/devops">#devops <span>(5)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/docker">#docker <span>(3)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/frontend">#frontend <span>(2)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/index">#index <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/java">#java <span>(6)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/k8s">#k8s <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/kubernetes">#kubernetes <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/linux">#linux <span>(2)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/middleware">#middleware <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/nginx">#nginx <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/react.js">#react.js <span>(2)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/redux">#redux <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/server">#server <span>(5)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/spring">#spring <span>(6)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/spring-boot">#spring-boot <span>(6)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/ubuntu">#ubuntu <span>(1)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/web">#web <span>(6)</span></a>
-        </li>
-      
-        <li>
-          <a href="/tags/webpack">#webpack <span>(1)</span></a>
-        </li>
-      
-    </ul>
-    <a class="tag__btn" onclick="openTagList(this);">태그 펼치기</a>
-
-  </div>
   <div
     class="post 
       animated fadeInDown
 
     "
   >
-    <div class="post__content">
-      
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#https-키-발급">HTTPS 키 발급</a></li>
+    <li><a href="#발급된-키-공개키-만들기">발급된 키 공개키 만들기</a></li>
+    <li><a href="#nginx에-https-적용">Nginx에 HTTPS 적용</a></li>
+    <li><a href="#http를-https로-리다이렉션">HTTP를 HTTPS로 리다이렉션</a></li>
+  </ul>
+</nav>
     </div>
+    
+    <div class="post__content detail">
+      <h1>Nginx에서 Ssl 설정</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                31/7/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 1분</span>
+          </li>
+        </ul>
+
+      <h2 id="https-키-발급">HTTPS 키 발급</h2>
+<blockquote>
+<p>도메인 회사에서 인증서 발급받을 수 있다.<br>
+인증 파일들은 보통 아래와 같이 구성</p>
+<ul>
+<li>root.crt : root 파일</li>
+<li>chain.pem : chain 파일</li>
+<li>domain.crt : 서버 인증서</li>
+<li>domain.key.pem : 비공개 키</li>
+</ul>
+</blockquote>
+<h2 id="발급된-키-공개키-만들기">발급된 키 공개키 만들기</h2>
+<p>순서대로 서버 인증서, chain, root파일을 cert.pem 파일로 병합한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat domain.crt chain.pem root.crt &gt; cert.pem
+</span></span></code></pre></div><p>💡 <span class="red">순서가 어긋나면 인증서 사용 불가!</span></p>
+<h2 id="nginx에-https-적용">Nginx에 HTTPS 적용</h2>
+<p>합쳐진 cert.pem 파일과 비공개 키를 nginx 에 적용하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">       listen 443 ssl default_server;
+</span></span><span class="line"><span class="cl">       ssl on // deprecated from Nginx v1.15
+</span></span><span class="line"><span class="cl">       server_name example.com
+</span></span><span class="line"><span class="cl">       ssl_certificate /directory/to/cert.pem // 병합한 파일
+</span></span><span class="line"><span class="cl">       ssl_certificate_key /directory/to/domain.key.pem  // 비공개 키
+</span></span><span class="line"><span class="cl">       ssl_protocols TLSv1.1 TLSv1.2;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       location / {
+</span></span><span class="line"><span class="cl">           root /home/ubuntu/web/dist/;
+</span></span><span class="line"><span class="cl">           index index.html index.htm index.nginx-debian.html;
+</span></span><span class="line"><span class="cl">           try_files $uri $uri/ /index.html;
+</span></span><span class="line"><span class="cl">       }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><ul>
+<li><code>ssl_certificate</code> 에는 합쳐진 cert.pem 명시</li>
+<li><code>ssl_certificate_key</code> 에는 비공개 키 명시</li>
+</ul>
+<h2 id="http를-https로-리다이렉션">HTTP를 HTTPS로 리다이렉션</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">       listen 80;
+</span></span><span class="line"><span class="cl">       server_name example.com;
+</span></span><span class="line"><span class="cl">       return 301 HTTPS://$server_name$request_uri;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>80포트로 접속 시 301(영구 리다이렉션)하도록 설정한다.</p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/server/ubuntu-port-open/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>ubuntu 포트 사용 확인하는 법</p></a>
+      
+
+    
+      
+        <a href="/post/docker/docker-edit-path/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>docker 기본 경로 변경</p></a>
+      
 
     
   </div>
-  
+</div>
 
-  
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
+</div>
+    <div class="post__footer">
       
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></h3>
-        
-          <p>개요 스프링인액션 7장을 일고 스프링을 사용하여 다른 REST API를 사용하는 방법을 작성했다.</p>
+        <span><a class="category" href="/categories/devops/">DevOps</a></span>
 
-        
-        </div>
+
+
+
 
       
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            22/7/2022
 
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+      
+        <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/linux/">linux</a><a class="tag" href="/tags/nginx/">nginx</a></span>
 
 
 
 
-        
-      </div>
+      
     </div>
 
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></h3>
-        
-          <p>개요 스프링인액션 6장을 읽고 REST 서비스를 생성해보았다.
-REST 엔드포인트 정의하기 REST 리소스 활성화 에 대해 기록하였다.</p>
-
-        
-        </div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            22/7/2022
-
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
-
-
-
-
-        
-      </div>
-    </div>
-
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></h3>
-        
-          <p>개요 스프링인액션 5장을 읽고 스프링 부트 구성 속성에 대해 작성해본다.</p>
-
-        
-        </div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            20/7/2022
-
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
-
-
-
-
-        
-      </div>
-    </div>
-
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></h3>
-        
-          <p>개요 스프링 시큐리티를 이용하여 스프링 애플리케이션에 보안 기능을 구현한다.
-스프링 시큐리티 구성하기 여러 방법을 사용하여 사용자 스토어 구성해보기 password encoder 적용하기 스프링 시큐리티 보안 구성하기 사용자 정보 취득하기 에 대해 기술해보았다.</p>
-
-        
-        </div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            14/7/2022
-
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
-
-
-
-
-        
-      </div>
-    </div>
-
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></h3>
-        
-          <p>개요 스프링인액션 2장을 읽고 스프링에서 JDBC, JPA를 이용하는 방법에 대해 작성하였다.</p>
-
-        
-        </div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            30/6/2022
-
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
-
-
-
-
-        
-      </div>
-    </div>
-
-  
-    <div
-      class="post 
-        animated fadeInDown
-
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></h3>
-        
-          <p>개요 스프링인액션 1장을 읽고 스프링 부트 어플리케이션을 구축하기 위한 초기 설정 등을 기록하였다.</p>
-
-        
-        </div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            5/6/2022
-
-
-          </span
-        >
-        
-        
-          <span><a class="subcategory" href="/subcategories/spring/">Spring</a></span>
-
-
-        
-
-
-        
-          <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
-
-
-
-
-        
-      </div>
-    </div>
-
-  
-  <div class="pagination">
     
-
   </div>
 
   <script>
-    const tags = document.getElementById('tags');
-    const tagBtn = document.getElementsByClassName('tag__btn')[0];
+    const toc = document.getElementById('tableOfContent');
 
-    window.addEventListener('resize', function() {
-      let height = window.innerWidth >= 961 ? 15 : 40;
-      
-      if (window.innerWidth >= 961 && tags.scrollHeight <= 80) {        
-        tagBtn.style.display = "none";
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
       } 
-      else if (window.innerWidth <= 961 && tags.scrollHeight <= 32) {   
-        tagBtn.style.display = "none";
-      }
       else {
-        tagBtn.style.display = "flex";  
+        toc.style.display = "none";  
       }
-    });
+    }
 
-    const openTagList = function (el) {
-      let height = window.innerWidth >= 961 ? 15 : 40;
-    
-      if (document.querySelector('.tags').classList.contains('hide')) {
-        tags.style.maxHeight = tags.scrollHeight + "px";
-        el.innerHTML = "태그 접기";
-      }
-      else {
-        tags.style.maxHeight = height + "px";
-        el.innerHTML = "태그 펼치기";
-      }
-      document.querySelector('.tags').classList.toggle('hide');
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
     }
     
   </script>
+
 
       </main>
     </div><footer class="footer footer__base">
