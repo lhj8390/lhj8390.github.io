@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.66905a70e6db990c8338dc357d3a481b4ffe83ae4a2af1810869e83ea9db2b39.css"
-      integrity="sha256-ZpBacObbmQyDONw1fTpIG0/&#43;g65KKvGBCGnoPqnbKzk="
+      href="/scss/main.min.eed4efec212c37a9ec50c022f4c263a20bf2c47610d8fe318f9cc2471d7e6964.css"
+      integrity="sha256-7tTv7CEsN6nsUMAi9MJjogvyxHYQ2P4xj5zCRx1&#43;aWQ="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -341,21 +341,7 @@
     });
   }
 
-  const expands = document.querySelectorAll('.expand__list');
-  for (i = 0; i < expands.length; i++) {
-    const nodes = expands[i].children;
-    const icon = expands[i].previousElementSibling.lastElementChild;
-
-    for (j = 0; j < nodes.length; j++) {
-      if (nodes[j].classList.contains('watched')) {
-        icon.classList.add('up');
-        icon.classList.add('down');
-        expands[i].classList.add('expand--open');
-        break;
-      }
-    }
-    
-  }
+  
 </script>
 </aside>
       <main
@@ -382,22 +368,93 @@
   <nav class="nav">
      
     <div class="nav__opener">
-      <ul class="nav__list" id="navMenu">
-        
-          <li class="nav__list-item">
-            <a href="/categories/devops">devops <span>(5)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/framework">framework <span>(6)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/frontend">frontend <span>(2)</span></a>
-          </li>
+      <div class="nav__list" id="navMenu">
         
         
-      </ul>
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(6)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
     </div>
     
   </nav>
@@ -456,7 +513,6 @@
     </ul>
   </nav>
 </div>
-
 
 </header>
   <div class="
@@ -900,7 +956,26 @@ REST 엔드포인트 정의하기 REST 리소스 활성화 에 대해 기록하�
         searchWrapper.style.display = 'none';
         document.getElementsByClassName('body')[0].style.overflow = 'auto';
       }
-    
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
       
     }
     

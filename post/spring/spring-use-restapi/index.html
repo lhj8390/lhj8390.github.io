@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.66905a70e6db990c8338dc357d3a481b4ffe83ae4a2af1810869e83ea9db2b39.css"
-      integrity="sha256-ZpBacObbmQyDONw1fTpIG0/&#43;g65KKvGBCGnoPqnbKzk="
+      href="/scss/main.min.eed4efec212c37a9ec50c022f4c263a20bf2c47610d8fe318f9cc2471d7e6964.css"
+      integrity="sha256-7tTv7CEsN6nsUMAi9MJjogvyxHYQ2P4xj5zCRx1&#43;aWQ="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -440,21 +440,7 @@
     });
   }
 
-  const expands = document.querySelectorAll('.expand__list');
-  for (i = 0; i < expands.length; i++) {
-    const nodes = expands[i].children;
-    const icon = expands[i].previousElementSibling.lastElementChild;
-
-    for (j = 0; j < nodes.length; j++) {
-      if (nodes[j].classList.contains('watched')) {
-        icon.classList.add('up');
-        icon.classList.add('down');
-        expands[i].classList.add('expand--open');
-        break;
-      }
-    }
-    
-  }
+  
 </script>
 </aside>
       <main
@@ -481,22 +467,93 @@
   <nav class="nav">
      
     <div class="nav__opener">
-      <ul class="nav__list" id="navMenu">
-        
-          <li class="nav__list-item">
-            <a href="/categories/devops">devops <span>(5)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/framework">framework <span>(6)</span></a>
-          </li>
-        
-          <li class="nav__list-item">
-            <a href="/categories/frontend">frontend <span>(2)</span></a>
-          </li>
+      <div class="nav__list" id="navMenu">
         
         
-      </ul>
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(6)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
     </div>
     
   </nav>
@@ -555,7 +612,6 @@
     </ul>
   </nav>
 </div>
-
 
 </header>
   <div
@@ -729,7 +785,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 <br/>
 → 응답 헤더와 같은 상세한 응답 컨텐츠가 포함된다.</p>
 <h3 id="put-method">PUT method</h3>
-<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다.
+<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다. 
 <br/><br/></p>
 <p><strong>put() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -738,7 +794,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span></code></pre></div><p>put()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL로 전송하는 객체</span>, (3) <span class="ul">URL 문자열의 변수 값</span>이 된다. <br/>
 반환 타입은 void이므로 반환값을 처리할 필요가 없다.</p>
 <h3 id="delete-method">DELETE method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다.
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다. 
 <br/><br/></p>
 <p><strong>delete() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -746,7 +802,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>delete()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL 문자열의 변수 값</span>이 된다.</p>
 <h3 id="post-method">POST method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다.
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다. 
 <br/><br/></p>
 <p><strong>postForObject() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -936,7 +992,26 @@ toObject() 메서드의 인자에는 데이터를 읽어들이는 객체 타입�
         searchWrapper.style.display = 'none';
         document.getElementsByClassName('body')[0].style.overflow = 'auto';
       }
-    
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
       
     }
     
