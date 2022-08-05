@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 비동기 메시지 전송하기 - JMS |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 JMS를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.eed4efec212c37a9ec50c022f4c263a20bf2c47610d8fe318f9cc2471d7e6964.css"
+      integrity="sha256-7tTv7CEsN6nsUMAi9MJjogvyxHYQ2P4xj5zCRx1&#43;aWQ="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-messaging-jms/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 비동기 메시지 전송하기 - JMS"/>
+<meta name="twitter:description" content="스프링에서 JMS를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 비동기 메시지 전송하기 - JMS" />
+<meta property="og:description" content="스프링에서 JMS를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-messaging-jms/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-05T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 비동기 메시지 전송하기 - JMS",
+        "headline": "[스프링인액션] 비동기 메시지 전송하기 - JMS",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 JMS를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-jms\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-08-05T00:00:00.00Z",
+        "datePublished": "2022-08-05T00:00:00.00Z",
+        "dateModified": "2022-08-05T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-jms\/",
+        "wordCount" : "1071",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(7)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(7)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#jms로-메시지-전송하기">JMS로 메시지 전송하기</a>
+      <ul>
+        <li><a href="#jms-설정">JMS 설정</a></li>
+        <li><a href="#실무환경에서의-브로커-설정">실무환경에서의 브로커 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#jmstemplate을-사용하여-메시지-전송">JmsTemplate을 사용하여 메시지 전송</a>
+      <ul>
+        <li><a href="#원시-메시지-전송">원시 메시지 전송</a></li>
+        <li><a href="#메시지-도착지-지정">메시지 도착지 지정</a></li>
+        <li><a href="#메시지-변환하고-전송">메시지 변환하고 전송</a></li>
+        <li><a href="#후처리-메시지">후처리 메시지</a></li>
+      </ul>
+    </li>
+    <li><a href="#jms-메시지-수신">JMS 메시지 수신</a>
+      <ul>
+        <li><a href="#jmstemplate-사용하여-메시지-수신">JmsTemplate 사용하여 메시지 수신</a></li>
+        <li><a href="#메시지-리스너-선언">메시지 리스너 선언</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 비동기 메시지 전송하기 - JMS</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                5/8/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 6분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 8장을 읽고 JMS를 이용하여 스프링이 제공하는 비동기 메시징을 공부하였다.</p>
+<ul>
+<li>JMS 기본 개념 및 설정</li>
+<li>JMS를 이용한 메시지 전송</li>
+<li>JMS를 이용한 메시지 수신</li>
+</ul>
+<p>에 대해 작성해보았다.</p>
+</blockquote>
+<h2 id="jms로-메시지-전송하기">JMS로 메시지 전송하기</h2>
+<hr>
+<blockquote>
+<p>JMS는 &ldquo;<strong>두 개 이상의 클라이언트 간에 메시지 통신을 위한 공통 API를 정의하는 자바 표준</strong>&ldquo;이다.<br/>
+스프링에서는 JmsTemplate이라는 템플릿 기반의 클래스를 통해 JMS를 지원한다.</p>
+<p>JmsTemplate를 사용하여 프로듀서(producer)가 큐와 토픽에 메시지를 전송하고 컨슈머(<span class="gray">consumer</span>)는 그 메시지를 받을 수 있다.</p>
+</blockquote>
+<br/>
+<h3 id="jms-설정">JMS 설정</h3>
+<p>JMS 클라이언트를 프로젝트 빌드에 추가한다. <br/>
+하지만 우선 메시지 브로커를 선택해야 하는데, 아파치 ActiveMQ 또는 ActiveMQ Artemis(아르테미스) 가 있다.</p>
+<p><strong>ActiveMQ 사용 시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-activemq&#39;</span>
+</span></span></code></pre></div><br/>
+<p><strong>ActiveMQ Artemis 사용 시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-artemis&#39;</span>
+</span></span></code></pre></div><p>Artemis는 ActiveMQ를 새롭게 다시 구현한 차세대 브로커이다.
+<br/><br/></p>
+<h3 id="실무환경에서의-브로커-설정">실무환경에서의 브로커 설정</h3>
+<p>스프링은 브로커가 localhost의 61616 포트를 리스닝하는 것으로 간주하기 때문에 로컬에서 실행되는 개발 환경일 경우 설정값을 따로 지정해 줄 필요가 없다.<br/>
+하지만 실무 환경에서는 브로커를 어떻게 사용하는지 application.yml에 속성 값을 지정해 줄 필요가 있다.
+<br/><br/></p>
+<p><strong>ActiveMQ 브로커의 위치와 인증 정보를 구성하는 속성</strong></p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring.activemq.broker-url</td>
+<td>브로커의 URL</td>
+</tr>
+<tr>
+<td>spring.activemq.user</td>
+<td>브로커를 사용하기 위한 사용자(선택)</td>
+</tr>
+<tr>
+<td>spring.activemq.password</td>
+<td>브로커를 사용하기 위한 암호(선택)</td>
+</tr>
+<tr>
+<td>spring.activemq.in-memory</td>
+<td>인메모리 브로커로 시작할 것인지의 여부(기본값 true)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">activemq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">broker-url</span><span class="p">:</span><span class="w"> </span><span class="l">tcp://activemq.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">admin123</span><span class="w">
+</span></span></span></code></pre></div><p>URL은 YAML 파일에 지정한 것처럼 <span class="ul">tcp://URL 형태</span>로 지정해야 한다.
+<br/><br/></p>
+<p><strong>Artemis 브로커의 위치와 인증 정보를 구성하는 속성</strong></p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring.artemis.host</td>
+<td>브로커의 호스트</td>
+</tr>
+<tr>
+<td>spring.artemis.port</td>
+<td>브로커의 포트</td>
+</tr>
+<tr>
+<td>spring.artemis.user</td>
+<td>브로커를 사용하기 위한 사용자(선택)</td>
+</tr>
+<tr>
+<td>spring.artemis.password</td>
+<td>브로커를 사용하기 위한 암호(선택)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">artemis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">artemis.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">61617</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">admin123</span><span class="w">
+</span></span></span></code></pre></div><p>artemis.tacocloud.com의 61617 포트를 리스닝하는 브로커에 대한 연결을 생성하기 위해 스프링을 설정하였다.</p>
+<h2 id="jmstemplate을-사용하여-메시지-전송">JmsTemplate을 사용하여 메시지 전송</h2>
+<hr>
+<p>Artemis 또는 ActiveMQ가 의존성에 추가되면 스프링 부트가 메시지를 송수신하기 위해 주입 및 사용할 수 있는 JmsTemplate을 자동-구성한다.
+JmsTemplate는 다음과 같은 메서드들을 가지고 있다.</p>
+<ul>
+<li><strong>send()</strong> : 원시 메시지 전송</li>
+<li><strong>convertAndSend()</strong> : 객체로부터 변환된 메시지 전송하거나 인자에 MessagePostProcessor를 포함하여 전송에 앞서 후처리되는 메시지 전송 가능</li>
+</ul>
+<h3 id="원시-메시지-전송">원시 메시지 전송</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">JmsTemplate</span> <span class="n">jms</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">MessageCreator</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Message</span> <span class="nf">createMessage</span><span class="o">(</span><span class="n">Session</span> <span class="n">session</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JMSException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>여기서 send() 메서드는</p>
+<ol>
+<li>Message 객체를 생성하기 위해 MessageCreator를 필요로 한다.</li>
+<li>도착지 매개변수가 없어 해당 메시지를 기본 도착지로 전송한다.
+<br/><br/></li>
+</ol>
+<p>MessageCreator 인터페이스의 <strong>createMessage(Session) 함수를 오버라이딩하여</strong> 전달된 Order 객체로부터 새로운 메시지를 생성한다.</p>
+<aside>
+💡 람다식으로 적용하면 다음과 같다.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><span class="red">※ MessageCreator는 함수형 인터페이스이므로 람다식으로 표현할 수 있다.</span></p>
+</aside>
+<br/><br/>
+<p>메시지의 도착지를 지정하지 않았기 때문에 기본 도착지를 application.yml 파일에 지정해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jms</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">default-destination</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.order.queue</span><span class="w">
+</span></span></span></code></pre></div><h3 id="메시지-도착지-지정">메시지 도착지 지정</h3>
+<p>Destination 객체를 통해 메시지 도착지를 지정하거나, 메시지 도착지를 나타내는 문자열(String 타입)을 통해 도착지를 지정할 수 있다.
+<br/><br/></p>
+<h4 id="1-destination-객체-활용">1. <strong>Destination 객체 활용</strong></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Destination</span> <span class="nf">orderQueue</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">ActiveMQQueue</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Destination 빈을 선언하고 메시지 전송을 수행하는 빈에 주입한다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">JmsTemplate</span> <span class="n">jms</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">Destination</span> <span class="n">orderQueue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">orderQueue</span><span class="o">,</span> <span class="n">session</span> <span class="o">-&gt;</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>여기서 send() 메서드는</p>
+<ol>
+<li>첫번째 매개변수로 Destination 객체를 전달한다.</li>
+<li>Message 객체를 생성하기 위해 MessageCreator를 활용한다.
+<br/><br/></li>
+</ol>
+<h4 id="2-문자열-활용">2. <strong>문자열 활용</strong></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">JmsTemplate</span> <span class="n">jms</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">session</span> <span class="o">-&gt;</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>여기서 send() 메서드는</p>
+<ol>
+<li>첫번째 매개변수로 목적지 이름을 String 타입으로 전달한다.</li>
+<li>Message 객체를 생성하기 위해 MessageCreator를 활용한다.
+<br/><br/></li>
+</ol>
+<h3 id="메시지-변환하고-전송">메시지 변환하고 전송</h3>
+<p>convertAndSend() 메서드는 MessageCreator를 제공하지 않고 전송될 객체를 convertAndSend()의 인자로 직접 전달하면 해당 객체가 Message 객체로 변환되어 전송된다.
+<br/><br/></p>
+<p><strong>기본 예제</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jms</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>send() 메서드처럼 convertAndSend()는 Destination 객체나 문자열 값으로 지정한 도착지를 인자로 받거나, 도착지를 생략하여 기본 도착지로 메시지를 전송할 수 있다.
+<br/><br/></p>
+<p><strong>메시지 변환기 구현</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MessageConverter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Message</span> <span class="nf">toMessage</span><span class="o">(</span><span class="n">Object</span> <span class="n">object</span><span class="o">,</span> <span class="n">Session</span> <span class="n">session</span><span class="o">)</span> <span class="k">throw</span> <span class="n">JMSException</span><span class="o">,</span> <span class="n">MessageConversionException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Object</span> <span class="nf">fromMessage</span><span class="o">(</span><span class="n">Message</span> <span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>메시지 변환기를 구현하기 위해서는 스프링에 정의된 인터페이스인 MessageConverter를 사용한다.<br/><br/></p>
+<p>📢 <strong>변환작업을 해주는 스프링 메시지 변환기</strong></p>
+<table>
+<thead>
+<tr>
+<th>메시지 변환기</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MappingJackson2MessageConverter</td>
+<td>Jackson 2 JSON 라이브러리를 사용해서 메시지를 JSON으로 상호 변환한다.</td>
+</tr>
+<tr>
+<td>MarshallingMessageConverter</td>
+<td>JAXB를 사용해서 메시지를 XML로 상호 변환한다.</td>
+</tr>
+<tr>
+<td>MessagingMessageConverter</td>
+<td>수신된 메시지의 MessageConverter를 사용해서 해당 메시지를 Message 객체로 상호 변환한다. 또는 JMS 헤더와 연관된 JmsHeaderMapper를 표준 메시지 헤더로 상호 변환한다.</td>
+</tr>
+<tr>
+<td>SimpleMessageConverter</td>
+<td>문자열을 TextMessage로, byte 배열을 BytesMessage로, Map를 MapMessage로, Serializable 객체를 ObjectMessage로 상호 변환한다.</td>
+</tr>
+</tbody>
+</table>
+<p>상단의 메시지 변환기는 모두 org.springframework.jms.support.converter 패키지에 존재한다.<br/>
+기본적으로는 <strong>SimpleMessageConverter</strong>가 사용되며, 이 경우 전송될 객체가 Serializable 인터페이스를 구현한다.
+<br/><br/></p>
+<p><strong>다른 메시지 변환기 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MappingJackson2MessageConverter</span> <span class="nf">messageConverter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MappingJackson2MessageConverter</span> <span class="n">messageConverter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MappingJackson2MessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messageConverter</span><span class="o">.</span><span class="na">setTypeIdPropertyName</span><span class="o">(</span><span class="s">&#34;_typeId&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">messageConverter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>다른 메시지 변환기를 적용할 때는 해당 변환기의 인스턴스를 빈으로 선언한다. <br/>
+setTypeIdPropertyName() 메서드에는 <span class="red">매핑된 ID 값 또는 Java 클래스 이름</span>을 포함한 type id를 지정할 수 있다. 이 속성을 설정해야 수신 메시지를 Java 객체로 변환시킬 수 있다.
+<br/><br/></p>
+<p><strong>임의의 타입 이름 매핑</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MappingJackson2MessageConverter</span> <span class="nf">messageConverter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MappingJackson2MessageConverter</span> <span class="n">messageConverter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MappingJackson2MessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messageConverter</span><span class="o">.</span><span class="na">setTypeIdPropertyName</span><span class="o">(</span><span class="s">&#34;_typeId&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">typeIdMappings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">typeIdMappings</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;order&#34;</span><span class="o">,</span> <span class="n">Order</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messageConverter</span><span class="o">.</span><span class="na">setTypeIdMappings</span><span class="o">(</span><span class="n">typeIdMappings</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">messageConverter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>setTypeIdPropertyName() 메서드 만을 이용하여 타입을 지정할 경우 메시지 수신자도 똑같은 클래스와 타입을 가져야 하기 때문에 유연성이 떨어진다.<br/>
+하지만 setTypeIdMappings() 메서드를 이용한다면 메시지의 _typeId 속성에 전송되는 클래스 이름 대신 <strong>실제 타입에 임의의 타입 이름을 매핑시킬 수 있다.</strong> <span class="gray it">- 이 코드에서는 Order 클래스를 order라는 타입 ID로 매핑하도록 메시지 변환기를 변경한다.</span>
+<br/><br/></p>
+<h3 id="후처리-메시지">후처리 메시지</h3>
+<p><strong>send()를 이용한 후처리</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">message</span><span class="o">.</span><span class="na">setStringProperty</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><p>order 객체에 새로운 source 속성을 추가하고 싶다. <br/>
+이 경우 Message 객체의 setStringProperty() 메서드를 통해 커스텀 헤더를 메시지에 추가한다.<br/><br/></p>
+<p><strong>convertAndSend()를 이용한 후처리</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">jms</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">message</span><span class="o">.</span><span class="na">setStringProperty</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><p>convertAndSend() 메서드를 이용할 경우 마지막 인자로 MessagePostProcessor를 전달하면 내부적으로 생성된 Message 객체에 후처리를 할 수 있다.
+<br/><br/></p>
+<p><strong>MessagePostProcessor 메서드 참조</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">String</span> <span class="nf">convertAndSendOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">buildOrder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">jms</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">,</span> <span class="k">this</span><span class="o">::</span><span class="n">addOrderSource</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s">&#34;Convert and send order&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">Message</span> <span class="nf">addOrderSource</span><span class="o">(</span><span class="n">Message</span> <span class="n">message</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JMSException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span><span class="o">.</span><span class="na">setStringProperty</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>동일한 MessagePostProcessor를 사용하려면 메서드 참조를 통해 구현할 수 있다.</p>
+<h2 id="jms-메시지-수신">JMS 메시지 수신</h2>
+<hr>
+<blockquote>
+<p>메시지를 수신하는 방식은 두가지가 존재하는데,</p>
+<ul>
+<li>메시지를 요청하고 도착할 때까지 기다리는 <strong>pull model(풀 모델)</strong></li>
+<li>메시지가 수신 가능한 상태라면 코드로 자동 전달하는 <strong>push model(푸시 모델)</strong></li>
+</ul>
+<p>이 있다.</p>
+<p>JmsTemplate는 메시지를 수신하는 모든 메서드가 풀 모델을 사용한다. <br/>
+→ <em>메시지를 요청하면 스레드에서 메시지를 수신할 수 있을 때까지 기다린다.</em></p>
+<p>푸시 모델을 사용할 경우에는 메시지 리스너를 정의해야 한다.</p>
+</blockquote>
+<br/>
+<h3 id="jmstemplate-사용하여-메시지-수신">JmsTemplate 사용하여 메시지 수신</h3>
+<p>JmsTemplate는 다음과 같은 메서드들을 가지고 있다.</p>
+<ul>
+<li>receive() : 원시 메시지 수신</li>
+<li>receiveAndConvert() : 메시지를 도메인 타입으로 변환하기 위해 구성된 메시지 변환기 사용
+<br/><br/></li>
+</ul>
+<p><strong>receive()  사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">JmsTemplate</span> <span class="n">jms</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">MessageConverter</span> <span class="n">converter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">jms</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">converter</span><span class="o">.</span><span class="na">fromMessage</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>도착지는 문자열 타입(String)을 이용하여 지정한다. <span class="gray it">- send()와 같이 Destination 객체를 이용할 수도 있다.</span><br/>
+메시지 내부의 Order 객체를 받아오기 위해 메시지 변환기를 이용하여 수신 메시지를 Order 객체로 변환하였다.
+<br/><br/></p>
+<p><strong>receiveAndConvert() 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">JmsTemplate</span> <span class="n">jms</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">jms</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>메시지 변환기를 이용하지 않고 receiveAndConvert() 메서드를 사용하면 훨씬 간단하게 메시지 변환을 수행할 수 있다.<br/><br/></p>
+<h3 id="메시지-리스너-선언">메시지 리스너 선언</h3>
+<p>receive()나 receiveAndConvert()를 호출하는 풀 모델과 달리, 메시지 리스너는 메시지가 도착할 때까지 기다리는 수동적 컴포넌트이다.</p>
+<p><strong>메시지 리스너 생성</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@JmsListener</span><span class="o">(</span><span class="n">destination</span> <span class="o">=</span> <span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">receiveOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>&ldquo;tacocloud.order.queue&rdquo; 도착지의 메시지를 읽기 위해 <strong>@JmsListener</strong> 어노테이션을 지정한다. <br/>
+메시지가 도착한다면 Order 객체가 인자로 전달되면서 receiveOrder() 메서드가 자동 호출된다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-use-restapi/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] REST API 사용하기</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-add-restapi/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] REST API 생성하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
