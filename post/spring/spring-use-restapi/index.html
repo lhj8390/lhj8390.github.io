@@ -361,7 +361,7 @@
             <i class="fa-solid fa-cube"></i>
           
           Framework 
-          <span>(7)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -514,7 +514,7 @@
               <i class="fa-solid fa-cube"></i>
             
             Framework 
-            <span>(7)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -785,7 +785,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 <br/>
 → 응답 헤더와 같은 상세한 응답 컨텐츠가 포함된다.</p>
 <h3 id="put-method">PUT method</h3>
-<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다. 
+<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다.
 <br/><br/></p>
 <p><strong>put() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -794,7 +794,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span></code></pre></div><p>put()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL로 전송하는 객체</span>, (3) <span class="ul">URL 문자열의 변수 값</span>이 된다. <br/>
 반환 타입은 void이므로 반환값을 처리할 필요가 없다.</p>
 <h3 id="delete-method">DELETE method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다. 
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다.
 <br/><br/></p>
 <p><strong>delete() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -802,7 +802,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>delete()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL 문자열의 변수 값</span>이 된다.</p>
 <h3 id="post-method">POST method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다. 
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다.
 <br/><br/></p>
 <p><strong>postForObject() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -863,6 +863,9 @@ toObject() 메서드의 인자에는 데이터를 읽어들이는 객체 타입�
 <h3>Posts in this Series</h3>
 <ul>
   
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
     <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
 
   
@@ -891,12 +894,12 @@ toObject() 메서드의 인자에는 데이터를 읽어들이는 객체 타입�
   <div class="related--list">
     
       
-        <a href="/post/spring/spring-messaging-jms/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 비동기 메시지 전송하기 - JMS</p></a>
+        <a href="/post/spring/spring-messaging-rabbitmq/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</p></a>
       
 
     
       
-        <a href="/post/spring/spring-add-restapi/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] REST API 생성하기</p></a>
+        <a href="/post/spring/spring-messaging-jms/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 비동기 메시지 전송하기 - JMS</p></a>
       
 
     

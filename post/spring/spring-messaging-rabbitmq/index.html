@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 비동기 메시지 전송하기 - RabbitMQ |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 RabbitMQ를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.eed4efec212c37a9ec50c022f4c263a20bf2c47610d8fe318f9cc2471d7e6964.css"
+      integrity="sha256-7tTv7CEsN6nsUMAi9MJjogvyxHYQ2P4xj5zCRx1&#43;aWQ="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-messaging-rabbitmq/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ"/>
+<meta name="twitter:description" content="스프링에서 RabbitMQ를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ" />
+<meta property="og:description" content="스프링에서 RabbitMQ를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-messaging-rabbitmq/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-07T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ",
+        "headline": "[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 RabbitMQ를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-rabbitmq\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-08-07T00:00:00.00Z",
+        "datePublished": "2022-08-07T00:00:00.00Z",
+        "dateModified": "2022-08-07T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-rabbitmq\/",
+        "wordCount" : "828",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(8)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(8)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#rabbitmq-사용">RabbitMQ 사용</a>
+      <ul>
+        <li><a href="#rabbitmq-구조">RabbitMQ 구조</a></li>
+        <li><a href="#rabbitmq-설정">RabbitMQ 설정</a></li>
+        <li><a href="#실무환경에서의-rabbitmq-설정">실무환경에서의 RabbitMQ 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#rabbittemplate을-사용하여-메시지-전송">RabbitTemplate을 사용하여 메시지 전송</a>
+      <ul>
+        <li><a href="#send-메서드로-메시지-전송">send() 메서드로 메시지 전송</a></li>
+        <li><a href="#메시지-변환기-구성">메시지 변환기 구성</a></li>
+        <li><a href="#메시지-속성-설정">메시지 속성 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#rabbitmq로부터-메시지-수신">RabbitMQ로부터 메시지 수신</a>
+      <ul>
+        <li><a href="#rabbittemplate을-사용하여-메시지-수신">RabbitTemplate을 사용하여 메시지 수신</a></li>
+        <li><a href="#리스너-사용">리스너 사용</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                7/8/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 4분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 8장을 읽고 RabbitMQ와 AMQP를 사용한 비동기 메시징을 공부하였다.</p>
+<ul>
+<li>RabbitMQ의 기본 개념 및 설정</li>
+<li>RabbitMQ를 이용한 메시지 전송</li>
+<li>RabbitMQ를 이용한 메시지 수신</li>
+</ul>
+<p>에 대해 알 수 있다.</p>
+</blockquote>
+<h2 id="rabbitmq-사용">RabbitMQ 사용</h2>
+<hr>
+<blockquote>
+<p>RabbitMQ는 JMS보다 진보된 메시지 라우팅 전략을 제공한다.<br/>
+AMQP(Advenced Message Queing Protocol)을 따르는 오픈소스 메시지 브로커 중 하나이다.</p>
+</blockquote>
+<h3 id="rabbitmq-구조">RabbitMQ 구조</h3>
+<p><figure class="large"><img src="/images/spring-messaging-rabbitmq/1.png"
+         alt="거래소와 큐 간의 관계"/><figcaption>
+            <p>거래소와 큐 간의 관계</p>
+        </figcaption>
+</figure>
+
+<br/><br/></p>
+<p>RabbitMQ 거래소로 전송되는 메시지는 라우팅 키와 바인딩을 기반으로 하나 이상의 큐에 전달된다.</p>
+<table>
+<thead>
+<tr>
+<th>거래소 타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기본(Default)</td>
+<td>브로커가 자동으로 생성. 라우팅 키와 이름이 같은 큐로 메시지를 전달한다. 모든 큐는 자동으로 기본 거래소와 연결된다.</td>
+</tr>
+<tr>
+<td>다이렉트(Direct)</td>
+<td>바인딩 키가 해당 메시지의 라우팅 키와 같은 큐에 메시지를 전달한다.</td>
+</tr>
+<tr>
+<td>토픽(Topic)</td>
+<td>바인딩 키가 해당 메시지의 라우팅 키와 일치하는 하나 이상의 큐에 메시지를 전달한다.</td>
+</tr>
+<tr>
+<td>팬아웃(Fanout)</td>
+<td>바인딩 키나 라우팅 키에 상관없이 모든 연결된 큐에 메시지를 전달한다.</td>
+</tr>
+<tr>
+<td>헤더(Header)</td>
+<td>토픽 거래소와 유사하며, 라우팅 키 대신 메시지 헤더 값을 기반으로 한다.</td>
+</tr>
+<tr>
+<td>데드 레터(Dead Letter)</td>
+<td>전달 불가능한(거래소, 큐 바인딩과 일치하지 않는) 모든 메시지를 보관하는 거래소이다.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rabbitmq-설정">RabbitMQ 설정</h3>
+<p>스프링 부트의 AMQP를 프로젝트 빌드에 추가한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-amqp&#39;</span>
+</span></span></code></pre></div><p>AMQP 연결 팩토리와 RabbitTemplate 빈을 자동으로 구성해준다.
+<br/></p>
+<h3 id="실무환경에서의-rabbitmq-설정">실무환경에서의 RabbitMQ 설정</h3>
+<p>스프링은 RabbitMQ 브로커가 localhost의 5672 포트를 리스닝하고 인증 정보가 필요없기 때문에 로컬에서 실행되는 개발 환경일 경우 설정값을 따로 지정해 줄 필요가 없다.<br/>
+하지만 실무 환경에서는 브로커를 어떻게 사용하는지 application.yml에 속성 값을 지정해 줄 필요가 있다.
+<br/><br/></p>
+<p><strong>ActiveMQ 브로커의 위치와 인증 정보를 구성하는 속성</strong></p>
+<table>
+<thead>
+<tr>
+<th>속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring.rabbitmq.addresses</td>
+<td>쉼표로 구분된 리스트 형태의 RabbitMQ 브로커 주소</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.host</td>
+<td>브로커의 호스트(기본값 localhost)</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.port</td>
+<td>브로커의 포트(기본값 5672)</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.username</td>
+<td>브로커를 사용하기 위한 사용자(선택)</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.password</td>
+<td>브로커를 사용하기 위한 암호(선택)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rabbittemplate을-사용하여-메시지-전송">RabbitTemplate을 사용하여 메시지 전송</h2>
+<hr>
+<blockquote>
+<p>RabbitTemplate는 JmsTemplate과 유사한 메서드를 제공하지만 미세한 차이가 존재한다.</p>
+<ul>
+<li>JmsTemplate : 지정된 큐나 토픽에만 메시지 전송</li>
+<li>RabbitTemplate : <strong>거래소와 라우팅 키의 형태</strong>로 메시지 전송</li>
+</ul>
+</blockquote>
+<br/>
+<p>RabbitTemplate는 다음과 같은 메서드들을 가지고 있다.</p>
+<ul>
+<li><strong>send()</strong> : 원시 메시지 전송</li>
+<li><strong>convertAndSend()</strong> : 객체로부터 변환된 메시지 전송하거나 인자에 MessagePostProcessor를 포함하여 전송에 앞서 후처리되는 메시지 전송 가능</li>
+</ul>
+<aside>
+💡 Destination 객체 대신 거래소와 라우팅 키를 지정하는 문자열 값을 인자로 받는다! <br/>
+        라우팅 키를 인자로 받지 않을 경우 기본 라우팅 키로 전송되는 메시지를 가진다.<br/>
+</aside>
+<br/>
+<h3 id="send-메서드로-메시지-전송">send() 메서드로 메시지 전송</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>MessageConverter로 Order 객체를 Message 객체로 변환한다.<br/>
+<strong>메시지 속성 제공</strong> : MessageProperties - <span class="gray"><em>메시지 속성 설정하지 않을 경우에는 기본 인스턴스 전달</em></span>
+<br/><br/></p>
+<p><strong>거래소 기본값 설정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">exchange</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">routing-key</span><span class="p">:</span><span class="w"> </span><span class="l">kitchens.central</span><span class="w">
+</span></span></span></code></pre></div><p>기본 거래소 이름은 빈 문자열인 “”이며, RabbitMQ 브로커가 자동으로 생성하는 기본 거래소이다.<br/>
+기본 라우팅 키도 거래소와 동일하게 “”이다.</p>
+<p>기본값을 변경할 경우 해당 yaml 파일처럼 지정해준다. (exchange, routing-key 속성)</p>
+<h3 id="메시지-변환기-구성">메시지 변환기 구성</h3>
+<table>
+<thead>
+<tr>
+<th>메시지 변환기</th>
+<th>하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jackson2JsonMessageConverter</td>
+<td>Jackson2JSONProcessor를 사용해서 객체를 JSON으로 상호 변환한다.</td>
+</tr>
+<tr>
+<td>MarshallingMessageConverter</td>
+<td>스프링 Marshaller와 Unmarshaller를 사용해서 변환한다.</td>
+</tr>
+<tr>
+<td>SerializerMessageConverter</td>
+<td>스프링의 Serializer와 Deserializer를 사용해서 String과 객체를 변환한다.</td>
+</tr>
+<tr>
+<td>SimpleMessageConverter</td>
+<td>String, byte 배열, Serializable 타입을 변환한다.</td>
+</tr>
+<tr>
+<td>ContentTypeDelegatingMessageConverter</td>
+<td>contentType 헤더를 기반으로 다른 메시지 변환기에 변환을 위임한다.</td>
+</tr>
+</tbody>
+</table>
+<p>기본적으로는 SimpleMessageConverter가 사용되며, 메시지 변환기를 변경해야 할 경우에는 MessageConverter 타입의 빈을 구성하면 된다.
+<br/><br/></p>
+<p><strong>메시지 변환기 변경 예제</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MessageConverter</span> <span class="nf">messageConverter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">Jackson2JsonMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="메시지-속성-설정">메시지 속성 설정</h3>
+<p><strong>send() 메서드에서 속성 설정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>MessageProperties 인스턴스를 통해 커스텀 헤더를 설정할 수 있다.
+<br/><br/></p>
+<p><strong>convertAndSend() 메서드에서 속성 설정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">rabbit</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getMessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>convertAndSend() 메서드에서는 MessagePostProcessor를 사용하여 구현한다.<br/>
+Message 객체의 MessageProperties를 가져온 후 setHeader()를 호출하여 헤더를 설정한다.</p>
+<h2 id="rabbitmq로부터-메시지-수신">RabbitMQ로부터 메시지 수신</h2>
+<hr>
+<blockquote>
+<p>RabbitMQ 큐로부터의 메시지 수신도 JMS과 다르지 않다.</p>
+<ul>
+<li>풀 모델(pull model) 기반 : RabbitTemplate를 통해 큐로부터 메시지 수신</li>
+<li>푸시 모델(push model) 기반 : @RabbitListener가 지정된 메서드로 메시지 푸시</li>
+</ul>
+</blockquote>
+<br/>
+<h3 id="rabbittemplate을-사용하여-메시지-수신">RabbitTemplate을 사용하여 메시지 수신</h3>
+<p>RabbitTemplate는 다음과 같은 메서드들을 가지고 있다.</p>
+<ul>
+<li>receive() : 원시 메시지 수신</li>
+<li>receiveAndConvert() : 메시지를 수신한 후 메시지 변환기를 사용하여 도메인 객체로 변환하고 반환</li>
+</ul>
+<aside>
+💡 <strong>JmsTemplate와의 차이점</strong> 
+<ol>
+<li>수신 메서드는 거래소나 라우팅 키를 갖지 않는다.
+→ 어플리케이션은 큐만 알면 되기 때문에 <span class="red">(거래소나 라우팅 키는 메시지를 큐로 전달할 때만 사용)</span></li>
+<li>메시지의 수신 타임아웃을 나타내기 위해 long 타입의 매개변수를 가진다.
+타임아웃 값을 인자로 전달하면 메시지가 도착하거나 타임아웃에 걸릴 때까지 메서드는 대기하게 된다. (기본값 0)</li>
+</ol>
+</aside>
+<br/><br/>
+<p><strong>receive() 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">MessageConverter</span> <span class="n">converter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">&#34;tacocloud.orders&#34;</span><span class="o">,</span> <span class="n">30000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">message</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">converter</span><span class="o">.</span><span class="na">fromMessage</span><span class="o">(</span><span class="n">message</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>타입아웃 값인 30초가 지났을 경우에 Message 객체 혹은 null이 반환된다. (30초간 대기)<br/>
+Message 객체 반환되었을 경우 : MessageConverter를 사용하여 Message 객체를 Order 객체로 변환
+<br/><br/></p>
+<p><strong>구성을 통해 타임아웃 값 지정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">receive-timeout</span><span class="p">:</span><span class="w"> </span><span class="m">30000</span><span class="w">
+</span></span></span></code></pre></div><p>receive() 메서드의 타임아웃 값을 제거하고 구성 파일을 통해 타임아웃 값을 설정할 수 있다.
+<br/><br/></p>
+<p><strong>receiveAndConvert() 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>메시지 변환기 대신 receiveAndConvert() 메서드를 이용하면 손쉽게 메시지 변환이 가능하다.</p>
+<p><strong>캐스팅 대신 특정 객체 수신</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">	<span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;()</span> <span class="o">{});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>ParameterizedTypeReference를 인자로 전달하여 직접 Order 객체를 수신하게 할 수 있다.<br/>
+<span class="red">※ 메시지 변환기가 SmartMessageConverter 인터페이스를 구현한 클래스이어야 한다.</span></p>
+<h3 id="리스너-사용">리스너 사용</h3>
+<p>스프링은 RabbitListener라는 RabbitMQ 리스너를 제공한다. <br/>
+메시지가 큐에 도착할 때 메서드가 자동 호출되도록 하기 위해서는 @RabbitListener 어노테이션을 RabbitMQ 빈의 메서드에 지정해야 한다.
+<br/><br/></p>
+<p><strong>리스너 선언</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@RabbitListener</span><span class="o">(</span><span class="n">queues</span> <span class="o">=</span> <span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">receiveOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>리스너 선언은 어노테이션을 RabbitListener로 지정했다는 것 이외에는 JmsListener와 동일하다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-messaging-jms/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 비동기 메시지 전송하기 - JMS</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-use-restapi/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] REST API 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
