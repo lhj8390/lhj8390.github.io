@@ -8,7 +8,7 @@
   <title>
     
       
-        [스프링인액션] 스프링 초기 설정 |
+        [스프링인액션] 비동기 메시지 전송하기 - Kafka |
 
       
       lhj8390
@@ -23,7 +23,7 @@
   <meta
     name="description"
     content="
-      스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.
+      스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
 
 
     "
@@ -72,7 +72,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-basic/" />
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-messaging-kafka/" />
 
   
   
@@ -107,18 +107,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="[스프링인액션] 스프링 초기 설정"/>
-<meta name="twitter:description" content="스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다."/>
+<meta name="twitter:title" content="[스프링인액션] 비동기 메시지 전송하기 - Kafka"/>
+<meta name="twitter:description" content="스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다."/>
 
 
 
   
-  <meta property="og:title" content="[스프링인액션] 스프링 초기 설정" />
-<meta property="og:description" content="스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다." />
+  <meta property="og:title" content="[스프링인액션] 비동기 메시지 전송하기 - Kafka" />
+<meta property="og:description" content="스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-basic/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-06-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-06-05T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-messaging-kafka/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-11T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
 
 
 
@@ -133,11 +133,11 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "post",
-        "name": "[스프링인액션] 스프링 초기 설정",
-        "headline": "[스프링인액션] 스프링 초기 설정",
+        "name": "[스프링인액션] 비동기 메시지 전송하기 - Kafka",
+        "headline": "[스프링인액션] 비동기 메시지 전송하기 - Kafka",
         "alternativeHeadline": "",
         "description": "
-      스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.
+      스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.
 
 
     ",
@@ -145,7 +145,7 @@
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-basic\/"
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-kafka\/"
         },
         "author" : {
             "@type": "Person",
@@ -164,9 +164,9 @@
             "name": "lhj8390"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-06-05T00:00:00.00Z",
-        "datePublished": "2022-06-05T00:00:00.00Z",
-        "dateModified": "2022-06-05T00:00:00.00Z",
+        "dateCreated": "2022-08-11T00:00:00.00Z",
+        "datePublished": "2022-08-11T00:00:00.00Z",
+        "dateModified": "2022-08-11T00:00:00.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "lhj8390",
@@ -188,8 +188,8 @@
       ]
 
     ,
-        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-basic\/",
-        "wordCount" : "613",
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-kafka\/",
+        "wordCount" : "478",
         "genre" : [ 
       
       "Framework"
@@ -627,23 +627,23 @@
       <nav id="TableOfContents">
   <ul>
     <li><a href="#개요">개요</a></li>
-    <li><a href="#초기의-gradle-빌드-명세">초기의 gradle 빌드 명세</a>
+    <li><a href="#카프카-사용">카프카 사용</a>
       <ul>
-        <li><a href="#플러그인">플러그인</a></li>
-        <li><a href="#저장소">저장소</a></li>
-        <li><a href="#의존-라이브러리"><strong>의존 라이브러리</strong></a></li>
-        <li><a href="#스프링-부트-스타터-의존성">스프링 부트 스타터 의존성</a></li>
+        <li><a href="#카프카의-구조">카프카의 구조</a></li>
+        <li><a href="#카프카-설정">카프카 설정</a></li>
+        <li><a href="#실무환경에서의-카프카-설정">실무환경에서의 카프카 설정</a></li>
       </ul>
     </li>
-    <li><a href="#어플리케이션-구동">어플리케이션 구동</a>
+    <li><a href="#kafkatemplate을-사용하여-메시지-전송">KafkaTemplate을 사용하여 메시지 전송</a>
       <ul>
-        <li><a href="#springbootapplication-이란"><strong>@SpringBootApplication</strong> 이란?</a></li>
-        <li><a href="#main">main()</a></li>
+        <li><a href="#send-메서드로-메시지-전송">send() 메서드로 메시지 전송</a></li>
+        <li><a href="#senddefault-메서드로-메시지-전송">sendDefault() 메서드로 메시지 전송</a></li>
       </ul>
     </li>
-    <li><a href="#스프링부트-devtools">스프링부트 DevTools</a>
+    <li><a href="#카프카-리스너-작성">카프카 리스너 작성</a>
       <ul>
-        <li><a href="#intellij-적용-방법">Intellij 적용 방법</a></li>
+        <li><a href="#리스너를-이용하여-메시지-수신">리스너를 이용하여 메시지 수신</a></li>
+        <li><a href="#추가적인-메타데이터가-필요한-경우"><strong>추가적인 메타데이터가 필요한 경우</strong></a></li>
       </ul>
     </li>
   </ul>
@@ -651,14 +651,14 @@
     </div>
     
     <div class="post__content detail">
-      <h1>[스프링인액션] 스프링 초기 설정</h1>
+      <h1>[스프링인액션] 비동기 메시지 전송하기 - Kafka</h1>
       
         <ul class="post__meta">
           <li class="post__meta-item">
             <em class="fas fa-calendar-day post__meta-icon"></em>
             <span class="post__meta-text"
               >
-                5/6/2022
+                11/8/2022
 
 
               
@@ -673,189 +673,130 @@
       <h2 id="개요">개요</h2>
 <hr>
 <blockquote>
-<p>스프링인액션 1장을 읽고 스프링 부트 어플리케이션을 구축하기 위한 초기 설정 등을 기록하였다.</p>
-<p>이 문서를 통해</p>
+<p>스프링인액션 8장을 읽고 스프링이 제공하는 비동기 메시징을 공부하였다.</p>
 <ul>
-<li>초기의 gradle 빌드 명세 설명</li>
-<li>부트스트랩(구동) 클래스 설명</li>
-<li>스프링부트 DevTools</li>
+<li>Kafka 구조 및 설정</li>
+<li>Kafka 이용한 메시지 전송</li>
+<li>Kafka 이용한 메시지 수신</li>
 </ul>
 <p>에 대해 알 수 있다.</p>
 </blockquote>
-<h2 id="초기의-gradle-빌드-명세">초기의 gradle 빌드 명세</h2>
+<h2 id="카프카-사용">카프카 사용</h2>
 <hr>
 <blockquote>
-<p>Spring Initalizr를 이용하여 초기 스프링 프로젝트를 생성하면 (gradle으로 빌드)<br/>
-해당 build.gradle 파일이 생긴다.</p>
-<p><em>Spring Initalizr에서 Spring Web, Thymeleaf, Spring Boot DevTools, Lombok을 선택.</em></p>
+<p>아파치 카프카는 가장 새로운 메시징 시스템이다.<br/>
+카프카는 높은 확장성을 제공하는 클러스터로 실행되도록 설계되었는데, 클러스터의 모든 카프카 인스턴스에 걸쳐 토픽을 파티션으로 분할하여 메시지를 관리한다.</p>
+<p>→ RabbitMQ가 거래소와 큐를 사용해서 메시지를 처리하는 반면, 카프카는 토픽만 사용한다.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>                                                                                                                          
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;org.springframework.boot&#39;</span> <span class="n">version</span> <span class="s1">&#39;2.7.0&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;io.spring.dependency-management&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.11.RELEASE&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;tacos&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1-SNAPSHOT&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">&#39;1.8&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">configurations</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">compileOnly</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">extendsFrom</span> <span class="n">annotationProcessor</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;</span>       
-</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-web&#39;</span>                
-</span></span><span class="line"><span class="cl">    <span class="n">compileOnly</span> <span class="s1">&#39;org.projectlombok:lombok&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">developmentOnly</span> <span class="s1">&#39;org.springframework.boot:spring-boot-devtools&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">annotationProcessor</span> <span class="s1">&#39;org.projectlombok:lombok&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-test&#39;</span>           
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">tasks</span><span class="o">.</span><span class="na">named</span><span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">useJUnitPlatform</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><br/>
-<h3 id="플러그인">플러그인</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;org.springframework.boot&#39;</span> <span class="n">version</span> <span class="s1">&#39;2.7.0&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;io.spring.dependency-management&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.11.RELEASE&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>plugins 영역의 3개 플러그인 → 자바와 스프링 부트를 사용하기 위한 필수 플러그인</p>
-<p>id ‘org.springframework.boot’ : 스프링 부트 프로젝트를 실행할 수 있게 만들어주는 스프링 부트 관련 플러그인 <br/>
-id ‘io.spring.dependency-management’ : 스프링 부트의 의존성들을 관리해 주는 플러그인<br/>
-id &lsquo;java’ : Java 프로그램을 위한 기능을 제공하는 플러그인 - <em>compileJava, classes, test 등의 task 제공</em>
-<br/><br/></p>
-<h3 id="저장소">저장소</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>온라인으로 접속하여 사용할 수 있는 저장소로 Gradle은 대체로 다음 2개의 저장소 서비스를 이용한다.</p>
-<ul>
-<li>메이븐 중앙 저장소 추가를 위한 <code>mavenCentral()</code> 메소드</li>
-<li>Bintray의 jCenter 저장소 추가를 위한 <code>jcenter()</code> 메소드를 제공</li>
-</ul>
-<br/>
-<h3 id="의존-라이브러리"><strong>의존 라이브러리</strong></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="nf">fileTree</span><span class="o">(</span><span class="nl">dir:</span> <span class="s1">&#39;libs&#39;</span><span class="o">,</span> <span class="nl">include:</span> <span class="o">[</span><span class="s1">&#39;*.jar&#39;</span><span class="o">])</span>           <span class="c1">// 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter&#39;</span>      <span class="c1">// 2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
-</span></span></code></pre></div><p>의존관계를 설정하는 부분이다. 빌드 스크립트에서 직접 의존성을 지정한다.</p>
-<p>1️⃣  패키지화되어 있는 라이브러리 모듈의 의존을 정의하는 방법이다. 
-[프로젝트]/libs/&quot; 폴더 내의 JAR 파일들과의 의존성을 선언하였다.</p>
-<p>2️⃣  라이브러리가 Local에 존재하지 않는다면 정의된 원격 저장소(ex: Maven repository, Nexus 등)에서 라이브러리를 다운받아 빌드할 수 있는 환경을 제공한다.
-<br/><br/></p>
-<h3 id="스프링-부트-스타터-의존성">스프링 부트 스타터 의존성</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;</span>       
-</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-web&#39;</span>               
-</span></span><span class="line"><span class="cl">    <span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-test&#39;</span>            
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Spring Web, Thymeleaf, Test 의존성 항목은 starter 단어를 포함하고 있는데, 이는 스프링 부트 스타터 의존성을 나타낸다.</p>
-<p>스타터 의존성의 장점은,</p>
+<h3 id="카프카의-구조">카프카의 구조</h3>
+<figure class="large"><img src="/images/spring-messaging-kafka/1.png"
+         alt="각 브로커는 토픽의 파티션의 리더로 동작"/><figcaption>
+            <p>각 브로커는 토픽의 파티션의 리더로 동작</p>
+        </figcaption>
+</figure>
+
+<p>카프카의 토픽은 클러스터의 모든 브로커에 걸쳐 복제되는 형태이다.<br/>
+클러스터의 각 노드는 하나 이상의 토픽에 대한 리더(leader)로 동작하며, 토픽 데이터를 관리하고 클러스터의 다른 노드로 데이터를 복제한다.<br/>
+각 토픽은 여러 개의 파티션으로 분할될 수 있다.</p>
+<h3 id="카프카-설정">카프카 설정</h3>
+<p>카프카를 프로젝트 빌드에 추가한다.<br/>
+JMS나 RabbitMQ와 달리 카프카는 스프링 부트 스타터가 없다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.kafka:spring-kafka:2.1.8.RELEASE&#39;</span>
+</span></span></code></pre></div><p>이를 통해 KafkaTemplate을 사용할 수 있다.</p>
+<h3 id="실무환경에서의-카프카-설정">실무환경에서의 카프카 설정</h3>
+<p>카프카는 기본적으로 localhost의 9092 포트를 사용한다. 로컬에서 실행되는 개발 환경일 경우 로컬의 카프카 브로커를 사용하면 좋다.<br/>
+하지만 실무 환경에서는 카프카의 호스트나 포트를 application.yaml 파일에 구성해야 한다.</p>
+<p><strong>카프카 서버 설정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span></code></pre></div><p><code>spring.kafka.bootstrap-servers</code> 속성을 통해 카프카 클러스터로의 초기 연결에 사용되는 하나 이상의 카프카 서버 위치를 설정할 수 있다. 이 속성은 복수형이며, 여러 서버를 지정할 수 있다.</p>
+<h2 id="kafkatemplate을-사용하여-메시지-전송">KafkaTemplate을 사용하여 메시지 전송</h2>
+<hr>
+<blockquote>
+<p>KafkaTemplate 메서드들은 JMS나 RabbitMQ의 메서드들과 유사하지만 다른 부분도 존재한다.</p>
 <ol>
-<li>필요한 모든 라이브러리의 의존성을 선언하지 않아도 되어 빌드 파일이 더 작아지고 관리의 이점.</li>
-<li>기능의 관점 : 웹 어플리케이션을 개발한다면 일일이 라이브러리를 지정하는 대신 웹 스타터 의존성만 추가하면 된다.</li>
-<li>라이브러리의 버전 호환성 보장</li>
+<li>
+<p><strong>convertAndSend() 메서드 존재 여부</strong><br/>
+KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직접 도메인 타입을 처리할 수 있기 때문에 convertAndSend() 메서드가 없다.</p>
+</li>
+<li>
+<p><strong>send()와 sendDefault() 메서드의 매개변수</strong><br/>
+카프카에서 메시지를 전송할 때는 (1) <span class="ul">메시지가 전송될 토픽</span>, (2) <span class="ul">토픽 데이터를 쓰는 파티션</span>,  (3) <span class="ul">레코드 전송 키</span>, (4) <span class="ul">타임스탬프</span>(기본값 System.currentTimeMillis()), (5) <span class="ul">페이로드를 매개변수</span>로 지정할 수 있다.</p>
+</li>
 </ol>
-<h2 id="어플리케이션-구동">어플리케이션 구동</h2>
-<hr>
-<blockquote>
-<p>어플리케이션의 구동을 위해서는 부트스트랩(구동) 클래스가 있어야 한다.<br/>
-또한 최소한의 스프링 구성도 있어야 한다.</p>
+<p>여기서 필수값은 <strong>메시지가 전송될 토픽과 페이로드</strong>이다.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCloudApplication</span> <span class="o">{</span>
+<h3 id="send-메서드로-메시지-전송">send() 메서드로 메시지 전송</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">TacoCloudApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><br/>
-<h3 id="springbootapplication-이란"><strong>@SpringBootApplication</strong> 이란?</h3>
-<p><strong>@SpringBootApplication은 다음 세 개의 어노테이션이 결합한 것.</strong></p>
-<ul>
-<li>@SpringBootConfiguration : 현재 클래스를 구성 클래스로 지정.</li>
-<li>@EnableAutoConfiguration : 스프링 자동-구성 활성화. - <em>필요로 하는 컴포넌트를 자동으로 구성하도록 스프링부트에게 알려준다.</em></li>
-<li>@ComponentScan : 컴포넌트 검색 활성화. - <em>@Component, @Controller, @Service 등의 어노테이션과 함께 클래스를 선언할 수 있도록 도와줌.</em>
-<br/><br/></li>
-</ul>
-<h3 id="main">main()</h3>
-<p>실제로 어플리케이션을 시작시키고 스프링 어플리케이션 컨텍스트를 생성하는 SpringApplication 클래스의 run() 메서드 호출.<br/>
-run() 메서드의 두 개의 매개변수는 구성 클래스와 명령행 인자.</p>
-<h2 id="스프링부트-devtools">스프링부트 DevTools</h2>
+</span></span></code></pre></div><p>send() 메서드를 이용하여 &ldquo;tacocloud.orders.topic&quot;이라는 이름의 토픽으로 Order 객체를 전송한다.</p>
+<h3 id="senddefault-메서드로-메시지-전송">sendDefault() 메서드로 메시지 전송</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">sendDefault</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>기본 토픽</strong>으로 Order 객체를 전송하고 싶으면 토픽 이름을 인자로 전달하지 않고 send() 메소드 대신 sendDefault() 메서드를 사용한다.<br/><br/></p>
+<p><strong>기본 토픽 설정</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">default-topic</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders.topic</span><span class="w">
+</span></span></span></code></pre></div><p>기본 토픽은 <code>spring.kafka.template.default-topic</code> 속성을 이용하면 된다.</p>
+<h2 id="카프카-리스너-작성">카프카 리스너 작성</h2>
 <hr>
 <blockquote>
-<p>스프링 부트 DevTools는 개발 시점의 편리한 도구를 제공한다.</p>
-<ul>
-<li>코드가 변경될 때, 자동으로 어플리케이션을 재시작시킨다.</li>
-<li>리소스(템플릿, 자바스크립트, 스타일시트)가 변경될 때 자동으로 브라우저를 새로고침한다.</li>
-<li>탬플릿 캐시를 자동으로 비활성화한다.</li>
-<li>H2 콘솔을 활성화시킨다.
-<br/><br/></li>
-</ul>
+<p>KafkaTemplate는 메시지를 수신하는 메서드를 일체 제공하지 않는다.<br/>
+따라서 스프링을 사용하여 카프카 토픽의 메시지를 가져오는 유일한 방법은 메시지 리스너를 작성하는 것이다.</p>
 </blockquote>
-<p><strong>어플리케이션 재시작</strong></p>
-<p>자바 코드, 속성 파일, 프로젝트의 src/main/ 경로에 있는 모든 것들은 DevTools가 다시 재시작시킨다.</p>
-<p>다만, 의존성 라이브러리를 포함하는 클래스 로더는 자동으로 다시 로드되지 않는다.</p>
-<p>→ 빌드 명세(gradle 등)에 의존성을 추가, 변경, 삭제할 때는 어플리케이션을 재시작해야만 적용된다.
+<h3 id="리스너를-이용하여-메시지-수신">리스너를 이용하여 메시지 수신</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>@KafkaListener 어노테이션을 지정하여 &ldquo;tacocloud.orders.topic&rdquo; 이름의 토픽에 메시지가 도착할 때 자동 호출되도록 설정하였다.</p>
+<h3 id="추가적인-메타데이터가-필요한-경우"><strong>추가적인 메타데이터가 필요한 경우</strong></h3>
+<p>ConsumerRecord나 Message 객체를 인자로 받아 메시지의 메타데이터를 받을 수 있다.
 <br/><br/></p>
-<p><strong>템플릿 캐시 비활성화</strong></p>
-<p>Thymeleaf나 freeMarker 같은 템플릿은 모든 웹 요청마다 매번 파싱하지 않기 위해 파싱 결과를 캐시에 저장한다. (성능의 이점)</p>
-<p>하지만 템플릿 캐싱은 브라우저를 새로고침하더라도 이전의 캐시를 사용하기 때문에 변경된 효과를 볼 수 없다.</p>
-<p>DevTools는 템플릿 캐싱을 비활성화하여 브라우저를 새로고침하면 변경된 템플릿이 적용된다.</p>
+<p><strong>ConsumerRecord 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">ConsumerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">record</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;파티션 : {}, timestamp : {}&#34;</span><span class="o">,</span> <span class="n">record</span><span class="o">.</span><span class="na">partition</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">timestamp</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>ConsumerRecord를 통해 수신된 메시지의 파티션과 타입스탬프를 로깅하는 코드이다.
+<br/><br/></p>
+<p><strong>Message 객체 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">Message</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">MessageHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Received from partition {} with timestamp {}&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_PARTITION_ID</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_TIMESTAMP</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Message 객체를 통해 메시지의 파티션과 타입스탬프를 로깅하는 코드이다.
+<br/><br/></p>
 <aside>
-💡 <strong>LiveReload</strong> 플러그인을 사용한다면 템플릿, 이미지, 자바스크립트 등 변경이 생길 때 브라우저가 자동으로 새로고침된다.<br/>
+💡 <strong>메시지 페이로드도 ConsumerRecord나 Message 객체를 통해 받을 수 있다!</strong>  
+<pre><code>- ConsumerRecord.value()
+-  Message.getPayload()
+</code></pre>
 </aside>
-<br/>
-<h3 id="intellij-적용-방법">Intellij 적용 방법</h3>
-<blockquote>
-<p>준비 사항 : build.gradle에 org.springframework.boot:spring-boot-devtools 라이브러리 추가 필수!</p>
-</blockquote>
-<ol>
-<li>
-<p>application.properties 파일에 spring.thymeleaf.cache = <strong>false</strong> 추가</p>
-</li>
-<li>
-<p>[Edit Configurations] 구성 편집 창에서 [Modify options] 설정 변경</p>
-<ol>
-<li>
-<p>상단 구성을 클릭하여 [Edit Configurations] 클릭
-<figure class="left"><img src="/images/spring-basic/1.png"
-                 alt="image"/>
-        </figure>
-
-<br/>
-<br/>
-<br/></p>
-</li>
-<li>
-<p>구성 편집 창에서 [Modify options] 클릭</p>
-<figure class="large"><img src="/images/spring-basic/2.png"
-                 alt="image"/>
-        </figure>
-
-</li>
-<li>
-<p><strong>On ‘Update’ action 에서 Update classess and resources 선택 (On frame deactivation도 동일 선택)</strong></p>
-<figure class="large"><img src="/images/spring-basic/3.png"
-                 alt="image"/>
-        </figure>
-
-<p>이러한 설정을 통해 DevTools를 적용시킬 수 있다.
-<br/><br/></p>
-</li>
-</ol>
-</li>
-</ol>
-
 
 
 <h3>Posts in this Series</h3>
@@ -895,12 +836,12 @@ run() 메서드의 두 개의 매개변수는 구성 클래스와 명령행 인�
   <div class="related--list">
     
       
-        <a href="/post/spring/spring-messaging-kafka/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 비동기 메시지 전송하기 - Kafka</p></a>
+        <a href="/post/spring/spring-messaging-rabbitmq/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</p></a>
       
 
     
       
-        <a href="/post/spring/spring-messaging-rabbitmq/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</p></a>
+        <a href="/post/spring/spring-messaging-jms/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 비동기 메시지 전송하기 - JMS</p></a>
       
 
     

@@ -6,7 +6,18 @@
     <description>Recent content in Spring on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 07 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/subcategories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/subcategories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[스프링인액션] 비동기 메시지 전송하기 - Kafka</title>
+      <link>https://lhj8390.github.io/post/spring/spring-messaging-kafka/</link>
+      <pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-messaging-kafka/</guid>
+      
+        <description>스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</title>
       <link>https://lhj8390.github.io/post/spring/spring-messaging-rabbitmq/</link>
