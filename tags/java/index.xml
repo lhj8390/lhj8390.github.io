@@ -6,7 +6,18 @@
     <description>Recent content in java on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[스프링인액션] 스프링 통합 플로우 사용</title>
+      <link>https://lhj8390.github.io/post/spring/spring-integration/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-integration/</guid>
+      
+        <description>스프링에서 통합 패턴을 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>[스프링인액션] 비동기 메시지 전송하기 - Kafka</title>
       <link>https://lhj8390.github.io/post/spring/spring-messaging-kafka/</link>
