@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 리액터 개요 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 리액터에 대한 기초 개념에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.eed4efec212c37a9ec50c022f4c263a20bf2c47610d8fe318f9cc2471d7e6964.css"
+      integrity="sha256-7tTv7CEsN6nsUMAi9MJjogvyxHYQ2P4xj5zCRx1&#43;aWQ="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-reactor/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 리액터 개요"/>
+<meta name="twitter:description" content="스프링에서 리액터에 대한 기초 개념에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 리액터 개요" />
+<meta property="og:description" content="스프링에서 리액터에 대한 기초 개념에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-reactor/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-13T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 리액터 개요",
+        "headline": "[스프링인액션] 리액터 개요",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 리액터에 대한 기초 개념에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactor\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-08-13T00:00:00.00Z",
+        "datePublished": "2022-08-13T00:00:00.00Z",
+        "dateModified": "2022-08-13T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactor\/",
+        "wordCount" : "1735",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(11)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(11)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#리액티브-프로그래밍">리액티브 프로그래밍</a>
+      <ul>
+        <li><a href="#리액티브-스트림-정의">리액티브 스트림 정의</a></li>
+        <li><a href="#publisher발행자">Publisher(발행자)</a></li>
+        <li><a href="#subscriber구독자">Subscriber(구독자)</a></li>
+        <li><a href="#subscription구독">Subscription(구독)</a></li>
+        <li><a href="#processor프로세서">Processor(프로세서)</a></li>
+        <li><a href="#전반적인-플로우">전반적인 플로우</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액터-기본-개념-및-구성">리액터 기본 개념 및 구성</a>
+      <ul>
+        <li><a href="#리액티브-플로우">리액티브 플로우</a></li>
+        <li><a href="#리액터-빌드-명세-추가">리액터 빌드 명세 추가</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액티브-오퍼레이션-적용">리액티브 오퍼레이션 적용</a>
+      <ul>
+        <li><a href="#리액티브-타입-생성">리액티브 타입 생성</a></li>
+        <li><a href="#리액티브-타입-조합">리액티브 타입 조합</a></li>
+        <li><a href="#리액티브-타입-변환">리액티브 타입 변환</a></li>
+        <li><a href="#로직-오퍼레이션-수행">로직 오퍼레이션 수행</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 리액터 개요</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                13/8/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 9분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 10장을 읽고 리액터에 대한 기초 개념을 공부하였다.</p>
+<ul>
+<li>리액티브 프로그래밍 이해</li>
+<li>프로젝트 리액터</li>
+<li>리액티브 데이터 오퍼레이션</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="리액티브-프로그래밍">리액티브 프로그래밍</h2>
+<hr>
+<blockquote>
+<p>어플리케이션을 개발할 때 두 가지 형태의 코드를 작성할 수 있다.</p>
+<ul>
+<li>명령형 : 순차적으로 진행되는 작업. 각 작업은 한 번에 하나씩 처리된다.</li>
+<li>리액티브 : 일련의 작업들이 정의되지만, 병렬로 실행 가능하다.</li>
+</ul>
+<p>대부분의 프로그래밍 언어는 스레드를 통해 동시 작업을 처리하지만, 리액티브 프로그래밍은 사용 가능한 데이터가 존재할 때마다 처리할 수 있다. <br/>
+→ <span class="red"><strong>확장성과 성능</strong></span> 관점에서 리액티브 프로그래밍이 유리하다.</p>
+</blockquote>
+<h3 id="리액티브-스트림-정의">리액티브 스트림 정의</h3>
+<p>리액티브 스트림은 차단되지 않는 백 프레셔(backpressure)를 갖는 비동기 스트림 처리의 표준을 제공하는 것이 목적이다.<br/>
+어떤 크기의 데이터셋이건 비동기 처리를 지원하고, 실시간으로 데이터를 처리하며, 백 프레셔를 사용하여 데이터 전달 폭주를 막는다.</p>
+<aside>
+💡 <strong>백프레셔란?</strong>
+<p>데이터를 읽는 <span class="red">컨슈머가 처리할 수 있는 만큼 전달 데이터를 제한</span>하여 지나치게 빠른 데이터 소스로부터 데이터 전달 폭주를 피할 수 있는 수단이다.</p>
+</aside>
+<p><strong>리액티브 스트림 인터페이스</strong></p>
+<ul>
+<li>Publisher : 발행자</li>
+<li>Subscriber : 구독자</li>
+<li>Subscription : 구독</li>
+<li>Processor : 프로세서</li>
+</ul>
+<h3 id="publisher발행자">Publisher(발행자)</h3>
+<p>하나의 Subscription(구독)당 하나의 Subscriber(구독자)에 전송하는 데이터를 생성한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Publisher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">subscriber</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li><strong>subscribe()</strong> : Subscriber가 Publisher를 구독 신청할 수 있는 메서드</li>
+</ul>
+<h3 id="subscriber구독자">Subscriber(구독자)</h3>
+<p>Subscriber(구독자)가 구독 신청되면 Publisher(발행자)로부터 이벤트를 수신할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscriber</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="n">Subscription</span> <span class="n">sub</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">ex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>onSubscribe() : Publisher가 subscribe를 호출한 뒤에 호출되는 메서드이다. 이 메서드의 인자인 <strong>Subscription 객체를 Subscriber에 전달</strong>한다. - <span class="gray"><em>이때 Subscription 객체는 Subscription.request() 메서드를 통해 받아온 객체이다.</em></span></li>
+<li>onNext() : Subscription.request() 에서 요청하는 데이터를 Publisher에게 전달하는 메서드</li>
+</ul>
+<h3 id="subscription구독">Subscription(구독)</h3>
+<p>데이터를 어떻게 전송하는 지에 대해 정의한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscription</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">request</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">cancel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>request() : 전송되는 데이터를 요청한다. 해당 메서드의 인자는 Subscriber가 받고자 하는 데이터 항목의 수이다. <span class="gray"><em>- Subscriber가 처리할 수 있는 것보다 많은 데이터를 Publisher가 전송하는 것을 막아준다. (백프레셔)</em></span></li>
+<li>cancel() : 구독을 취소한다는 것을 나타낸다.</li>
+</ul>
+<h3 id="processor프로세서">Processor(프로세서)</h3>
+<p>Subscriber 인터페이스와 Publisher 인터페이스를 결합한 것이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Processor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;,</span> <span class="n">Publisher</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="o">{}</span>
+</span></span></code></pre></div><p>processor는 Subscriber 역할로 데이터를 수신, 처리하고, Publisher 역할로 처리 결과를 Subscriber에게 발행한다.</p>
+<h3 id="전반적인-플로우">전반적인 플로우</h3>
+<figure class="large"><img src="/images/spring-reactor/1.png"
+         alt="출처 : https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/"/><figcaption>
+            <p>출처 : <a href="https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/">https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/</a></p>
+        </figcaption>
+</figure>
+
+<ol>
+<li>Publisher.subscribe() 메서드를 통해 Subscriber가 Publisher에게 구독을 요청한다.</li>
+<li>Publisher가 onSubscribe(subscription) 을 호출하여 Subscriber에게 Subscription을 전달한다.</li>
+<li>Subscriber는 Subscription.request()를 통해 데이터 항목 수를 요청한다.</li>
+<li>Publisher는 Subscription을 통해 Subscriber.onNext()로 데이터를 전달한다.</li>
+<li>전달이 성공적이면 onComplete, 오류가 발생한다면 onError를 호출한다.</li>
+</ol>
+<h2 id="리액터-기본-개념-및-구성">리액터 기본 개념 및 구성</h2>
+<hr>
+<blockquote>
+<p>리액터의 두 가지 핵심 타입으로는 Mono와 Flux가 있는데, 모두 리액티브 스트림의 Publisher 인터페이스를 구현한 것이다.</p>
+<ul>
+<li><strong>Mono</strong> : 하나의 데이터 항목만 가지는 데이터셋에 최적화된 리액티브 타입</li>
+<li><strong>Flux</strong> : 0, 1 또는 다수의 데이터를 가지는 파이프라인</li>
+</ul>
+</blockquote>
+<h3 id="리액티브-플로우">리액티브 플로우</h3>
+<p>리액티브 플로우는 마블 다이어그램으로 나타낸다.</p>
+<aside>
+❗    마블 다이어그램의 상단은 <span class="ul">데이터의 타임라인</span>, 중앙에는 <span class="ul">오퍼레이션</span>, 하단에는 <span class="ul">결과로 생성되는 타임라인</span>을 나타낸다.<br/>
+</aside>
+<p><strong>Mono의 기본적인 플로우를 보여주는 마블 다이어그램</strong></p>
+<p><figure class="large"><img src="/images/spring-reactor/2.png"/>
+</figure>
+
+<br/><br/></p>
+<p><strong>Flux의 기본적인 플로우를 보여주는 마블 다이어그램</strong></p>
+<figure class="large"><img src="/images/spring-reactor/3.png"/>
+</figure>
+
+<p><strong>Mono</strong>는 0 또는 하나의 데이터 항목과 에러를 가지지만 <strong>Flux</strong>는 다수의 데이터를 가지고 있는 것을 알 수 있다.</p>
+<h3 id="리액터-빌드-명세-추가">리액터 빌드 명세 추가</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;io.projectreactor:reactor-core&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">testImplementation</span> <span class="s1">&#39;io.projectreactor:reactor-test&#39;</span>
+</span></span></code></pre></div><p>스프링 부트가 dependency 관리를 자동으로 해주기 때문에 버전을 명시할 필요는 없다.<br/>
+해당 dependency를 추가함으로써 Mono와 Flux를 사용하여 리액티브 파이프라인을 생성할 수 있다.</p>
+<h2 id="리액티브-오퍼레이션-적용">리액티브 오퍼레이션 적용</h2>
+<hr>
+<blockquote>
+<p>Flux와 Mono가 제공하는 오퍼레이션은 두 타입을 함께 결합하여 데이터가 전달될 수 있는 파이프라인을 생성한다.<br/></p>
+<p>500 개의 오퍼레이션이 존재하는데, 다음과 같이 분류할 수 있다.</p>
+<ul>
+<li>생성 오퍼레이션 (creation)</li>
+<li>조합 오퍼레이션 (combination)</li>
+<li>변환 오퍼레이션 (transformation)</li>
+<li>로직 오퍼레이션 (logic)</li>
+</ul>
+</blockquote>
+<h3 id="리액티브-타입-생성">리액티브 타입 생성</h3>
+<p>생성 오퍼레이션을 통해 데이터를 발행하는 리액티브 publisher를 생성할 수 있다.</p>
+<p><strong>객체로부터 생성</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_just</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Apple&#34;</span><span class="o">,</span> <span class="s">&#34;Orange&#34;</span><span class="o">,</span> <span class="s">&#34;Grape&#34;</span><span class="o">,</span> <span class="s">&#34;Banana&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruitFlux</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Here&#39;s some fruit: &#34;</span> <span class="o">+</span> <span class="n">f</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Flux나 Mono의 <strong>just() 오퍼레이션</strong>을 사용하여 리액티브 타입을 생성할 수 있다. <br/>
+Subscriber를 추가하기 위해 subscribe() 메서드를 호출한다. - <span class="gray"><em>호출 즉시 데이터가 전달</em></span>
+<br/><br/></p>
+<p><strong>컬렉션으로부터 생성</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_fromArray</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="n">fruits</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&#34;Apple&#34;</span><span class="o">,</span> <span class="s">&#34;Orange&#34;</span><span class="o">,</span> <span class="s">&#34;Grape&#34;</span><span class="o">,</span> <span class="s">&#34;Banana&#34;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromArray</span><span class="o">(</span><span class="n">fruits</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>배열로부터 Flux를 생성하려면 <strong>fromArray() 오퍼레이션</strong>을 호출한다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_fromIterable</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruitList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Apple&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruitList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Orange&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruitList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Grape&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fruitList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Banana&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromIterable</span><span class="o">(</span><span class="n">fruitList</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>List, Set, Iterable의 다른 구현 컬렉션으로부터 Flux를 생성하려면 <strong>fromIterable() 오퍼레이션</strong>을 호출한다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_fromStream</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitStream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Apple&#34;</span><span class="o">,</span> <span class="s">&#34;Orange&#34;</span><span class="o">,</span> <span class="s">&#34;Grape&#34;</span><span class="o">,</span> <span class="s">&#34;Banana&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromStream</span><span class="o">(</span><span class="n">fruitStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>자바 Stream 객체를 사용하여 Flux를 생성하려면 <strong>fromStream() 오퍼레이션</strong>을 호출한다.<br/><br/></p>
+<p><strong>테스트 수행</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">fruitFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Apple&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Orange&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Grape&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Banana&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span></code></pre></div><p>Flux가 지정되면 StepVerifier는 해당 리액티브 타입(fruitFlux)을 구독한 후 전달되는 데이터에 대해 assertion을 적용한다. 그리고 마지막으로 fruitFlux가 완전한지 검사를 수행한다. 해당 테스트코드는 상단의 모든 Flux 데이터를 검사할 수 있다.<br/><br/></p>
+<p><strong>카운터 생성</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_range</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intervalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">intervalFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">5</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>range() 오퍼레이션</strong>을 통해 1~5까지의 카운터 Flux를 생성하고 StepVerifier로 검사를 수행한다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">createAFlux_interval</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">intervalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">interval</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">)).</span><span class="na">take</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">intervalFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">0L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">1L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">2L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">3L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">4L</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>interval() 오퍼레이션</strong>을 통해 매초마다 값을 증가시키는 카운터를 생성한다. <br/>
+interval() 는 최대값이 지정되지 않으면 무한으로 실행되기 때문에 take() 오퍼레이션을 사용하여 5개의 항목까지만 실행되도록 제한하였다.</p>
+<h3 id="리액티브-타입-조합">리액티브 타입 조합</h3>
+<p>조합 오퍼레이션을 통해 두 개의 리액티브 타입을 결합하거나 하나의 Flux를 두 개 이상의 리액티브 타입으로 분할할 수 있다.</p>
+<p><strong>리액티브 타입 결합</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeFluxes</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">characterFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Garfield&#34;</span><span class="o">,</span> <span class="s">&#34;Kojak&#34;</span><span class="o">,</span> <span class="s">&#34;Barbossa&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                                   <span class="o">.</span><span class="na">delayElements</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="n">500</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">foodFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Lasagna&#34;</span><span class="o">,</span> <span class="s">&#34;Lollipops&#34;</span><span class="o">,</span> <span class="s">&#34;Apples&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">.</span><span class="na">delaySubscription</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="n">250</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">.</span><span class="na">delayElements</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="n">500</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mergedFlux</span> <span class="o">=</span> <span class="n">characterFlux</span><span class="o">.</span><span class="na">mergeWith</span><span class="o">(</span><span class="n">foodFlux</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">mergedFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Garfield&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Lasagna&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Kojak&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Lollipops&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Barbossa&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Apples&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>하나의 Flux를 다른 Flux와 결합하기 위해 <strong>mergeWith() 오퍼레이션</strong>을 사용한다.<br/>
+delayElements() 오퍼레이션을 사용하여 500 밀리초마다 일정한 속도로 방출되도록 설정했기 때문에 두 Flux값은 번갈아가며 mergeFlux에 넣어진다. 또한 delaySubscription() 오퍼레이션으로 foodFlux가 250 밀리초 뒤에 구독을 시작했기 때문에 characterFlux 데이터가 먼저 방출되었다.</p>
+<p><span class="red"><strong>→ mergeWith() 는 소스 Flux 값들이 완벽하게 번갈아 방출되게 보장할 수 없다.</strong></span><br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">zipFluxes</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">characterFlux</span> <span class="o">=</span> <span class="n">Flux</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Garfield&#34;</span><span class="o">,</span> <span class="s">&#34;Kojak&#34;</span><span class="o">,</span> <span class="s">&#34;Barbossa&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">foodFlux</span> <span class="o">=</span> <span class="n">Flux</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Lasagna&#34;</span><span class="o">,</span> <span class="s">&#34;Lollipops&#34;</span><span class="o">,</span> <span class="s">&#34;Apples&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">zippedFlux</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">Flux</span><span class="o">.</span><span class="na">zip</span><span class="o">(</span><span class="n">characterFlux</span><span class="o">,</span> <span class="n">foodFlux</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">zippedFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT1</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Garfield&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT2</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Lasagna&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT1</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Kojak&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT2</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Lollipops&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT1</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Barbossa&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">getT2</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Apples&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>zip() 오퍼레이션</strong>을 사용한다면 각 Flux 소스로부터 한 항목씩 번갈아 가져와 새로운 Flux를 생성한다.<br/>
+순서대로 방출되기 때문에 <strong>Tuple2</strong>라는 두 개의 다른 객체를 전달하는 컨테이너 객체를 이용했다.</p>
+<aside>
+💡 <strong>두 Flux 항목을 문자열로 결합할 경우</strong>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">zippedFlux</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">Flux</span><span class="o">.</span><span class="na">zip</span><span class="o">(</span><span class="n">characterFlux</span><span class="o">,</span> <span class="n">foodFlux</span><span class="o">,</span> <span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="n">f</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">+</span> <span class="s">&#34; eats &#34;</span> <span class="o">+</span> <span class="n">f</span><span class="o">);</span>
+</span></span></code></pre></div><p>zip() 메서드에 전달되는 함수를 이용하여 두 Flux 항목을 결합할 수 있다.</p>
+</aside><br/><br/>
+<p><strong>리액티브 타입 방출 순서 변경</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">firstFlux</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">slowFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;tortoise&#34;</span><span class="o">,</span> <span class="s">&#34;snail&#34;</span><span class="o">,</span> <span class="s">&#34;sloth&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">delaySubscription</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofMillis</span><span class="o">(</span><span class="n">100</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fastFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;hare&#34;</span><span class="o">,</span> <span class="s">&#34;cheetah&#34;</span><span class="o">,</span> <span class="s">&#34;squirrel&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">first</span><span class="o">(</span><span class="n">slowFlux</span><span class="o">,</span> <span class="n">fastFlux</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">firstFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;hare&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;cheetah&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;squirrel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>first() 오퍼레이션</strong>을 통해 먼저 값을 방출하는 Flux 값을 선택할 수 있다.<br/></p>
+<h3 id="리액티브-타입-변환">리액티브 타입 변환</h3>
+<p>변환 오퍼레이션을 통해 리액티브 스트림을 통해 전달되는 데이터를 변환하거나 필터링할 수 있다.</p>
+<p><strong>리액티브 타입 필터링</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">skipAFew</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">countFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;one&#34;</span><span class="o">,</span> <span class="s">&#34;two&#34;</span><span class="o">,</span> <span class="s">&#34;skip a few&#34;</span><span class="o">,</span> <span class="s">&#34;ninety nine&#34;</span><span class="o">,</span> <span class="s">&#34;one hundred&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">skip</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">countFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;ninety nine&#34;</span><span class="o">,</span> <span class="s">&#34;one hundred&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>skip() 오퍼레이션</strong>을 통해 지정된 수(3)의 항목을 건너뛰고 나머지 항목을 방출할 수 있다.<br/>
+<span class="ul">특정 시간이 경과할 때까지 기다렸다가</span> Flux 항목을 방출하려면 <code>skip(Duration.ofSeconds(4))</code>의 형태로 사용할 수 있다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">take</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">nationalParkFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;Yellowstone&#34;</span><span class="o">,</span> <span class="s">&#34;Yosemite&#34;</span><span class="o">,</span> <span class="s">&#34;Grand Canyon&#34;</span><span class="o">,</span> <span class="s">&#34;Zion&#34;</span><span class="o">,</span> <span class="s">&#34;Acadia&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">take</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">nationalParkFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Yellowstone&#34;</span><span class="o">,</span> <span class="s">&#34;Yosemite&#34;</span><span class="o">,</span> <span class="s">&#34;Grand Canyon&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>take() 오퍼레이션</strong>을 사용하면 지정된 수(3)의 항목만을 방출할 수 있다. - <span class="gray"><em>take() 오퍼레이션의 반대</em></span><br/>
+skip() 오퍼레이션과 마찬가지로 <span class="ul">특정 시간이 경과할 때까지 기다렸다가</span> Flux 항목을 방출하려면 <code>take(Duration.ofSeconds(4))</code>의 형태로 사용할 수 있다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">filter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">nationalParkFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;Yellowstone&#34;</span><span class="o">,</span> <span class="s">&#34;Yosemite&#34;</span><span class="o">,</span> <span class="s">&#34;Grand Canyon&#34;</span><span class="o">,</span> <span class="s">&#34;Zion&#34;</span><span class="o">,</span> <span class="s">&#34;Grand Teton&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">np</span> <span class="o">-&gt;</span> <span class="o">!</span><span class="n">np</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">nationalParkFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;Yellowstone&#34;</span><span class="o">,</span> <span class="s">&#34;Yosemite&#34;</span><span class="o">,</span> <span class="s">&#34;Zion&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>filter() 오퍼레이션</strong>을 통해 조건식(공백이 없는 문자)에 해당하는 항목만 선택적으로 방출할 수 있다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">distinct</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">animalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;dog&#34;</span><span class="o">,</span> <span class="s">&#34;cat&#34;</span><span class="o">,</span> <span class="s">&#34;bird&#34;</span><span class="o">,</span> <span class="s">&#34;dog&#34;</span><span class="o">,</span> <span class="s">&#34;bird&#34;</span><span class="o">,</span> <span class="s">&#34;anteater&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">distinct</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">animalFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="s">&#34;dog&#34;</span><span class="o">,</span> <span class="s">&#34;cat&#34;</span><span class="o">,</span> <span class="s">&#34;bird&#34;</span><span class="o">,</span> <span class="s">&#34;anteater&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>distinct() 오퍼레이션</strong>을 통해 발행된 적이 없는(고유한) Flux 항목만 방출할 수 있다.<br/><br/></p>
+<p><strong>리액티브 데이터 매핑</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">map</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">playerFlux</span> <span class="o">=</span> <span class="n">Flux</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Michael Jordan&#34;</span><span class="o">,</span> <span class="s">&#34;Scottie Pippen&#34;</span><span class="o">,</span> <span class="s">&#34;Steve Kerr&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">String</span><span class="o">[]</span> <span class="n">split</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;\\s&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="n">split</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">split</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">playerFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Michael&#34;</span><span class="o">,</span> <span class="s">&#34;Jordan&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Scottie&#34;</span><span class="o">,</span> <span class="s">&#34;Pippen&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Steve&#34;</span><span class="o">,</span> <span class="s">&#34;Kerr&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>map() 오퍼레이션</strong>을 통해 발행된 항목을 다른 타입으로 매핑(변환)시킬 수 있다. <br/>
+각 항목이 Flux로부터 발행될 때 <span class="red"><strong>동기적으로</strong></span>(순차적으로) 매핑이 수행된다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">flatMap</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">playerFlux</span> <span class="o">=</span> <span class="n">Flux</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;Michael Jordan&#34;</span><span class="o">,</span> <span class="s">&#34;Scottie Pippen&#34;</span><span class="o">,</span> <span class="s">&#34;Steve Kerr&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">n</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span><span class="o">[]</span> <span class="n">split</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;\\s&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="n">split</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">split</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">          <span class="o">})</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">subscribeOn</span><span class="o">(</span><span class="n">Schedulers</span><span class="o">.</span><span class="na">parallel</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">      <span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">playerList</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Michael&#34;</span><span class="o">,</span> <span class="s">&#34;Jordan&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Scottie&#34;</span><span class="o">,</span> <span class="s">&#34;Pippen&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="n">Player</span><span class="o">(</span><span class="s">&#34;Steve&#34;</span><span class="o">,</span> <span class="s">&#34;Kerr&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">playerFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">playerList</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">playerList</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">playerList</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>flatMap() 오퍼레이션</strong>을 subscribeOn()과 함께 사용하면 리액터 타입 변환을 <span class="red"><strong>비동기적으로</strong></span> 수행할 수 있다. 작업이 병행으로 수행되므로 어떤 작업이 먼저 끝날 지 보장이 되지 않는다.<br/>
+<span class="gray">※ flatMap() 오퍼레이션은 수행 도중 생성되는 임시 Flux를 사용하여 변환을 수행하므로 비동기 변환이 가능하다.</span></p>
+<aside>
+💡 <strong>subscribeOn()</strong>
+<p>각 구독이 병렬 스레드로 수행되어야 한다는 것을 나타낸다. subscribeOn()의 인자로는 사용하기 원하는 동시성 모델(Schedulers)을 지정할 수 있다.</p>
+</aside><br/><br/>
+<p><strong>Schedulers의 동시성 모델 종류</strong></p>
+<table>
+<thead>
+<tr>
+<th>Schedulers 메서드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.immediate()</td>
+<td>현재 스레드에서 구독 실행</td>
+</tr>
+<tr>
+<td>.single()</td>
+<td>단일의 재사용 가능한 스레드에서 구독 실행. 모든 호출자에 대해 동일한 스레드를 재사용한다.</td>
+</tr>
+<tr>
+<td>.newSingle()</td>
+<td>매 호출마다 전용 스레드에서 구독 실행</td>
+</tr>
+<tr>
+<td>.elastic()</td>
+<td>무한하고 신축성 있는 풀에서 가져온 작업 스레드에서 구독 실행. 필요 시 새로운 작업 스레드 생성</td>
+</tr>
+<tr>
+<td>.parallel()</td>
+<td>고정된 크기의 풀에서 가져온 작업 스레드에서 구독 실행. CPU 코어의 개수가 크기가 된다.</td>
+</tr>
+<tr>
+<td><br/></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>리액티브 데이터 버퍼링</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">bufferAndFlatMap</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">,</span> <span class="s">&#34;kiwi&#34;</span><span class="o">,</span> <span class="s">&#34;strawberry&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">buffer</span><span class="o">(</span><span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">Flux</span><span class="o">.</span><span class="na">fromIterable</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">y</span> <span class="o">-&gt;</span> <span class="n">y</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">subscribeOn</span><span class="o">(</span><span class="n">Schedulers</span><span class="o">.</span><span class="na">parallel</span><span class="o">())</span>   
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">log</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">).</span><span class="na">subscribe</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">StepVerifier</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">bufferedFlux</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;kiwi&#34;</span><span class="o">,</span> <span class="s">&#34;strawberry&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>buffer() 오퍼레이션</strong>을 통해 데이터 스트림을 분할하여 지정된 최대 크기의 리스트로 된 Flux를 생성한다.<br/>
+flatMap()을 같이 사용하면 각 List 컬렉션을 별도의 스레드에서 병행으로 계속 처리할 수 있다.</p>
+<p>❗  모든 항목을 List로 모을 경우에는 인자 없이 <code>buffer()</code>를 호출한다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">collectList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fruitFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">,</span> <span class="s">&#34;kiwi&#34;</span><span class="o">,</span> <span class="s">&#34;strawberry&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">fruitListMono</span> <span class="o">=</span> <span class="n">fruitFlux</span><span class="o">.</span><span class="na">collectList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">fruitListMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">               <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                            <span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">,</span> <span class="s">&#34;kiwi&#34;</span><span class="o">,</span> <span class="s">&#34;strawberry&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">               <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>collection() 오퍼레이션</strong>을 통해 입력한 Flux가 방출한 모든 메시지를 가지는 List 타입의 Mono를 생성할 수 있다.<br/><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">collectMap</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">animalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;aardvark&#34;</span><span class="o">,</span> <span class="s">&#34;elephant&#34;</span><span class="o">,</span> <span class="s">&#34;koala&#34;</span><span class="o">,</span> <span class="s">&#34;eagle&#34;</span><span class="o">,</span> <span class="s">&#34;kangaroo&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">animalMapMono</span> <span class="o">=</span> <span class="n">animalFlux</span><span class="o">.</span><span class="na">collectMap</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">animalMapMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">expectNextMatches</span><span class="o">(</span><span class="n">map</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="n">map</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">3</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="sc">&#39;a&#39;</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;aardvark&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;eagle&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="sc">&#39;k&#39;</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;kangaroo&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">})</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>collectionMap() 오퍼레이션은 Map을 포함하는 Mono를 생성할 수 있다.<br/>
+Flux가 방출된 메시지가 Map의 항목으로 지정되며, 각 항목의 키는 collectMap에서 설정한 값을 따른다.</p>
+<h3 id="로직-오퍼레이션-수행">로직 오퍼레이션 수행</h3>
+<p>Mono나 Flux가 발행한 항목이 어떤 조건과 일치하는지 알기 위해 사용한다.</p>
+<p><strong>모든 항목 확인</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">all</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">animalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;aardvark&#34;</span><span class="o">,</span> <span class="s">&#34;elephant&#34;</span><span class="o">,</span> <span class="s">&#34;koala&#34;</span><span class="o">,</span> <span class="s">&#34;eagle&#34;</span><span class="o">,</span> <span class="s">&#34;kangaroo&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">hasAMono</span> <span class="o">=</span> <span class="n">animalFlux</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">hasAMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">hasKMono</span> <span class="o">=</span> <span class="n">animalFlux</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;k&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">hasKMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>all() 오퍼레이션</strong>을 통해 모든 메시지가 조건에 충족하는지 확인할 수 있다.<br/>
+결과는 Boolean 타입의 Mono로 생성되는데, 조건에 충족할 경우 true, 조건에 충족하지 않는다면 false를 방출한다.</p>
+<p><strong>최소한 하나의 항목만 확인</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">any</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">animalFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;aardvark&#34;</span><span class="o">,</span> <span class="s">&#34;elephant&#34;</span><span class="o">,</span> <span class="s">&#34;koala&#34;</span><span class="o">,</span> <span class="s">&#34;eagle&#34;</span><span class="o">,</span> <span class="s">&#34;kangaroo&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">hasAMono</span> <span class="o">=</span> <span class="n">animalFlux</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">hasAMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">hasZMono</span> <span class="o">=</span> <span class="n">animalFlux</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;z&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">hasZMono</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">verifyComplete</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>any() 오퍼레이션</strong>을 통해 최소한 하나의 메시지가 조건을 충족하는지 확인할 수 있다.<br/>
+최소한 하나의 메시지가 조건에 충족한다면 true, 모두 조건에 충족하지 않는다면 false를 방출한다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-reactor/">[스프링인액션] 리액터 개요</a></li>
+
+  
+    <li><a href="/post/spring/spring-integration/">[스프링인액션] 스프링 통합 플로우 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-kafka/">[스프링인액션] 비동기 메시지 전송하기 - Kafka</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-integration/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 스프링 통합 플로우 사용</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-messaging-kafka/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 비동기 메시지 전송하기 - Kafka</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
