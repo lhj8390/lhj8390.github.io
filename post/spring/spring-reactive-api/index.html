@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 리액티브 API 개발 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 리액티브 API를 개발하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.9ac1b5fc22b3fcc24275cf699ed7f1e9d47e94de57b047deabb4ed965bde751b.css"
+      integrity="sha256-msG1/CKz/MJCdc9pntfx6dR&#43;lN5XsEfeq7TtllvedRs="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-reactive-api/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 리액티브 API 개발"/>
+<meta name="twitter:description" content="스프링에서 리액티브 API를 개발하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 리액티브 API 개발" />
+<meta property="og:description" content="스프링에서 리액티브 API를 개발하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-reactive-api/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-19T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 리액티브 API 개발",
+        "headline": "[스프링인액션] 리액티브 API 개발",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 리액티브 API를 개발하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactive-api\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-08-19T00:00:00.00Z",
+        "datePublished": "2022-08-19T00:00:00.00Z",
+        "dateModified": "2022-08-19T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactive-api\/",
+        "wordCount" : "1352",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(12)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(12)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/spring-basic.png" alt="Thumbnail image" />
+      </div>
+
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#webflux-사용">WebFlux 사용</a>
+      <ul>
+        <li><a href="#webflux-빌드-명세-추가">WebFlux 빌드 명세 추가</a></li>
+        <li><a href="#리액티브-컨트롤러-생성">리액티브 컨트롤러 생성</a></li>
+      </ul>
+    </li>
+    <li><a href="#함수형-요청-핸들러-정의">함수형 요청 핸들러 정의</a>
+      <ul>
+        <li><a href="#기본-예제">기본 예제</a></li>
+        <li><a href="#함수형-방식을-사용하여-컨트롤러-생성">함수형 방식을 사용하여 컨트롤러 생성</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액티브-컨트롤러-테스트">리액티브 컨트롤러 테스트</a>
+      <ul>
+        <li><a href="#get-요청-테스트">GET 요청 테스트</a></li>
+        <li><a href="#post-요청-테스트">POST 요청 테스트</a></li>
+        <li><a href="#실행-중인-서버로-테스트">실행 중인 서버로 테스트</a></li>
+      </ul>
+    </li>
+    <li><a href="#rest-api-사용">REST API 사용</a>
+      <ul>
+        <li><a href="#get-사용">GET 사용</a></li>
+        <li><a href="#리소스-전송">리소스 전송</a></li>
+        <li><a href="#리소스-삭제">리소스 삭제</a></li>
+        <li><a href="#에러-처리">에러 처리</a></li>
+        <li><a href="#요청-교환">요청 교환</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액티브-웹-api-보안">리액티브 웹 API 보안</a>
+      <ul>
+        <li><a href="#리액티브-웹-보안-구성">리액티브 웹 보안 구성</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 리액티브 API 개발</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                19/8/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 7분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 11장을 읽고 리액티브 WebFlux를 사용하여 리액티브 API를 개발하는 방법에 대해 공부하였다.</p>
+<ul>
+<li>스프링 WebFlux 사용하기</li>
+<li>리액티브 컨트롤러와 클라이언트 작성 및 테스트</li>
+<li>REST API 소비하기</li>
+<li>리액티브 웹 어플리케이션의 보안</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="webflux-사용">WebFlux 사용</h2>
+<hr>
+<blockquote>
+<p>비동기 웹 프레임워크는 적은 수의 스레드로 높은 확장성을 가지고 있다. <br/>
+<strong>이벤트 루핑</strong>이라는 기법을 적용하여 한 스레드 당 많은 요청을 처리할 수 있어서 스레드 관리 부담이 줄어들고 확장이 용이하다.</p>
+<figure class="large"><img src="/images/spring-reactive-api/1.png"
+         alt="비동기 웹 프레임워크는 이벤트 루핑을 통해 적은 수의 스레드로 많은 요청을 처리한다."/><figcaption>
+            <p>비동기 웹 프레임워크는 이벤트 루핑을 통해 적은 수의 스레드로 많은 요청을 처리한다.</p>
+        </figcaption>
+</figure>
+
+<p>스프링 5에서는 프로젝트 리액터를 기반으로 한 비동기 웹 프레임워크인 스프링 WebFlux가 존재한다.</p>
+</blockquote>
+<h3 id="webflux-빌드-명세-추가">WebFlux 빌드 명세 추가</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-webflux&#39;</span>
+</span></span></code></pre></div><p>스프링 WebFlux를 사용하기 위해서는 <code>spring-boot-starter-web</code> 대신 스프링 부트 WebFlux 스타터 dependency를 추가해야 한다.
+WebFlux를 사용할 경우에는 내장 서버가 톰캣 대신 Netty가 된다.</p>
+<aside>
+💡 <strong>Netty</strong> : 비동기적인 이벤트 중심의 서버 중 하나<br/>
+</aside>
+<h3 id="리액티브-컨트롤러-생성">리액티브 컨트롤러 생성</h3>
+<p>리액티브 타입인 Flux 객체를 반환하는 컨트롤러를 생성한다.
+WebFlux 컨트롤러에서는 Flux와 같은 리액티브 타입을 받을 때 프레임워크에서 subscirbe()를 호출해주기 때문에 별도로 subscirbe()를 호출할 필요가 없다.<br/><br/></p>
+<p><strong>End-to-End 리액티브 스택</strong></p>
+<figure class="large"><img src="/images/spring-reactive-api/2.png"/>
+</figure>
+
+<p>리액티브 컨트롤러가 리액티브 End-to-End 스택의 제일 끝에 위치해야 하며 리퍼지터리에서 Flux를 반환하도록 작성되어야 한다.<br/><br/></p>
+<p><strong>기본 예제</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="nf">recentTacos</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">take</span><span class="o">(</span><span class="n">12</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>페이징 처리를 위해 take() 메서드를 사용한 예제이다. (repository에서 Flux 타입 반환)<br/><br/></p>
+<p><strong>RxJava 타입 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Observable</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="nf">recentTacos</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tacoService</span><span class="o">.</span><span class="na">getRecentTacos</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 WebFlux를 사용할 때는 Observable이나 Single 같은 Rxjava 타입을 사용할 수 있다.
+이뿐만 아니라 리액터의 Mono 타입과 동일한 Rxjava의 Completable 타입, Observable이나 Flux 타입의 대안으로 Flowable 타입을 반환할 수도 있다.<br/><br/></p>
+<p><strong>입력처리</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@PostMapping</span><span class="o">(</span><span class="n">consumes</span> <span class="o">=</span> <span class="s">&#34;application/json&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="nf">postTaco</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacoMono</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="n">tacoMono</span><span class="o">).</span><span class="na">next</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>요청을 처리하는 핸들러 메서드의 입력으로 Mono나 Flux 타입을 받을 수 있다.<br/>
+saveAll() 메서드는 리액티브 스트림의 Publisher 인터페이스를 구현한 타입(Mono, Flux)을 인자로 받을 수 있다.</p>
+<ul>
+<li><strong>next()</strong> : saveAll() 메서드가 반환하는 Flux가 하나의 객체만 포함하고 있기 때문에 해당 메서드를 통해 <span class="red">Mono 타입 객체를 받을 수 있다.</span></li>
+</ul>
+<p><em>“MVC 패턴과 다르게 requestBody로부터 객체가 분석되지 않고 즉시 호출된다.”</em></p>
+<h2 id="함수형-요청-핸들러-정의">함수형 요청 핸들러 정의</h2>
+<hr>
+<blockquote>
+<p>MVC나 WebFlux 같은 어노테이션 기반 프로그래밍의 단점(확장, 디버깅의 어려움)을 개선하기 위해 리액티브 API를 정의하는 함수형 프로그래밍 모델이 존재한다.</p>
+</blockquote>
+<p><strong>함수형 프로그래밍 모델 기본 타입</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RequestPredicate</td>
+<td>처리될 요청의 종류 선언</td>
+</tr>
+<tr>
+<td>RouterFunction</td>
+<td>일치하는 요청이 어떻게 핸들러에게 전달되는지 선언</td>
+</tr>
+<tr>
+<td>ServerRequest</td>
+<td>HTTP 요청을 나타내며, header와 body 정보 사용</td>
+</tr>
+<tr>
+<td>ServerResponse</td>
+<td>HTTP 응답을 나타내며, header와 body 정보 포함</td>
+</tr>
+</tbody>
+</table>
+<h3 id="기본-예제">기본 예제</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.springframework.web.reactive.function.server.RequestPredicates.GET</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.springframework.web.reactive.function.server.RouterFunctions.route</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.springframework.web.reactive.function.server.ServerResponse.ok</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RouterFunctionConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">RouterFunction</span><span class="o">&lt;?&gt;</span> <span class="n">helloRouterFunction</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">route</span><span class="o">(</span><span class="n">GET</span><span class="o">(</span><span class="s">&#34;/hello&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">request</span> <span class="o">-&gt;</span> <span class="n">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">just</span><span class="o">(</span><span class="s">&#34;Hello!&#34;</span><span class="o">),</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">andRoute</span><span class="o">(</span><span class="n">GET</span><span class="o">(</span><span class="s">&#34;/bye&#34;</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">request</span> <span class="o">-&gt;</span> <span class="n">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">just</span><span class="o">(</span><span class="s">&#34;See ya!&#34;</span><span class="o">),</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>함수형 타입을 생성하는 데 사용하는 도우미 클래스를 static import한다.<br/>
+route() 메서드는 (1) <span class="ul">RequestPredicate 객체</span>와 (2) <span class="ul">일치하는 요청을 처리하는 함수</span>, 두 가지 인자를 가진다.</p>
+<p>다른 종류의 요청을 처리해야 할 경우는 <strong>andRoute() 메서드</strong>를 호출한다.</p>
+<h3 id="함수형-방식을-사용하여-컨트롤러-생성">함수형 방식을 사용하여 컨트롤러 생성</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RouterFunctionConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">RouterFunction</span><span class="o">&lt;?&gt;</span> <span class="n">routerFunction</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">route</span><span class="o">(</span><span class="n">GET</span><span class="o">(</span><span class="s">&#34;/design/taco&#34;</span><span class="o">),</span> <span class="k">this</span><span class="o">::</span><span class="n">recents</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">andRoute</span><span class="o">(</span><span class="n">POST</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">),</span> <span class="k">this</span><span class="o">::</span><span class="n">postTaco</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">Mono</span><span class="o">&lt;</span><span class="n">ServerResponse</span><span class="o">&gt;</span> <span class="nf">recents</span><span class="o">(</span><span class="n">ServerRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ServerResponse</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">tacoRepo</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">take</span><span class="o">(</span><span class="n">12</span><span class="o">),</span> <span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">Mono</span><span class="o">&lt;</span><span class="n">ServerResponse</span><span class="o">&gt;</span> <span class="nf">postTaco</span><span class="o">(</span><span class="n">ServerRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">taco</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">savedTaco</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ServerResponse</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/design/taco/&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="n">savedTaco</span><span class="o">.</span><span class="na">getId</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">savedTaco</span><span class="o">,</span> <span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><code>/design/taco GET</code> 요청이 들어왔을 경우 recents() 메서드에서 처리되고, <code>/design POST</code> 요청이 들어왔을 경우 postTaco() 메서드에서 처리한다.</p>
+<h2 id="리액티브-컨트롤러-테스트">리액티브 컨트롤러 테스트</h2>
+<p>WebFlux를 사용하는 리액티브 컨트롤러의 테스트를 쉽게 작성할 수 있게 도와주는 테스트 유틸리티로 <strong>WebTestClient</strong>가 있다.</p>
+<h3 id="get-요청-테스트">GET 요청 테스트</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldReturnRecentTacos</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Taco</span><span class="o">[]</span> <span class="n">tacos</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">testTaco</span><span class="o">(</span><span class="n">1L</span><span class="o">),</span> <span class="n">testTaco</span><span class="o">(</span><span class="n">2L</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">testTaco</span><span class="o">(</span><span class="n">3L</span><span class="o">),</span> <span class="n">testTaco</span><span class="o">(</span><span class="n">4L</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">testTaco</span><span class="o">(</span><span class="n">5L</span><span class="o">),</span> <span class="n">testTaco</span><span class="o">(</span><span class="n">6L</span><span class="o">)};</span>      <span class="c1">// 테스트 데이터 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Flux</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacoFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">tacos</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">TacoRepository</span> <span class="n">tacoRepo</span> <span class="o">=</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">mock</span><span class="o">(</span><span class="n">TacoRepository</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">when</span><span class="o">(</span><span class="n">tacoRepo</span><span class="o">.</span><span class="na">findAll</span><span class="o">()).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">tacoFlux</span><span class="o">);</span>  <span class="c1">// 모의 TacoRepository
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="n">WebTestClient</span> <span class="n">testClient</span> <span class="o">=</span> <span class="n">WebTestClient</span><span class="o">.</span><span class="na">bindToController</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="n">DesignTacoController</span><span class="o">(</span><span class="n">tacoRepo</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">build</span><span class="o">();</span>    <span class="c1">// WebTestClient 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="n">testClient</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;/design/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">exchange</span><span class="o">()</span>    <span class="c1">// 가장 최근의 객체 요청
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">.</span><span class="na">expectStatus</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span>    <span class="c1">// 기대한 응답인지 검사
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">.</span><span class="na">expectBody</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$&#34;</span><span class="o">).</span><span class="na">isArray</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$&#34;</span><span class="o">).</span><span class="na">isNotEmpty</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[0].id&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">tacos</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">getId</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[0].name&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&#34;Taco 1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[12]&#34;</span><span class="o">).</span><span class="na">doesNotExist</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>expectStatus() 메서드를 호출하여 응답이 200(OK) 상태 코드를 가지는지 확인한다. <br/>
+jsonPath() 메서드를 호출하여 응답 몸체의 JSON이 기대값을 가지는지 검사한다.
+<br/><br/></p>
+<aside>
+❗ &nbsp;응답에 JSON 데이터가 많아 복잡한 경우에는 json() 메서드를 사용한다. 
+<p><strong>json()</strong> : <span class="red">JSON을 포함하는 String을 인자로 받아 응답과 비교한다.</span></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ClassPathResource</span> <span class="n">recentsResource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathResource</span><span class="o">(</span><span class="s">&#34;/tacos/recent.json&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">recentsJson</span> <span class="o">=</span> <span class="n">StreamUtils</span><span class="o">.</span><span class="na">copyToString</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">recentsResource</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">(),</span> <span class="n">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">testClient</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;/design/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">exchange</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectStatus</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectBody</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">json</span><span class="o">(</span><span class="n">recentsJson</span><span class="o">);</span>
+</span></span></code></pre></div><p>recentsJson이라는 JSON 응답이 담긴 String 값을 인자로 전달하여 올바른 응답인지 확인한다.
+리스트 형태의 응답을 비교할 수 있는 <strong>expectBodyList()</strong> 메서드도 존재한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">testClient</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;/design/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">exchange</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectStatus</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectBodyList</span><span class="o">(</span><span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">tacos</span><span class="o">,</span> <span class="n">12</span><span class="o">));</span>
+</span></span></code></pre></div><p>응답이 <span class="red">List에 저장된 12가지 요소를 모두 포함하는지</span> 검사하는 로직이다.</p>
+</aside>
+<h3 id="post-요청-테스트">POST 요청 테스트</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldSaveATaco</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">TacoRepository</span> <span class="n">tacoRepo</span> <span class="o">=</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">mock</span><span class="o">(</span><span class="n">TacoRepository</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">unsavedTacoMono</span> <span class="o">=</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">testTaco</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Taco</span> <span class="n">savedTaco</span> <span class="o">=</span> <span class="n">testTaco</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">savedTaco</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">savedTacoMono</span> <span class="o">=</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">savedTaco</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">when</span><span class="o">(</span><span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">any</span><span class="o">())).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">savedTacoMono</span><span class="o">);</span>  <span class="c1">// 모의 TestRepository
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="n">WebTestClient</span> <span class="n">testClient</span> <span class="o">=</span> <span class="n">WebTestClient</span><span class="o">.</span><span class="na">bindToController</span><span class="o">(</span>  <span class="c1">// WebTestClient 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">new</span> <span class="n">DesignTacoController</span><span class="o">(</span><span class="n">tacoRepo</span><span class="o">)).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">testClient</span><span class="o">.</span><span class="na">post</span><span class="o">()</span>    <span class="c1">// post 처리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">unsavedTacoMono</span><span class="o">,</span> <span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">exchange</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">expectStatus</span><span class="o">().</span><span class="na">isCreated</span><span class="o">()</span>  <span class="c1">// 응답을 검사한다
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">.</span><span class="na">expectBody</span><span class="o">(</span><span class="n">Taco</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">savedTaco</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>post() 메서드를 통해 POST 요청을 제출하고 application/json 타입의 몸체와 페이로드를 같이 전달한다.<br/>
+exchange() 실행 후 응답이 CREATED(201) 상태 코드를 가지는지, 응답으로 객체와 동일한 페이로드를 가지는지 검사한다.</p>
+<h3 id="실행-중인-서버로-테스트">실행 중인 서버로 테스트</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span><span class="o">=</span><span class="n">WebEnvironment</span><span class="o">.</span><span class="na">RANDOM_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DesignTacoControllerWebTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">WebTestClient</span> <span class="n">testClient</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldReturnRecentTacos</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">testClient</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;/design/recent&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">).</span><span class="na">exchange</span><span class="o">()</span>    <span class="c1">// 가장 최근의 객체 요청
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">expectStatus</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span>    <span class="c1">// 기대한 응답인지 검사
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">expectBody</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[?(@.id == &#39;TACO1&#39;)].name&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&#34;Carnivore&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[?(@.id == &#39;TACO2&#39;)].name&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&#34;Bovine Bounty&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jsonPath</span><span class="o">(</span><span class="s">&#34;$[?(@.id == &#39;TACO3&#39;)].name&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&#34;Veg-out&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>WebTestClient의 통합 테스트를 위해서는 @RunWith와 @SpringBootTest 어노테이션을 지정해야 한다.</p>
+<ul>
+<li><code>WebEnvironment.RANDOM_PORT</code> : 무작위로 선택된 포트로 실행 서버가 리스닝하도록 요청</li>
+</ul>
+<p>자동 연결되는 WebTestClient를 사용하기 때문에 인스턴스를 생성할 필요가 없다는 특징이 있다.</p>
+<h2 id="rest-api-사용">REST API 사용</h2>
+<hr>
+<blockquote>
+<p>RestTemplate이 제공하는 모든 메서드는 도메인 타입이나 컬렉션 타입을 처리하기 때문에 스프링 5에서는 RestTemplate 대신 리액티브 타입을 사용할 수 있는 대안으로 <strong>WebClient</strong>가 존재한다.</p>
+</blockquote>
+<br/>
+<p><strong>일반적인 WebClient 패턴</strong></p>
+<ol>
+<li>WebClient 인스턴스를 생성한다.</li>
+<li>요청을 전송할 HTTP 메서드를 지정한다.</li>
+<li>요청에 필요한 URI와 헤더를 지정한다.</li>
+<li>요청을 제출한다.</li>
+<li>응답을 사용한다.</li>
+</ol>
+<h3 id="get-사용">GET 사용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredient</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">get</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">retrive</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span> <span class="c1">// 단일 값
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">ingredient</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">{});</span>
+</span></span></code></pre></div><p>create() 메서드로 새로운 WebClient 인스턴스를 생성하고, get()과 uri()를 통해 GET 요청을 정의한다.<br/>
+bodyToMono() 메서드 호출을 통해 response body의 페이로드를 Mono<Ingredient>로 추출한다.</p>
+<ul>
+<li><code>bodyToMono()</code> : 단일 값 반환 요청</li>
+<li><code>bodyToFlux()</code> : 컬렉션 값 반환 요청</li>
+</ul>
+<p><span class="gray">※ Mono에 추가적으로 오퍼레이션을 적용하려면 subscribe() 메서드를 호출한다.</span><br/><br/></p>
+<p><strong>요청 타임아웃</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ingredients</span><span class="o">.</span><span class="na">timeout</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">{},</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">// handle timeout error });
+</span></span></span></code></pre></div><p>클라이언트 요청이 지체되는 것을 방지하기 위해 <strong>timeout() 메서드</strong>를 사용할 수 있다.<br/>
+경과 시간을 1초로 지정하여 1초보다 오래 걸리면 타임아웃이 되어 <span class="red">subscribe 두번째 인자로 지정한 에러 핸들러가 호출</span>된다.</p>
+<h3 id="리소스-전송">리소스 전송</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredientMono</span><span class="o">=</span> <span class="o">...;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">post</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">ingredientMono</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">retrive</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">{});</span>
+</span></span></code></pre></div><p>post()과 uri()를 통해 POST 요청을 정의하고 body() 메서드를 호출하여 Mono를 responsebody에 포함시킨다.<br/><br/></p>
+<p><strong>도메인 객체 전송</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Ingredient</span> <span class="n">ingredient</span> <span class="o">=</span> <span class="o">...;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">post</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">syncBody</span><span class="o">(</span><span class="n">ingredient</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">retrive</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span> 
+</span></span></code></pre></div><p>Mono 타입 대신 도메인 객체를 responsebody에 포함시켜 전송하려면 <strong>syncBody() 메서드</strong>를 사용한다.</p>
+<h3 id="리소스-삭제">리소스 삭제</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredient</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">delete</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">retrive</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Void</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">subscribe</span><span class="o">();</span>
+</span></span></code></pre></div><p>DELETE 요청은 응답 페이로드를 가지지 않기 때문에 Mono<Void>를 반환하고 subscribe()로 구독해야 한다.</p>
+<h3 id="에러-처리">에러 처리</h3>
+<p>에러가 생길 수 있는 Mono나 Flux를 구독할 때는 subscribe() 메서드 내에 에러 컨슈머를 등록할 필요가 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ingredientMono</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ingredient</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 데이터 처리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">error</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 에러 처리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">});</span>
+</span></span></code></pre></div><p>404 같은 상태 코드가 반환되면 두번째 인자로 전달된 에러 컨슈머가 실행되어 기본적으로 WebClientResponseException을 발생시킨다.<br/>
+→ <strong>WebClientResponseException</strong> : <span class="red">구체적인 예외를 나타내지 않기 때문에 커스텀 에러 핸들러가 필요!</span>
+<br/><br/></p>
+<p><strong>커스텀 에러 핸들러 구현</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredient</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">get</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">retrive</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">onStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">::</span><span class="n">is4xxClientError</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">response</span> <span class="o">-&gt;</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="k">new</span> <span class="n">UnknownIngredientException</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span></code></pre></div><p>HTTP 상태 코드가 400 수준의 상태코드일 경우 UnknownIngredientException을 포함하는 Mono가 반환되고 ingredient 실행이 실패하게 된다.</p>
+<h3 id="요청-교환">요청 교환</h3>
+<p>retrieve() 메서드는 ResponseSpec 타입을 반환하는데, <span class="ul">응답의 헤더나 쿠키 값을 사용할 경우</span>에는 ResponseSpec 타입으로 처리할 수 없다는 단점이 존재한다.<br/>
+이 단점을 해결하기 위해 <strong>ClientResponse 타입의 Mono를 반환</strong>하는 exchange() 메서드가 존재하는데, (1) <span class="ul">리액티브 오퍼레이션을 적용</span>하거나, (2) <span class="ul">응답의 모든 부분을 사용할 수 있다.</span><br/><br/></p>
+<p><strong>기본 예제</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredient</span> <span class="o">=</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">get</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">exchange</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">cr</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">cr</span><span class="o">.</span><span class="na">headers</span><span class="o">().</span><span class="na">header</span><span class="o">(</span><span class="s">&#34;X-UNAVAILABLE&#34;</span><span class="o">).</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Mono</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">cr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">cr</span> <span class="o">-&gt;</span> <span class="n">cr</span><span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span></span></code></pre></div><p>“X-UNAVAILABLE” 헤더가 존재한다면 비어있는 Mono를 반환하고, 존재하지 않는다면 ClientResponse를 포함하는 새로운 Mono를 반환한다.</p>
+<h2 id="리액티브-웹-api-보안">리액티브 웹 API 보안</h2>
+<hr>
+<blockquote>
+<p>스프링 시큐리티는 스프링 MVC와 리액티브 스프링 WebFlux 어플리케이션 모두 사용할 수 있다.
+이를 도와주는 것이 스프링 <strong>WebFilter</strong>이다.</p>
+<ul>
+<li>WebFilter : 서블릿 API에 의존하지 않는 스프링의 서블릿 필터</li>
+</ul>
+</blockquote>
+<h3 id="리액티브-웹-보안-구성">리액티브 웹 보안 구성</h3>
+<p>스프링 WebFlux에서 스프링 시큐리티를 구성하는 코드이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@EnableWebFluxSecurity</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">SecurityWebFilterChain</span> <span class="nf">securityWebFilterChain</span><span class="o">(</span><span class="n">ServerHttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">authorizeExchange</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">pathMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">).</span><span class="na">hasAuthority</span><span class="o">(</span><span class="s">&#34;USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">anyExchange</span><span class="o">().</span><span class="na">permitAll</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 MVC와 다르게 @EnableWebSecurity 대신 <span class="red">@EnableWebFluxSecurity가 지정</span>되어 있다. 또한 인자로 HttpSecurity 대신 <span class="red">SecurityHttpSecurity를 사용</span>해서 authorizeExchange()를 호출하였다.<br/>
+중요한 점은 프레임워크 메서드를 오버라이딩 하는 대신 <strong>build() 메서드를 호출하여 모든 보안 규칙을 반환해야 한다.</strong><br/><br/></p>
+<p><strong>ReactiveUserDetailsService 구현</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ReactiveUserDetailsService</span> <span class="nf">userDetailsService</span><span class="o">(</span><span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">ReactiveUserDetailsService</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Mono</span><span class="o">&lt;</span><span class="n">UserDetails</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">userRepo</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">).</span><span class="na">map</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">toUserDetails</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>userDetailsService의 리액티브 버전인 ReactiveUserDetailsService 빈을 선언하였다.<br/>
+<code>userRepo.findByUsername()</code> 에서 반환된 Mono가 발행하는 User 객체의 toUserDetails() 메서드를 호출하여 <span class="red">User 객체를 UserDetails 객체로 변환</span>한다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-reactive-api/">[스프링인액션] 리액티브 API 개발</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactor/">[스프링인액션] 리액터 개요</a></li>
+
+  
+    <li><a href="/post/spring/spring-integration/">[스프링인액션] 스프링 통합 플로우 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-kafka/">[스프링인액션] 비동기 메시지 전송하기 - Kafka</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-reactor/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 리액터 개요</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-integration/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 스프링 통합 플로우 사용</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
