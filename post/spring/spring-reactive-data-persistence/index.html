@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 리액티브 데이터 퍼시스턴스 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 Reactive Repository를 생성하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.599b42eaaf193a8fb88529634df4840152d2504ce183a1da6ee264f473c342fd.css"
+      integrity="sha256-WZtC6q8ZOo&#43;4hSljTfSEAVLSUEzhg6HabuJk9HPDQv0="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.6036237180a6a4ddaf4761259af65f903d527859896b8cfb59777c874c450cba.css"
+    integrity="sha256-YDYjcYCmpN2vR2ElmvZfkD1SeFmJa4z7WXd8h0xFDLo="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f04b64c5220bc1932a413091758a9ad4717ab750e49f1f76d0bdb02b062b65e0.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-reactive-data-persistence/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 리액티브 데이터 퍼시스턴스"/>
+<meta name="twitter:description" content="스프링에서 Reactive Repository를 생성하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 리액티브 데이터 퍼시스턴스" />
+<meta property="og:description" content="스프링에서 Reactive Repository를 생성하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-reactive-data-persistence/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-24T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 리액티브 데이터 퍼시스턴스",
+        "headline": "[스프링인액션] 리액티브 데이터 퍼시스턴스",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 Reactive Repository를 생성하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactive-data-persistence\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-08-24T00:00:00.00Z",
+        "datePublished": "2022-08-24T00:00:00.00Z",
+        "dateModified": "2022-08-24T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactive-data-persistence\/",
+        "wordCount" : "955",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(13)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(13)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/spring-basic.png" alt="Thumbnail image" />
+      </div>
+
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#reactive-repository">Reactive Repository</a>
+      <ul>
+        <li><a href="#기존-repository에서의-변환">기존 Repository에서의 변환</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액티브-카산드라-사용">리액티브 카산드라 사용</a>
+      <ul>
+        <li><a href="#카산드라-의존성-추가">카산드라 의존성 추가</a></li>
+        <li><a href="#카산드라-설정-변경">카산드라 설정 변경</a></li>
+        <li><a href="#카산드라-도메인-타입-매핑">카산드라 도메인 타입 매핑</a></li>
+        <li><a href="#카산드라-repository-작성">카산드라 Repository 작성</a></li>
+      </ul>
+    </li>
+    <li><a href="#리액티브-몽고db-사용">리액티브 몽고DB 사용</a>
+      <ul>
+        <li><a href="#몽고db-의존성-추가">몽고DB 의존성 추가</a></li>
+        <li><a href="#몽고db-설정-변경">몽고DB 설정 변경</a></li>
+        <li><a href="#도메인-타입-매핑">도메인 타입 매핑</a></li>
+        <li><a href="#몽고db-repository-작성">몽고DB Repository 작성</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 리액티브 데이터 퍼시스턴스</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                24/8/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 5분</span>
+          </li>
+        </ul>
+
+      <h2 id="개요">개요</h2>
+<hr>
+<blockquote>
+<p>스프링인액션 12장을 읽고 Reactive Repository를 생성하는 방법에 대해 공부하였다.</p>
+<ul>
+<li>Reactive Repository의 개념</li>
+<li>카산드라와 몽고DB 사용하기</li>
+<li>기본 Repository를 리액티브 사용에 맞추어 조정하기</li>
+<li>카산드라를 활용한 데이터 모델링</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="reactive-repository">Reactive Repository</h2>
+<hr>
+<blockquote>
+<p>Reactive Repository는 도메인 타입이나 컬렉션을 반환하지 않고 Mono나 Flux를 인자로 받거나 반환한다. 카산드라, 몽고DB, 카우치베이스, 레디스로 데이터를 저장할 경우 리액티브 프로그래밍 모델을 지원한다.</p>
+</blockquote>
+<h3 id="기존-repository에서의-변환">기존 Repository에서의 변환</h3>
+<p>스프링 데이터 JPA를 사용할 경우 Mono나 Flux 리액티브 타입을 반환하지 않기 때문에 오퍼레이션을 수행할 수 없게 된다. <br/>
+이를 해결하기 위해서는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findByUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromIterable</span><span class="o">(</span><span class="n">orders</span><span class="o">);</span>
+</span></span></code></pre></div><p>Flux의 fromIterable(), fromArray(), fromStream() 메서드를 통해 Flux로 변환시킬 수 있다.</p>
+<p>Mono일 경우는 다음과 같다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderMono</span> <span class="o">=</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span></code></pre></div><p>Mono의 just() 메서드를 통해 Mono로 변환이 가능하다.<br/><br/></p>
+<p><strong>Mono에서의 데이터 추출</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Taco</span> <span class="n">taco</span> <span class="o">=</span> <span class="n">tacoMono</span><span class="o">.</span><span class="na">block</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
+</span></span></code></pre></div><p>Mono의 block() 메서드를 호출해서 데이터를 추출할 수 있다.<br/><br/></p>
+<p><strong>Flux에서의 데이터 추출</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacos</span> <span class="o">=</span> <span class="n">tacoFlux</span><span class="o">.</span><span class="na">toIterable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="n">tacos</span><span class="o">);</span>
+</span></span></code></pre></div><p>Flux의 toIterable() 메서드를 통해 Flux의 모든 객체를 Iterable 타입으로 추출한다.</p>
+<aside>
+Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span class="red">추출 작업 시 블로킹 처리 된다.</span></strong> <br/>
+이를 해결하기 위해서는 구독 발행 요소 각각에 오퍼레이션을 수행하는 것이 나은 방법이다.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">tacoFlux</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">taco</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">});</span>
+</span></span></code></pre></div><p><span class="gray">※ JPA repository의 save() 메서드를 제외하고는 리액티브하다.</span></p>
+</aside>
+<h2 id="리액티브-카산드라-사용">리액티브 카산드라 사용</h2>
+<hr>
+<blockquote>
+<p>카산드라는 분산처리, 고성능, 상시 가용, 궁극적인 일관성을 가지는 NoSQL 데이터베이스이다.</p>
+<p>카산드라의 특징은 다음과 같다.</p>
+<ol>
+<li>데이터베이스는 <strong>다수의 파티션에 걸쳐 분할</strong>된다.</li>
+<li>테이블은 <strong>파티션 키와 클러스터링 키</strong>라는 두 종류의 키를 가지고, 많은 column을 가질 수 있다.</li>
+<li>읽기 오퍼레이션에 최적화 되어 있어 <strong>데이터가 다수의 테이블에 중복되는 경우</strong>가 흔하다.</li>
+</ol>
+</blockquote>
+<h3 id="카산드라-의존성-추가">카산드라 의존성 추가</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-cassandra-reactive&#39;</span>
+</span></span></code></pre></div><p>리액티브한 카산드라 repository를 작성할 것이므로 해당 스타터 dependency를 추가한다.<br/>
+스프링 Initializr에서 지정할 경우 NoSQL의 <strong>“Spring Data Reactive for Apache Cassandra”</strong> 를 선택한다.</p>
+<h3 id="카산드라-설정-변경">카산드라 설정 변경</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cassandra</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">keyspace-name</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">schema-action</span><span class="p">:</span><span class="w"> </span><span class="l">recreate-drop-unused</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">contact-points</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">casshost-1.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">casshost-2.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">casshost-3.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9043</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>
+<p><code>keyspace-name</code> : <strong>카산드라가 해당 키 공간을 사용하도록 알린다.</strong><br/>
+스프링 데이터 카산드라에서 키 공간을 자동으로 생성하도록 설정할 수 있지만 직접 생성할 수도 있다. 키 공간은 <strong>CQL</strong>(<em>Cassandra Query Language</em>) 셸에서 <code>create keyspace</code> 명령어를 통해 생성할 수 있다.</p>
+  <aside>
+    💡 키 공간 : 카산드라 노드의 테이블을 모아 놓은 것이다. 관계형 데이터베이스의 <strong>스키마와 유사하다.</strong>
+  </aside>
+</li>
+<li>
+<p><code>schema-action</code> : <strong>스키마의 행동을 지정한다.</strong><br/>
+<strong>recreate-drop-unused</strong> : 어플리케이션이 시작할 때마다 모든 테이블과 사용자 정의 타입을 재생성하도록 지정한다. (개발용)<br/>
+<strong>none</strong> : 스키마에 대해 아무 조치를 취하지 않는다. (실무용)</p>
+</li>
+<li>
+<p><code>contact-points</code> : <strong>카산드라 노드가 실행 중인 호스트를 나타낸다.</strong> <br/>
+각 노드의 연결을 시도하여 카산드라 클러스터에 단일 장애점이 생기지 않게 해준다.</p>
+</li>
+<li>
+<p><code>port</code> : <strong>카산드라의 포트 번호를 설정할 수 있다.</strong></p>
+</li>
+<li>
+<p><code>username</code>, <code>password</code> : <strong>카산드라 클러스터의 사용자 이름과 비밀번호를 설정한다.</strong></p>
+</li>
+</ul>
+<h3 id="카산드라-도메인-타입-매핑">카산드라 도메인 타입 매핑</h3>
+<p>카산드라 퍼시스턴스는 도메인 타입 매핑 어노테이션을 제공한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">PARTITIONED</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">UUID</span> <span class="n">id</span> <span class="o">=</span> <span class="n">UUIDs</span><span class="o">.</span><span class="na">timeBased</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@NotNull</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">CLUSTERED</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ordering</span><span class="o">=</span><span class="n">Ordering</span><span class="o">.</span><span class="na">DESCENDING</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Column</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">IngredientUDT</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li><strong>@Table</strong> : 테이블의 이름 지정 <span class="gray"> <strong>-</strong> <em>JPA에서는 @Entity</em></span></li>
+<li><strong>@PrimaryKeyColumn</strong> : 기본 키 지정<br/>
+PrimaryKeyType.PARTITIONED : 해당 속성이 파티션 키임을 명시<br/>
+PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li>
+<li><strong>@Column</strong> : 데이터의 컬렉션을 포함하는 열<br/>
+여기서는 <strong>네이티브 타입(정수, 문자열 등)의 컬렉션</strong>이거나, <strong>UDT(사용자 정의 타입)의 컬렉션</strong>이어야 한다.</li>
+</ul>
+<aside>
+  💡 <strong>Ingredient 클래스를 재사용할 수 없는 이유</strong><br/>
+  해당 클래스에는 이미 @Table 어노테이션을 통해 카산드라의 도메인 타입으로 매핑을 했기 때문이다. <br/>
+  <span class="red">UDT 클래스를 새로 만들어 데이터가 어떻게 저장되는지 정의해야 한다.</span><br/>
+</aside>   <br/><br/>
+<p><strong>UDT 클래스 예시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@UserDefinedType</span><span class="o">(</span><span class="s">&#34;ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IngredientUDT</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">Type</span> <span class="n">type</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>@UserDefinedType : 카산드라의 UDT(사용자 정의 타입)임을 명시</li>
+<li>id 속성을 별도로 포함하지 않는다.</li>
+</ul>
+<h3 id="카산드라-repository-작성">카산드라 Repository 작성</h3>
+<p>Repository를 작성할 때는 두 개의 기본 인터페이스인 ReactiveCassandraRepository 나 ReactiveCrudRepository를 선택할 수 있다. ReactiveCassandraRepository가 ReactiveCrudRepository의 확장된 버전이다.</p>
+<p><strong>기본 예시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이와 같이 ReactiveCrudRepository를 extends 처리하면 된다. findAll() 메서드 사용 시 Flux<Ingredient>를 반환한다. Flux를 반환하기 때문에 페이징 처리도 신경 쓸 필요가 없다. - <span class="gray"><em>take() 메서드 활용 가능</em></span></p>
+<p><strong>where 절</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCassandraRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">UUID</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@AllowFiltering</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>카산드라에서는 where 절로 쿼리할 수 없다. where 절을 사용하기 위해서는 @AllowFiltering 어노테이션을 사용한다. <span class="red">allow filtering 절은 <span class="ul">쿼리 성능에 영향을 주지만 수행해야 한다</span>라는 것을 카산드라에게 알려준다.</span></p>
+<h2 id="리액티브-몽고db-사용">리액티브 몽고DB 사용</h2>
+<hr>
+<blockquote>
+<p>몽고DB는 잘 알려진 NoSQL 데이터베이스 중 하나이다. 카산드라가 테이블의 행으로 데이터를 저장하는 반면, 몽고DB는 <strong>문서형 데이터베이스</strong>이다.</p>
+</blockquote>
+<h3 id="몽고db-의존성-추가">몽고DB 의존성 추가</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-mongodb-reactive&#39;</span>
+</span></span></code></pre></div><p>리액티브한 몽고DB repository를 작성할 것이므로 해당 스타터 dependency를 추가한다.<br/>
+스프링 Initializr에서 지정할 경우 NoSQL의 <strong>“Spring Data Reactive MongoDB”</strong> 를 선택한다.</p>
+<h3 id="몽고db-설정-변경">몽고DB 설정 변경</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mongodb</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">27018</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li><code>host</code> : 몽고DB 서버가 실행 중인 호스트 이름. 기본값 - localhost</li>
+<li><code>port</code> : 몽고DB 서버가 리스닝하는 포트. 기본값 - 27017</li>
+<li><code>username</code>, <code>password</code> : 몽고 DB에 접근하는 사용자 이름과 비밀번호</li>
+<li><code>database</code> : 데이터베이스 이름. 기본값 - test</li>
+</ul>
+<h3 id="도메인-타입-매핑">도메인 타입 매핑</h3>
+<p>스프링 데이터 몽고DB는 문서 구조로 도메인 타입을 매핑하는 데 유용한 어노테이션을 제공한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Document</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Id</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@NotNull</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Field</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">User</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li><strong>@Id</strong> : 문서 ID로 지정
+<ul>
+<li>String 타입으로 지정할 경우 속성 값이 DB에 저장될 때 자동으로 ID 값을 지정해준다.</li>
+</ul>
+</li>
+<li><strong>@Document</strong> : 몽고 DB에 저장되는 문서로 선언</li>
+<li><strong>@Field</strong> : 몽고DB의 문서에 속성을 저장하기 위해 필드 이름을 지정
+<ul>
+<li>customer 열을 문서에 저장한다는 것을 의미</li>
+</ul>
+</li>
+<li>카산드라와 다르게 UDT(사용자 정의 타입)을 만들지 않고 어떤 타입이라도 사용 가능하다.</li>
+</ul>
+<h3 id="몽고db-repository-작성">몽고DB Repository 작성</h3>
+<p>Repository를 작성할 때는 두 개의 기본 인터페이스인 ReactiveMongoRepository 나 ReactiveCrudRepository를 선택할 수 있다. ReactiveCrudRepository가 새로운 문서나 기존 문서의 save() 메서드에 의존하는 반면, ReactiveMongoRepository는 <strong>새로운 문서의 저장에 최적화된 insert() 메서드</strong>를 제공한다.</p>
+<p><strong>기본 예시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> 
+</span></span><span class="line"><span class="cl">         <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>ReactiveCrudRepository를 이용하여 Repository를 작성할 경우 몽고DB와 카산드라 모두 똑같은 인터페이스를 활용할 수 있다.</p>
+<p><strong>where 절</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveMongoRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>몽고DB는 커스텀 쿼리 메서드의 명명 규칙을 따른다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-reactive-data-persistence/">[스프링인액션] 리액티브 데이터 퍼시스턴스</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactive-api/">[스프링인액션] 리액티브 API 개발</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactor/">[스프링인액션] 리액터 개요</a></li>
+
+  
+    <li><a href="/post/spring/spring-integration/">[스프링인액션] 스프링 통합 플로우 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-kafka/">[스프링인액션] 비동기 메시지 전송하기 - Kafka</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-reactive-api/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 리액티브 API 개발</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-reactor/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 리액터 개요</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
