@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.bebf386889f4a62139dc392b639a73d1287ebe6e1c94dcd7daa0cf5d80867ba4.css"
-      integrity="sha256-vr84aIn0piE53DkrY5pz0Sh&#43;vm4clNzX2qDPXYCGe6Q="
+      href="/scss/main.min.fb623b5e9a980e7f94b3e97aef9c922a741d86945c15fcfcd58f4bef9c2c84cf.css"
+      integrity="sha256-&#43;2I7XpqYDn&#43;Us&#43;l675ySKnQdhpRcFfz81Y9L75wshM8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -220,6 +220,13 @@
       
       "spring boot"
 
+    
+      
+        ,
+
+      
+      "kafka"
+
     ]
     }
   </script>
@@ -361,7 +368,7 @@
             <i class="fa-solid fa-cube"></i>
           
           Framework 
-          <span>(14)</span>
+          <span>(15)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -514,7 +521,7 @@
               <i class="fa-solid fa-cube"></i>
             
             Framework 
-            <span>(14)</span>
+            <span>(15)</span>
           </a>
           
           
@@ -648,7 +655,7 @@
     <li><a href="#카프카-리스너-작성">카프카 리스너 작성</a>
       <ul>
         <li><a href="#리스너를-이용하여-메시지-수신">리스너를 이용하여 메시지 수신</a></li>
-        <li><a href="#추가적인-메타데이터가-필요한-경우"><strong>추가적인 메타데이터가 필요한 경우</strong></a></li>
+        <li><a href="#추가적인-메타데이터가-필요한-경우">추가적인 메타데이터가 필요한 경우</a></li>
       </ul>
     </li>
   </ul>
@@ -769,7 +776,7 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
 </span></span><span class="line"><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@KafkaListener 어노테이션을 지정하여 &ldquo;tacocloud.orders.topic&rdquo; 이름의 토픽에 메시지가 도착할 때 자동 호출되도록 설정하였다.</p>
-<h3 id="추가적인-메타데이터가-필요한-경우"><strong>추가적인 메타데이터가 필요한 경우</strong></h3>
+<h3 id="추가적인-메타데이터가-필요한-경우">추가적인 메타데이터가 필요한 경우</h3>
 <p>ConsumerRecord나 Message 객체를 인자로 받아 메시지의 메타데이터를 받을 수 있다. 
 <br/><br/></p>
 <p><strong>ConsumerRecord 사용</strong></p>
@@ -806,6 +813,9 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
 
 <h3>Posts in this Series</h3>
 <ul>
+  
+    <li><a href="/post/spring/spring-cloud-config/">[스프링인액션] 클라우드 구성 관리</a></li>
+
   
     <li><a href="/post/spring/spring-microservice/">[스프링인액션] 마이크로서비스 이해</a></li>
 
@@ -856,12 +866,12 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
   <div class="related--list">
     
       
-        <a href="/post/spring/spring-microservice/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 마이크로서비스 이해</p></a>
+        <a href="/post/spring/spring-cloud-config/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 클라우드 구성 관리</p></a>
       
 
     
       
-        <a href="/post/spring/spring-reactive-data-persistence/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 리액티브 데이터 퍼시스턴스</p></a>
+        <a href="/post/spring/spring-microservice/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 마이크로서비스 이해</p></a>
       
 
     
@@ -880,7 +890,7 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
       
 
       
-        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a><a class="tag" href="/tags/kafka/">kafka</a></span>
 
 
 

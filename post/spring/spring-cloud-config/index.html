@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 클라우드 구성 관리 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링에서 클라우드를 구성하는 법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.fb623b5e9a980e7f94b3e97aef9c922a741d86945c15fcfcd58f4bef9c2c84cf.css"
+      integrity="sha256-&#43;2I7XpqYDn&#43;Us&#43;l675ySKnQdhpRcFfz81Y9L75wshM8="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
+    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.f523b9e14a16facaf5f64d392b60d035ae1383ff365ebf60ff760d41a975cee5.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-cloud-config/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 클라우드 구성 관리"/>
+<meta name="twitter:description" content="스프링에서 클라우드를 구성하는 법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 클라우드 구성 관리" />
+<meta property="og:description" content="스프링에서 클라우드를 구성하는 법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-cloud-config/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-10-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-10-16T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 클라우드 구성 관리",
+        "headline": "[스프링인액션] 클라우드 구성 관리",
+        "alternativeHeadline": "",
+        "description": "
+      스프링에서 클라우드를 구성하는 법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-cloud-config\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-10-16T00:00:00.00Z",
+        "datePublished": "2022-10-16T00:00:00.00Z",
+        "dateModified": "2022-10-16T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-cloud-config\/",
+        "wordCount" : "1840",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(15)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(2)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(15)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(2)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/spring-basic.png" alt="Thumbnail image" />
+      </div>
+
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#중앙-집중적인-구성-관리">중앙 집중적인 구성 관리</a>
+      <ul>
+        <li><a href="#중앙-집중적인-구성-시-장점">중앙 집중적인 구성 시 장점</a></li>
+      </ul>
+    </li>
+    <li><a href="#구성-서버-실행">구성 서버 실행</a>
+      <ul>
+        <li><a href="#구성-서버-활성화">구성 서버 활성화</a></li>
+        <li><a href="#구성-서버-get-요청">구성 서버 GET 요청</a></li>
+        <li><a href="#git-repository에-구성-속성-저장">Git repository에 구성 속성 저장</a></li>
+      </ul>
+    </li>
+    <li><a href="#구성-데이터-사용">구성 데이터 사용</a>
+      <ul>
+        <li><a href="#클라이언트-지정">클라이언트 지정</a></li>
+        <li><a href="#구성-서버-설정">구성 서버 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#특정-속성-제공하기">특정 속성 제공하기</a>
+      <ul>
+        <li><a href="#어플리케이션에-특정-속성-제공">어플리케이션에 특정 속성 제공</a></li>
+        <li><a href="#프로파일로부터-속성-제공">프로파일로부터 속성 제공</a></li>
+      </ul>
+    </li>
+    <li><a href="#구성-속성-보안-유지하기">구성 속성 보안 유지하기</a>
+      <ul>
+        <li><a href="#속성-암호화하기">속성 암호화하기</a></li>
+        <li><a href="#암호화된-데이터-설정">암호화된 데이터 설정</a></li>
+        <li><a href="#복호화-해제">복호화 해제</a></li>
+        <li><a href="#vault-시작하기">Vault 시작하기</a></li>
+        <li><a href="#보안-데이터를-vault에-쓰기">보안 데이터를 Vault에 쓰기</a></li>
+        <li><a href="#구성-서버에서-vault-백엔드-활성화">구성 서버에서 Vault 백엔드 활성화</a></li>
+        <li><a href="#구성-서버-클라이언트에-vault-토큰-생성">구성 서버 클라이언트에 Vault 토큰 생성</a></li>
+        <li><a href="#특정-서비스에-보안-속성-지정">특정 서비스에 보안 속성 지정</a></li>
+      </ul>
+    </li>
+    <li><a href="#구성-속성-리프레시">구성 속성 리프레시</a>
+      <ul>
+        <li><a href="#수동식-리프레시">수동식 리프레시</a></li>
+        <li><a href="#자동식-리프레시">자동식 리프레시</a></li>
+        <li><a href="#구성-서버-클라이언트에서-자동-리프레시-활성화하기">구성 서버 클라이언트에서 자동 리프레시 활성화하기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 클라우드 구성 관리</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                16/10/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 9분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>스프링인액션 14장을 읽고 클라우드 구성 관리에 대해 공부하였다.</p>
+<ul>
+<li>스프링 클라우드 구성 서버 실행</li>
+<li>구성 서버 클라이언트 생성</li>
+<li>보안에 민감한 구성 정보 저장</li>
+<li>구성 자동으로 리프레시</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="중앙-집중적인-구성-관리">중앙 집중적인 구성 관리</h2>
+<hr>
+<blockquote>
+<p>스프링 어플리케이션을 구성할 때, 간단한 어플리케이션이라면 자바 시스템 속성이나 운영체제의 환경 변수를 구성 속성으로 사용하거나 application.yml 파일에 구성 속성을 지정한다. 이 때, 속성을 변경해야 한다면 <span class="red">어플리케이션을 재시작시키거나, 재빌드 및 배포를 수행</span>해야 한다.</p>
+<p>하지만 속성만 변경하기 위해 어플리케이션을 재배포하거나 재시작한다면 매우 불편하며, 다수의 인스턴스를 가지고 있는 마이크로서비스 기반 어플리케이션의 경우에는 모든 서비스 인스턴스에 동일한 변경을 적용하는 것이 불합리하다.</p>
+</blockquote>
+<h3 id="중앙-집중적인-구성-시-장점">중앙 집중적인 구성 시 장점</h3>
+<ol>
+<li>
+<p><strong>구성이 어플리케이션 코드에 패키징되어 배포되지 않는다.</strong> <br/>
+: 재빌드 및 재배포 없이 구성을 변경할 수 있다. 어플리케이션 실행 중에 구성 변경이 가능하다.</p>
+</li>
+<li>
+<p><strong>동일한 속성들을 공유할 수 있다.</strong><br/>
+: 한번만 변경해도 모든 마이크로서비스에 적용할 수 있다.</p>
+</li>
+<li>
+<p><strong>보안에 민감한 구성 속성들은 별도로 암호화하고 유지, 관리할 수 있다.</strong><br/>
+: 복호화된 속성은 언제든 사용 가능하며, 복호화 코드가 어플리케이션에 없어도 된다.</p>
+</li>
+</ol>
+<h2 id="구성-서버-실행">구성 서버 실행</h2>
+<hr>
+<blockquote>
+<p>스프링 클라우드 구성 서버는 집중화된 구성 데이터 소스를 제공하며, 같은 어플리케이션에 있는 다른 서비스들의 구성 데이터를 제공하는 역할을 수행한다.</p>
+</blockquote>
+<h3 id="구성-서버-활성화">구성 서버 활성화</h3>
+<p>마이크로서비스 구성 서버는 별개의 어플리케이션으로 개발되어 배포되므로 구성 서버를 사용하기 위해서는 새로운 구성 서버를 생성해야 한다.<br/><br/></p>
+<p><strong>스프링 클라우드 구성 서버 의존성 추가</strong><br/>
+스프링 클라우드 구성 서버 스타터 의존성을 추가하는 코드이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-config-server&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 클라우드 버전 의존성도 추가한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">ext</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">set</span><span class="o">(</span><span class="s1">&#39;cloud-version&#39;</span><span class="o">,</span> <span class="s2">&#34;Hoxton.SR3&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dependencyManagement</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">imports</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mavenBom</span> <span class="s2">&#34;org.springframework.cloud:spring-cloud-dependencies:{cloud-version}&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br/>
+<p><strong>부트스트랩</strong> <strong>클래스 설정</strong><br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@EnableConfigServer</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConfigServerApplication</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ConfigServerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>@EnableConfigServer 어노테이션을 통해 어플리케이션이 실행될 때 구성 서버를 활성화 시킨다.<br/><br/></p>
+<p><strong>구성 속성 위치 명시</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri </span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/habma/tacocloud-config</span><span class="w">
+</span></span></span></code></pre></div><p>구성 서버가 처리할 구성 속성들이 있는 곳을 알려준다. 여기서는 github 주소를 사용했기 때문에 <code>spring.cloud.config.server.git.uri</code> 속성에 github repository URL을 설정해주었다. <br/>
+또 구성 서버는 기본적으로 8080 포트를 리스닝하는데, 포트 충돌을 막기 위해 포트 번호를 고유값으로 지정해준다. (이 포트번호는 구성 서버의 클라이언트 포트와 같아야 한다)</p>
+<h3 id="구성-서버-get-요청">구성 서버 GET 요청</h3>
+<p>구성 서버 경로는 세 부분으로 이루어져 있으며, 경로에 대해 HTTP GET 요청을 수행한다.</p>
+<figure class="large"><img src="/images/spring-cloud-config/1.png"
+         alt="구성 서버 URL에 대한 설명"/><figcaption>
+            <p>구성 서버 URL에 대한 설명</p>
+        </figcaption>
+</figure>
+
+<ul>
+<li>첫번째 부분 : 어플리케이션 이름.</li>
+<li>두번째 부분 : 활성화된 스프링 프로파일 이름.</li>
+<li>세번째 부분 : 구성 속성을 가져올 백엔드 Git repository의 라벨/분기. 생략 가능</li>
+</ul>
+<p>요청에 대한 응답으로는 구성 서버가 제공하는 것에 관한 기본 정보가 포함된다.</p>
+<h3 id="git-repository에-구성-속성-저장">Git repository에 구성 속성 저장</h3>
+<p>가장 기본적인 방법은 Git repository의 루트 경로에 application.yml 파일을 커밋하는 것이다. 커밋 후 구성 서버에게 curl 명령을 사용한다면 다음과 같은 응답을 받는다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8888/someapp/someconfig
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;someapp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;profiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;someconfig&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;label&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;95df0cbc3ba106199bd804b27a1de7c3ef5c35e&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;propertySources&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:10080/tacocloud/tacocloud-config/application.yml&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Git 내부 application.yml 파일 내용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>propertySources 속성의 배열에는 <strong>name</strong>과 <strong>source</strong>라는 두 개의 속성이 포함되는데,</p>
+<ul>
+<li>name 속성은 <span class="bg_y">Git repository를 참조하는 uri 값</span>을 가지고</li>
+<li>source 속성은 해당 <span class="bg_y">Git repository에 저장했던 구성 속성을 포함</span>한다.</li>
+</ul>
+<p>루트 경로대신 <strong>하위 경로에 구성 속성을 저장</strong>할 수도 있다.<br/>
+구성서버 자체 속성을 지정한 application.yml 파일을 변경한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri </span><span class="p">:</span><span class="w"> </span><span class="l">https://localhost:10080/tacocloud/tacocloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">search-paths</span><span class="p">:</span><span class="w"> </span><span class="l">config, more*</span><span class="w">
+</span></span></span></code></pre></div><p>search-paths 속성을 통해 하위 경로를 지정해줄 수 있다. 또한 search-paths는 복수형이며, 구성 속성을 여러 하위 경로에 저장할 수 있다.</p>
+<p><strong>특정 분기나 라벨에 구성 속성을 저장</strong>할 수도 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri </span><span class="p">:</span><span class="w"> </span><span class="l">https://localhost:10080/tacocloud/tacocloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">default-label</span><span class="p">:</span><span class="w"> </span><span class="l">sidework</span><span class="w">
+</span></span></span></code></pre></div><p>sidework라는 이름의 분기에 저장된 구성 속성을 가져올 때는 이와 같이 사용한다. 해당 분기는 default 분기로 지정된다.</p>
+<p><strong>Git 백엔드 인증 처리</strong>를 위해서는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri </span><span class="p">:</span><span class="w"> </span><span class="l">https://localhost:10080/tacocloud/tacocloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">username </span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">password </span><span class="p">:</span><span class="w"> </span><span class="l">passwd123</span><span class="w">
+</span></span></span></code></pre></div><p>사용자 이름(username), 비밀번호(password)를 사용하여 Git repository 인증을 수행한다.</p>
+<h2 id="구성-데이터-사용">구성 데이터 사용</h2>
+<hr>
+<blockquote>
+<p>스프링 클라우드 구성 서버는 클라이언트 라이브러리도 제공한다. 해당 라이브러리가 어플리케이션 빌드에 포함되면 구성 서버의 클라이언트가 될 수 있다.</p>
+</blockquote>
+<h3 id="클라이언트-지정">클라이언트 지정</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-config&#39;</span>
+</span></span></code></pre></div><p>스프링 Initializr 화면의 <span class="red">Config Client 체크박스</span>를 선택해도 빌드에 추가할 수 있다.</p>
+<h3 id="구성-서버-설정">구성 서버 설정</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uri </span><span class="p">:</span><span class="w"> </span><span class="l">http://config.tacocloud.com:8888</span><span class="w">
+</span></span></span></code></pre></div><p>spring.cloud.config.uri 속성을 통해 구성 서버의 위치를 알려줄 수 있다. 기본적으로 구성 서버는 localhost의 8888 포트로 실행중인 것으로 간주한다.<br/>
+→ 이 속성은 구성 서버의 클라이언트가 되는 어플리케이션 자체에서 설정되어야 한다. 중앙 집중식 구성 서버가 있을 경우에는 각 마이크로서비스가 자신의 구성을 가질 필요는 없다.</p>
+<h2 id="특정-속성-제공하기">특정 속성 제공하기</h2>
+<hr>
+<blockquote>
+<p>구성 서버 클라이언트는 어플리케이션 이름과 활성화된 프로파일을 포함하는 요청 경로를 사용해서 구성 서버에게 속성을 요청한다.</p>
+</blockquote>
+<h3 id="어플리케이션에-특정-속성-제공">어플리케이션에 특정 속성 제공</h3>
+<p>구성 서버는 특정 어플리케이션을 대상으로 하는 구성 속성을 관리할 수 있다. <br/>
+4개의 마이크로서비스가 존재할 경우 각 서비스 어플리케이션의 application.yml 파일을 생성한다. application.yml 파일 내부의 <span class="red">spring.application.name 속성이 구성 서버에 전송</span>되고, <span class="red">이 속성값과 일치하는 구성 파일이 있을 경우 해당 속성들이 반환</span>된다.</p>
+<h3 id="프로파일로부터-속성-제공">프로파일로부터 속성 제공</h3>
+<p>스프링 클라우드 구성 서버는 스프링 부트 어플리케이션에서 프로파일을 활성화하는 것과 동일한 방법으로 프로파일에 특정된 속성을 지원한다.</p>
+<ul>
+<li>프로파일에 특정된 application-production.yml, application-dev.yml 같은 이름의 구성 파일을 제공한다.</li>
+<li>하나의 yml 파일 내부에 여러 개의 프로파일 구성 그룹을 추가할 수 있다. 3개의 하이픈(&mdash;)을 추가하고 spring.profiles 속성을 지정한다.</li>
+</ul>
+<h2 id="구성-속성-보안-유지하기">구성 속성 보안 유지하기</h2>
+<hr>
+<blockquote>
+<p>구성 서버에서 민감한 정보들(비밀번호나 보안토큰 등)을 포함하는 속성들을 제공할 때 다음과 같은 옵션을 제공한다.</p>
+<ul>
+<li>구성파일에 암호화된 값 쓰기</li>
+<li>구성 서버의 백엔드 저장소로 해시코프의 Vault 사용하기</li>
+</ul>
+</blockquote>
+<h3 id="속성-암호화하기">속성 암호화하기</h3>
+<p>암호화된 속성을 사용하려면 <strong>암호화 키</strong>를 사용해서 구성 서버를 구성하고, 암호화 키를 이용하여 속성 값을 클라이언트에게 제공하기 전에 복호화 한다.</p>
+<p>대칭키를 설정하려면 구성 서버 자체 구성의 encrypt.key 속성에 암호화 키와 복호화 키를 설정하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">encrypt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">s3cr3t</span><span class="w">
+</span></span></span></code></pre></div><p>이 속성은 구성 서버를 활성화시키기 전에 로드되어 사용할 수 있기 때문에 <span class="red">부트스트랩 구성(bootstrap.yml)에 설정되어야 한다. </span><br/>
+강력한 보안을 위해서 구성 서버가 한 쌍의 비대칭 RSA 키나 키스토어 참조를 사용하도록 구성할 수 있다.</p>
+<p>키를 생성하는 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ keytool -genkeypair -alias tacokey -keyalg RSA -dname <span class="s2">&#34;CN=Web Server ,OU=Unit ,O=Organization ,L=City ,S=State ,C=US&#34;</span> -keypass s3cr3t -keyStore.jks -storepass l3tm31n
+</span></span></code></pre></div><p>keystore.jks이름으로 키스토어가 저장되며, 해당 키스토어의 위치와 인증 정보를 구성 서버의 bootstrap.yml 파일에 명시해야 한다.</p>
+<p>키스토어가 어플리케이션 내부에 위치할 경우 bootstrap.yml 구성 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">encrypt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">key-store</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l">tacokey</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l">classpath:/keystore.jks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">13tm31n</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l">s3cr3t</span><span class="w">
+</span></span></span></code></pre></div><p>해당 설정을 통해 구성 서버가 키스토어를 사용하도록 구성할 수 있다.</p>
+<h3 id="암호화된-데이터-설정">암호화된 데이터 설정</h3>
+<p>구성 서버는 /encrypt 엔드포인트를 제공한다. 암호화될 데이터를 갖는 POST 요청을 /encrypt 엔드포인트에 하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8888/encrypt -d <span class="s2">&#34;비밀번호&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 암호화된 비밀번호가 출력된다.</span>
+</span></span></code></pre></div><p>POST 요청이 제출된 후 암호화된 값을 응답으로 받는다. 이 값을 이용하여 구성 파일에 붙여넣기 하면 된다.</p>
+<p>몽고 DB 비밀번호를 설정하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mongodb</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{cipher}출력된 비밀번호 넣기&#39;</span><span class="w">
+</span></span></span></code></pre></div><p>비밀번호 앞의 ‘{cipher}’는 <span class="red">해당 값이 암호화된 값</span>이라는 것을 구성 서버에 알려주는 역할을 수행한다.</p>
+<h3 id="복호화-해제">복호화 해제</h3>
+<p>구성 서버가 암호화된 속성의 값을 있는 그대로 제공하길 원한다면 다음과 같이 설정하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:10080/tacocloud/tacocloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">encrypt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></div><p>해당 속성을 사용하면 클라이언트에서 암호화된 속성 값을 받으므로 <span class="red">클라이언트가 복호화를 수행해야 한다.</span></p>
+<h3 id="vault-시작하기">Vault 시작하기</h3>
+<p>Vault는 보안 관리 도구로, <strong>보안 정보를 자체적으로 처리</strong>한다. Valut 명령어로 서버를 시작하고 보안 속성을 관리할 수 있다.<br/>
+개발 모드로 Vault 서버를 시작하는 명령어이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault server -dev -dev-root-token-id<span class="o">=</span>roottoken
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">VAULT_ADDR</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1::8200&#39;</span>
+</span></span><span class="line"><span class="cl">$ vault status
+</span></span><span class="line"><span class="cl">$ vault secrets disable secret
+</span></span><span class="line"><span class="cl">$ vault secrets <span class="nb">enable</span> -path<span class="o">=</span>secret kv
+</span></span></code></pre></div><p>개발 모드는 보안이 되지 않는 Vault 런타임이므로, 프로덕션 설정에서 사용하면 안된다. 각각의 명령어에 대한 설명은 다음과 같다.</p>
+<ol>
+<li>Vault 서버를 사용하기 위해서는 토큰을 제공해야 하는데, 여기서 설정한 <strong>루트 토큰</strong>은 <span class="ul">관리용 토큰</span>으로 <span class="red">보안 정보를 읽거나 쓰는 데도 사용할 수 있다.</span> 루트 토큰을 지정하지 않으면 Vault가 자동으로 생성한다.</li>
+<li>Vault 서버 위치를 알 수 있도록 VAULT_ADDR 환경변수를 지정한 명령어이다.</li>
+<li>이전의 두 명령어가 제대로 수행되어 Vault 서버가 실행중인지 검사하는 명령어이다.<br/>
+4, 5. 구성 서버와 연계되도록 구성 서버와 호환되는 secret라는 이름의 Vault 백엔드를 생성한다.</li>
+</ol>
+<h3 id="보안-데이터를-vault에-쓰기">보안 데이터를 Vault에 쓰기</h3>
+<p>몽고DB의 비밀번호를 Vault 서버에 저장하고 싶을 때는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault write secret/application spring.data.mongodb.password<span class="o">=</span>p3cr3t
+</span></span></code></pre></div><p>보안데이터 경로 앞의 secret/는 Vault 백엔드 서버를 나타내며, application은 보안 데이터의 경로를 나타낸다.</p>
+<p>저장된 구성 데이터를 확인하려면 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault <span class="nb">read</span> secret/application
+</span></span><span class="line"><span class="cl">key                                    value
+</span></span><span class="line"><span class="cl">---                                    -----
+</span></span><span class="line"><span class="cl">refresh_interval                       768h
+</span></span><span class="line"><span class="cl">spring.data.mongodb.password           s3cr3t
+</span></span></code></pre></div><p>지정된 경로에 보안 데이터를 쓸 경우 이전에 썼던 데이터를 <strong>덮어쓰기</strong> 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault write secret/application spring.data.mongodb.password<span class="o">=</span>p3cr3t <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    spring.data.mongodb.username<span class="o">=</span>tacocloud
+</span></span></code></pre></div><p>하나의 속성 지정 후 다른 속성을 지정한다면 데이터가 사라지기 때문에 이와 같이 <span class="red">두 속성 모두를 같이 써야 한다.</span></p>
+<h3 id="구성-서버에서-vault-백엔드-활성화">구성 서버에서 Vault 백엔드 활성화</h3>
+<p>구성 서버에서 Vault 서버를 추가할 때는 활성화 프로파일로 Vault를 추가한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">vault</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">git</span><span class="w">
+</span></span></span></code></pre></div><p>이 경우 보안에 민감한 구성 속성은 Vault에만 쓰고 그렇지 않은 구성 속성은 git을 사용하면 된다.</p>
+<p>구성 서버에서 Vault 기본값을 변경하는 코드이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:10080/tococloud/tacocloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">vault</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">vault.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8200</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">https</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span></code></pre></div><p>spring.cloud.config.server.vault 속성은 구성 서버에서 Vault에 대한 기본값을 변경할 수 있게 한다. <span class="red">order 속성은 Vault의 속성이 git의 속성보다 우선한다는 것을 나타낸다.</span> 기본적으로 구성 서버는 Vault 서버가 localhost의 8200 포트를 리스닝한다고 간주한다.</p>
+<p>Vault 서버에 요청을 보낼 때는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8888/application/default -H <span class="s2">&#34;X-config-Token: roottoken&#34;</span> <span class="p">|</span> jq
+</span></span></code></pre></div><p>Vault에 대한 모든 요청은 X-Config-Token 헤더를 포함해야 한다. 구성 서버 자체에 해당 토큰을 구성하는 대신, <strong>구성 서버 클라이언트가 구성 서버에 대한 모든 요청의 X-Config-Token 헤더에 토큰을 포함시켜야 한다.</strong><br/>
+<span class="red">이때는 토큰을 사용하지 않는 Git 속성일 경우에도 토큰이 누락되면 구성 서버에서 속성 제공을 거부한다.</span></p>
+<h3 id="구성-서버-클라이언트에-vault-토큰-생성">구성 서버 클라이언트에 Vault 토큰 생성</h3>
+<p>구성 서버 클라이언트 로컬 구성에 Vault 토큰을 설정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l">roottoken</span><span class="w">
+</span></span></span></code></pre></div><p>지정한 토큰 값을 구성 서버의 모든 요청에 포함하라고 구성 서버 클라이언트에게 알려준다.</p>
+<h3 id="특정-서비스에-보안-속성-지정">특정 서비스에 보안 속성 지정</h3>
+<p>application 경로의 보안 속성은 이름과 상관없이 모든 어플리케이션에 제공한다. 만일 특정한 어플리케이션에 보안 속성을 저장해야 한다면 application 대신 해당 어플리케이션 이름으로 교체하면 된다.</p>
+<p>ingredient-service인 어플리케이션에 특정된 보안 속성을 쓰는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault write secret/ingredient-service spring.data.mongodb.password<span class="o">=</span>p3cr3t
+</span></span></code></pre></div><p>특정 프로파일에 관련된 보안 속성을 쓰는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vault write secret/application,production spring.data.mongodb.password<span class="o">=</span>p3cr3t
+</span></span></code></pre></div><p>활성 프로파일이 production인 어플리케이션에만 제공하는 보안 속성을 쓰는 명령어이다.</p>
+<h2 id="구성-속성-리프레시">구성 속성 리프레시</h2>
+<hr>
+<blockquote>
+<p>클라우드 기반의 어플리케이션에서는 어플리케이션을 중단시키지 않고 실시간으로 구성 속성을 변경할 수 있어야 한다. 구성 속성을 리프레시하는 방법에는 두 가지 방법이 있다.</p>
+<ul>
+<li>수동식 : 클라이언트가 <strong>Actuator 엔드포인트를 활성화</strong>하여 해당 엔드포인트로 POST 요청 후 최근 구성을 가져오는 방식</li>
+<li>자동식 : <strong>레포지터리의 커밋 후크(commit hook)</strong> 가 모든 서비스의 리프레시를 촉발하는 방식</li>
+</ul>
+</blockquote>
+<p>수동식 리프레시는 서비스가 리프레시되는 시점을 정확히 제어할 수 있는 반면 마이크로서비스에 대해 개별적인 HTTP 요청이 수행되어야 한다.
+자동식 리프레시는 어플리케이션의 모든 마이크로서비스에 대해 즉시 변경 구성을 적용하는 반면, 구성 레포지터리에 커밋을 할 때 수행되므로 프로젝트에 따라 부담이 될 수 있다.</p>
+<h3 id="수동식-리프레시">수동식 리프레시</h3>
+<p>스프링부트 액추에이터는 런타임 파악 및 런타임 상태의 일부 제한적인 제어를 가능하게 한다. 어플리케이션이 구성 서버의 클라이언트로 활성화되면 자동-구성이 액추에이터 엔드포인트를 구성한다.</p>
+<p>엔드포인트를 사용하려면 액추에이터 스타터 의존성을 추가해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-actuator&#39;</span>
+</span></span></code></pre></div><p>스프링 Initializr 화면의 ‘액추에이터’ 체크박스를 선택해도 추가된다.
+<br/></p>
+<p><em>액추에이터가 활성화되면 /actuator/refresh에 대한 HTTP POST 요청을 보내면 언제든 구성 속성을 리프레시할 수 있다.</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8080/actuator/refresh -X POST
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="s2">&#34;config.client.version&#34;</span>, <span class="s2">&#34;greeting.message&#34;</span><span class="o">]</span>   <span class="c1"># 리프레시한 속성 정보가 응답 데이터로 반환</span>
+</span></span></code></pre></div><h3 id="자동식-리프레시">자동식 리프레시</h3>
+<p>모든 클라이언트에게 자동으로 구성 변경을 알려주려면 스프링 클라우드 버스를 사용한다.</p>
+<figure class="large"><img src="/images/spring-cloud-config/2.png"
+         alt="스프링 클라우드 버스를 함께 사용하여 구성 서버는 각 어플리케이션에 변경 사항을 전파한다."/><figcaption>
+            <p>스프링 클라우드 버스를 함께 사용하여 구성 서버는 각 어플리케이션에 변경 사항을 전파한다.</p>
+        </figcaption>
+</figure>
+
+<ol>
+<li>웹훅이 Git 레포지터리에 대한 변경이 생겼음을 구성 서버에 알려준다.</li>
+<li>구성 서버는 RabbitMQ나 카프카같은 메시지 브로커를 통해 변경 관련 메시지를 전파한다.</li>
+<li>알림을 구독하는 구성 서버 클라이언트는 새로운 속성 값으로 리프레시한다.
+<br/><br/></li>
+</ol>
+<p><strong>구성 서버에서 웹 훅 처리하기</strong></p>
+<p>웹 훅을 처리하려면 구성 서버의 /monitor 엔드포인트를 활성화해야 한다. 이를 위해서는 스프링 클라우드 구성 모니터링 의존성을 구성 서버 프로젝트 빌드에 추가하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-config-monitor&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// rabbitMQ 사용시
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-starter-stream-rabbit&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 카프카 사용시
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-starter-stream-kafka&#39;</span>
+</span></span></code></pre></div><p>구성 서버가 변경 알림을 전파하는 수단도 가져야 하므로 스프링 클라우드 스트림 의존성도 추가해준다. 스프링 클라우드 스트림을 이용하여 RabbitMQ나 카프카를 통해 통신하는 서비스들을 생성할 수 있다.
+<br/><br/></p>
+<p>메시지 브로커의 포트나 인증 정보 등을 변경했다면 구성 서버 속성을 설정해야 한다.</p>
+<p><strong>RabbitMQ의 경우</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">rabbit.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5672</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">s3cr3t</span><span class="w">
+</span></span></span></code></pre></div><p><strong>kafka의 경우</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9093</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9094</span><span class="w">
+</span></span></span></code></pre></div><p>이와 같이 속성을 변경해주면 된다.</p>
+<h3 id="구성-서버-클라이언트에서-자동-리프레시-활성화하기">구성 서버 클라이언트에서 자동 리프레시 활성화하기</h3>
+<p>구성 서버 클라이언트에 속성을 자동 리프레시하려면 스프링 클라우드 버스 스타터를 빌드에 추가해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="c1">// rabbitMQ 사용시
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-bus-amqp&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// kafka 사용시
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-bus-kafka&#39;</span>
+</span></span></code></pre></div><p>스프링 클라우드 버스 스타터가 추가되면 어플리케이션이 시작될 때 자동-구성이 수행되어 rabbitMQ나 카프카에 자동으로 바인딩된다.</p>
+
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-cloud-config/">[스프링인액션] 클라우드 구성 관리</a></li>
+
+  
+    <li><a href="/post/spring/spring-microservice/">[스프링인액션] 마이크로서비스 이해</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactive-data-persistence/">[스프링인액션] 리액티브 데이터 퍼시스턴스</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactive-api/">[스프링인액션] 리액티브 API 개발</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactor/">[스프링인액션] 리액터 개요</a></li>
+
+  
+    <li><a href="/post/spring/spring-integration/">[스프링인액션] 스프링 통합 플로우 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-kafka/">[스프링인액션] 비동기 메시지 전송하기 - Kafka</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-microservice/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 마이크로서비스 이해</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-reactive-data-persistence/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 리액티브 데이터 퍼시스턴스</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
