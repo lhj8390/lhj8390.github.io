@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Nanum Barun Gothic';
+  font-style: normal;
+  /* font-weight: 700;/ */
+  src: url(../font/NanumBarunGothic.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'AppleSDGothic';
+  font-style: normal;
+  src: url(../font/AppleSDGothicNeoM.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  /* font-weight: 400; */
+  src: url(//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/woff2/FiraCode-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Consolas';
+  src: local('Consolas'),
+      url(../font/Consolas.woff2) format('woff2'),
+      url(../font/Consolas.woff2) format('woff'),
+      url(../font/Consolas.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
