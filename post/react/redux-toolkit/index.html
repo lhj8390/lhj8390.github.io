@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Redux Toolkit(RTK) 개념 및 예제 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      Redux Toolkit 예제와 기존 Redux와 Redux Toolkit(RTK)의 차이점에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.d12ab4ff99fbf448597cbde3de1913862f7475545201954bff9210e5c00d0033.css"
+      integrity="sha256-0Sq0/5n79EhZfL3j3hkThi90dVRSAZVL/5IQ5cANADM="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
+    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/react/redux-toolkit/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Redux Toolkit(RTK) 개념 및 예제"/>
+<meta name="twitter:description" content="Redux Toolkit 예제와 기존 Redux와 Redux Toolkit(RTK)의 차이점에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Redux Toolkit(RTK) 개념 및 예제" />
+<meta property="og:description" content="Redux Toolkit 예제와 기존 Redux와 Redux Toolkit(RTK)의 차이점에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/react/redux-toolkit/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-09T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Redux Toolkit(RTK) 개념 및 예제",
+        "headline": "Redux Toolkit(RTK) 개념 및 예제",
+        "alternativeHeadline": "",
+        "description": "
+      Redux Toolkit 예제와 기존 Redux와 Redux Toolkit(RTK)의 차이점에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/react\/redux-toolkit\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-11-09T00:00:00.00Z",
+        "datePublished": "2022-11-09T00:00:00.00Z",
+        "dateModified": "2022-11-09T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/react\/redux-toolkit\/",
+        "wordCount" : "1014",
+        "genre" : [ 
+      
+      "frontend"
+
+    ],
+        "keywords" : [ 
+      
+      "frontend"
+
+    
+      
+        ,
+
+      
+      "redux"
+
+    
+      
+        ,
+
+      
+      "react.js"
+
+    
+      
+        ,
+
+      
+      "typescript"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(17)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(3)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(17)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(3)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#redux-toolkitrtk이란">Redux Toolkit(RTK)이란?</a></li>
+    <li><a href="#store-설정">Store 설정</a>
+      <ul>
+        <li><a href="#configurestore-사용">configureStore 사용</a></li>
+      </ul>
+    </li>
+    <li><a href="#action-reducer-생성">action, reducer 생성</a>
+      <ul>
+        <li><a href="#createslice-사용">createSlice 사용</a></li>
+      </ul>
+    </li>
+    <li><a href="#thunks-작성하기">Thunks 작성하기</a>
+      <ul>
+        <li><a href="#createasyncthunk-사용">createAsyncThunk 사용</a></li>
+      </ul>
+    </li>
+    <li><a href="#typed-hooks-정의">Typed hooks 정의</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Redux Toolkit(RTK) 개념 및 예제</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                9/11/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 5분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>Redux는 상태 관리 라이브러리로 전역 상태를 효과적으로 관리하는데 도움을 준다. <br/>
+하지만 Redux를 제대로 활용하기 위해서는 많은 라이브러리를 추가적으로 설치해야 하는 불편함이 존재한다. 또한 많은 보일러플레이트 코드를 요구한다. <br/>
+Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>Redux Toolkit(RTK)</strong></span> 를 만들었고, 특히 TypeScript를 통해 Redux를 개발할 경우 공식적으로 Redux Toolkit을 사용할 것을 추천하고 있다.</p>
+</blockquote>
+<h2 id="redux-toolkitrtk이란">Redux Toolkit(RTK)이란?</h2>
+<hr>
+<p>Redux 개발 시 표준 로직이 되기 위해 고안된 패키지로, Redux 앱을 구축하는 데 필수적인 패키지와 기능이 포함되어 있다. action 생성, reducer 생성, store 설정, thunk 등을 생성할 때 코드를 쉽게 작성할 수 있는 함수를 제공한다.</p>
+<p><strong>포함되는 기본 함수들</strong></p>
+<ul>
+<li>configureStore() : createStore를 랩핑하여 store 설정을 단순화한다.</li>
+<li>createReducer() : reducer를 생성하는 함수로, immer 라이브러리를 자동으로 사용하여 더 간단한 상태 변경이 가능하다.</li>
+<li>createAction() : action 타입과 action 생성자를 한번에 생성하도록 도와준다.</li>
+<li>createSlice() : reducer와 함께 그에 맞는 action 생성자와 action 타입을 자동으로 생성해준다.</li>
+<li>createAsyncThunk() : 비동기 action을 생성할 때 사용한다.</li>
+</ul>
+<aside>
+💡 Redux Toolkit은 Redux만 다루기 때문에 useSelector 나 useDispatch와 같은 React 구성 요소가 Redux store와 통신하기 위해서는 React-Redux 패키지가 필요하다.<br/>
+</aside>
+<h2 id="store-설정">Store 설정</h2>
+<hr>
+<p>기존 Redux에서 Store를 설정할 때는 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">combineReducers</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// reducer를 결합하는 rootReducer 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">rootReducer</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">test</span>: <span class="kt">testReducer</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">rootReducer</span><span class="p">;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">composeWithDevTools</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-devtools-extension&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="kr">from</span> <span class="s1">&#39;redux-thunk&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/rootReducer&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">composedEnhancer</span> <span class="o">=</span> <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// rootReducer와 enhancer를 결합하여 store 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">rootReducer</span><span class="p">,</span> <span class="nx">composedEnhancer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">store</span><span class="p">;</span>
+</span></span></code></pre></div><ol>
+<li>combineReducers를 통해 reducers들을 하나로 묶는 rootReducer를 만든다.</li>
+<li>middleware와 devtools를 하나로 합친 enhancer를 만든다.</li>
+<li>createStore를 이용하여 store를 생성한다.</li>
+</ol>
+<p>store를 설정할 때 이와 같이 필요한 패키지들이 많은 것을 알 수 있다. 하지만 Redux Toolkit을 사용하면 간편하게 strore를 설정할 수 있다.</p>
+<h3 id="configurestore-사용">configureStore 사용</h3>
+<p>Redux Toolkit의 <strong>configureStore</strong>는 store 설정을 단순화하도록 도와준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">configureStore</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@reduxjs/toolkit&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createLogger</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-logger&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">loggers</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">reducer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">test</span>: <span class="kt">testReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">devTools</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>configureStore를 사용하면 다음과 같은 이점이 있다.</p>
+<ul>
+<li>reducer들을 rootReducer로 자동으로 변환해준다.</li>
+<li>thunk 미들웨어와 같은 기본적인 미들웨어를 자동적으로 추가한다.</li>
+<li>redux DevTools를 자동으로 연결해준다.</li>
+</ul>
+<h2 id="action-reducer-생성">action, reducer 생성</h2>
+<hr>
+<p>기존 Redux에서 action과 reducer를 생성할 때는 디렉터리를 따로 분리하여 action과 reducer 파일을 별도로 생성하였다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">TEST_FAILED</span> <span class="o">=</span> <span class="s1">&#39;TEST_FAILED&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 액션 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">testFailed</span><span class="o">:</span> <span class="p">(</span><span class="nx">error</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">,</span> <span class="nx">payload</span>: <span class="kt">error</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 액션 타입 지정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;</span> <span class="o">|</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testFailed</span><span class="p">&gt;;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 초기 상태 지정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">initialState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 리듀서 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">TestAction</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="kr">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_SUCCESS</span>:
+</span></span><span class="line"><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">true</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_FAILED</span>:
+</span></span><span class="line"><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span> <span class="nx">test</span>: <span class="kt">action.payload</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testReducer</span><span class="p">;</span>
+</span></span></code></pre></div><p>어플리케이션의 크기가 커진다면 action, reducer 코드 자체의 볼륨도 커져 관리가 힘들어진다. 이를 해결하기 위해 Redux Toolkit이 대안으로 내놓은 함수가 바로 <code>createSlice</code> 이다.</p>
+<h3 id="createslice-사용">createSlice 사용</h3>
+<p>createSlice는 세가지 옵션 필드가 존재한다.</p>
+<ul>
+<li>name : action이 생성될 때 접두사로 사용되는 문자열</li>
+<li>initialState : reducer의 초기 상태값</li>
+<li>reducers : 특정 액션이 수행될 경우에 대한 reducer 설정</li>
+</ul>
+<p>createSlice를 사용한 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="c1">// 초기 상태값에 대한 인터페이스 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">TestState</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 초기 상태값 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">defaultState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// crateSlice를 활용하여 action, reducer 생성
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">reducer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testSuccess</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testFailed</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">];</span>
+</span></span></code></pre></div><p>reducer를 작성할 때 사용하던 switch 문 대신 객체 내부의 함수로 reducer를 작성할 수 있다. 또한 작성한 리듀서에 따라 액션이 자동으로 생성되어 별도로 액션을 생성할 필요가 없다.</p>
+<h2 id="thunks-작성하기">Thunks 작성하기</h2>
+<hr>
+<p>기존 비동기 API를 처리하기 위해서는 Redux-thunk 미들웨어를 사용하여 다음과 같은 코드로 구현했었다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 액션 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 액션 타입 지정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="p">()</span><span class="o">:</span> <span class="nx">ThunkAction</span><span class="o">&lt;</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;,</span> <span class="nx">RootState</span><span class="p">,</span> <span class="p">{},</span> <span class="nx">TestAction</span> <span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 3초 뒤 실행
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">dispatch</span>: <span class="kt">ThunkDispatch</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">TestAction</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">           <span class="nx">dispatch</span><span class="p">(</span><span class="nx">testActions</span><span class="p">.</span><span class="nx">testSuccess</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>ThunkAction의 타입을 계속 신경써줘야 하기 때문에 상당히 번거롭다. <span class="gray">(ThunkAction의 Custom 함수를 만들어 쓰는 방법도 있다.)</span> 이럴 경우, <code>createAsyncThunk</code> 를 사용하면 비동기 thunk 액션을 손쉽게 구현할 수 있다.</p>
+<h3 id="createasyncthunk-사용">createAsyncThunk 사용</h3>
+<p>createAsyncThunk를 두 가지 옵션 필드가 존재한다.</p>
+<ul>
+<li>action이 생성될 때 접두사로 사용되는 문자열</li>
+<li>Promise를 반환하는 콜백 함수</li>
+</ul>
+<p>createAsyncThunk 를 사용한 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">testAsync</span> <span class="o">=</span> <span class="nx">createAsyncThunk</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">,</span>    <span class="c1">// TEST_SUCCESS
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;data&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>createAsyncThunk는 3개의 action creator와 action type를 생성하게 된다. 생성되는 action creator와 action type는 다음과 같다.</p>
+<ul>
+<li>testAsync.pending : TEST_SUCCESS/pending</li>
+<li>testAsync.fulfilled : TEST_SUCCESS/fulfilled</li>
+<li>testAsync.rejected : TEST_SUCCESS/rejected</li>
+</ul>
+<p>단, 이렇게 만든 action은 createSlice 외부에서 구현한 것이기 때문에 createSlice의 <strong>extraReducers</strong> 옵션을 활용해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">extraReducers</span><span class="o">:</span> <span class="p">(</span><span class="nx">builder</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">builder</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">pending</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">statue</span> <span class="o">=</span> <span class="s2">&#34;loading&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">})</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">rejected</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">})</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>이제 createAsyncThunk로 생성한 액션으로부터 상태 값을 받아서 처리할 수 있다.</p>
+<h2 id="typed-hooks-정의">Typed hooks 정의</h2>
+<hr>
+<p>Typed hooks를 정의해야 하는 이유는 다음과 같다.</p>
+<ol>
+<li>useSelector를 사용할 경우 state 타입을 계속 지정해줘야 하는 번거로움이 존재한다.</li>
+<li>useDispatch를 사용할 경우 기본 Dispatch는 thunk 타입을 인식하지 못하기 때문에 thunk를 dispatch하기 위해서는 thunk 미들웨어가 추가된 store에서 dispatch를 직접 받아와야 한다.</li>
+</ol>
+<p>configureStore로 만들어진 store를 이용해 RootState와 AppDispatch를 선언한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">reducer</span>: <span class="kt">rootReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">RootState</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">store.getState</span><span class="p">&gt;;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">;</span>
+</span></span></code></pre></div><p>store에서 정의된 RootState와 AppDispatch를 사용하여 Typed hooks를 정의한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">TypedUseSelectorHook</span><span class="p">,</span> <span class="nx">useDispatch</span><span class="p">,</span> <span class="nx">useSelector</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">RootState</span><span class="p">,</span> <span class="nx">AppDispatch</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./store&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppDispatch</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="nx">useDispatch</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppSelector</span>: <span class="kt">TypedUseSelectorHook</span><span class="p">&lt;</span><span class="nt">RootState</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">useSelector</span>
+</span></span></code></pre></div><p>이제 useSelector와 useDispatch 대신 useAppDispatch와 useAppSelector를 사용하면 된다.</p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/react/redux-thunk/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Redux-Thunk를 이용한 상태관리</p></a>
+      
+
+    
+      
+        <a href="/post/react/react-webpack/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>React Webpack 개념 및 설정</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/frontend/">frontend</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/frontend/">frontend</a><a class="tag" href="/tags/redux/">redux</a><a class="tag" href="/tags/react%2ejs/">react.js</a><a class="tag" href="/tags/typescript/">typescript</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
