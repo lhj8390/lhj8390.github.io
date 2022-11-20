@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [스프링인액션] 스프링 액추에이터 사용 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      스프링 액추에이터를 사용하는 방법에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.c88988148f3eda1edec89866b501d4e37a05fd34065ea67ddf8e36b93357c1aa.css"
+      integrity="sha256-yImIFI8&#43;2h7eyJhmtQHU43oF/TQGXqZ93442uTNXwao="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
+    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-actuator/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[스프링인액션] 스프링 액추에이터 사용"/>
+<meta name="twitter:description" content="스프링 액추에이터를 사용하는 방법에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="[스프링인액션] 스프링 액추에이터 사용" />
+<meta property="og:description" content="스프링 액추에이터를 사용하는 방법에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-actuator/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-11-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-20T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[스프링인액션] 스프링 액추에이터 사용",
+        "headline": "[스프링인액션] 스프링 액추에이터 사용",
+        "alternativeHeadline": "",
+        "description": "
+      스프링 액추에이터를 사용하는 방법에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-actuator\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-11-20T00:00:00.00Z",
+        "datePublished": "2022-11-20T00:00:00.00Z",
+        "dateModified": "2022-11-20T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-actuator\/",
+        "wordCount" : "1503",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    
+      
+        ,
+
+      
+      "spring actuator"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(18)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(3)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(18)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(3)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/spring-basic.png" alt="Thumbnail image" />
+      </div>
+
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#액추에이터란">액추에이터란?</a>
+      <ul>
+        <li><a href="#액추에이터-활성화">액추에이터 활성화</a></li>
+        <li><a href="#액추에이터-설정">액추에이터 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#액추에이터-엔드포인트-사용">액추에이터 엔드포인트 사용</a>
+      <ul>
+        <li><a href="#어플리케이션-기본-정보-받기">어플리케이션 기본 정보 받기</a></li>
+        <li><a href="#구성-상세-정보-보기">구성 상세 정보 보기</a></li>
+        <li><a href="#어플리케이션-모니터링">어플리케이션 모니터링</a></li>
+      </ul>
+    </li>
+    <li><a href="#액추에이터-커스터마이징">액추에이터 커스터마이징</a>
+      <ul>
+        <li><a href="#info-엔드포인트-커스터마이징">/info 엔드포인트 커스터마이징</a></li>
+        <li><a href="#건강-지표-커스터마이징">건강 지표 커스터마이징</a></li>
+        <li><a href="#커스텀-메트릭-등록">커스텀 메트릭 등록</a></li>
+        <li><a href="#커스텀-엔드포인트-생성">커스텀 엔드포인트 생성</a></li>
+      </ul>
+    </li>
+    <li><a href="#액추에이터-보안-처리">액추에이터 보안 처리</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[스프링인액션] 스프링 액추에이터 사용</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                20/11/2022
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 8분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>스프링인액션 16장을 읽고 스프링 액추에이터 사용법에 대해 정리하였다.</p>
+<ul>
+<li>스프링 액추에이터 활성화</li>
+<li>액추에이터 엔드포인트</li>
+<li>액추에이터 커스터마이징</li>
+<li>액추에이터 보안 처리</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="액추에이터란">액추에이터란?</h2>
+<hr>
+<blockquote>
+<p>엑추에이터는 <strong>스프링 부트 어플리케이션의 모니터링이나 메트릭</strong>(metric)과 같은 기능을 HTTP와 JMX 엔드포인트를 통해 제공한다. 즉, 실행 중인 어플리케이션의 내부를 볼 수 있고 어플리케이션의 작동 방법을 제어할 수 있다.</p>
+</blockquote>
+<p>액추에이터가 노출하는 엔드포인트를 사용하여 얻을 수 있는 <strong>정보</strong>는 다음과 같다.</p>
+<ul>
+<li>어플리케이션 환경에서 사용할 수 있는 구성 속성</li>
+<li>패키지의 로깅 레벨</li>
+<li>어플리케이션이 사용 중인 메모리</li>
+<li>엔드포인트가 받은 요청 횟수</li>
+<li>어플리케이션 건강 상태 정보</li>
+</ul>
+<h3 id="액추에이터-활성화">액추에이터 활성화</h3>
+<p>액추에이터를 활성화하려면 액추에이터의 스타터 의존성을 추가해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-actuator&#39;</span>
+</span></span></code></pre></div><p>액추에이터를 활성화하면 어플리케이션에서 액추에이터 엔드포인트를 사용할 수 있다.<br/><br/>
+액추에이터 엔드포인트 정보는 아래의 링크에서 확인할 수 있다.</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/production-ready-endpoints.html">https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/production-ready-endpoints.html</a></p>
+<h3 id="액추에이터-설정">액추에이터 설정</h3>
+<p><strong>액추에이터 기본 경로 구성</strong></p>
+<p>모든 엔드포인트 경로에는 /actuator가 앞에 붙는데, 기본 경로를 변경한 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">base-path</span><span class="p">:</span><span class="w"> </span><span class="l">/management</span><span class="w">
+</span></span></span></code></pre></div><p>기본 경로는 application.yml 파일의 <code>management.endpoint.web.base-path</code> 속성에서 변경할 수 있다. 이후 건강 상태 정보를 얻고 싶다면 /management/health GET 요청을 보내면 된다.</p>
+<p><strong>액추에이터 엔드포인트 활성화/비활성화</strong></p>
+<p>엔드포인트 노출 여부를 제어하는 코드이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, beans, conditions</span><span class="w">
+</span></span></span></code></pre></div><p>application.yml 파일의 <code>management.endpoint.web.exclude</code> 와  <code>management.endpoint.web.include</code> 속성을 통해 노출을 원하는 엔드포인트를 지정할 수 있다. exclude는 제외할 엔드포인트, include는 노출할 엔드포인트를 의미한다.</p>
+<aside>
+💡 include 속성에는 <span class="red">와일드카드(*)</span>를 통해 모든 엔드포인트를 노출하도록 설정할 수 있다.<br/>
+</aside>
+<h2 id="액추에이터-엔드포인트-사용">액추에이터 엔드포인트 사용</h2>
+<hr>
+<blockquote>
+<p>엑추에이터의 HTTP 엔드포인트를 제공하는데, REST API 혹은 curl 명령어를 통해 엔드포인트를 사용할 수 있다. <strong>/actuator GET 요청</strong>을 하면 엔드포인트의 HATEOAS 링크를 응답으로 받을 수 있다.</p>
+</blockquote>
+<h3 id="어플리케이션-기본-정보-받기">어플리케이션 기본 정보 받기</h3>
+<p>/info 엔드포인트를 통해 어플리케이션의 기본 정보를 알 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">info</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">contact</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l">email@email.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="m">010-0000-0000</span><span class="w">
+</span></span></span></code></pre></div><p>/info 엔드포인트가 반환하는 정보를 설정하는 방법은 여러가지가 있는데, 위에서 설정한 바와 같이 application.yml 에서 <span class="red"><strong>info</strong>로 시작하는 구성 속성을 설정</span>하는 방법도 있다.</p>
+<p>/health 엔드포인트를 통해 어플리케이션의 건강 상태 정보를 얻을 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8080/actuator/health
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;status&#34;</span>: <span class="s2">&#34;UP&#34;</span><span class="o">}</span>
+</span></span></code></pre></div><p>기본적으로 종합된 건강 상태 정보를 가지는 JSON 응답을 받는다.</p>
+<p><strong>건강 상태를 나타내는 각 지표</strong></p>
+<ul>
+<li>모든 건강 지표가 UP → 건강 상태 UP</li>
+<li>하나의 건강 지표가 DOWN → 건강 상태 DOWN</li>
+<li>하나의 건강 지표가 OUT_OF_SERVICE → 건강 상태 OUT_OF_SERVICE</li>
+<li>하나의 건강 지표가 UNKNOWN → 종합 건강 상태에서 고려되지 않음</li>
+</ul>
+<br/>
+건강 지표를 자세히 보려면 다음과 같이 구성한다.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">health</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">show-details</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span></code></pre></div><p><code>management.endpoint.health.show-details</code> 속성을 <strong>always</strong>로 설정하면 모든 건강 지표를 자세히 볼 수 있다. 기본값은 never이고, when-authorized로 설정 시 클라이언트가 인가된 경우에 한해 상세한 내역을 보여준다.</p>
+<h3 id="구성-상세-정보-보기">구성 상세 정보 보기</h3>
+<p><strong>빈 연결 정보</strong>를 얻으려면 /beans 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;beans&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ingredientsController&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;aliases&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;singleton&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="s2">&#34;file [...ingredients/IngredientsController.class]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ingredientRepository&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>해당 어플리케이션 컨텍스트에 있는 모든 빈의 상세 정보를 포함한다.</p>
+<p><strong>자동-구성 내역</strong>을 알기 위해서는 /conditions 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;positiveMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;MongoDataAutoConfiguration#mongoTemplate&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;condition&#34;</span><span class="p">:</span> <span class="s2">&#34;OnBeanCondition&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;negativeMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;DispatcherServletAutoConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;notMatched&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;matched&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unconditionalClasses&#34;</span><span class="p">:</span> <span class="p">[]</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>positiveMatches</strong>에서는 자동 구성이 된 빈들을 보여주고, <strong>negativeMatches</strong>에서는 자동 구성이 어떠한 이유때문에 실패했다는 것을 보여준다. <strong>unconditionalClassess</strong>는 조건 없이 자동 구성된 빈을 보여준다.</p>
+<p><strong>환경 속성과 구성 속성</strong>을 보기 위해서는 /env 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;activeProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;development&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;propertySources&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;systemEnvironment&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;PATH&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/bin:/bin:/usr/sbin:/sbin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;System Environment Property \&#34;PATH\&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;applicationConfig: [classpath:/application.yml]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;spring.application.name&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;ingredient-service&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:3:11&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;server.port&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">8081</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:9:9&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></div><p>activeProfiles 필드를 통해 활성화된 프로파일을 알 수 있고, propertySources 필드에서는 스프링 어플리케이션 환경의 속성 근원들을 포함한다.</p>
+<aside>
+💡 /env 엔드포인트에 POST 요청을 하면 실행 중인 어플리케이션의 속성을 설정할 수 있다.<br/>
+</aside>
+<br/>
+<p><strong>모든 HTTP 요청 핸들러 내역을 확인</strong>하려면 /mappings 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;dispatcherHandlers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;webHandler&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;predicate&#34;</span><span class="p">:</span> <span class="s2">&#34;{[/ingredients],methods=[GET]}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;handler&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;details&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;handlerMethod&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;allIngredients&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;descriptor&#34;</span><span class="p">:</span> <span class="s2">&#34;()Lreactor/core/publisher/Flux;&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;handlerFunction&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;requestMappingConditions&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;consumes&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;methods&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;GET&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;patterns&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;/ingredients&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;produces&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="s2">&#34;application-1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>특정 API의 요청이 어떤 메서드에서 처리되는지 확인할 수 있다.</p>
+<p><strong>로깅 레벨을 관리</strong>하려면 /loggers 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;levels&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;OFF&#34;</span><span class="p">,</span> <span class="s2">&#34;ERROR&#34;</span><span class="p">,</span> <span class="s2">&#34;WARN&#34;</span><span class="p">,</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="s2">&#34;DEBUG&#34;</span><span class="p">,</span> <span class="s2">&#34;TRACE&#34;</span> <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;loggers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ROOT&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;org.springframework.web&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>응답의 맨 앞에는 모든 로깅 레벨 내역이 노출되고, 각 패키지에 대한 로깅 상세 내역을 볼 수 있다. configuredLevel 속성은 명시적으로 구성된 로깅 레벨이고, effectiveLevel 속성은 상속받을 수 있는 유효 로깅 레벨이다.</p>
+<aside>
+💡 /loggers 엔드포인트에 POST 요청을 하면 로깅 레벨을 변경할 수 있다.<br/>
+</aside>
+<h3 id="어플리케이션-모니터링">어플리케이션 모니터링</h3>
+<p><strong>메모리나 스레드 문제를 찾는 gzip 형태의 HPROF 힙 덤프 파일을 다운로드</strong>하려면 /heapdump 엔드포인트를 사용한다.<br/></p>
+<p><strong>어플리케이션이 처리한 최근 100개의 요청</strong>을 알기 위해서는 /httptrace 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;traces&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-04T23:41:24.494Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;principal&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;session&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:8081/ingredients&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;localhost:8081&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;curl/7.54.0&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;*/*&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;remoteAddress&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>스프링 부트 Admin에서는 이런 HTTP 추적 정보를 실시간으로 캡쳐하여 그래프로 보여준다.</p>
+<p><strong>현재 실행 중인 스레드에 관한 스냅샷을 확인</strong>하려면 /threaddump 엔드포인트를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;threadName&#34;</span><span class="p">:</span> <span class="s2">&#34;reactor-http-nio-8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;threadId&#34;</span><span class="p">:</span> <span class="mi">338</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;blockedTime&#34;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;blockedCount&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;stackTrace&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;methodName&#34;</span><span class="p">:</span> <span class="s2">&#34;kevent0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;fileName&#34;</span><span class="p">:</span> <span class="s2">&#34;KQueueArrayWrapper.java&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;lineNumber&#34;</span><span class="p">:</span> <span class="mi">-2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;sun.nio.ch.KQueueArrayWrapper&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;nativeMethod&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">     <span class="p">},</span>
+</span></span><span class="line"><span class="cl">   <span class="p">],</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockedMonitors&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockedSynchronizers&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockInfo&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>요청 시점의 스레드 활동에 대한 스냅샷을 확인할 수 있다. 스레드 덤프에는 스레드의 블로킹과 록킹 상태의 관련 상세 정보와 스택 기록 등을 보여준다.</p>
+<p><strong>메모리, 프로세스, 가비지 컬렉션, HTTP 요청 관련 메트릭</strong>을 확인하려면 /metrics 엔드포인트를 사용한다.<br/>
+/metrics/{메트릭 종류} 형식으로 사용한다면 해당 종류의 메트릭에 대한 상세한 정보를 알 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8081/actuator/metrics/http.server.requests?tag<span class="o">=</span>status:404<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>uri:/**
+</span></span><span class="line"><span class="cl"><span class="o">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;http.server.requests&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;measurements&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;COUNT&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">30</span> <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;TOTAL_TIME&#34;</span>, <span class="s2">&#34;value&#34;</span>: 0.519791548 <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;MAX&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">0</span> <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;availableTags&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;exception&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;ResponseStatusException&#34;</span> <span class="o">]</span> <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;method&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;GET&#34;</span> <span class="o">]</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>tag에 stauts, url 태그 이름과 값을 지정하면 HTTP 404 응답을 받은 /** 경로에 대한 메트릭을 볼 수 있다.</p>
+<h2 id="액추에이터-커스터마이징">액추에이터 커스터마이징</h2>
+<hr>
+<blockquote>
+<p>어플리케이션의 특정 요구를 충족하기 위해 커스터마이징을 할 수 있다.</p>
+</blockquote>
+<h3 id="info-엔드포인트-커스터마이징">/info 엔드포인트 커스터마이징</h3>
+<p><span class="red">InfoContributor라는 인터페이스</span>를 사용하여 /info 엔드포인트 응답에 커스텀 데이터를 추가할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCountInfoContributor</span> <span class="kd">implements</span> <span class="n">InfoContributor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCountInfoContributor</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">tacoRepo</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contribute</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">tacoCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">tacoMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tacoMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;count&#34;</span><span class="o">,</span> <span class="n">tacoCount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">builder</span><span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;taco-stats&#34;</span><span class="o">,</span> <span class="n">tacoMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>InfoContributor 인터페이스 구현체인 contribute() 메서드 <strong>내부에 인자로 받은 Builder 객체의 withDetails() 를 호출하여</strong> /info 엔드포인트에 정보를 추가할 수 있다.</p>
+<p><strong>빌드 정보를 주입</strong>하려면 build.gradle 파일에 다음과 같이 추가한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">springBoot</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">buildInfo</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>Git 커밋 정보를 주입</strong>하려면 build.gradle 파일에 다음과 같이 추가한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">id</span> <span class="s2">&#34;com.gorylenko.gradle-git-properties&#34;</span> <span class="n">version</span> <span class="s2">&#34;1.4.17&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이 정보는 프로젝트가 빌드된 시점의 간단한 코드 상태만을 나타낸다. <br/>
+자세한 정보를 얻기 위해서는 <code>management.info.git.mode</code> 속성을 full로 설정하면 된다. - <span class="gray"><em>application.yml</em></span></p>
+<h3 id="건강-지표-커스터마이징">건강 지표 커스터마이징</h3>
+<p><span class="red">HealthIndicator 인터페이스</span>를 사용하여 <em>스프링 부트에서 지원하지 않는</em> 외부 시스템의 건강 상태 정보를 제공할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WackoHealthIndicator</span> <span class="kd">implements</span> <span class="n">HealthIndicator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">Health</span> <span class="nf">health</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="n">12</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;out of service&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                   <span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;hour&#34;</span><span class="o">,</span> <span class="n">hour</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">.</span><span class="na">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;break 10% of the time&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                   <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">up</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>외부 시스템에 원격 호출을 한 후 받은 응답 기준으로 건강 상태를 결정하는 방식으로 유용하게 사용할 수 있다.</p>
+<h3 id="커스텀-메트릭-등록">커스텀 메트릭 등록</h3>
+<p>Micrometer의 <span class="red">MeterRegistry</span>를 사용하여 스프링 부트 어플리케이션에서 메트릭을 발행할 수 있다. 메트릭을 발행할 때는 필요한 곳에 MeterRegistry를 주입하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoMetrics</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">TacoMetrics</span><span class="o">(</span><span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">meterRegistry</span> <span class="o">=</span> <span class="n">meterRegistry</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">taco</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span> <span class="o">=</span> <span class="n">taco</span><span class="o">.</span><span class="na">getIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span> <span class="o">:</span> <span class="n">ingredients</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">meterRegistry</span><span class="o">.</span><span class="na">counter</span><span class="o">(</span><span class="s">&#34;tacocloud&#34;</span><span class="o">,</span> <span class="s">&#34;ingredient&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">increment</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>스프링 데이터 클래스인 AbstractRepositoryEventListener의 서브 클래스를 생성하고 <span class="red">새로운 객체가 저장될 때마다 호출되도록 onAfterCreate() 메서드를 오버라이딩한다.</span></p>
+<h3 id="커스텀-엔드포인트-생성">커스텀 엔드포인트 생성</h3>
+<p>액추에이터 앤드포인트를 지정하려면 <strong>@EndPoint</strong> 어노테이션을 사용한다. 또한 @GetMapping, @PostMapping 대신 @ReadOperation, @WriteOperation, @DeleteOperation 어노테이션이 지정된 메서드로 정의된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="n">notes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@ReadOperation</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">notes</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@WriteOperation</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">addNote</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">notes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Note</span><span class="o">(</span><span class="n">text</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@DeleteOperation</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">deleteNote</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">notes</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">notes</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Getter</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Date</span> <span class="n">time</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Getter</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">text</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>쓰기 오퍼레이션으로 데이터를 제출하고, 읽기 오퍼레이션으로 데이터를 읽을 수 있으며, 삭제 오퍼레이션으로 데이터를 삭제할 수 있다. enableByDefault=true로 지정했기 때문에 해당 엔드포인트를 구성 속성에서 활성화하지 않아도 된다.</p>
+<p>엔드포인트를 <strong>HTTP 엔드포인트로만 제한</strong>하고 싶다면 @WebEndPoint 어노테이션을 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@WebEndpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="액추에이터-보안-처리">액추에이터 보안 처리</h2>
+<hr>
+<blockquote>
+<p>권한을 갖는 클라이언트만 엔드포인트를 사용하게 하기 위해서는 스프링 시큐리티를 사용해서 액추에이터의 보안을 처리해야 한다.</p>
+</blockquote>
+<p>액추에이터 엔드포인트의 공통 기본 경로인 /actuator 경로에 대한 보안을 추가하려면 다음과 같이 설정한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/actuator/**&#34;</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>ROLE_ADMIN 권한을 가지는 사용자만 액추에이터 엔드포인트를 사용할 수 있다.</p>
+<p><strong>엔드포인트 경로를 구성 속성에서 변경했다면</strong> <span class="red">EndpointRequest 클래스</span>를 통해 변경된 경로를 알 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><code>EndpointRequest.toAnyEndpoint()</code> 메서드는 액추에이터 엔드포인트와 일치하는 요청 경로 모음을 반환한다. <br/>
+<strong>일부 엔드포인트를 제외</strong>하고 싶으면 excluding() 메서드를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">().</span><span class="na">excluding</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br/>
+<p><strong>일부 액추에이터 엔드포인트에만 보안을 적용</strong>하고 싶으면 to() 메서드를 호출한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
+
+
+<h3>Posts in this Series</h3>
+<ul>
+  
+    <li><a href="/post/spring/spring-actuator/">[스프링인액션] 스프링 액추에이터 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-circuit-breaker/">[스프링인액션] 실패와 지연 처리</a></li>
+
+  
+    <li><a href="/post/spring/spring-cloud-config/">[스프링인액션] 클라우드 구성 관리</a></li>
+
+  
+    <li><a href="/post/spring/spring-microservice/">[스프링인액션] 마이크로서비스 이해</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactive-data-persistence/">[스프링인액션] 리액티브 데이터 퍼시스턴스</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactive-api/">[스프링인액션] 리액티브 API 개발</a></li>
+
+  
+    <li><a href="/post/spring/spring-reactor/">[스프링인액션] 리액터 개요</a></li>
+
+  
+    <li><a href="/post/spring/spring-integration/">[스프링인액션] 스프링 통합 플로우 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-kafka/">[스프링인액션] 비동기 메시지 전송하기 - Kafka</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-rabbitmq/">[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</a></li>
+
+  
+    <li><a href="/post/spring/spring-messaging-jms/">[스프링인액션] 비동기 메시지 전송하기 - JMS</a></li>
+
+  
+    <li><a href="/post/spring/spring-use-restapi/">[스프링인액션] REST API 사용하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-add-restapi/">[스프링인액션] REST API 생성하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-config/">[스프링인액션] 구성 속성 사용</a></li>
+
+  
+    <li><a href="/post/spring/spring-security/">[스프링인액션] 스프링 시큐리티</a></li>
+
+  
+    <li><a href="/post/spring/spring-db/">[스프링인액션] 데이터로 작업하기</a></li>
+
+  
+    <li><a href="/post/spring/spring-basic/">[스프링인액션] 스프링 초기 설정</a></li>
+
+  
+</ul>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-circuit-breaker/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 실패와 지연 처리</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-security-jwt/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Spring Security &#43; JWT 인증</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a><a class="tag" href="/tags/spring-actuator/">spring actuator</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
