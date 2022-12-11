@@ -6,7 +6,18 @@
     <description>Recent content in frontend on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 09 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React - JWT를 활용한 API 인증(with Axios)</title>
+      <link>https://lhj8390.github.io/post/react/react-authorized-jwt-with-axios/</link>
+      <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react/react-authorized-jwt-with-axios/</guid>
+      
+        <description>React axios를 사용해서 API 호출 시 JWT 인증을 수행하는 방법에 대해 기록한다.</description>
+      
+    </item>
+    
     <item>
       <title>Redux Toolkit(RTK) 개념 및 예제</title>
       <link>https://lhj8390.github.io/post/react/redux-toolkit/</link>
