@@ -8,7 +8,7 @@
   <title>
     
       
-        [스프링인액션] 구성 속성 사용 |
+        [스프링인액션] JMX로 스프링 모니터링 |
 
       
       lhj8390
@@ -23,7 +23,7 @@
   <meta
     name="description"
     content="
-      스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.
+      JMX 클라이언트를 사용하여 이벤트를 모니터링하는 방법에 대해 설명한다.
 
 
     "
@@ -72,7 +72,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-config/" />
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-jmx/" />
 
   
   
@@ -107,18 +107,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="[스프링인액션] 구성 속성 사용"/>
-<meta name="twitter:description" content="스프링에서 구성 속성을 사용하는 방법에 대해 설명한다."/>
+<meta name="twitter:title" content="[스프링인액션] JMX로 스프링 모니터링"/>
+<meta name="twitter:description" content="JMX 클라이언트를 사용하여 이벤트를 모니터링하는 방법에 대해 설명한다."/>
 
 
 
   
-  <meta property="og:title" content="[스프링인액션] 구성 속성 사용" />
-<meta property="og:description" content="스프링에서 구성 속성을 사용하는 방법에 대해 설명한다." />
+  <meta property="og:title" content="[스프링인액션] JMX로 스프링 모니터링" />
+<meta property="og:description" content="JMX 클라이언트를 사용하여 이벤트를 모니터링하는 방법에 대해 설명한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-config/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-07-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-07-20T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-jmx/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-12-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-12-14T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
 
 
 
@@ -133,11 +133,11 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "post",
-        "name": "[스프링인액션] 구성 속성 사용",
-        "headline": "[스프링인액션] 구성 속성 사용",
+        "name": "[스프링인액션] JMX로 스프링 모니터링",
+        "headline": "[스프링인액션] JMX로 스프링 모니터링",
         "alternativeHeadline": "",
         "description": "
-      스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.
+      JMX 클라이언트를 사용하여 이벤트를 모니터링하는 방법에 대해 설명한다.
 
 
     ",
@@ -145,7 +145,7 @@
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-config\/"
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-jmx\/"
         },
         "author" : {
             "@type": "Person",
@@ -164,9 +164,9 @@
             "name": "lhj8390"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-07-20T00:00:00.00Z",
-        "datePublished": "2022-07-20T00:00:00.00Z",
-        "dateModified": "2022-07-20T00:00:00.00Z",
+        "dateCreated": "2022-12-14T00:00:00.00Z",
+        "datePublished": "2022-12-14T00:00:00.00Z",
+        "dateModified": "2022-12-14T00:00:00.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "lhj8390",
@@ -188,8 +188,8 @@
       ]
 
     ,
-        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-config\/",
-        "wordCount" : "539",
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-jmx\/",
+        "wordCount" : "321",
         "genre" : [ 
       
       "Framework"
@@ -631,19 +631,11 @@
       <h3>Table of Contents</h3>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#개요">개요</a></li>
-    <li><a href="#스프링의-구성">스프링의 구성</a>
+    <li><a href="#mbeans-사용하기">MBeans 사용하기</a>
       <ul>
-        <li><a href="#데이터-소스-구성하기">데이터 소스 구성하기</a></li>
-        <li><a href="#내장-서버-구성하기">내장 서버 구성하기</a></li>
-        <li><a href="#로깅-구성하기">로깅 구성하기</a></li>
-      </ul>
-    </li>
-    <li><a href="#프로파일-설정하기">프로파일 설정하기</a>
-      <ul>
-        <li><a href="#프로파일-속성-정의">프로파일 속성 정의</a></li>
-        <li><a href="#프로파일-활성화">프로파일 활성화</a></li>
-        <li><a href="#빈-생성하기">빈 생성하기</a></li>
+        <li><a href="#노출되는-엔드포인트-설정">노출되는 엔드포인트 설정</a></li>
+        <li><a href="#mbenas-생성">MBenas 생성</a></li>
+        <li><a href="#알림-전송">알림 전송</a></li>
       </ul>
     </li>
   </ul>
@@ -651,14 +643,14 @@
     </div>
     
     <div class="post__content detail">
-      <h1>[스프링인액션] 구성 속성 사용</h1>
+      <h1>[스프링인액션] JMX로 스프링 모니터링</h1>
       
         <ul class="post__meta">
           <li class="post__meta-item">
             <em class="fas fa-calendar-day post__meta-icon"></em>
             <span class="post__meta-text"
               >
-                20/7/2022
+                14/12/2022
 
 
               
@@ -666,146 +658,91 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">읽는 시간 3분</span>
+            <span class="post__meta-text">읽는 시간 2분</span>
           </li>
         </ul>
 
-      <h2 id="개요">개요</h2>
+      <blockquote>
+<p>스프링인액션 18장을 읽고 스프링 모니터링에 대해 정리하였다.</p>
+<ul>
+<li>액추에이터 엔드포인트 MBeans 사용하기</li>
+<li>스프링 빈을 MBeans로 노출</li>
+<li>알림 발행(전송)하기</li>
+</ul>
+<p>에 대해 작성하였다.</p>
+</blockquote>
+<h2 id="mbeans-사용하기">MBeans 사용하기</h2>
 <hr>
 <blockquote>
-<p>스프링인액션 5장을 읽고 스프링 부트 구성 속성에 대해 작성해본다.</p>
-<ul>
-<li>자동-구성되는 빈 조정하기</li>
-<li>구성 속성을 애플리케이션 컴포넌트에 적용하기</li>
-<li>스프링 프로파일 사용하기</li>
-</ul>
-<p>에 대해 알 수 있다.</p>
+<p>자바 어플리케이션을 모니터링하고 관리하는 표준 방법으로 JMX(Java Management Extensions)가 존재한다. JMX 클라이언트는 MBeans(managed beans) 라는 컴포넌트를 노출함으로써 오퍼레이션 호출, 속성 검사, MBeans의 이벤트 모니터링을 수행한다.</p>
 </blockquote>
-<h2 id="스프링의-구성">스프링의 구성</h2>
-<hr>
-<p>스프링 구성에는 두 가지 형태가 존재한다.</p>
-<ul>
-<li>빈 연결 : 스프링 애플리케이션 컨텍스트에서 빈으로 생성되는 애플리케이션 컴포넌트 및 상호 간에 주입되는 방법을 선언하는 구성</li>
-<li>속성 주입 : 스프링 애플리케이션 컨텍스트에서 빈의 속성 값을 설정하는 구성</li>
-</ul>
-<aside>
-💡 스프링에서 자바 기반 구성을 사용하고 있다면 <strong>@Bean</strong> 애노테이션을 통해 빈의 인스턴스를 생성하고 속성 값도 설정한다.<br/>
-</aside>
-<h3 id="데이터-소스-구성하기">데이터 소스 구성하기</h3>
-<p>스프링 부트에서 구성 속성을 통해 간단히 데이터베이스의 URL과 인증을 구성할 수 있다.
-<br/><br/>
-MySQL 데이터베이스를 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.jdbc.Driver</span><span class="w">
-</span></span></span></code></pre></div><p>이 DataSource 빈을 자동-구성할 때 스프링 부트가 이 속성을 연결 데이터로 사용한다.
-<br/><br/>
-데이터베이스를 초기화하는 SQL 스크립트를 실행해야 할 경우 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">schema</span><span class="p">:</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">order-schema.sql</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredient-schema.sql</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredients.sql</span><span class="w">
-</span></span></span></code></pre></div><h3 id="내장-서버-구성하기">내장 서버 구성하기</h3>
-<p>스프링 부트는 자체적으로 톰캣 내장 서버가 존재한다. 이 내장 서버도 구성 속성을 사용해 구성할 수 있다.
-<br/><br/>
-포트를 무작위로 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span></span></span></code></pre></div><p>server 포트를 0으로 설정한다면 내장 서버가 0번 포트로 시작하지 않고 사용 가능한 포트로 무작위로 선택하여 실행된다.<br/>
-해당 구성을 통해 (1)<span class="ul">자동화된(동적) 테스트를 실행</span>하거나, (2) <span class="ul">마이크로서비스를 이용</span>할 때 유용하다.
-<br/><br/>
-내장 서버의 HTTS를 활성화시키는 방법이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ssl</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store</span><span class="p">:</span><span class="w"> </span><span class="l">file:///path/to/mykeys/jks</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
-</span></span></span></code></pre></div><p>ssl.key-store : 키스토어 파일이 생성된 경로로 설정 (파일 시스템: <code>file://</code>, JAR 파일: <code>classpath:</code>)<br/>
-ssl.key-store-password, ssl.key-password : 키스토어를 생성할 때 지정했던 비밀번호 설정</p>
-<h3 id="로깅-구성하기">로깅 구성하기</h3>
-<p>스프링 부트는 logback.xml 파일을 생성하지 않고 로그 구성을 변경할 수 있다.<br/><br/></p>
-<p>로그를 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
-</span></span></span></code></pre></div><p>루트의 로깅 수준은 WARN으로 하되, 스프링 시큐리티의 로그는 DEBUG 수준으로 설정한다는 의미이다.<br/><br/></p>
-<p>로그들을 logging.log 파일에 저장하도록 설정할 경우 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/logs/</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l">logging.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
-</span></span></span></code></pre></div><p>애플리케이션이 /var/logs/ 경로에 대해 권한을 가지고 있다면 로그 항목들이 해당 경로에 저장된다.</p>
-<h2 id="프로파일-설정하기">프로파일 설정하기</h2>
-<hr>
-<p>애플리케이션이 서로 다른 런타임 환경에 배포될 때에는 구성 명세가 달라진다.<br/>
-프로파일을 이용해서 환경에 따라 서로 다른 빈, 구성 클래스, 구성 속성들이 적용, 무시되도록 설정할 수 있다.</p>
-<h3 id="프로파일-속성-정의">프로파일 속성 정의</h3>
-<p>프로파일에 특정한 속성을 정의하는 방법은 두 가지가 존재한다.</p>
-<ol>
-<li>
-<p>특정 환경의 속성들만 포함하는 또다른 .yml 파일이나 .properties 파일을 생성한다.<br/>
-※ 파일 이름은 application-{파일이름}.yml 이런 식의 규칙을 따라야 한다.</p>
-</li>
-<li>
-<p>공통으로 적용되는 기본 속성과 함께 프로파일 특정 속성을 .yml 에 지정할 수 있다.</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">prod</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
-</span></span></span></code></pre></div><p>3개의 하이픈(—-)을 통해 yml 파일을 두 부분으로 구분짓는다.<br/>
-첫번째 부분은 공통 영역, 두 번째 부분은 prod 프로파일만 적용되는 부분이다.</p>
-<h3 id="프로파일-활성화">프로파일 활성화</h3>
-<p>프로파일은 기본적으로 다음과 같이 활성화할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>-<span class="l">dev</span><span class="w">
-</span></span></span></code></pre></div><p>하지만 이처럼 구성할 경우 해당 프로파일이 기본 프로파일로 지정되어 프로덕션 환경과 개발 속성을 분리할 수 없게 된다.</p>
-<p>이를 해결하기 위해서는 다음과 같이 명령행 인자로 활성화 프로파일을 설정할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">% java -jar app.jar --spring.profiles.active<span class="o">=</span>prod
-</span></span></code></pre></div><p>이 명령어를 통해 기본 프로파일 속성(dev)보다 더 높은 우선순위를 부여받을 수 있게 된다.</p>
-<h3 id="빈-생성하기">빈 생성하기</h3>
-<p>빈은 활성화되는 프로파일과는 무관하게 생성되지만 특정 프로파일이 활성화될 때만 생성되어야 하는 빈들이 존재한다.<br/>
-이 경우에는 @Profile 어노테이션을 활용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;dev&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">CommandLineRunner</span> <span class="nf">dataLoader</span><span class="o">(</span><span class="n">IngredientRepository</span> <span class="n">repo</span><span class="o">,</span> <span class="n">serRepository</span> <span class="n">userRepo</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">                                     <span class="n">PasswordEncoder</span> <span class="n">encoder</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+<p>/heapdump를 제외한 모든 엑추에이터 엔드포인트는 MBeans로 노출되어 있다. 따라서 어떤 JMX 클라이언트를 사용해도 액추에이터 엔드포인트 MBeans와 연결할 수 있다. MBeans는 HTTP 처럼 명시적으로 포함시키지 않아도 기본적으로 노출된다.</p>
+<h3 id="노출되는-엔드포인트-설정">노출되는 엔드포인트 설정</h3>
+<p>application.yml 설정 파일에 노출하거나 제외할 엔드포인트를 설정하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">jmx</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, bean, conditions</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="l">env, metrics</span><span class="w">
+</span></span></span></code></pre></div><p>노출할 때는 <span class="red">include</span> 설정을, 노출에서 제외할 때는 <span class="red">exclude</span> 를 설정한다.</p>
+<h3 id="mbenas-생성">MBenas 생성</h3>
+<p>빈 클래스에 @ManagedResource 어노테이션을 지정하고, 메서드에는 @ManagedOperation, 속성에는 @ManagedAttribute만 지정해주면 어떤 빈도 JMX MBeans로 쉽게 노출할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ManagedResource</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCounter</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">initialCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicLong</span><span class="o">(</span><span class="n">initialCount</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counter</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@ManagedAttribute</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">getTacoCount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@ManagedOperation</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>해당 빈은 데이터를 내장 데이터베이스에 로드할 때 사용하는 것으로, 개발환경에서는 필요하지만 프로덕션 환경에서는 불필요하다.<br/>
-따라서 이 메서드에 @Profile을 지정하여 개발 환경에서만 실행되도록 설정하였다.<br/><br/></p>
-<p>여러가지 Profile을 지정할 경우에는 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">({</span><span class="s">&#34;dev&#34;</span><span class="o">,</span> <span class="s">&#34;qa&#34;</span><span class="o">})</span>
-</span></span></code></pre></div><br/>
-특정 Profile을 제외할 경우에는 다음과 같다.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;!prod&#34;</span><span class="o">)</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>클래스 인스턴스에 @ManagedResource 를 지정하여 이 빈이 MBeans도 된다는 것을 나타낸다. @ManagedAttribute로 지정한 getTacoCount() 메서드는 MBeans 속성으로 노출되고, @ManagedOperation 으로 지정한 increment() 메서드는 MBeans 오퍼레이션으로 노출된다.</p>
+<h3 id="알림-전송">알림 전송</h3>
+<p>기본적으로 MBeans 오퍼레이션과 속성은 pull 방식을 사용하므로 MBeans 값이 변경되더라도 자동으로 알려주지 않는다. 그러나 <span class="red">스프링의 NotificationPublisher를 사용하여</span> MBeans는 JMX 클라이언트에 알림을 push 할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ManagedResource</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="kd">implements</span> <span class="n">NotificationPublisherAware</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNotificationPublisher</span><span class="o">(</span><span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">np</span> <span class="o">=</span> <span class="n">np</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@ManagedOperation</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">before</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">after</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">((</span><span class="n">after</span> <span class="o">/</span> <span class="n">100</span><span class="o">)</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">before</span> <span class="o">/</span> <span class="n">100</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Notification</span> <span class="n">notification</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Notification</span><span class="o">(</span><span class="s">&#34;taco.count&#34;</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="n">before</span><span class="o">,</span> <span class="n">after</span> <span class="o">+</span> <span class="s">&#34;th taco created!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">np</span><span class="o">.</span><span class="na">sendNotification</span><span class="o">(</span><span class="n">notification</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">after</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>MBeans가 알림을 발행하려면 NotificationPublisherAware 인터페이스의 setNotificationPublisher() 메서드를 구현하면 된다. 위의 예시는 NotificationPublisherAware 인터페이스를 구현하고, 주입된 NotificationPublisher를 사용하여 100개의 객체가 생성될 때마다 알림을 전송하는 코드이다.</p>
+
 
 
 <h3>Posts in this Series</h3>
@@ -875,12 +812,12 @@ ssl.key-store-password, ssl.key-password : 키스토어를 생성할 때 지정�
   <div class="related--list">
     
       
-        <a href="/post/spring/spring-jmx/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] JMX로 스프링 모니터링</p></a>
+        <a href="/post/spring/spring-boot-admin-basic/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] 스프링 관리</p></a>
       
 
     
       
-        <a href="/post/spring/spring-boot-admin-basic/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 스프링 관리</p></a>
+        <a href="/post/spring/spring-actuator/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 스프링 액추에이터 사용</p></a>
       
 
     
