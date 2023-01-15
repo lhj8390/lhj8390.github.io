@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        영속성 컨텍스트(persistence context)의 개념 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      JPA에서 영속성 컨텍스트(persistence context)의 개념을 정리한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
+      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
+    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/spring/spring-persistence-context/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="영속성 컨텍스트(persistence context)의 개념"/>
+<meta name="twitter:description" content="JPA에서 영속성 컨텍스트(persistence context)의 개념을 정리한다."/>
+
+
+
+  
+  <meta property="og:title" content="영속성 컨텍스트(persistence context)의 개념" />
+<meta property="og:description" content="JPA에서 영속성 컨텍스트(persistence context)의 개념을 정리한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/spring/spring-persistence-context/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-01-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-01-15T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "영속성 컨텍스트(persistence context)의 개념",
+        "headline": "영속성 컨텍스트(persistence context)의 개념",
+        "alternativeHeadline": "",
+        "description": "
+      JPA에서 영속성 컨텍스트(persistence context)의 개념을 정리한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/spring\/spring-persistence-context\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-01-15T00:00:00.00Z",
+        "datePublished": "2023-01-15T00:00:00.00Z",
+        "dateModified": "2023-01-15T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-persistence-context\/",
+        "wordCount" : "462",
+        "genre" : [ 
+      
+      "Framework"
+
+    ],
+        "keywords" : [ 
+      
+      "spring"
+
+    
+      
+        ,
+
+      
+      "web"
+
+    
+      
+        ,
+
+      
+      "java"
+
+    
+      
+        ,
+
+      
+      "spring boot"
+
+    
+      
+        ,
+
+      
+      "JPA"
+
+    
+      
+        ,
+
+      
+      "persistence context"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/framework" class="">
+          
+            <i class="fa-solid fa-cube"></i>
+          
+          Framework 
+          <span>(21)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class=" watched ">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/frontend" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Frontend 
+          <span>(4)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/react.js" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React.Js
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-cube"></i>
+            
+            Framework 
+            <span>(21)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class=" watched ">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Frontend 
+            <span>(4)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/react.js" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#entitymanagerfactory와-entitymanager">EntityManagerFactory와 EntityManager</a></li>
+    <li><a href="#영속성-컨텍스트">영속성 컨텍스트</a></li>
+    <li><a href="#엔티티의-생성주기">엔티티의 생성주기</a>
+      <ul>
+        <li><a href="#비영속">비영속</a></li>
+        <li><a href="#영속">영속</a></li>
+        <li><a href="#준영속-삭제">준영속, 삭제</a></li>
+      </ul>
+    </li>
+    <li><a href="#영속성-컨텍스트의-특징">영속성 컨텍스트의 특징</a></li>
+    <li><a href="#영속성-컨텍스트의-이점">영속성 컨텍스트의 이점</a></li>
+    <li><a href="#flush">flush</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>영속성 컨텍스트(persistence Context)의 개념</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                15/1/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="entitymanagerfactory와-entitymanager">EntityManagerFactory와 EntityManager</h2>
+<hr>
+<blockquote>
+<p>EntityManagerFactory는 고객의 요청이 올 때마다 (스레드가 하나 생성될 때마다) EntityManager를 생성한다.  EntityManager는 내부적으로 DB connection pool을 사용해서 DB에 접근한다.</p>
+</blockquote>
+<p>EntityManagerFactory는 애플리케이션이 로딩되는 시점에 데이터베이스 당 딱 하나만 생성한다.<br/>
+EntityManager는 실제 트랜잭션 단위가 수행될 때마다 생성되고, 클라이언트의 요청이 들어올 때 생성했다가 요청이 끝나면 닫는다. → <span class="red">스레드 간에 공유를 하면 안된다.</span></p>
+<h2 id="영속성-컨텍스트">영속성 컨텍스트</h2>
+<hr>
+<blockquote>
+<p>JPA를 이해하는데 가장 중요한 용어 - “<em><span class="gray">엔티티를 영구 저장하는 환경</em></span>”<br/>
+영속성 컨텍스트는 논리적인 개념으로 엔티티 매니저를 통해 영속성 컨텍스트에 접근 가능하다.</p>
+</blockquote>
+<p>엔티티 매니저로 Entity를 저장하거나 조회하면 엔티티 매니저는 영속성 컨텍스트에 엔티리를 보관하고 관리한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">EntityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+</span></span></code></pre></div><p>persist() 메소드는 엔티티 매니저를 사용해서 Entity를 영속성 컨텍스트 안에 저장한다.</p>
+<h2 id="엔티티의-생성주기">엔티티의 생성주기</h2>
+<figure class="small"><img src="/images/spring-persistence-context/1.png"/>
+</figure>
+
+<ul>
+<li>비영속 (new/transient) : 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태</li>
+<li>영속 (managed) : 영속성 컨텍스트에 관리되는 상태</li>
+<li>준영속 (detached) : 영속성 컨텍스트에 저장되었다가 분리된 상태</li>
+<li>삭제 (removed) : 삭제된 상태</li>
+</ul>
+<h3 id="비영속">비영속</h3>
+<blockquote>
+<p>순수한 객체 상태이며 아직 저장하지 않은 상태 → 영속성 컨텍스트나 데이터베이스와는 관련 없음.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 객체를 실행한 상태
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Member</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">member</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">&#34;member1&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">member</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;회원1&#34;</span><span class="o">);</span>
+</span></span></code></pre></div><h3 id="영속">영속</h3>
+<blockquote>
+<p>영속성 컨텍스트에 의해 관리되는 상태.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">begin</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//객체를 저장한 상태(영속)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</span></span></code></pre></div><h3 id="준영속-삭제">준영속, 삭제</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">em</span><span class="o">.</span><span class="na">detach</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//객체를 삭제한 상태(삭제)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</span></span></code></pre></div><p><strong>준영속</strong> : 영속 상태의 엔티티가 영속성 컨텍스트에서 분리</p>
+<ul>
+<li>영속성 컨텍스트가 제공하는 기능을 사용하지 못한다.</li>
+<li>식별자 값을 가지고 있다. - 한번 영속 상태였으므로</li>
+<li>지연 로딩을 할 수 없다.</li>
+</ul>
+<p><strong>삭제</strong> : 엔티티를 영속성 컨텍스트와 데이터베이스에서 삭제</p>
+<p><strong>준영속 상태로 만드는 방법</strong></p>
+<ul>
+<li><code>em.detach(entity)</code> : 특정 엔티티만 준영속 상태로 전환</li>
+<li><code>em.clear()</code> : 영속성 컨텍스트를 완전 초기화</li>
+<li><code>em.close()</code> : 영속성 컨텍스트를 종</li>
+</ul>
+<h2 id="영속성-컨텍스트의-특징">영속성 컨텍스트의 특징</h2>
+<hr>
+<ul>
+<li>식별자 값 : 영속성 컨텍스트는 엔티티를 식별자 값으로 구분한다. (식별자 값이 없으면 예외 발생)</li>
+<li>데이터베이스 저장 : 트랜잭션을 커밋하는 순간 영속성 컨텍스트에 저장된 엔티티를 데이터베이스에 반영</li>
+</ul>
+<h2 id="영속성-컨텍스트의-이점">영속성 컨텍스트의 이점</h2>
+<hr>
+<ul>
+<li>
+<p>1차 캐시에서 조회 : 영속 컨텍스트에서 1차 캐시에서 데이터를 찾은 후 없으면 DB에서 조회한다.</p>
+</li>
+<li>
+<p>영속 엔티티의 동일성(identity) 보장<br/>
+: 반복 가능한 읽기 등급의 트랜잭션 격리 수준을 DB가 아닌 애플리케이션 차원에서 제공</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">a</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&#34;member1&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Member</span> <span class="n">b</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&#34;member1&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//동일성 비교 true
+</span></span></span></code></pre></div></li>
+<li>
+<p>엔티티를 등록할 때 트랜잭션을 지원하는 쓰기 지연 (transactional write-behind)<br/>
+: 커밋을 하는 순간에 INSERT가 가능, 버퍼링 기능</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">EntityTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//엔티티 매니저는 데이터 변경시 트랜잭션을 시작해야 한다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">transaction</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span> <span class="c1">// [트랜잭션] 시작
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberA</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//여기까지 INSERT SQL을 데이터베이스에 보내지 않는다.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//커밋하는 순간 데이터베이스에 INSERT SQL을 보낸다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">transaction</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span> <span class="c1">// [트랜잭션] 커밋
+</span></span></span></code></pre></div></li>
+<li>
+<p>엔티티를 수정할 때 변경 감지(Dirty Checking)<br/>
+: commit 시 엔티티와 스냅샷(값을 읽어온 최초 시점)을 비교하여 UPDATE 쿼리를 생성한다. (JPA의 기본 전략은 엔티티의 모든 필드를 업데이트한다.)</p>
+</li>
+<li>
+<p>지연 로딩(Lazy Loading)</p>
+</li>
+</ul>
+<h2 id="flush">flush</h2>
+<hr>
+<blockquote>
+<p>영속성 컨텍스트의 변경 내용을 데이터베이스에 동기화한다.<br/>
+⚠️ flush를 실행한다고 해서 영속성 컨텍스트 내용을 지우지 않는다.<br/>
+트랜잭션이라는 작업 단위가 중요 - 커밋 직전에 동기화하면 된다.</p>
+</blockquote>
+<p>영속성 컨텍스트를 flush하려면 세가지 방법이 있다.</p>
+<ol>
+<li>em.flush() : 직접 호출 (거의 사용하지 않음)</li>
+<li>트랜잭션 commit : flush 자동 호출 - 트랜잭션만 commit하면 데이터베이스에 반영되지 않기 때문에 JPA는 자동으로 flush를 호출된다.</li>
+<li>JPQL 쿼리 실행 : flush 자동 호출</li>
+</ol>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/spring/spring-jmx/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[스프링인액션] JMX로 스프링 모니터링</p></a>
+      
+
+    
+      
+        <a href="/post/spring/spring-boot-admin-basic/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[스프링인액션] 스프링 관리</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/framework/">Framework</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/spring/">spring</a><a class="tag" href="/tags/web/">web</a><a class="tag" href="/tags/java/">java</a><a class="tag" href="/tags/spring-boot/">spring boot</a><a class="tag" href="/tags/jpa/">JPA</a><a class="tag" href="/tags/persistence-context/">persistence context</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
