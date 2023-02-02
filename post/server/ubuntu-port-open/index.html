@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -405,6 +405,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -552,6 +577,28 @@
           
           
         
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
       </div>
     </div>
     
@@ -663,10 +710,10 @@
 </ul>
 <h2 id="netcat-사용법">netcat 사용법</h2>
 <p><strong>netcat 설치</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ sudo apt-get install netcat
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl">$ sudo apt-get install netcat
 </span></span></code></pre></div><br/>
 <p><strong>netcat 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nc [-options] &lt;host-ip-adress&gt; &lt;port-number&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl">$ nc [-options] &lt;host-ip-adress&gt; &lt;port-number&gt;
 </span></span></code></pre></div><br/>
 <p><strong>주요 option</strong></p>
 <ul>
@@ -676,11 +723,11 @@
 </ul>
 <br/>
 <p><strong>example</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nc -zvw10 192.168.0.1 22
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl">$ nc -zvw10 192.168.0.1 22
 </span></span></code></pre></div><p>성공하면 <code>Connection to &lt;ip 주소&gt;&lt;port&gt; succeeded!</code> 가 표시된다.</p>
 <h2 id="nmap-사용법">nmap 사용법</h2>
 <p><strong>nmap 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nmap [-options] &lt;IP 또는 hostname&gt; -p &lt;port&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl">$ nmap [-options] &lt;IP 또는 hostname&gt; -p &lt;port&gt;
 </span></span></code></pre></div><br/>
 <p><strong>주요 옵션</strong></p>
 <ul>
@@ -688,7 +735,7 @@
 </ul>
 <br/>
 <p><strong>example</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nmap - v 192.168.0.1 -p 22
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl">$ nmap - v 192.168.0.1 -p 22
 </span></span></code></pre></div><ul>
 <li><strong>open</strong> : 스캔된 포트가 listen 상태</li>
 <li><strong>filtered</strong> : 방화벽이나 필터에 막혀 해당 포트의 open, close 여부를 알 수 없을 때</li>
@@ -697,7 +744,7 @@
 </ul>
 <h2 id="telnet-사용법">telnet 사용법</h2>
 <p><strong>telnet 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ telnet &lt;IP 또는 Hostname&gt; &lt;Port&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl">$ telnet &lt;IP 또는 Hostname&gt; &lt;Port&gt;
 </span></span></code></pre></div><ul>
 <li>
 <p><span class="red">telnet: Unable to connect to remote host: Connection refused</span><br/>

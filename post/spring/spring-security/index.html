@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-security\/",
-        "wordCount" : "1816",
+        "wordCount" : "2014",
         "genre" : [ 
       
       "Framework"
@@ -413,6 +413,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -560,6 +585,28 @@
           
           
         
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
       </div>
     </div>
     
@@ -696,7 +743,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">읽는 시간 9분</span>
+            <span class="post__meta-text">읽는 시간 10분</span>
           </li>
         </ul>
 
@@ -716,36 +763,36 @@
 <h2 id="스프링-시큐리티-구성하기">스프링 시큐리티 구성하기</h2>
 <hr>
 <h3 id="빌드-명세">빌드 명세</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-security&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.security:spring-security-test&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-security&#39;</span>
+</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="n">testImplementation</span> <span class="s1">&#39;org.springframework.security:spring-security-test&#39;</span>
 </span></span></code></pre></div><p>스프링 부트 보안 스타터 의존성을 추가하였다.</p>
 <h3 id="스프링-시큐리티-구성-클래스">스프링 시큐리티 구성 클래스</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@EnableWebSecurity</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">http</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1"> 1</a></span><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2"> 2</a></span><span class="cl"><span class="nd">@EnableWebSecurity</span>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4"> 4</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5"> 5</a></span><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6"> 6</a></span><span class="cl">        <span class="n">http</span>
+</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-11">11</a></span><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-1-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-12">12</a></span><span class="cl">        <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-1-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-13">13</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-1-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-14">14</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-1-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-15">15</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-1-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-16">16</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-17">17</a></span><span class="cl">        <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-1-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-18">18</a></span><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-19">19</a></span><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-20">20</a></span><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-21">21</a></span><span class="cl">            <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-1-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-22">22</a></span><span class="cl">            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-23">23</a></span><span class="cl">            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-24">24</a></span><span class="cl">            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-1-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-25">25</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-1-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-26">26</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>사용자의 HTTP 요청 경로에 대해 접근 제한과 같은 보안 처리를 원하는 대로 처리할 수 있게 도와준다.<br/>
 SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdaper의 서브 클래스이다.</p>
 <ul>
@@ -767,17 +814,17 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </blockquote>
 <h3 id="인메모리-사용자-스토어"><strong>인메모리 사용자 스토어</strong></h3>
 <p>user1, user2라는 사용자를 인메모리 사용자 스토어에 구성하는 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">&#34;user2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}password2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>inMemoryAuthentication() 메서드를 사용하여 보안 구성 자체에 사용자 정보를 직접 지정할 수 있다.</p>
 <ul>
 <li>withUser() : 사용자의 구성 시작</li>
@@ -787,14 +834,14 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </ul>
 <h3 id="jdbc-기반의-사용자-스토어"><strong>JDBC 기반의 사용자 스토어</strong></h3>
 <p>관계형 데이터베이스에 유지되는 사용자 정보를 스토어에 구성하는 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7">7</a></span><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>jdbcAuthentication() 메서드 호출과 함께 데이터베이스에 액세스할 수 있도록 DataSource를 설정하였다.<br/>
 스프링 시큐리티는 사전 지정된 데이터베이스 테이블이 존재하는데, 우리가 사용하고 싶은 데이터베이스를 커스터마이징할 수도 있다.</p>
 <p><span class="red">→ usersByUsernameQuery() 와 authoritiesByUsernameQuery() 메서드를 사용하여 사용자 정보와 권한 쿼리를 대체하였다.</span>
@@ -810,22 +857,22 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </aside>
 <h3 id="ldap-기반의-사용자-스토어"><strong>LDAP 기반의 사용자 스토어</strong></h3>
 <p>LDAP 인증의 간단한 구성방법에 대한 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1"> 1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3"> 3</a></span><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4"> 4</a></span><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5"> 5</a></span><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6"> 6</a></span><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-4-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-11">11</a></span><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-4-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-12">12</a></span><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-4-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-13">13</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-4-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-14">14</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
+</span></span><span class="line"><span class="ln" id="hl-4-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-15">15</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-4-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-16">16</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><strong>userSearchFilter()</strong> 와 <strong>groupSearchFilter()</strong> 메서드 : LDAP 기본 쿼리의 필터를 제공하기 위해 사용한다. 사용자와 그룹을 검색할 수 있다.<br/>
 <strong>userSearchBase()</strong> 와 <strong>groupSearchBase()</strong> 메서드 : 사용자와 그룹을 찾기 위한 기준점 쿼리를 지정할 수 있다. - <span class="gray it">루트로부터 검색하지 않고 사용자는 people 구성 단위(OU), 그룹은 groups 구성 단위부터 검색이 시작된다.</span></p>
 <h3 id="사용자-인증-커스터마이징"><strong>사용자 인증 커스터마이징</strong></h3>
@@ -833,53 +880,53 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 사용자 데이터를 구현하는 User 객체와 user 데이터를 넣는 repository를 만든 다음,  스프링 시큐리티 구성 내부에 UserDetailsService 구현체를 넘겨줘서 구현한다.</p>
 <br/>
 <p><strong>사용자 도메인 객체 정의</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Data</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span><span class="o">=</span><span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">UserDetails</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">street</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">city</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">state</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">zip</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span>
-</span></span><span class="line"><span class="cl">            <span class="n">GrantedAuthority</span><span class="o">&gt;</span> <span class="nf">getAuthorities</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span>
-</span></span><span class="line"><span class="cl">                <span class="n">SimpleGrantedAuthority</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1"> 1</a></span><span class="cl"><span class="nd">@Entity</span>
+</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2"> 2</a></span><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3"> 3</a></span><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span><span class="o">=</span><span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4"> 4</a></span><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5"> 5</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">UserDetails</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6"> 6</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7"> 7</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8"> 8</a></span><span class="cl">    <span class="nd">@Id</span>
+</span></span><span class="line"><span class="ln" id="hl-5-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-9"> 9</a></span><span class="cl">    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-5-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-10">10</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-11">11</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-12">12</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-13">13</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-14">14</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-15">15</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">street</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-16">16</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">city</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-17">17</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">state</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-18">18</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">zip</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-19">19</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-20">20</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-21">21</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-5-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-22">22</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span>
+</span></span><span class="line"><span class="ln" id="hl-5-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-23">23</a></span><span class="cl">            <span class="n">GrantedAuthority</span><span class="o">&gt;</span> <span class="nf">getAuthorities</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-24">24</a></span><span class="cl">        <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span>
+</span></span><span class="line"><span class="ln" id="hl-5-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-25">25</a></span><span class="cl">                <span class="n">SimpleGrantedAuthority</span><span class="o">(</span><span class="s">&#34;ROLE_USER&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln" id="hl-5-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-26">26</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-27">27</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-28">28</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-5-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-29">29</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-30">30</a></span><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-31"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-31">31</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-32"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-32">32</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-33"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-33">33</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-5-34"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-34">34</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-35"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-35">35</a></span><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-36"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-36">36</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-37"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-37">37</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-38"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-38">38</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-5-39"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-39">39</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-40"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-40">40</a></span><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-41"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-41">41</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-42"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-42">42</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-43"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-43">43</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-5-44"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-44">44</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-45"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-45">45</a></span><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-46"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-46">46</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-47"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-47">47</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>스프링 시큐리티에서 제공하는 UserDetails 인터페이스를 구현하였다. 이를 통해 User 클래스는 기본 사용자 정보를 프레임워크에게 제공할 수 있다.</p>
 <ul>
 <li>getAuthorities() : 사용자에게 부여된 권한을 저장한 컬렉션을 반환하는 메서드이다.</li>
@@ -887,42 +934,42 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 <br/><br/></li>
 </ul>
 <p><strong>사용자 명세 서비스 생성하기</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepositoryUserDetailsService</span> <span class="kd">implements</span> <span class="n">UserDetailsService</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">UserRepositoryUserDetailsService</span><span class="o">(</span><span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userRepo</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UsernameNotFoundException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">user</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UsernameNotFoundException</span><span class="o">(</span><span class="s">&#34;User &#39;&#34;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">&#34;&#39; not found&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1"> 1</a></span><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepositoryUserDetailsService</span> <span class="kd">implements</span> <span class="n">UserDetailsService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3"> 3</a></span><span class="cl">    <span class="kd">private</span> <span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4"> 4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5"> 5</a></span><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6"> 6</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">UserRepositoryUserDetailsService</span><span class="o">(</span><span class="n">UserRepository</span> <span class="n">userRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7"> 7</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">userRepo</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8"> 8</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9"> 9</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-6-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-10">10</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-6-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-11">11</a></span><span class="cl">    <span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UsernameNotFoundException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-12">12</a></span><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepo</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-6-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-13">13</a></span><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">user</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-14">14</a></span><span class="cl">            <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-6-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-15">15</a></span><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-16">16</a></span><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UsernameNotFoundException</span><span class="o">(</span><span class="s">&#34;User &#39;&#34;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">&#34;&#39; not found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-6-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-17">17</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-18">18</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>스프링 시큐리티에서 제공하는 UserDetailsService 인터페이스를 구현한 클래스이다.</p>
 <ul>
 <li>loadUserByUsername() : findByUsername() 에서 null을 반환하면 UsernameNotFoundException을 발생시키며 null이 아닌 경우 UserDetail의 구현체인 User 값이 반환된다. - <em>UserDetails 인터페이스에 User Entity 삽입</em>
 <br/><br/></li>
 </ul>
 <p><strong>스프링 시큐리티 구성하기</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Autowired</span>
-</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">UserDetailsService</span> <span class="n">userDetailsService</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">PasswordEncoder</span> <span class="nf">encoder</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">userDetailsService</span><span class="o">).</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">encoder</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1"> 1</a></span><span class="cl"><span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2"> 2</a></span><span class="cl"><span class="kd">private</span> <span class="n">UserDetailsService</span> <span class="n">userDetailsService</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3"> 3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4"> 4</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5"> 5</a></span><span class="cl"><span class="kd">public</span> <span class="n">PasswordEncoder</span> <span class="nf">encoder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6"> 6</a></span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7"> 7</a></span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8"> 8</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9"> 9</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-7-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-10">10</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-11">11</a></span><span class="cl">    <span class="n">auth</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">userDetailsService</span><span class="o">).</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">encoder</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-7-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-12">12</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li>userDetailsService() : SecurityConfig로 자동 주입된 UserDetailService 인스턴스를 인자로 전달하여 호출한다.</li>
 <li>passwordEncoder() : 데이터베이스에 비밀번호가 암호화되어 저장될 수 있도록 인코더를 구성한다.</li>
@@ -934,40 +981,40 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 <p>비밀번호를 데이터베이스에 저장할 때와 사용자가 입력한 비밀번호는 모두 같은 암호화 알고리즘을 사용해 인증을 수행한다.</p>
 </blockquote>
 <h3 id="passwordencoder-인터페이스-정의">PasswordEncoder 인터페이스 정의</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PasswordEncoder</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="cm">/**
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * rawPassword를 인코딩합니다. 일반적으로 좋은 인코딩 알고리즘은 
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 무작위로 생성된 8바이트 이상의 솔트와 결합된 SHA-1 이상의 해시를 적용합니다.
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
-</span></span><span class="line"><span class="cl">	<span class="n">String</span> <span class="nf">encode</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="cm">/**
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 저장소에서 가져온 인코딩된 암호가 인코딩된 후 제출된 원시 암호와 일치하는지 확인합니다. 
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 암호가 일치하면 true를 반환하고 일치하지 않으면 false를 반환합니다. 
-</span></span></span><span class="line"><span class="cl"><span class="cm">   	 * 저장된 암호 자체는 디코딩되지 않습니다.
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @param rawPassword - 인코딩 및 비교할 원시 암호
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @param encodedPassword - 스토리지에서 인코딩된 암호를 추출하여 비교
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 * @return true - 인코딩 후 원시 암호가 스토리지의 인코딩된 암호와 일치할 경우
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">,</span> <span class="n">String</span> <span class="n">encodedPassword</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PasswordEncoder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl"><span class="cm">	 * rawPassword를 인코딩합니다. 일반적으로 좋은 인코딩 알고리즘은 
+</span></span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl"><span class="cm">	 * 무작위로 생성된 8바이트 이상의 솔트와 결합된 SHA-1 이상의 해시를 적용합니다.
+</span></span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl">	<span class="n">String</span> <span class="nf">encode</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl"><span class="cm">	 * 저장소에서 가져온 인코딩된 암호가 인코딩된 후 제출된 원시 암호와 일치하는지 확인합니다. 
+</span></span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl"><span class="cm">	 * 암호가 일치하면 true를 반환하고 일치하지 않으면 false를 반환합니다. 
+</span></span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl"><span class="cm">   	 * 저장된 암호 자체는 디코딩되지 않습니다.
+</span></span></span><span class="line"><span class="ln" id="hl-8-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-13">13</a></span><span class="cl"><span class="cm">	 * @param rawPassword - 인코딩 및 비교할 원시 암호
+</span></span></span><span class="line"><span class="ln" id="hl-8-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-14">14</a></span><span class="cl"><span class="cm">	 * @param encodedPassword - 스토리지에서 인코딩된 암호를 추출하여 비교
+</span></span></span><span class="line"><span class="ln" id="hl-8-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-15">15</a></span><span class="cl"><span class="cm">	 * @return true - 인코딩 후 원시 암호가 스토리지의 인코딩된 암호와 일치할 경우
+</span></span></span><span class="line"><span class="ln" id="hl-8-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-16">16</a></span><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="ln" id="hl-8-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-17">17</a></span><span class="cl">	<span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">rawPassword</span><span class="o">,</span> <span class="n">String</span> <span class="n">encodedPassword</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-8-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-18">18</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-8-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-19">19</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li>encode : 패스워드를 암호화할 때 사용한다.</li>
 <li>matches : 사용자에게 입력받은 패스워드를 비교하고자 할 때 사용한다.</li>
 </ul>
 <h3 id="jdbc-기반-암호화">JDBC 기반 암호화</h3>
 <p>비밀번호를 암호화할 때는 아래와 같이 paswrdEncoder() 메소드를 호출하여 비밀번호 인코더를 지정한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">NoEncodingPasswordEncoder</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">jdbcAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl">        <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6">6</a></span><span class="cl">        <span class="o">.</span><span class="na">usersByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, password, enabled from users where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7">7</a></span><span class="cl">        <span class="o">.</span><span class="na">authoritiesByUsernameQuery</span><span class="o">(</span><span class="s">&#34;select username, authority from authorities where username=?&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-9-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-8">8</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">NoEncodingPasswordEncoder</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-9-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-9">9</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>passwordEncoder() 메서드는 스프링 시큐리티의 PasswordEncoder 인터페이스를 구현한 모든 객체를 인자로 받을 수 있다.</p>
 <ul>
 <li>BCryptPasswordEncoder : bcrypt를 해싱 암호화한다.</li>
@@ -978,22 +1025,22 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </ul>
 <h3 id="ldap-비밀번호-비교-구성">LDAP 비밀번호 비교 구성</h3>
 <p>LDAP의 기본 인증 전략은 사용자가 직접 LDAP 서버에서 인증받도록 하지만, 하단처럼 비밀번호를 비교하는 방법도 존재한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">auth</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1"> 1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3"> 3</a></span><span class="cl">    <span class="n">auth</span>
+</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4"> 4</a></span><span class="cl">        <span class="o">.</span><span class="na">ldapAuthentication</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5"> 5</a></span><span class="cl">        <span class="o">.</span><span class="na">userSearchBase</span><span class="o">(</span><span class="s">&#34;ou=people&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6"> 6</a></span><span class="cl">        <span class="o">.</span><span class="na">userSearchFilter</span><span class="o">(</span><span class="s">&#34;(uid={0})&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">groupSearchBase</span><span class="o">(</span><span class="s">&#34;ou=groups&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">groupSearchFilter</span><span class="o">(</span><span class="s">&#34;member={0}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">contextSource</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-10-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">root</span><span class="o">(</span><span class="s">&#34;dc=tacocloud,dc=com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-11">11</a></span><span class="cl">        <span class="o">.</span><span class="na">ldif</span><span class="o">(</span><span class="s">&#34;classpath:users.ldif&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-12">12</a></span><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-10-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-13">13</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordCompare</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-10-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-14">14</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">())</span>
+</span></span><span class="line"><span class="ln" id="hl-10-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-15">15</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordAttribute</span><span class="o">(</span><span class="s">&#34;userPasscode&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-10-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-16">16</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>입력된 비밀번호를 LDAP 디렉터리에 전송하고, 이 비밀번호를 사용자의 비밀번호 속성 값과 비교하도록 LDAP 서버에 요청한다.</p>
 <ul>
 <li><strong>passwordCompare</strong>() : 로그인 폼에 입력된 비밀번호가 사용자의 LDAP 서버에 있는 userPassword 값과 비교하도록 요청하는 메서드이다.</li>
@@ -1012,13 +1059,13 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </ul>
 </blockquote>
 <h3 id="특정-페이지에-한해-인증-수행하기">특정 페이지에 한해 인증 수행하기</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3">3</a></span><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5">5</a></span><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-11-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-6">6</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-11-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>authorizeRequests() 메서드를 통해 /design 과 /order 페이지의 요청은 ROLE_USER의 권한을 갖는 사용자만 접근 가능하도록 허용하고 이외의 요청은 모든 사용자에게 허용하였다.
 <br/><br/></p>
 <p><strong>요청 경로가 보안 처리되는 방법을 정의하는 메소드</strong></p>
@@ -1086,20 +1133,20 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </table>
 <br/>
 <h3 id="로그인-페이지-경로-지정하기">로그인 페이지 경로 지정하기</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">formLogin</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">&#34;/login&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">loginProcessingUrl</span><span class="o">(</span><span class="s">&#34;/authenticate&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">usernameParameter</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">passwordParameter</span><span class="o">(</span><span class="s">&#34;pwd&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1"> 1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2"> 2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3"> 3</a></span><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4"> 4</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">,</span> <span class="s">&#34;/orders&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-5"> 5</a></span><span class="cl">        <span class="o">.</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-6"> 6</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/**&#34;</span><span class="o">).</span><span class="na">access</span><span class="o">(</span><span class="s">&#34;permitAll&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-12-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">formLogin</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-12-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">&#34;/login&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">loginProcessingUrl</span><span class="o">(</span><span class="s">&#34;/authenticate&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-11">11</a></span><span class="cl">        <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">&#34;/design&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-12">12</a></span><span class="cl">        <span class="o">.</span><span class="na">usernameParameter</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-13">13</a></span><span class="cl">        <span class="o">.</span><span class="na">passwordParameter</span><span class="o">(</span><span class="s">&#34;pwd&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-12-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-14">14</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>기본 로그인 페이지를 교체하려면 스프링 시큐리티 구성을 통해 커스텀 로그인 페이지 경로를 알려주어야 한다.<br/>
 formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고, loginPage() 메서드를 통해 로그인 페이지 경로를 지정할 수 있다.<br/>
 스프링 시큐리티가 인증이 필요하다고 판단될 경우 loginPage() 메서드에 적용한 경로로 연결해준다.</p>
@@ -1112,17 +1159,17 @@ formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고
 <br/></li>
 </ul>
 <h3 id="로그아웃-페이지-경로-지정하기">로그아웃 페이지 경로 지정하기</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logout</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">&#34;/logout&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">invalidateHttpSession</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">deleteCookies</span><span class="o">(</span><span class="s">&#34;JSESSIONID&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1"> 1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2"> 2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3"> 3</a></span><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4"> 4</a></span><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="ln" id="hl-13-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-5"> 5</a></span><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-13-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-6"> 6</a></span><span class="cl">        <span class="o">.</span><span class="na">logout</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-13-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">&#34;/logout&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-13-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-8"> 8</a></span><span class="cl">        <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-13-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">invalidateHttpSession</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-13-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-10">10</a></span><span class="cl">        <span class="o">.</span><span class="na">deleteCookies</span><span class="o">(</span><span class="s">&#34;JSESSIONID&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-13-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-11">11</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>로그아웃 설정은 logout() 메서드를 호출하고 logoutUrl() 메서드를 통해 logout을 요청하기 위한 url을 설정할 수 있다. <span class="gray it">- login의 loginProcessingUrl() 메서드와 비슷</span></p>
 <ul>
 <li><strong>logoutSuccessUrl</strong>() : 로그아웃 성공 시 리다이렉트할 페이지 경로를 지정할 때 사용한다.</li>
@@ -1130,27 +1177,27 @@ formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고
 <li><strong>deleteCookies</strong>() : 로그아웃 될 때 삭제할 쿠키 목록을 지정할 때 사용한다.</li>
 </ul>
 <h3 id="csrf-설정하기">CSRF 설정하기</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">th:action</span><span class="o">=</span><span class="s">&#34;@{/login}&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;loginForm&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-14-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-14-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-3">3</a></span><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-14-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-4">4</a></span><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="ln" id="hl-14-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-5">5</a></span><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-14-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-6">6</a></span><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-14-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-7">7</a></span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln" id="hl-15-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-1">1</a></span><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">th:action</span><span class="o">=</span><span class="s">&#34;@{/login}&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;loginForm&#34;</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>스프링 시큐리티에는 내장된 CSRF 방어 기능이 있는데, 스프링에 내장된 Thymeleaf 등을 사용한다면 숨김 필드 설정 필요 없이 csrf 필드가 자동으로 생성된다.<br/>
 폼 전송을 수행할 때 자동으로 생성된 csrf 필드를 포함시킬 경우 <code>th:action</code> 속성을 지정하면 된다.
 <br/>
 <br/></p>
 <p><strong>csrf 비활성화하기</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//... 이하 생략
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">disable</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-16-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-16-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-16-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-3">3</a></span><span class="cl">    <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-16-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-4">4</a></span><span class="cl">        <span class="c1">//... 이하 생략
+</span></span></span><span class="line"><span class="ln" id="hl-16-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-5">5</a></span><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-16-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-6">6</a></span><span class="cl">        <span class="o">.</span><span class="na">csrf</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-16-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-7">7</a></span><span class="cl">        <span class="o">.</span><span class="na">disable</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-16-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>단, REST API로 실행되는 애플리케이션의 경우에는 csrf 를 disable 처리해야 한다.</p>
 <h2 id="사용자-정보-취득">사용자 정보 취득</h2>
 <hr>
@@ -1164,47 +1211,47 @@ formLogin() 메서드를 통해 로그인 폼을 구성하겠다고 명시하고
 </ul>
 </blockquote>
 <h3 id="principal-객체-이용">Principal 객체 이용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Principal</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">principal</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-17-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-1">1</a></span><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="ln" id="hl-17-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-3">3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-17-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-4">4</a></span><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-17-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-5">5</a></span><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="ln" id="hl-17-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-6">6</a></span><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Principal</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-7">7</a></span><span class="cl">        <span class="k">return</span> <span class="n">principal</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-17-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-8">8</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-17-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-9">9</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Principal 객체를 컨트롤러의 인자로 받아 사용자 정보를 받아오는 코드이다.</p>
 <h3 id="authentication-객체-이용">Authentication 객체 이용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserDetails</span><span class="o">)</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User has authorities: &#34;</span> <span class="o">+</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-18-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-1"> 1</a></span><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="ln" id="hl-18-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-3"> 3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-18-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-4"> 4</a></span><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-18-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-5"> 5</a></span><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="ln" id="hl-18-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-6"> 6</a></span><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-7"> 7</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-18-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-8"> 8</a></span><span class="cl">        <span class="n">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserDetails</span><span class="o">)</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-18-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-9"> 9</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User has authorities: &#34;</span> <span class="o">+</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-18-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-10">10</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-18-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-11">11</a></span><span class="cl">        <span class="k">return</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-18-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-12">12</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-18-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-13">13</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Authentication 객체를 컨트롤러의 인자로 받아 사용자 정보를 받아올 수 있다. <br/>
 Authentication 객체의 getPrincipal() 메서드는 Object 타입을 반환하는데 UserDetails 타입으로 변환하여 원하는 데이터를 받아올 수도 있다.</p>
 <h3 id="securitycontextholder-를-사용">SecurityContextHolder 를 사용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">currentPrincipalName</span> <span class="o">=</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-19-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-1">1</a></span><span class="cl"><span class="n">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-19-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-2">2</a></span><span class="cl"><span class="n">String</span> <span class="n">currentPrincipalName</span> <span class="o">=</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
 </span></span></code></pre></div><p>보안 컨텍스트로부터 Authentication 객체를 얻은 후 Principal 객체를 받아와 사용자 정보를 받아올 수 있다. <br/>
 어플리케이션의 어디든 사용할 수는 있지만 코드를 검증하는 데에 있어서 안 좋은 요소이다.</p>
 <h3 id="authenticationprincipal-어노테이션-사용">@AuthenticationPrincipal 어노테이션 사용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="nd">@AuthenticationPrincipal</span> <span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-20-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-1">1</a></span><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="ln" id="hl-20-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-20-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-3">3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-20-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-4">4</a></span><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/username&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-20-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-5">5</a></span><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="ln" id="hl-20-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-6">6</a></span><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">currentUserName</span><span class="o">(</span><span class="nd">@AuthenticationPrincipal</span> <span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-20-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-7">7</a></span><span class="cl">        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-20-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-8">8</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-20-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-9">9</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@AuthenticationPrincipal은 타입 변환이 필요 없고 Authentication과 동일하게 보안 특정 코드만 갖는다.<br/>
 메서드에 어노테이션만 지정하면 되어서 편리하게 UserDetails 구현체를 받아올 수 있다.</p>
 

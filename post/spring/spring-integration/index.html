@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-integration\/",
-        "wordCount" : "1713",
+        "wordCount" : "1827",
         "genre" : [ 
       
       "Framework"
@@ -406,6 +406,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -547,6 +572,28 @@
                     <i class="fa-brands fa-react"></i>
                   
                   React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
                 </a>
                 
               </div>
@@ -696,17 +743,17 @@
 스프링 통합 중 “채널 어뎁터”는 파일을 읽거나 쓰는 컴포넌트이다.</p>
 </blockquote>
 <h3 id="스프링-통합-빌드-명세">스프링 통합 빌드 명세</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-integration&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.integration:spring-integration-file&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-integration&#39;</span>
+</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.integration:spring-integration-file&#39;</span>
 </span></span></code></pre></div><p>스프링 통합 플로우 개발을 위해 스프링 부트 스타터인 스프링 통합을 추가해준다.<br/>
 또한 파일 시스템으로부터 통합 플로우로 파일을 읽거나, 데이터를 쓰기 위해 스프링 통합 파일 엔드포인트 모듈도 추가해준다.</p>
 <h3 id="게이트웨이-생성">게이트웨이 생성</h3>
 <p>파일에 데이터를 쓸 수 있도록 어플리케이션에서 통합 플로우로 데이터를 전송하는 게이트웨이를 생성한다.<br/></p>
 <p><strong>메서드 호출을 메시지로 변환</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@MessagingGateway</span><span class="o">(</span><span class="n">defaultRequestChannel</span><span class="o">=</span><span class="s">&#34;textInChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FileWriterGateway</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">writeToFile</span><span class="o">(</span><span class="nd">@Header</span><span class="o">(</span><span class="n">FileHeaders</span><span class="o">.</span><span class="na">FILENAME</span><span class="o">)</span> <span class="n">String</span> <span class="n">filename</span><span class="o">,</span><span class="n">String</span> <span class="n">data</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="nd">@MessagingGateway</span><span class="o">(</span><span class="n">defaultRequestChannel</span><span class="o">=</span><span class="s">&#34;textInChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FileWriterGateway</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl">    <span class="kt">void</span> <span class="nf">writeToFile</span><span class="o">(</span><span class="nd">@Header</span><span class="o">(</span><span class="n">FileHeaders</span><span class="o">.</span><span class="na">FILENAME</span><span class="o">)</span> <span class="n">String</span> <span class="n">filename</span><span class="o">,</span><span class="n">String</span> <span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li>@MessagingGateway : 해당 인터페이스의 구현체를 <span class="red">런타임 시 생성</span>하라고 스프링에게 전달</li>
 <li>defaultRequestChannel : 메서드 호출로 생성된 메시지가 이 속성의 채널로 <span class="red">전송</span></li>
@@ -733,25 +780,25 @@
 
 <br/><br/></p>
 <p><strong>자바 구성</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWriterIntegrationConfig</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl">  <span class="nd">@Transformer</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;textInChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">GenericTransformer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">upperCaseTransformer</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">text</span> <span class="o">-&gt;</span> <span class="n">text</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl">  <span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">FileWritingMessageHandler</span> <span class="nf">fileWriter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">FileWritingMessageHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWritingMessageHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;/tmp/sia5/files&#34;</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setExpectReply</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setFileExistsMode</span><span class="o">(</span><span class="n">FileExistsMode</span><span class="o">.</span><span class="na">APPEND</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setAppendNewLine</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">handler</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWriterIntegrationConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">  <span class="nd">@Transformer</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;textInChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">  <span class="kd">public</span> <span class="n">GenericTransformer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">upperCaseTransformer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">      <span class="k">return</span> <span class="n">text</span> <span class="o">-&gt;</span> <span class="n">text</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">  <span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">  <span class="kd">public</span> <span class="n">FileWritingMessageHandler</span> <span class="nf">fileWriter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">      <span class="n">FileWritingMessageHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWritingMessageHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;/tmp/sia5/files&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setExpectReply</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-15">15</a></span><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setFileExistsMode</span><span class="o">(</span><span class="n">FileExistsMode</span><span class="o">.</span><span class="na">APPEND</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-16">16</a></span><span class="cl">      <span class="n">handler</span><span class="o">.</span><span class="na">setAppendNewLine</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-17">17</a></span><span class="cl">      <span class="k">return</span> <span class="n">handler</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-2-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-18">18</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-19">19</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><strong>GenericTransformer (변환기 역할)</strong> : @Transformer을 통해 textInChannel의 메시지를 받아서 fileWirterChannel로 쓰는 <span class="red">통합 플로우 변환기</span>라는 것을 명시한다.</p>
 <p><strong>FileWritingMessageHandler (파일 아웃바운드 채널 어뎁터 역할)</strong> : @ServiceActivator을 통해 fileWriterChannel로부터 메시지를 받아 FileWritingMessageHandler의 인스턴스로 정의된 서비스에 넘겨 메시지 페이로드를 지정된 디렉터리의 파일에 쓴다.</p>
 <aside>
@@ -759,23 +806,23 @@
 </aside>
 <br/><br/>
 <p><strong>DSL을 이용한 자바 구성</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWriterIntegrationConfig</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">fileWriterFlow</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">MessageChannels</span><span class="o">.</span><span class="na">direct</span><span class="o">(</span><span class="s">&#34;textInChannel&#34;</span><span class="o">))</span>        <span class="c1">// 입력 채널
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">())</span>      <span class="c1">// 변환기 선언
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="n">MessageChannels</span><span class="o">.</span><span class="na">direct</span><span class="o">(</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">))</span> <span class="c1">// 파일-쓰기 채널
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">Files</span>                                         <span class="c1">// 아웃바운드 채널 어뎁터
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">outboundAdapter</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;/tmp/sia5/files&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">fileExistsMode</span><span class="o">(</span><span class="n">FileExistsMode</span><span class="o">.</span><span class="na">APPEND</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">appendNewLine</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">get</span><span class="o">();</span> 
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1"> 1</a></span><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWriterIntegrationConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3"> 3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4"> 4</a></span><span class="cl">  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5"> 5</a></span><span class="cl">  <span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">fileWriterFlow</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6"> 6</a></span><span class="cl">    <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7"> 7</a></span><span class="cl">        <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">MessageChannels</span><span class="o">.</span><span class="na">direct</span><span class="o">(</span><span class="s">&#34;textInChannel&#34;</span><span class="o">))</span>        <span class="c1">// 입력 채널
+</span></span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8"> 8</a></span><span class="cl"><span class="c1"></span>        <span class="o">.&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">())</span>      <span class="c1">// 변환기 선언
+</span></span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9"> 9</a></span><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="n">MessageChannels</span><span class="o">.</span><span class="na">direct</span><span class="o">(</span><span class="s">&#34;fileWriterChannel&#34;</span><span class="o">))</span> <span class="c1">// 파일-쓰기 채널
+</span></span></span><span class="line"><span class="ln" id="hl-3-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-10">10</a></span><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">Files</span>                                         <span class="c1">// 아웃바운드 채널 어뎁터
+</span></span></span><span class="line"><span class="ln" id="hl-3-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-11">11</a></span><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">outboundAdapter</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;/tmp/sia5/files&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="ln" id="hl-3-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-12">12</a></span><span class="cl">            <span class="o">.</span><span class="na">fileExistsMode</span><span class="o">(</span><span class="n">FileExistsMode</span><span class="o">.</span><span class="na">APPEND</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-3-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-13">13</a></span><span class="cl">            <span class="o">.</span><span class="na">appendNewLine</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span>
+</span></span><span class="line"><span class="ln" id="hl-3-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-14">14</a></span><span class="cl">        <span class="o">.</span><span class="na">get</span><span class="o">();</span> 
+</span></span><span class="line"><span class="ln" id="hl-3-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-15">15</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-3-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-16">16</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-3-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-17">17</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>통합 플로우의 각 컴포넌트를 별도의 빈으로 선언하지 않고 <strong>전체 플로우를 하나의 빈으로 선언</strong>한다.</p>
 <p><strong>구조</strong></p>
 <ol>
@@ -817,222 +864,222 @@
 <aside>
 💡 <strong>QueueChannel 사용시 주의사항</strong><br/>
 컨슈머가 이 채널을 polling(도착 메시지가 있는지 지속적으로 확인)하도록 구성해야 한다.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;orderChannel&#34;</span><span class="o">,</span> <span class="n">poller</span><span class="o">=</span><span class="nd">@Poller</span><span class="o">(</span><span class="n">fixedRate</span><span class="o">=</span><span class="s">&#34;1000&#34;</span><span class="o">))</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;orderChannel&#34;</span><span class="o">,</span> <span class="n">poller</span><span class="o">=</span><span class="nd">@Poller</span><span class="o">(</span><span class="n">fixedRate</span><span class="o">=</span><span class="s">&#34;1000&#34;</span><span class="o">))</span>
 </span></span></code></pre></div><p>orderChannel로부터 1초당 한번씩 메시지가 있는지 확인하는 코드이다.<br/></p>
 </aside>
 <h3 id="필터">필터</h3>
 <p>보통 통합 파이프라인 중간에 위치하며, 플로우의 전 단계로부터 다음 단계로의 메시지 전달을 허용하거나 불허한다.<br/><br/></p>
 <p><strong>자바 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Filter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;evenNumberChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">evenNumberFilter</span><span class="o">(</span><span class="n">Integer</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="nd">@Filter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;evenNumberChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">evenNumberFilter</span><span class="o">(</span><span class="n">Integer</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl">    <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@Filter 어노테이션을 통해 필터를 선언할 수 있다.<br/><br/></p>
 <p><strong>DSL 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">evenNumberFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">integerSource</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="n">filter</span><span class="o">((</span><span class="n">p</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">p</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">evenNumberFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">integerSource</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl">      <span class="o">.&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="n">filter</span><span class="o">((</span><span class="n">p</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">p</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <h3 id="변환기">변환기</h3>
 <p>메시지 값의 변경이나 타입을 변환하는 일을 수행한다.
 <br/><br/></p>
 <p><strong>자바 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Transformer</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;romanNumberChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">GenericTransformer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">romanNumTransformer</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="nd">@Transformer</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;romanNumberChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">GenericTransformer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">romanNumTransformer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@Transformer 어노테이션을 통해 변환기 임을 선언한다.<br/>
 numberChannel 채널로부터 Integer 값을 수신하고 toRoman()을 사용하여 변환을 수행한다.
 <br/><br/></p>
 <p><strong>DSL 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">transformerFlow</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">transformerFlow</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3">3</a></span><span class="cl">    <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5">5</a></span><span class="cl">        <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6">6</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <h3 id="라우터">라우터</h3>
 <p>메시지에 적용된 전달 조건을 기반으로 서로 다른 채널로 메시지를 전달한다.
 <br/><br/></p>
 <p><strong>자바 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Router</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">AbstractMessageRouter</span> <span class="nf">evenOddRouter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">AbstractMessageRouter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">MessageChannel</span><span class="o">&gt;</span> <span class="nf">determineTargetChannels</span><span class="o">(</span><span class="n">Message</span><span class="o">&lt;?&gt;</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">Integer</span> <span class="n">number</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">message</span><span class="o">.</span><span class="na">getPayload</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singleton</span><span class="o">(</span><span class="n">evenChannel</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">      <span class="o">}</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singleton</span><span class="o">(</span><span class="n">oddChannel</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>  
-</span></span><span class="line"><span class="cl">  <span class="o">};</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1"> 1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2"> 2</a></span><span class="cl"><span class="nd">@Router</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="n">AbstractMessageRouter</span> <span class="nf">evenOddRouter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4"> 4</a></span><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">AbstractMessageRouter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5"> 5</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6"> 6</a></span><span class="cl">    <span class="kd">protected</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">MessageChannel</span><span class="o">&gt;</span> <span class="nf">determineTargetChannels</span><span class="o">(</span><span class="n">Message</span><span class="o">&lt;?&gt;</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7"> 7</a></span><span class="cl">      <span class="n">Integer</span> <span class="n">number</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">message</span><span class="o">.</span><span class="na">getPayload</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-9-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-8"> 8</a></span><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-9"> 9</a></span><span class="cl">        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singleton</span><span class="o">(</span><span class="n">evenChannel</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-9-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-10">10</a></span><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-9-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-11">11</a></span><span class="cl">      <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singleton</span><span class="o">(</span><span class="n">oddChannel</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-9-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-12">12</a></span><span class="cl">    <span class="o">}</span>  
+</span></span><span class="line"><span class="ln" id="hl-9-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-13">13</a></span><span class="cl">  <span class="o">};</span>
+</span></span><span class="line"><span class="ln" id="hl-9-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-14">14</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>numberChannel이름의 채널로부터 메시지를 받아 페이로드를 검사하여<br/>
 짝수일 때는 <span class="red">evenChannel 채널을 반환</span>, 홀수일 때는 <span class="red">oddChannel 채널이 반환</span>된다.
 <br/><br/></p>
 <p><strong>DSL 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">numberRoutingFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">route</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span> <span class="o">?</span> <span class="s">&#34;EVEN&#34;</span><span class="o">:</span><span class="s">&#34;ODD&#34;</span><span class="o">,</span> <span class="n">mapping</span> <span class="o">-&gt;</span> <span class="n">mapping</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;EVEN&#34;</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">10</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                      <span class="o">.</span><span class="na">handle</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">})</span>
-</span></span><span class="line"><span class="cl">            <span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;ODD&#34;</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                      <span class="o">.</span><span class="na">handle</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">})</span>
-</span></span><span class="line"><span class="cl">            <span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1"> 1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">numberRoutingFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3"> 3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4"> 4</a></span><span class="cl">      <span class="o">.&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">route</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span><span class="o">%</span><span class="n">2</span><span class="o">==</span><span class="n">0</span> <span class="o">?</span> <span class="s">&#34;EVEN&#34;</span><span class="o">:</span><span class="s">&#34;ODD&#34;</span><span class="o">,</span> <span class="n">mapping</span> <span class="o">-&gt;</span> <span class="n">mapping</span>
+</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5"> 5</a></span><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;EVEN&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6"> 6</a></span><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">10</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-7"> 7</a></span><span class="cl">                      <span class="o">.</span><span class="na">handle</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">})</span>
+</span></span><span class="line"><span class="ln" id="hl-10-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-8"> 8</a></span><span class="cl">            <span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-9"> 9</a></span><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;ODD&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="ln" id="hl-10-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-10">10</a></span><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">RomanNumbers</span><span class="o">::</span><span class="n">toRoman</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-11">11</a></span><span class="cl">                      <span class="o">.</span><span class="na">handle</span><span class="o">((</span><span class="n">i</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">})</span>
+</span></span><span class="line"><span class="ln" id="hl-10-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-12">12</a></span><span class="cl">            <span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-13">13</a></span><span class="cl">        <span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-10-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-14">14</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-10-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-15">15</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>람다식을 사용하여 짝수일 때는 “EVEN”, 홀수일 떄는 “ODD”값을 반환하고, 이 값들을 통해 메시지를 처리하는 하위 플로우를 결정한다.
 <br/><br/></p>
 <h3 id="분배기">분배기</h3>
 <p>통합 플로우에서 하나의 메시지를 여러개로 분할하여 독립적으로 처리한다.
 <br/><br/></p>
 <p><strong>자바 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Splitter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;poChannel&#34;</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;splitOrderChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">OrderSplitter</span> <span class="nf">orderSplitter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">OrderSplitter</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Router</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;splitOrderChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MessageRouter</span> <span class="nf">splitOrderRouter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">PayloadTypeRouter</span> <span class="n">router</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PayloadTypeRouter</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">router</span><span class="o">.</span><span class="na">setChannelMapping</span><span class="o">(</span><span class="n">BillingInfo</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="s">&#34;billingInfoChannel&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">router</span><span class="o">.</span><span class="na">setChannelMapping</span><span class="o">(</span><span class="n">List</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="s">&#34;lineItemsChannel&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">router</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1"> 1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2"> 2</a></span><span class="cl"><span class="nd">@Splitter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;poChannel&#34;</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;splitOrderChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="n">OrderSplitter</span> <span class="nf">orderSplitter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4"> 4</a></span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">OrderSplitter</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5"> 5</a></span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-11-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-6"> 6</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-11-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-7"> 7</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-11-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-8"> 8</a></span><span class="cl"><span class="nd">@Router</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;splitOrderChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-11-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-9"> 9</a></span><span class="cl"><span class="kd">public</span> <span class="n">MessageRouter</span> <span class="nf">splitOrderRouter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-10">10</a></span><span class="cl">    <span class="n">PayloadTypeRouter</span> <span class="n">router</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PayloadTypeRouter</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-11-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-11">11</a></span><span class="cl">    <span class="n">router</span><span class="o">.</span><span class="na">setChannelMapping</span><span class="o">(</span><span class="n">BillingInfo</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="s">&#34;billingInfoChannel&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-11-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-12">12</a></span><span class="cl">    <span class="n">router</span><span class="o">.</span><span class="na">setChannelMapping</span><span class="o">(</span><span class="n">List</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="s">&#34;lineItemsChannel&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-11-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-13">13</a></span><span class="cl">    <span class="k">return</span> <span class="n">router</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-11-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-14">14</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>poChannel 채널로 도착한 주문 메시지는 OrderSplitter로 분할된다.<br/>
 분할된 메시지는 PayloadTypeRouter에 의해 <strong>각 페이로드 타입을 기반으로 서로 다른 채널에 메시지를 전달한다.</strong> BillingInfo 파입의 페이로드는 billingInfoChannel로, List 타입의 페이로드는 lineItemsChannel에 전달된다.</p>
 <aside>
 💡 <strong>List 내부의 객체를 별도로 처리하고 싶은 경우</strong>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Splitter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;lineItemsChannel&#34;</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;lineItemChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="nf">lineItemSplitter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="n">lineItems</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">lineItems</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1">1</a></span><span class="cl"><span class="nd">@Splitter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;lineItemsChannel&#34;</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;lineItemChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="nf">lineItemSplitter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="n">lineItems</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3">3</a></span><span class="cl">    <span class="k">return</span> <span class="n">lineItems</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4">4</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>List<LineItem>을 다수의 메시지로 분할하기 위해 @Splitter과 함께 LineItem이 저장된 컬렉션을 반환하면 된다.</p>
 </aside>
 <br/><br/>
 <p><strong>DSL 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">numberRoutingFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">orderSplitter</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">route</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">BillingInfo</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;BILLING_INFO&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;LINE_ITEMS&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">          <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">},</span> <span class="n">mapping</span> <span class="o">-&gt;</span> <span class="n">mapping</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;BILLING_INFO&#34;</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.&lt;</span><span class="n">BillingInfo</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">((</span><span class="n">billingInfo</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;LINE_ITEMS&#34;</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.</span><span class="na">split</span><span class="o">().&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">((</span><span class="n">lineItem</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1"> 1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">numberRoutingFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3"> 3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4"> 4</a></span><span class="cl">      <span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">orderSplitter</span><span class="o">())</span>
+</span></span><span class="line"><span class="ln" id="hl-13-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-5"> 5</a></span><span class="cl">      <span class="o">.&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">route</span><span class="o">(</span>
+</span></span><span class="line"><span class="ln" id="hl-13-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-6"> 6</a></span><span class="cl">        <span class="n">p</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-7"> 7</a></span><span class="cl">          <span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">BillingInfo</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-8"> 8</a></span><span class="cl">            <span class="k">return</span> <span class="s">&#34;BILLING_INFO&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-13-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-9"> 9</a></span><span class="cl">          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-10">10</a></span><span class="cl">            <span class="k">return</span> <span class="s">&#34;LINE_ITEMS&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-13-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-11">11</a></span><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-13-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-12">12</a></span><span class="cl">        <span class="o">},</span> <span class="n">mapping</span> <span class="o">-&gt;</span> <span class="n">mapping</span>
+</span></span><span class="line"><span class="ln" id="hl-13-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-13">13</a></span><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;BILLING_INFO&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln" id="hl-13-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-14">14</a></span><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.&lt;</span><span class="n">BillingInfo</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">((</span><span class="n">billingInfo</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}))</span>
+</span></span><span class="line"><span class="ln" id="hl-13-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-15">15</a></span><span class="cl">        <span class="o">.</span><span class="na">subFlowMapping</span><span class="o">(</span><span class="s">&#34;LINE_ITEMS&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="ln" id="hl-13-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-16">16</a></span><span class="cl">            <span class="n">sf</span> <span class="o">-&gt;</span> <span class="n">sf</span><span class="o">.</span><span class="na">split</span><span class="o">().&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">((</span><span class="n">lineItem</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}))</span>
+</span></span><span class="line"><span class="ln" id="hl-13-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-17">17</a></span><span class="cl">        <span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-13-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-18">18</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-13-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-19">19</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <h3 id="서비스-엑티베이터">서비스 엑티베이터</h3>
 <p>입력 채널로부터 메시지를 수신하고 이 메시지를 MessageHandler 인터페이스를 구현한 클래스(빈)에 전달한다.
 <br/><br/></p>
 <p><strong>MessageHandler 빈 선언</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;someChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MessageHandler</span> <span class="nf">sysoutHandler</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Message Payload: &#34;</span> <span class="o">+</span> <span class="n">message</span><span class="o">.</span><span class="na">getPayload</span><span class="o">());</span> 
-</span></span><span class="line"><span class="cl">  <span class="o">};</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-14-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-14-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-2">2</a></span><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;someChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-14-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">MessageHandler</span> <span class="nf">sysoutHandler</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-5">5</a></span><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Message Payload: &#34;</span> <span class="o">+</span> <span class="n">message</span><span class="o">.</span><span class="na">getPayload</span><span class="o">());</span> 
+</span></span><span class="line"><span class="ln" id="hl-14-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-6">6</a></span><span class="cl">  <span class="o">};</span>
+</span></span><span class="line"><span class="ln" id="hl-14-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>someChannel 채널로부터 받은 메시지를 처리하는 서비스 액티베이터를 지정한다.<br/>
 메시지의 페이로드를 표준 출력 시스템으로 내보낸다.
 <br/><br/></p>
 <p><strong>새로운 페이로드로 반환 시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;orderChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;completeChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">GenericHandler</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="nf">orderHandler</span><span class="o">(</span><span class="n">OrderRepository</span> <span class="n">orderRepo</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">(</span><span class="n">payload</span><span class="o">,</span> <span class="n">headers</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">orderRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">payload</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  <span class="o">};</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-15-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-15-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-2">2</a></span><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;orderChannel&#34;</span><span class="o">,</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;completeChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-15-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">GenericHandler</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="nf">orderHandler</span><span class="o">(</span><span class="n">OrderRepository</span> <span class="n">orderRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-15-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="o">(</span><span class="n">payload</span><span class="o">,</span> <span class="n">headers</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-15-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-5">5</a></span><span class="cl">    <span class="k">return</span> <span class="n">orderRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">payload</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-15-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-6">6</a></span><span class="cl">  <span class="o">};</span>
+</span></span><span class="line"><span class="ln" id="hl-15-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>새로운 페이로드를 반환하려면 GenericHandler를 구현해야 한다.<br/>
 Order 타입의 메시지 페이로드를 처리하는 GenericHandler를 구현하여 메시지가 도착하면 repository에 저장한다.
 <br/><br/></p>
 <p><strong>MessageHandler 빈 선언(DSL)</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">someFlow</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">msg</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Message Payload: &#34;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="na">getPayload</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">      <span class="o">})</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-16-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-16-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">someFlow</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-16-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-3">3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-16-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-4">4</a></span><span class="cl">      <span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">msg</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-16-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-5">5</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Message Payload: &#34;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="na">getPayload</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-16-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-6">6</a></span><span class="cl">      <span class="o">})</span>
+</span></span><span class="line"><span class="ln" id="hl-16-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-16-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <p><strong>새로운 페이로드로 반환 시(DSL)</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">orderFlow</span><span class="o">(</span><span class="n">OrderRepository</span> <span class="n">orderRepo</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="n">handle</span><span class="o">((</span><span class="n">payload</span><span class="o">,</span> <span class="n">headers</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">orderRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">payload</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">      <span class="o">})</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-17-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-17-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">orderFlow</span><span class="o">(</span><span class="n">OrderRepository</span> <span class="n">orderRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-3">3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-17-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-4">4</a></span><span class="cl">      <span class="o">.&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="n">handle</span><span class="o">((</span><span class="n">payload</span><span class="o">,</span> <span class="n">headers</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-5">5</a></span><span class="cl">        <span class="k">return</span> <span class="n">orderRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">payload</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-17-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-6">6</a></span><span class="cl">      <span class="o">})</span>
+</span></span><span class="line"><span class="ln" id="hl-17-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-17-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>GenericHandler를 플로우 맨 끝에 사용할 경우에는 출력 채널이 없다는 에러가 발생하기 때문에 null을 반환해야 한다.</p>
 <h3 id="게이트웨이">게이트웨이</h3>
 <p>어플리케이션이 통합 플로우로 데이터를 제출하고 선택적으로 플로우의 응답 결과를 받을 수 있다.
 <br/><br/></p>
 <p><strong>자바 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@MessageGateway</span><span class="o">(</span><span class="n">defaultRequestChannel</span><span class="o">=</span><span class="s">&#34;inChannel&#34;</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">                <span class="n">defaultReplyChannel</span><span class="o">=</span><span class="s">&#34;outChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UpperCaseGateway</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="nf">uppercase</span><span class="o">(</span><span class="n">String</span> <span class="n">in</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-18-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-1">1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-18-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-2">2</a></span><span class="cl"><span class="nd">@MessageGateway</span><span class="o">(</span><span class="n">defaultRequestChannel</span><span class="o">=</span><span class="s">&#34;inChannel&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln" id="hl-18-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-3">3</a></span><span class="cl">                <span class="n">defaultReplyChannel</span><span class="o">=</span><span class="s">&#34;outChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-18-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-4">4</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UpperCaseGateway</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-5">5</a></span><span class="cl">  <span class="n">String</span> <span class="nf">uppercase</span><span class="o">(</span><span class="n">String</span> <span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-18-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-6">6</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>스프링 통합이 런타임 시에 자동으로 구현체를 제공하기 때문에 인터페이스를 구현할 필요가 없다.
 <br/><br/></p>
 <p><strong>DSL 구성 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">uppercaseFlow</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">&#34;inChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="s">&#34;outChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-19-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-19-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">uppercaseFlow</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-3">3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-19-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-4">4</a></span><span class="cl">      <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">&#34;inChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-19-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-5">5</a></span><span class="cl">      <span class="o">.&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="n">transform</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">())</span>
+</span></span><span class="line"><span class="ln" id="hl-19-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="s">&#34;outChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-19-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-19-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <h3 id="채널-어댑터">채널 어댑터</h3>
 <p>통합플로우의 입구와 출구를 나타낸다. 데이터는 인바운드 채널 어댑터를 통해 들어오고, 아웃바운드 채널 어댑터를 통해 통합 플로우에서 나간다.
 <br/><br/></p>
 <p><strong>인바운드 채널 어댑터 구성</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@InboundChannelAdapter</span><span class="o">(</span><span class="n">poller</span><span class="o">=</span><span class="nd">@Poller</span><span class="o">(</span><span class="n">fixedRate</span><span class="o">=</span><span class="s">&#34;1000&#34;</span><span class="o">),</span> <span class="n">channel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">MessageSource</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">numberSource</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">GenericMessage</span><span class="o">&lt;&gt;(</span><span class="n">source</span><span class="o">.</span><span class="na">getAndIncrement</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">  <span class="o">};</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-20-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-20-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-2">2</a></span><span class="cl"><span class="nd">@InboundChannelAdapter</span><span class="o">(</span><span class="n">poller</span><span class="o">=</span><span class="nd">@Poller</span><span class="o">(</span><span class="n">fixedRate</span><span class="o">=</span><span class="s">&#34;1000&#34;</span><span class="o">),</span> <span class="n">channel</span><span class="o">=</span><span class="s">&#34;numberChannel&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-20-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">MessageSource</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">numberSource</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-20-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-20-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-5">5</a></span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">GenericMessage</span><span class="o">&lt;&gt;(</span><span class="n">source</span><span class="o">.</span><span class="na">getAndIncrement</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-20-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-6">6</a></span><span class="cl">  <span class="o">};</span>
+</span></span><span class="line"><span class="ln" id="hl-20-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@InboundChannelAdapter 어노테이션을 통해 인바운드 채널 어댑터 빈으로 선언된다.<br/>
 AtomicInteger로부터 numberChannel 채널로 매초마다 한번씩 데이터를 전달한다.<br/><br/></p>
 <p><strong>인바운드 채널 어댑터 구성(DSL)</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">someFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">integerSource</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">integerSource</span><span class="o">,</span> <span class="s">&#34;getAndIncrement&#34;</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">          <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="o">.</span><span class="na">poller</span><span class="o">(</span><span class="n">Pollers</span><span class="o">.</span><span class="na">fixedRate</span><span class="o">(</span><span class="n">1000</span><span class="o">)))</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-21-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-1">1</a></span><span class="cl"><span class="nd">@Bean</span> 
+</span></span><span class="line"><span class="ln" id="hl-21-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">IntegrationFlow</span> <span class="nf">someFlow</span><span class="o">(</span><span class="n">AtomicInteger</span> <span class="n">integerSource</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-21-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-3">3</a></span><span class="cl">  <span class="k">return</span> <span class="n">IntegrationFlows</span>
+</span></span><span class="line"><span class="ln" id="hl-21-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-4">4</a></span><span class="cl">      <span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">integerSource</span><span class="o">,</span> <span class="s">&#34;getAndIncrement&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln" id="hl-21-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-5">5</a></span><span class="cl">          <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="o">.</span><span class="na">poller</span><span class="o">(</span><span class="n">Pollers</span><span class="o">.</span><span class="na">fixedRate</span><span class="o">(</span><span class="n">1000</span><span class="o">)))</span>
+</span></span><span class="line"><span class="ln" id="hl-21-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-21-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>DSL 구성에서는 from() 메서드를 통해 인바운드 채널 어댑터를 구성한다.</p>
 <h3 id="엔드포인트-모듈">엔드포인트 모듈</h3>
 <p>스프링 통합은 커스텀 채널 어댑터를 생성할 수 있게 채널 어댑터가 포함된 엔드포인트 모듈을 제공한다.</p>

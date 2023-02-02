@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Golang - 배열과 슬라이스 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go_array_and_slice/</link>
+      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go_array_and_slice/</guid>
+      
+        <description>golang에서 배열과 슬라이스의 개념과 사용법, 예제를 설명한다.</description>
+      
+    </item>
+    
+    <item>
       <title>영속성 컨텍스트(persistence context)의 개념</title>
       <link>https://lhj8390.github.io/post/spring/spring-persistence-context/</link>
       <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>

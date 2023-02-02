@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-microservice\/",
-        "wordCount" : "841",
+        "wordCount" : "898",
         "genre" : [ 
       
       "Framework"
@@ -413,6 +413,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -560,6 +585,28 @@
           
           
         
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
       </div>
     </div>
     
@@ -681,7 +728,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">읽는 시간 4분</span>
+            <span class="post__meta-text">읽는 시간 5분</span>
           </li>
         </ul>
 
@@ -735,43 +782,43 @@
 </aside>
 <h3 id="유레카-서버-의존성-추가">유레카 서버 의존성 추가</h3>
 <p>유레카 서버 스타터 의존성을 추가하는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#39;</span>
+</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>스프링 클라우드 버전 의존성도 추가한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">ext</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">set</span><span class="o">(</span><span class="s1">&#39;cloud-version&#39;</span><span class="o">,</span> <span class="s2">&#34;Hoxton.SR3&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">dependencyManagement</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">imports</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mavenBom</span> <span class="s2">&#34;org.springframework.cloud:spring-cloud-dependencies:{cloud-version}&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="n">ext</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">  <span class="n">set</span><span class="o">(</span><span class="s1">&#39;cloud-version&#39;</span><span class="o">,</span> <span class="s2">&#34;Hoxton.SR3&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="n">dependencyManagement</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl">  <span class="n">imports</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl">    <span class="n">mavenBom</span> <span class="s2">&#34;org.springframework.cloud:spring-cloud-dependencies:{cloud-version}&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8">8</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9">9</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><h3 id="유레카-서버-활성화">유레카 서버 활성화</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@EnableEurekaServer</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServiceRegistryApplication</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ServiceRegistryApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="nd">@SpringBootApplication</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="nd">@EnableEurekaServer</span>
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServiceRegistryApplication</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6">6</a></span><span class="cl">    <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ServiceRegistryApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7">7</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@EnableEurekaServer 어노테이션을 추가하여 유레카 서버를 활성화시킬 수 있다.</p>
 <h3 id="유레카-서버-구성">유레카 서버 구성</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8761</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">registerWithEureka</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fetchRegistry</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://${eureka.instance.hostname}:${server.port}/eureka/</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enable-self-preservation</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1"> 1</a></span><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2"> 2</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8761</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3"> 3</a></span><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4"> 4</a></span><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5"> 5</a></span><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6"> 6</a></span><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7"> 7</a></span><span class="cl"><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8"> 8</a></span><span class="cl"><span class="w">    </span><span class="nt">registerWithEureka</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9"> 9</a></span><span class="cl"><span class="w">    </span><span class="nt">fetchRegistry</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-10">10</a></span><span class="cl"><span class="w">    </span><span class="nt">serviceUrl</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-11">11</a></span><span class="cl"><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://${eureka.instance.hostname}:${server.port}/eureka/</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-12">12</a></span><span class="cl"><span class="w">  </span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-13">13</a></span><span class="cl"><span class="w">    </span><span class="nt">enable-self-preservation</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span></code></pre></div><ul>
 <li>server.port : 유레카가 실행되는 포트</li>
 <li>eureka.instance.hostname : 유레카가 실행되는 호스트 이름</li>
@@ -795,33 +842,33 @@
 <h3 id="유레카-확장">유레카 확장</h3>
 <p>프로덕션 환경에서는 고가용성을 위해 최소한 두 개의 유레카 인스턴스를 가져야 한다.</p>
 <p>두 개의 유레카를 구성하는 yaml 파일이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8761</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">eureka1.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">other</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">eureka2.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-2</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-2</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">eureka2.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">other</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">eureka1.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1"> 1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2"> 2</a></span><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-1</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3"> 3</a></span><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4"> 4</a></span><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-1</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5"> 5</a></span><span class="cl"><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6"> 6</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8761</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7"> 7</a></span><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-8"> 8</a></span><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-9"> 9</a></span><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">eureka1.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-10">10</a></span><span class="cl"><span class="w"></span><span class="nt">other</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-11">11</a></span><span class="cl"><span class="w">  </span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-12">12</a></span><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">eureka2.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-13">13</a></span><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-14">14</a></span><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-15">15</a></span><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-16">16</a></span><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-2</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-17">17</a></span><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-18">18</a></span><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">eureka-2</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-19">19</a></span><span class="cl"><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-20">20</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-21">21</a></span><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-22">22</a></span><span class="cl"><span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-23">23</a></span><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">eureka2.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-24">24</a></span><span class="cl"><span class="w"></span><span class="nt">other</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-25">25</a></span><span class="cl"><span class="w">  </span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-26">26</a></span><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">eureka1.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-27">27</a></span><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8762</span><span class="w">
 </span></span></span></code></pre></div><p>두 개의 프로파일인 eureka-1과 eureka-2가 구성되어 있다. 각 프로파일에 설정된 다른 유레카 인스턴스를 참조하기 위해 other.eureka.host와 other.eureka.port 속성을 설정한다.</p>
 <p>fetchRegistry나 registerWithEureka를 설정하지 않으면 기본값인 true로 지정되어 각 유레카 서버가 다른 유레카 서버에 자신을 등록하고 레지스트리 등록 정보를 받아올 수 있다.</p>
 <h2 id="서비스-등록하고-찾기">서비스 등록하고 찾기</h2>
@@ -830,21 +877,21 @@
 <p>서비스를 다른 서비스에서 찾아 사용하게 하려면, 유레카 서비스 레지스트리의 클라이언트로 활성화시켜야 한다.</p>
 </blockquote>
 <h3 id="유레카-클라이언트-의존성-추가">유레카 클라이언트 의존성 추가</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#39;</span>
+</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>서비스 레지스트리 클라이언트로 활성화하기 위해 유레카 클라이언트 스타터 의존성을 추가해준다.</br>
 <span class="gray">※ 스프링 클라우드 버전 의존성도 추가해주어야 한다.</span></p>
 <h3 id="유레카-클라이언트-속성-구성">유레카 클라이언트 속성 구성</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingredient-service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">service-url</span><span class="p">:</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://eureka1.com:8761/eureka/, http://eureka2.com:8761/eureka/</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingredient-service</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl"><span class="w"></span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl"><span class="w">  </span><span class="nt">client</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8">8</a></span><span class="cl"><span class="w">    </span><span class="nt">service-url</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9">9</a></span><span class="cl"><span class="w">      </span><span class="nt">defaultZone</span><span class="p">:</span><span class="w"> </span><span class="l">http://eureka1.com:8761/eureka/, http://eureka2.com:8761/eureka/</span><span class="w">
 </span></span></span></code></pre></div><ul>
 <li>spring.application.name : 서비스 이름이 중복으로 되는 것을 방지하기 위해 서비스 이름을 지정한다.</li>
 <li>server.port : 서비스의 포트 충돌을 막기 위해 랜덤 포트인 0을 지정한다.
@@ -867,51 +914,51 @@
 </ul>
 <h3 id="resttemplate-사용하여-서비스-사용">RestTemplate 사용하여 서비스 사용</h3>
 <p>RestTemplate 빈을 선언하는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@LoadBalanced</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">RestTemplate</span> <span class="nf">restTemplate</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="nd">@LoadBalanced</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">RestTemplate</span> <span class="nf">restTemplate</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@LoadBalanced 어노테이션을 통해 해당 RestTemplate이 (1) <span class="ul">리본을 통해서만 서비스를 찾는다는 것을 스프링 클라우드에게 알려준다.</span> 또, (2) <span class="ul">주입 식별자로 동작</span>할 수 있게 한다.</br>
 → <em>getForObject() 메서드의 HTTP 요청에서 호스트와 포트 대신 주입 식별자를 사용할 수 있다.</em>
 <br/><br/>
 주입 식별자를 사용한 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://ingredient-service/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2">2</a></span><span class="cl">  <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://ingredient-service/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>RestTemplate는 ingredient-service라는 이름의 서비스를 찾아 인스턴스를 선택하도록 리본에 요청한다. <br/><br/></p>
 <p>RestTemplate 대신 WebClient를 사용한 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@LoadBalanced</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">Builder</span> <span class="nf">webClientBuilder</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">Builder</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl"><span class="nd">@LoadBalanced</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">Builder</span> <span class="nf">webClientBuilder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="n">WebClient</span><span class="o">.</span><span class="na">Builder</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>RestTemplate을 사용했던 것과 동일한 방법으로 수행할 수 있다.</p>
 <h3 id="feign-클라이언트-인터페이스-정의">Feign 클라이언트 인터페이스 정의</h3>
 <p>Feign은 REST 클라이언트 라이브러리이며, 인터페이스를 기반으로 하는 방법을 사용해서 REST 클라이언트를 정의한다.<br/><br/></p>
 <p><strong>Feign 활성화</strong></p>
 <p>Feign 의존성을 추가하는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-openfeign&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl">  <span class="n">implementation</span> <span class="s1">&#39;org.springframework.cloud:spring-cloud-starter-openfeign&#39;</span>
+</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Feign 의존성을 추가한 후 구성 클래스에서 Feign을 활성화시키는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@EnableFeignClients</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FeignClientConfig</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2">2</a></span><span class="cl"><span class="nd">@EnableFeignClients</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FeignClientConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4">4</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@EnableFeignClients 어노테이션을 통해 Feign을 활성화시킬 수 있다.
 <br/><br/></p>
 <p><strong>Feign 인터페이스 생성</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FeignClient</span><span class="o">(</span><span class="s">&#34;ingredient-service&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientClient</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/ingredients/{id}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="n">Ingredient</span> <span class="nf">getIngredient</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">id</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/ingredients&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="nf">getAllIngredients</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1"> 1</a></span><span class="cl"><span class="nd">@FeignClient</span><span class="o">(</span><span class="s">&#34;ingredient-service&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientClient</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3"> 3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4"> 4</a></span><span class="cl">  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/ingredients/{id}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-5"> 5</a></span><span class="cl">  <span class="n">Ingredient</span> <span class="nf">getIngredient</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">id</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-12-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-6"> 6</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-12-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-7"> 7</a></span><span class="cl">  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/ingredients&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-12-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-8"> 8</a></span><span class="cl">  <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="nf">getAllIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-12-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-9"> 9</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-12-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-10">10</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ingredient-service라는 이름으로 유레카에 등록된 서비스를 사용하는 클라이언트를 작성하였다. 해당 인터페이스에 선언된 메서드를 사용하면 ingredient-service 이름의 서비스에 대한 요청이 이루어지게 된다.</p>
 
 

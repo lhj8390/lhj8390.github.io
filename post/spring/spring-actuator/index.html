@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-actuator\/",
-        "wordCount" : "1503",
+        "wordCount" : "1759",
         "genre" : [ 
       
       "Framework"
@@ -413,6 +413,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -560,6 +585,28 @@
           
           
         
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
       </div>
     </div>
     
@@ -680,7 +727,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">읽는 시간 8분</span>
+            <span class="post__meta-text">읽는 시간 9분</span>
           </li>
         </ul>
 
@@ -709,25 +756,25 @@
 </ul>
 <h3 id="액추에이터-활성화">액추에이터 활성화</h3>
 <p>액추에이터를 활성화하려면 액추에이터의 스타터 의존성을 추가해야 한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-actuator&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-actuator&#39;</span>
 </span></span></code></pre></div><p>액추에이터를 활성화하면 어플리케이션에서 액추에이터 엔드포인트를 사용할 수 있다.<br/><br/>
 액추에이터 엔드포인트 정보는 아래의 링크에서 확인할 수 있다.</p>
 <p><a href="https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/production-ready-endpoints.html">https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/production-ready-endpoints.html</a></p>
 <h3 id="액추에이터-설정">액추에이터 설정</h3>
 <p><strong>액추에이터 기본 경로 구성</strong></p>
 <p>모든 엔드포인트 경로에는 /actuator가 앞에 붙는데, 기본 경로를 변경한 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">base-path</span><span class="p">:</span><span class="w"> </span><span class="l">/management</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">base-path</span><span class="p">:</span><span class="w"> </span><span class="l">/management</span><span class="w">
 </span></span></span></code></pre></div><p>기본 경로는 application.yml 파일의 <code>management.endpoint.web.base-path</code> 속성에서 변경할 수 있다. 이후 건강 상태 정보를 얻고 싶다면 /management/health GET 요청을 보내면 된다.</p>
 <p><strong>액추에이터 엔드포인트 활성화/비활성화</strong></p>
 <p>엔드포인트 노출 여부를 제어하는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, beans, conditions</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, beans, conditions</span><span class="w">
 </span></span></span></code></pre></div><p>application.yml 파일의 <code>management.endpoint.web.exclude</code> 와  <code>management.endpoint.web.include</code> 속성을 통해 노출을 원하는 엔드포인트를 지정할 수 있다. exclude는 제외할 엔드포인트, include는 노출할 엔드포인트를 의미한다.</p>
 <aside>
 💡 include 속성에는 <span class="red">와일드카드(*)</span>를 통해 모든 엔드포인트를 노출하도록 설정할 수 있다.<br/>
@@ -739,14 +786,14 @@
 </blockquote>
 <h3 id="어플리케이션-기본-정보-받기">어플리케이션 기본 정보 받기</h3>
 <p>/info 엔드포인트를 통해 어플리케이션의 기본 정보를 알 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">info</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">contact</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l">email@email.com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="m">010-0000-0000</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="nt">info</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">contact</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l">email@email.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="w">    </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="m">010-0000-0000</span><span class="w">
 </span></span></span></code></pre></div><p>/info 엔드포인트가 반환하는 정보를 설정하는 방법은 여러가지가 있는데, 위에서 설정한 바와 같이 application.yml 에서 <span class="red"><strong>info</strong>로 시작하는 구성 속성을 설정</span>하는 방법도 있다.</p>
 <p>/health 엔드포인트를 통해 어플리케이션의 건강 상태 정보를 얻을 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8080/actuator/health
-</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;status&#34;</span>: <span class="s2">&#34;UP&#34;</span><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl">$ curl localhost:8080/actuator/health
+</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl"><span class="o">{</span><span class="s2">&#34;status&#34;</span>: <span class="s2">&#34;UP&#34;</span><span class="o">}</span>
 </span></span></code></pre></div><p>기본적으로 종합된 건강 상태 정보를 가지는 JSON 응답을 받는다.</p>
 <p><strong>건강 상태를 나타내는 각 지표</strong></p>
 <ul>
@@ -757,135 +804,135 @@
 </ul>
 <br/>
 건강 지표를 자세히 보려면 다음과 같이 구성한다.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">health</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">show-details</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">health</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">show-details</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
 </span></span></span></code></pre></div><p><code>management.endpoint.health.show-details</code> 속성을 <strong>always</strong>로 설정하면 모든 건강 지표를 자세히 볼 수 있다. 기본값은 never이고, when-authorized로 설정 시 클라이언트가 인가된 경우에 한해 상세한 내역을 보여준다.</p>
 <h3 id="구성-상세-정보-보기">구성 상세 정보 보기</h3>
 <p><strong>빈 연결 정보</strong>를 얻으려면 /beans 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;beans&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ingredientsController&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;aliases&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;singleton&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="s2">&#34;file [...ingredients/IngredientsController.class]&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ingredientRepository&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="kc">null</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2"> 2</a></span><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3"> 3</a></span><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4"> 4</a></span><span class="cl">      <span class="nt">&#34;beans&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5"> 5</a></span><span class="cl">        <span class="nt">&#34;ingredientsController&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6"> 6</a></span><span class="cl">          <span class="nt">&#34;aliases&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7"> 7</a></span><span class="cl">          <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;singleton&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8"> 8</a></span><span class="cl">          <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9"> 9</a></span><span class="cl">          <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="s2">&#34;file [...ingredients/IngredientsController.class]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-6-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-10">10</a></span><span class="cl">          <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ingredientRepository&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-6-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-11">11</a></span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-6-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-12">12</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-6-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-13">13</a></span><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="ln" id="hl-6-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-14">14</a></span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-15">15</a></span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-16">16</a></span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>해당 어플리케이션 컨텍스트에 있는 모든 빈의 상세 정보를 포함한다.</p>
 <p><strong>자동-구성 내역</strong>을 알기 위해서는 /conditions 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;positiveMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;MongoDataAutoConfiguration#mongoTemplate&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">          <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;condition&#34;</span><span class="p">:</span> <span class="s2">&#34;OnBeanCondition&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span>
-</span></span><span class="line"><span class="cl">          <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">],</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;negativeMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;DispatcherServletAutoConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;notMatched&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;matched&#34;</span><span class="p">:</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;unconditionalClasses&#34;</span><span class="p">:</span> <span class="p">[]</span>  
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2"> 2</a></span><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3"> 3</a></span><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4"> 4</a></span><span class="cl">      <span class="nt">&#34;positiveMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5"> 5</a></span><span class="cl">        <span class="nt">&#34;MongoDataAutoConfiguration#mongoTemplate&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6"> 6</a></span><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7"> 7</a></span><span class="cl">            <span class="nt">&#34;condition&#34;</span><span class="p">:</span> <span class="s2">&#34;OnBeanCondition&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8"> 8</a></span><span class="cl">            <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9"> 9</a></span><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-7-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-10">10</a></span><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-7-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-11">11</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-7-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-12">12</a></span><span class="cl">      <span class="nt">&#34;negativeMatches&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-13">13</a></span><span class="cl">        <span class="nt">&#34;DispatcherServletAutoConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-14">14</a></span><span class="cl">          <span class="nt">&#34;notMatched&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-7-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-15">15</a></span><span class="cl">          <span class="nt">&#34;matched&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="ln" id="hl-7-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-16">16</a></span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-7-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-17">17</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-7-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-18">18</a></span><span class="cl">      <span class="nt">&#34;unconditionalClasses&#34;</span><span class="p">:</span> <span class="p">[]</span>  
+</span></span><span class="line"><span class="ln" id="hl-7-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-19">19</a></span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-7-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-20">20</a></span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-7-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-21">21</a></span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>positiveMatches</strong>에서는 자동 구성이 된 빈들을 보여주고, <strong>negativeMatches</strong>에서는 자동 구성이 어떠한 이유때문에 실패했다는 것을 보여준다. <strong>unconditionalClassess</strong>는 조건 없이 자동 구성된 빈을 보여준다.</p>
 <p><strong>환경 속성과 구성 속성</strong>을 보기 위해서는 /env 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;activeProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;development&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;propertySources&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;systemEnvironment&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;PATH&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/bin:/bin:/usr/sbin:/sbin&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;System Environment Property \&#34;PATH\&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;applicationConfig: [classpath:/application.yml]&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;spring.application.name&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;ingredient-service&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:3:11&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;server.port&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">8081</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:9:9&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">  <span class="nt">&#34;activeProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">    <span class="s2">&#34;development&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl">  <span class="nt">&#34;propertySources&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;systemEnvironment&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl">        <span class="nt">&#34;PATH&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/bin:/bin:/usr/sbin:/sbin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;System Environment Property \&#34;PATH\&#34;&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-8-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-13">13</a></span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-8-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-14">14</a></span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-8-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-15">15</a></span><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-16">16</a></span><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;applicationConfig: [classpath:/application.yml]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-8-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-17">17</a></span><span class="cl">      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-18">18</a></span><span class="cl">        <span class="nt">&#34;spring.application.name&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-19">19</a></span><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;ingredient-service&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-8-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-20">20</a></span><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:3:11&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-8-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-21">21</a></span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-8-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-22">22</a></span><span class="cl">        <span class="nt">&#34;server.port&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-23">23</a></span><span class="cl">          <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">8081</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-8-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-24">24</a></span><span class="cl">          <span class="nt">&#34;origin&#34;</span><span class="p">:</span> <span class="s2">&#34;class path resource [application.yml]:9:9&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-8-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-25">25</a></span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-8-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-26">26</a></span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-8-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-27">27</a></span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-8-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-28">28</a></span><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-8-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-29">29</a></span><span class="cl"><span class="p">}</span>  
 </span></span></code></pre></div><p>activeProfiles 필드를 통해 활성화된 프로파일을 알 수 있고, propertySources 필드에서는 스프링 어플리케이션 환경의 속성 근원들을 포함한다.</p>
 <aside>
 💡 /env 엔드포인트에 POST 요청을 하면 실행 중인 어플리케이션의 속성을 설정할 수 있다.<br/>
 </aside>
 <br/>
 <p><strong>모든 HTTP 요청 핸들러 내역을 확인</strong>하려면 /mappings 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;dispatcherHandlers&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;webHandler&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">              <span class="nt">&#34;predicate&#34;</span><span class="p">:</span> <span class="s2">&#34;{[/ingredients],methods=[GET]}&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">              <span class="nt">&#34;handler&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">              <span class="nt">&#34;details&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;handlerMethod&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;allIngredients&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;descriptor&#34;</span><span class="p">:</span> <span class="s2">&#34;()Lreactor/core/publisher/Flux;&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">},</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;handlerFunction&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;requestMappingConditions&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;consumes&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;methods&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;GET&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;patterns&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;/ingredients&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;produces&#34;</span><span class="p">:</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">              <span class="p">}</span>  
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">          <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="s2">&#34;application-1&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2"> 2</a></span><span class="cl">  <span class="nt">&#34;contexts&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3"> 3</a></span><span class="cl">    <span class="nt">&#34;application-1&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4"> 4</a></span><span class="cl">      <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5"> 5</a></span><span class="cl">        <span class="nt">&#34;dispatcherHandlers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6"> 6</a></span><span class="cl">          <span class="nt">&#34;webHandler&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7"> 7</a></span><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-8"> 8</a></span><span class="cl">              <span class="nt">&#34;predicate&#34;</span><span class="p">:</span> <span class="s2">&#34;{[/ingredients],methods=[GET]}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-9-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-9"> 9</a></span><span class="cl">              <span class="nt">&#34;handler&#34;</span><span class="p">:</span> <span class="s2">&#34;...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-9-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-10">10</a></span><span class="cl">              <span class="nt">&#34;details&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-11">11</a></span><span class="cl">                <span class="nt">&#34;handlerMethod&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-12">12</a></span><span class="cl">                  <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;tacos.ingredients.IngredientsController&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-9-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-13">13</a></span><span class="cl">                  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;allIngredients&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-9-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-14">14</a></span><span class="cl">                  <span class="nt">&#34;descriptor&#34;</span><span class="p">:</span> <span class="s2">&#34;()Lreactor/core/publisher/Flux;&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-9-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-15">15</a></span><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-9-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-16">16</a></span><span class="cl">                <span class="nt">&#34;handlerFunction&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-9-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-17">17</a></span><span class="cl">                <span class="nt">&#34;requestMappingConditions&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-18">18</a></span><span class="cl">                  <span class="nt">&#34;consumes&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-9-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-19">19</a></span><span class="cl">                  <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-9-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-20">20</a></span><span class="cl">                  <span class="nt">&#34;methods&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;GET&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-9-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-21">21</a></span><span class="cl">                  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-9-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-22">22</a></span><span class="cl">                  <span class="nt">&#34;patterns&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;/ingredients&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-9-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-23">23</a></span><span class="cl">                  <span class="nt">&#34;produces&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="ln" id="hl-9-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-24">24</a></span><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-9-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-25">25</a></span><span class="cl">              <span class="p">}</span>  
+</span></span><span class="line"><span class="ln" id="hl-9-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-26">26</a></span><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-9-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-27">27</a></span><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-9-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-28">28</a></span><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-9-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-29">29</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-9-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-30">30</a></span><span class="cl">      <span class="nt">&#34;parentId&#34;</span><span class="p">:</span> <span class="s2">&#34;application-1&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-9-31"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-31">31</a></span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-9-32"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-32">32</a></span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-9-33"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-33">33</a></span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>특정 API의 요청이 어떤 메서드에서 처리되는지 확인할 수 있다.</p>
 <p><strong>로깅 레벨을 관리</strong>하려면 /loggers 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;levels&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;OFF&#34;</span><span class="p">,</span> <span class="s2">&#34;ERROR&#34;</span><span class="p">,</span> <span class="s2">&#34;WARN&#34;</span><span class="p">,</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="s2">&#34;DEBUG&#34;</span><span class="p">,</span> <span class="s2">&#34;TRACE&#34;</span> <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;loggers&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ROOT&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;org.springframework.web&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2"> 2</a></span><span class="cl">  <span class="nt">&#34;levels&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;OFF&#34;</span><span class="p">,</span> <span class="s2">&#34;ERROR&#34;</span><span class="p">,</span> <span class="s2">&#34;WARN&#34;</span><span class="p">,</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="s2">&#34;DEBUG&#34;</span><span class="p">,</span> <span class="s2">&#34;TRACE&#34;</span> <span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3"> 3</a></span><span class="cl">  <span class="nt">&#34;loggers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4"> 4</a></span><span class="cl">    <span class="nt">&#34;ROOT&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5"> 5</a></span><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6"> 6</a></span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-10-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-7"> 7</a></span><span class="cl">    <span class="nt">&#34;org.springframework.web&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-8"> 8</a></span><span class="cl">      <span class="nt">&#34;configuredLevel&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nt">&#34;effectiveLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;INFO&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-10-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-9"> 9</a></span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-10-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-10">10</a></span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-10-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-11">11</a></span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>응답의 맨 앞에는 모든 로깅 레벨 내역이 노출되고, 각 패키지에 대한 로깅 상세 내역을 볼 수 있다. configuredLevel 속성은 명시적으로 구성된 로깅 레벨이고, effectiveLevel 속성은 상속받을 수 있는 유효 로깅 레벨이다.</p>
 <aside>
 💡 /loggers 엔드포인트에 POST 요청을 하면 로깅 레벨을 변경할 수 있다.<br/>
@@ -893,69 +940,69 @@
 <h3 id="어플리케이션-모니터링">어플리케이션 모니터링</h3>
 <p><strong>메모리나 스레드 문제를 찾는 gzip 형태의 HPROF 힙 덤프 파일을 다운로드</strong>하려면 /heapdump 엔드포인트를 사용한다.<br/></p>
 <p><strong>어플리케이션이 처리한 최근 100개의 요청</strong>을 알기 위해서는 /httptrace 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;traces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-04T23:41:24.494Z&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;principal&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;session&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:8081/ingredients&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;localhost:8081&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;curl/7.54.0&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;*/*&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;remoteAddress&#34;</span><span class="p">:</span> <span class="kc">null</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="mi">4</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2"> 2</a></span><span class="cl">  <span class="nt">&#34;traces&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3"> 3</a></span><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4"> 4</a></span><span class="cl">      <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2018-06-04T23:41:24.494Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5"> 5</a></span><span class="cl">      <span class="nt">&#34;principal&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-6"> 6</a></span><span class="cl">      <span class="nt">&#34;session&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-7"> 7</a></span><span class="cl">      <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-8"> 8</a></span><span class="cl">        <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-9"> 9</a></span><span class="cl">        <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:8081/ingredients&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-10">10</a></span><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-11">11</a></span><span class="cl">          <span class="nt">&#34;Host&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;localhost:8081&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-11-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-12">12</a></span><span class="cl">          <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;curl/7.54.0&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-11-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-13">13</a></span><span class="cl">          <span class="nt">&#34;Accept&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;*/*&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-11-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-14">14</a></span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-11-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-15">15</a></span><span class="cl">        <span class="nt">&#34;remoteAddress&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="ln" id="hl-11-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-16">16</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-11-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-17">17</a></span><span class="cl">      <span class="nt">&#34;response&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-18">18</a></span><span class="cl">        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-11-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-19">19</a></span><span class="cl">        <span class="nt">&#34;headers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-20">20</a></span><span class="cl">          <span class="nt">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;application/json;charset=UTF-8&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-11-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-21">21</a></span><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-11-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-22">22</a></span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-11-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-23">23</a></span><span class="cl">      <span class="nt">&#34;timeTaken&#34;</span><span class="p">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="ln" id="hl-11-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-24">24</a></span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-11-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-25">25</a></span><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="ln" id="hl-11-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-26">26</a></span><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></div><p>스프링 부트 Admin에서는 이런 HTTP 추적 정보를 실시간으로 캡쳐하여 그래프로 보여준다.</p>
 <p><strong>현재 실행 중인 스레드에 관한 스냅샷을 확인</strong>하려면 /threaddump 엔드포인트를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;threadName&#34;</span><span class="p">:</span> <span class="s2">&#34;reactor-http-nio-8&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;threadId&#34;</span><span class="p">:</span> <span class="mi">338</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;blockedTime&#34;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;blockedCount&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">//...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;stackTrace&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;methodName&#34;</span><span class="p">:</span> <span class="s2">&#34;kevent0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;fileName&#34;</span><span class="p">:</span> <span class="s2">&#34;KQueueArrayWrapper.java&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;lineNumber&#34;</span><span class="p">:</span> <span class="mi">-2</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;sun.nio.ch.KQueueArrayWrapper&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;nativeMethod&#34;</span><span class="p">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">     <span class="p">},</span>
-</span></span><span class="line"><span class="cl">   <span class="p">],</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockedMonitors&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockedSynchronizers&#34;</span><span class="p">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&#34;lockInfo&#34;</span><span class="p">:</span> <span class="kc">null</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1"> 1</a></span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2"> 2</a></span><span class="cl">  <span class="nt">&#34;threadName&#34;</span><span class="p">:</span> <span class="s2">&#34;reactor-http-nio-8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3"> 3</a></span><span class="cl">  <span class="nt">&#34;threadId&#34;</span><span class="p">:</span> <span class="mi">338</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4"> 4</a></span><span class="cl">  <span class="nt">&#34;blockedTime&#34;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-5"> 5</a></span><span class="cl">  <span class="nt">&#34;blockedCount&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-6"> 6</a></span><span class="cl">  <span class="c1">//...
+</span></span></span><span class="line"><span class="ln" id="hl-12-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-7"> 7</a></span><span class="cl"><span class="c1"></span>  <span class="nt">&#34;stackTrace&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln" id="hl-12-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-8"> 8</a></span><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-12-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-9"> 9</a></span><span class="cl">      <span class="nt">&#34;methodName&#34;</span><span class="p">:</span> <span class="s2">&#34;kevent0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-10">10</a></span><span class="cl">      <span class="nt">&#34;fileName&#34;</span><span class="p">:</span> <span class="s2">&#34;KQueueArrayWrapper.java&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-11">11</a></span><span class="cl">      <span class="nt">&#34;lineNumber&#34;</span><span class="p">:</span> <span class="mi">-2</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-12">12</a></span><span class="cl">      <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;sun.nio.ch.KQueueArrayWrapper&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-12-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-13">13</a></span><span class="cl">      <span class="nt">&#34;nativeMethod&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="ln" id="hl-12-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-14">14</a></span><span class="cl">     <span class="p">},</span>
+</span></span><span class="line"><span class="ln" id="hl-12-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-15">15</a></span><span class="cl">   <span class="p">],</span>
+</span></span><span class="line"><span class="ln" id="hl-12-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-16">16</a></span><span class="cl">   <span class="nt">&#34;lockedMonitors&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-12-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-17">17</a></span><span class="cl">   <span class="nt">&#34;lockedSynchronizers&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="ln" id="hl-12-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-18">18</a></span><span class="cl">   <span class="nt">&#34;lockInfo&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="ln" id="hl-12-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-19">19</a></span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>요청 시점의 스레드 활동에 대한 스냅샷을 확인할 수 있다. 스레드 덤프에는 스레드의 블로킹과 록킹 상태의 관련 상세 정보와 스택 기록 등을 보여준다.</p>
 <p><strong>메모리, 프로세스, 가비지 컬렉션, HTTP 요청 관련 메트릭</strong>을 확인하려면 /metrics 엔드포인트를 사용한다.<br/>
 /metrics/{메트릭 종류} 형식으로 사용한다면 해당 종류의 메트릭에 대한 상세한 정보를 알 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl localhost:8081/actuator/metrics/http.server.requests?tag<span class="o">=</span>status:404<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>uri:/**
-</span></span><span class="line"><span class="cl"><span class="o">{</span> 
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;http.server.requests&#34;</span>,
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;measurements&#34;</span>: <span class="o">[</span>
-</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;COUNT&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">30</span> <span class="o">}</span>,
-</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;TOTAL_TIME&#34;</span>, <span class="s2">&#34;value&#34;</span>: 0.519791548 <span class="o">}</span>,
-</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;MAX&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">0</span> <span class="o">}</span>, 
-</span></span><span class="line"><span class="cl">  <span class="o">]</span>,
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;availableTags&#34;</span>: <span class="o">[</span>
-</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;exception&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;ResponseStatusException&#34;</span> <span class="o">]</span> <span class="o">}</span>,
-</span></span><span class="line"><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;method&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;GET&#34;</span> <span class="o">]</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl">  <span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1"> 1</a></span><span class="cl">$ curl localhost:8081/actuator/metrics/http.server.requests?tag<span class="o">=</span>status:404<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>uri:/**
+</span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2"> 2</a></span><span class="cl"><span class="o">{</span> 
+</span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3"> 3</a></span><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;http.server.requests&#34;</span>,
+</span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4"> 4</a></span><span class="cl">  <span class="s2">&#34;measurements&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="ln" id="hl-13-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-5"> 5</a></span><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;COUNT&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">30</span> <span class="o">}</span>,
+</span></span><span class="line"><span class="ln" id="hl-13-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-6"> 6</a></span><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;TOTAL_TIME&#34;</span>, <span class="s2">&#34;value&#34;</span>: 0.519791548 <span class="o">}</span>,
+</span></span><span class="line"><span class="ln" id="hl-13-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-7"> 7</a></span><span class="cl">    <span class="o">{</span> <span class="s2">&#34;statistic&#34;</span>: <span class="s2">&#34;MAX&#34;</span>, <span class="s2">&#34;value&#34;</span>: <span class="m">0</span> <span class="o">}</span>, 
+</span></span><span class="line"><span class="ln" id="hl-13-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-8"> 8</a></span><span class="cl">  <span class="o">]</span>,
+</span></span><span class="line"><span class="ln" id="hl-13-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-9"> 9</a></span><span class="cl">  <span class="s2">&#34;availableTags&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="ln" id="hl-13-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-10">10</a></span><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;exception&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;ResponseStatusException&#34;</span> <span class="o">]</span> <span class="o">}</span>,
+</span></span><span class="line"><span class="ln" id="hl-13-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-11">11</a></span><span class="cl">    <span class="o">{</span> <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;method&#34;</span>, <span class="s2">&#34;values&#34;</span>: <span class="o">[</span> <span class="s2">&#34;GET&#34;</span> <span class="o">]</span> <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-13-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-12">12</a></span><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="ln" id="hl-13-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-13">13</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>tag에 stauts, url 태그 이름과 값을 지정하면 HTTP 404 응답을 받은 /** 경로에 대한 메트릭을 볼 수 있다.</p>
 <h2 id="액추에이터-커스터마이징">액추에이터 커스터마이징</h2>
 <hr>
@@ -964,158 +1011,158 @@
 </blockquote>
 <h3 id="info-엔드포인트-커스터마이징">/info 엔드포인트 커스터마이징</h3>
 <p><span class="red">InfoContributor라는 인터페이스</span>를 사용하여 /info 엔드포인트 응답에 커스텀 데이터를 추가할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCountInfoContributor</span> <span class="kd">implements</span> <span class="n">InfoContributor</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCountInfoContributor</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">tacoRepo</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contribute</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">tacoCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">tacoMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tacoMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;count&#34;</span><span class="o">,</span> <span class="n">tacoCount</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">builder</span><span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;taco-stats&#34;</span><span class="o">,</span> <span class="n">tacoMap</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-14-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-1"> 1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-14-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCountInfoContributor</span> <span class="kd">implements</span> <span class="n">InfoContributor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-3"> 3</a></span><span class="cl">  <span class="kd">private</span> <span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-14-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-4"> 4</a></span><span class="cl">  
+</span></span><span class="line"><span class="ln" id="hl-14-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-5"> 5</a></span><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCountInfoContributor</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-6"> 6</a></span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">tacoRepo</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-14-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-7"> 7</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-14-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-8"> 8</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-14-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-9"> 9</a></span><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-14-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-10">10</a></span><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contribute</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-14-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-11">11</a></span><span class="cl">    <span class="kt">long</span> <span class="n">tacoCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-14-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-12">12</a></span><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">tacoMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="ln" id="hl-14-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-13">13</a></span><span class="cl">    <span class="n">tacoMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;count&#34;</span><span class="o">,</span> <span class="n">tacoCount</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-14-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-14">14</a></span><span class="cl">    <span class="n">builder</span><span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;taco-stats&#34;</span><span class="o">,</span> <span class="n">tacoMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-14-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-15">15</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-14-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-16">16</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>InfoContributor 인터페이스 구현체인 contribute() 메서드 <strong>내부에 인자로 받은 Builder 객체의 withDetails() 를 호출하여</strong> /info 엔드포인트에 정보를 추가할 수 있다.</p>
 <p><strong>빌드 정보를 주입</strong>하려면 build.gradle 파일에 다음과 같이 추가한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">springBoot</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">buildInfo</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-15-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-1">1</a></span><span class="cl"><span class="n">springBoot</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-15-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-2">2</a></span><span class="cl">  <span class="n">buildInfo</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-15-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><strong>Git 커밋 정보를 주입</strong>하려면 build.gradle 파일에 다음과 같이 추가한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">id</span> <span class="s2">&#34;com.gorylenko.gradle-git-properties&#34;</span> <span class="n">version</span> <span class="s2">&#34;1.4.17&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-16-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-1">1</a></span><span class="cl"><span class="n">plugins</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-16-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-2">2</a></span><span class="cl">  <span class="n">id</span> <span class="s2">&#34;com.gorylenko.gradle-git-properties&#34;</span> <span class="n">version</span> <span class="s2">&#34;1.4.17&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-16-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-16-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>이 정보는 프로젝트가 빌드된 시점의 간단한 코드 상태만을 나타낸다. <br/>
 자세한 정보를 얻기 위해서는 <code>management.info.git.mode</code> 속성을 full로 설정하면 된다. - <span class="gray"><em>application.yml</em></span></p>
 <h3 id="건강-지표-커스터마이징">건강 지표 커스터마이징</h3>
 <p><span class="red">HealthIndicator 인터페이스</span>를 사용하여 <em>스프링 부트에서 지원하지 않는</em> 외부 시스템의 건강 상태 정보를 제공할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WackoHealthIndicator</span> <span class="kd">implements</span> <span class="n">HealthIndicator</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">Health</span> <span class="nf">health</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="n">12</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;out of service&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                   <span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;hour&#34;</span><span class="o">,</span> <span class="n">hour</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">.</span><span class="na">1</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;break 10% of the time&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                   <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>    
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">up</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-17-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-1"> 1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-17-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WackoHealthIndicator</span> <span class="kd">implements</span> <span class="n">HealthIndicator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-3"> 3</a></span><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-17-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-4"> 4</a></span><span class="cl">  <span class="kd">public</span> <span class="n">Health</span> <span class="nf">health</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-5"> 5</a></span><span class="cl">    <span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-17-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-6"> 6</a></span><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="n">12</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-7"> 7</a></span><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;out of service&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-17-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-8"> 8</a></span><span class="cl">                   <span class="o">.</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;hour&#34;</span><span class="o">,</span> <span class="n">hour</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-17-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-9"> 9</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-17-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-10">10</a></span><span class="cl">    
+</span></span><span class="line"><span class="ln" id="hl-17-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-11">11</a></span><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">.</span><span class="na">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-17-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-12">12</a></span><span class="cl">      <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">outOfService</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;break 10% of the time&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-17-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-13">13</a></span><span class="cl">                   <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-17-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-14">14</a></span><span class="cl">    <span class="o">}</span>    
+</span></span><span class="line"><span class="ln" id="hl-17-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-15">15</a></span><span class="cl">    
+</span></span><span class="line"><span class="ln" id="hl-17-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-16">16</a></span><span class="cl">    <span class="k">return</span> <span class="n">Health</span><span class="o">.</span><span class="na">up</span><span class="o">().</span><span class="na">withDetail</span><span class="o">(</span><span class="s">&#34;reason&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-17-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-17">17</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-17-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-17-18">18</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>외부 시스템에 원격 호출을 한 후 받은 응답 기준으로 건강 상태를 결정하는 방식으로 유용하게 사용할 수 있다.</p>
 <h3 id="커스텀-메트릭-등록">커스텀 메트릭 등록</h3>
 <p>Micrometer의 <span class="red">MeterRegistry</span>를 사용하여 스프링 부트 어플리케이션에서 메트릭을 발행할 수 있다. 메트릭을 발행할 때는 필요한 곳에 MeterRegistry를 주입하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoMetrics</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">TacoMetrics</span><span class="o">(</span><span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">meterRegistry</span> <span class="o">=</span> <span class="n">meterRegistry</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">taco</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span> <span class="o">=</span> <span class="n">taco</span><span class="o">.</span><span class="na">getIngredients</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span> <span class="o">:</span> <span class="n">ingredients</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">meterRegistry</span><span class="o">.</span><span class="na">counter</span><span class="o">(</span><span class="s">&#34;tacocloud&#34;</span><span class="o">,</span> <span class="s">&#34;ingredient&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">increment</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-18-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-1"> 1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-18-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-2"> 2</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoMetrics</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-3"> 3</a></span><span class="cl">  <span class="kd">private</span> <span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-18-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-4"> 4</a></span><span class="cl">  <span class="kd">public</span> <span class="nf">TacoMetrics</span><span class="o">(</span><span class="n">MeterRegistry</span> <span class="n">meterRegistry</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-5"> 5</a></span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">meterRegistry</span> <span class="o">=</span> <span class="n">meterRegistry</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-18-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-6"> 6</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-18-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-7"> 7</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-18-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-8"> 8</a></span><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-18-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-9"> 9</a></span><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">taco</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-10">10</a></span><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span> <span class="o">=</span> <span class="n">taco</span><span class="o">.</span><span class="na">getIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-18-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-11">11</a></span><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span> <span class="o">:</span> <span class="n">ingredients</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-18-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-12">12</a></span><span class="cl">      <span class="n">meterRegistry</span><span class="o">.</span><span class="na">counter</span><span class="o">(</span><span class="s">&#34;tacocloud&#34;</span><span class="o">,</span> <span class="s">&#34;ingredient&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">increment</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-18-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-13">13</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-18-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-14">14</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-18-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-18-15">15</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>스프링 데이터 클래스인 AbstractRepositoryEventListener의 서브 클래스를 생성하고 <span class="red">새로운 객체가 저장될 때마다 호출되도록 onAfterCreate() 메서드를 오버라이딩한다.</span></p>
 <h3 id="커스텀-엔드포인트-생성">커스텀 엔드포인트 생성</h3>
 <p>액추에이터 앤드포인트를 지정하려면 <strong>@EndPoint</strong> 어노테이션을 사용한다. 또한 @GetMapping, @PostMapping 대신 @ReadOperation, @WriteOperation, @DeleteOperation 어노테이션이 지정된 메서드로 정의된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="n">notes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="nd">@ReadOperation</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">notes</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="nd">@WriteOperation</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">addNote</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">notes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Note</span><span class="o">(</span><span class="n">text</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="nd">@DeleteOperation</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">deleteNote</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">notes</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">notes</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="nd">@RequiredArgsConstructor</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Getter</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Date</span> <span class="n">time</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Getter</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">text</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-19-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-1"> 1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-19-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-2"> 2</a></span><span class="cl"><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-19-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-4"> 4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-19-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-5"> 5</a></span><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="n">notes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="ln" id="hl-19-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-6"> 6</a></span><span class="cl">  
+</span></span><span class="line"><span class="ln" id="hl-19-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-7"> 7</a></span><span class="cl">  <span class="nd">@ReadOperation</span>
+</span></span><span class="line"><span class="ln" id="hl-19-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-8"> 8</a></span><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">notes</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-9"> 9</a></span><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-19-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-10">10</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-19-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-11">11</a></span><span class="cl">  
+</span></span><span class="line"><span class="ln" id="hl-19-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-12">12</a></span><span class="cl">  <span class="nd">@WriteOperation</span>
+</span></span><span class="line"><span class="ln" id="hl-19-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-13">13</a></span><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">addNote</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-14">14</a></span><span class="cl">    <span class="n">notes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Note</span><span class="o">(</span><span class="n">text</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln" id="hl-19-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-15">15</a></span><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-19-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-16">16</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-19-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-17">17</a></span><span class="cl">  
+</span></span><span class="line"><span class="ln" id="hl-19-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-18">18</a></span><span class="cl">  <span class="nd">@DeleteOperation</span>
+</span></span><span class="line"><span class="ln" id="hl-19-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-19">19</a></span><span class="cl">  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Note</span><span class="o">&gt;</span> <span class="nf">deleteNote</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-20">20</a></span><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">notes</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-21">21</a></span><span class="cl">      <span class="n">notes</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-19-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-22">22</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-19-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-23">23</a></span><span class="cl">    <span class="k">return</span> <span class="n">notes</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-19-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-24">24</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-19-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-25">25</a></span><span class="cl">  
+</span></span><span class="line"><span class="ln" id="hl-19-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-26">26</a></span><span class="cl">  <span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="ln" id="hl-19-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-27">27</a></span><span class="cl">  <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Note</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-19-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-28">28</a></span><span class="cl">    <span class="nd">@Getter</span>
+</span></span><span class="line"><span class="ln" id="hl-19-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-29">29</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Date</span> <span class="n">time</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-19-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-30">30</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-19-31"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-31">31</a></span><span class="cl">    <span class="nd">@Getter</span>
+</span></span><span class="line"><span class="ln" id="hl-19-32"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-32">32</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">text</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln" id="hl-19-33"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-33">33</a></span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-19-34"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-19-34">34</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>쓰기 오퍼레이션으로 데이터를 제출하고, 읽기 오퍼레이션으로 데이터를 읽을 수 있으며, 삭제 오퍼레이션으로 데이터를 삭제할 수 있다. enableByDefault=true로 지정했기 때문에 해당 엔드포인트를 구성 속성에서 활성화하지 않아도 된다.</p>
 <p>엔드포인트를 <strong>HTTP 엔드포인트로만 제한</strong>하고 싶다면 @WebEndPoint 어노테이션을 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@WebEndpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="o">...</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-20-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-1">1</a></span><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="ln" id="hl-20-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-2">2</a></span><span class="cl"><span class="nd">@WebEndpoint</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;notes&#34;</span><span class="o">,</span> <span class="n">enableByDefault</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-20-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotesEndpoint</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-20-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-4">4</a></span><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="ln" id="hl-20-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-20-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><h2 id="액추에이터-보안-처리">액추에이터 보안 처리</h2>
 <hr>
 <blockquote>
 <p>권한을 갖는 클라이언트만 엔드포인트를 사용하게 하기 위해서는 스프링 시큐리티를 사용해서 액추에이터의 보안을 처리해야 한다.</p>
 </blockquote>
 <p>액추에이터 엔드포인트의 공통 기본 경로인 /actuator 경로에 대한 보안을 추가하려면 다음과 같이 설정한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/actuator/**&#34;</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-21-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-21-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-21-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-3">3</a></span><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-21-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/actuator/**&#34;</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-21-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-5">5</a></span><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-21-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-21-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-21-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ROLE_ADMIN 권한을 가지는 사용자만 액추에이터 엔드포인트를 사용할 수 있다.</p>
 <p><strong>엔드포인트 경로를 구성 속성에서 변경했다면</strong> <span class="red">EndpointRequest 클래스</span>를 통해 변경된 경로를 알 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-22-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-22-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-22-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-3">3</a></span><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">())</span>
+</span></span><span class="line"><span class="ln" id="hl-22-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-22-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-5">5</a></span><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-22-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-22-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-22-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-22-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><code>EndpointRequest.toAnyEndpoint()</code> 메서드는 액추에이터 엔드포인트와 일치하는 요청 경로 모음을 반환한다. <br/>
 <strong>일부 엔드포인트를 제외</strong>하고 싶으면 excluding() 메서드를 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">().</span><span class="na">excluding</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-23-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-23-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-23-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-3">3</a></span><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">toAnyEndpoint</span><span class="o">().</span><span class="na">excluding</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="ln" id="hl-23-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-23-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-5">5</a></span><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-23-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-23-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-23-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-23-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br/>
 <p><strong>일부 액추에이터 엔드포인트에만 보안을 적용</strong>하고 싶으면 to() 메서드를 호출한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-24-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-1">1</a></span><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-24-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-2">2</a></span><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-24-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-3">3</a></span><span class="cl">  <span class="n">http</span><span class="o">.</span><span class="na">requestMatcher</span><span class="o">(</span><span class="n">EndpointRequest</span><span class="o">.</span><span class="na">to</span><span class="o">(</span><span class="s">&#34;health&#34;</span><span class="o">,</span> <span class="s">&#34;info&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="ln" id="hl-24-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-4">4</a></span><span class="cl">        <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-24-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-5">5</a></span><span class="cl">          <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">hasRole</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-24-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-6">6</a></span><span class="cl">      <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+</span></span><span class="line"><span class="ln" id="hl-24-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-7">7</a></span><span class="cl">      <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-24-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-24-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div>
 
 

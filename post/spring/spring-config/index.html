@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-config\/",
-        "wordCount" : "539",
+        "wordCount" : "582",
         "genre" : [ 
       
       "Framework"
@@ -406,6 +406,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -547,6 +572,28 @@
                     <i class="fa-brands fa-react"></i>
                   
                   React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
                 </a>
                 
               </div>
@@ -695,59 +742,59 @@
 <p>스프링 부트에서 구성 속성을 통해 간단히 데이터베이스의 URL과 인증을 구성할 수 있다.
 <br/><br/>
 MySQL 데이터베이스를 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.jdbc.Driver</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6">6</a></span><span class="cl"><span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.jdbc.Driver</span><span class="w">
 </span></span></span></code></pre></div><p>이 DataSource 빈을 자동-구성할 때 스프링 부트가 이 속성을 연결 데이터로 사용한다.
 <br/><br/>
 데이터베이스를 초기화하는 SQL 스크립트를 실행해야 할 경우 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">schema</span><span class="p">:</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">order-schema.sql</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredient-schema.sql</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingredients.sql</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">schema</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="w">      </span>- <span class="l">order-schema.sql</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="w">      </span>- <span class="l">ingredient-schema.sql</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl"><span class="w">      </span>- <span class="l">ingredients.sql</span><span class="w">
 </span></span></span></code></pre></div><h3 id="내장-서버-구성하기">내장 서버 구성하기</h3>
 <p>스프링 부트는 자체적으로 톰캣 내장 서버가 존재한다. 이 내장 서버도 구성 속성을 사용해 구성할 수 있다.
 <br/><br/>
 포트를 무작위로 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
 </span></span></span></code></pre></div><p>server 포트를 0으로 설정한다면 내장 서버가 0번 포트로 시작하지 않고 사용 가능한 포트로 무작위로 선택하여 실행된다.<br/>
 해당 구성을 통해 (1)<span class="ul">자동화된(동적) 테스트를 실행</span>하거나, (2) <span class="ul">마이크로서비스를 이용</span>할 때 유용하다.
 <br/><br/>
 내장 서버의 HTTS를 활성화시키는 방법이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ssl</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store</span><span class="p">:</span><span class="w"> </span><span class="l">file:///path/to/mykeys/jks</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-store-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="w">  </span><span class="nt">ssl</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="w">    </span><span class="nt">key-store</span><span class="p">:</span><span class="w"> </span><span class="l">file:///path/to/mykeys/jks</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl"><span class="w">    </span><span class="nt">key-store-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl"><span class="w">    </span><span class="nt">key-password</span><span class="p">:</span><span class="w"> </span><span class="l">letmein</span><span class="w">
 </span></span></span></code></pre></div><p>ssl.key-store : 키스토어 파일이 생성된 경로로 설정 (파일 시스템: <code>file://</code>, JAR 파일: <code>classpath:</code>)<br/>
 ssl.key-store-password, ssl.key-password : 키스토어를 생성할 때 지정했던 비밀번호 설정</p>
 <h3 id="로깅-구성하기">로깅 구성하기</h3>
 <p>스프링 부트는 logback.xml 파일을 생성하지 않고 로그 구성을 변경할 수 있다.<br/><br/></p>
 <p>로그를 설정하는 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6">6</a></span><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
 </span></span></span></code></pre></div><p>루트의 로깅 수준은 WARN으로 하되, 스프링 시큐리티의 로그는 DEBUG 수준으로 설정한다는 의미이다.<br/><br/></p>
 <p>로그들을 logging.log 파일에 저장하도록 설정할 경우 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/logs/</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l">logging.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/logs/</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="w">  </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l">logging.log</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl"><span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="w">    </span><span class="nt">org</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7">7</a></span><span class="cl"><span class="w">      </span><span class="nt">springframework</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8">8</a></span><span class="cl"><span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
 </span></span></span></code></pre></div><p>애플리케이션이 /var/logs/ 경로에 대해 권한을 가지고 있다면 로그 항목들이 해당 경로에 저장된다.</p>
 <h2 id="프로파일-설정하기">프로파일 설정하기</h2>
 <hr>
@@ -764,47 +811,47 @@ ssl.key-store-password, ssl.key-password : 키스토어를 생성할 때 지정�
 <p>공통으로 적용되는 기본 속성과 함께 프로파일 특정 속성을 .yml 에 지정할 수 있다.</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">prod</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1"> 1</a></span><span class="cl"><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2"> 2</a></span><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3"> 3</a></span><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">DEBUG</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4"> 4</a></span><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5"> 5</a></span><span class="cl"><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6"> 6</a></span><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">prod</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7"> 7</a></span><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8"> 8</a></span><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost/dbname</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9"> 9</a></span><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-10">10</a></span><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">passwd</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-11">11</a></span><span class="cl"><span class="w"></span><span class="nt">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-12">12</a></span><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-6-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-13">13</a></span><span class="cl"><span class="w">    </span><span class="nt">tacos</span><span class="p">:</span><span class="w"> </span><span class="l">WARN</span><span class="w">
 </span></span></span></code></pre></div><p>3개의 하이픈(—-)을 통해 yml 파일을 두 부분으로 구분짓는다.<br/>
 첫번째 부분은 공통 영역, 두 번째 부분은 prod 프로파일만 적용되는 부분이다.</p>
 <h3 id="프로파일-활성화">프로파일 활성화</h3>
 <p>프로파일은 기본적으로 다음과 같이 활성화할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>-<span class="l">dev</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl"><span class="w">      </span>-<span class="l">dev</span><span class="w">
 </span></span></span></code></pre></div><p>하지만 이처럼 구성할 경우 해당 프로파일이 기본 프로파일로 지정되어 프로덕션 환경과 개발 속성을 분리할 수 없게 된다.</p>
 <p>이를 해결하기 위해서는 다음과 같이 명령행 인자로 활성화 프로파일을 설정할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">% java -jar app.jar --spring.profiles.active<span class="o">=</span>prod
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl">% java -jar app.jar --spring.profiles.active<span class="o">=</span>prod
 </span></span></code></pre></div><p>이 명령어를 통해 기본 프로파일 속성(dev)보다 더 높은 우선순위를 부여받을 수 있게 된다.</p>
 <h3 id="빈-생성하기">빈 생성하기</h3>
 <p>빈은 활성화되는 프로파일과는 무관하게 생성되지만 특정 프로파일이 활성화될 때만 생성되어야 하는 빈들이 존재한다.<br/>
 이 경우에는 @Profile 어노테이션을 활용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;dev&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">CommandLineRunner</span> <span class="nf">dataLoader</span><span class="o">(</span><span class="n">IngredientRepository</span> <span class="n">repo</span><span class="o">,</span> <span class="n">serRepository</span> <span class="n">userRepo</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">                                     <span class="n">PasswordEncoder</span> <span class="n">encoder</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="o">...</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;dev&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">CommandLineRunner</span> <span class="nf">dataLoader</span><span class="o">(</span><span class="n">IngredientRepository</span> <span class="n">repo</span><span class="o">,</span> <span class="n">serRepository</span> <span class="n">userRepo</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl">                                     <span class="n">PasswordEncoder</span> <span class="n">encoder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6">6</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>해당 빈은 데이터를 내장 데이터베이스에 로드할 때 사용하는 것으로, 개발환경에서는 필요하지만 프로덕션 환경에서는 불필요하다.<br/>
 따라서 이 메서드에 @Profile을 지정하여 개발 환경에서만 실행되도록 설정하였다.<br/><br/></p>
 <p>여러가지 Profile을 지정할 경우에는 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">({</span><span class="s">&#34;dev&#34;</span><span class="o">,</span> <span class="s">&#34;qa&#34;</span><span class="o">})</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="nd">@Profile</span><span class="o">({</span><span class="s">&#34;dev&#34;</span><span class="o">,</span> <span class="s">&#34;qa&#34;</span><span class="o">})</span>
 </span></span></code></pre></div><br/>
 특정 Profile을 제외할 경우에는 다음과 같다.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;!prod&#34;</span><span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="nd">@Profile</span><span class="o">(</span><span class="s">&#34;!prod&#34;</span><span class="o">)</span>
 </span></span></code></pre></div>
 
 

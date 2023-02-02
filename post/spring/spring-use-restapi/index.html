@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1f1246cbff293f12464a0b0a6445ca8c5b197d512d8e06d216d9fc063232db08.css"
-      integrity="sha256-HxJGy/8pPxJGSgsKZEXKjFsZfVEtjgbSFtn8BjIy2wg="
+      href="/scss/main.min.d2f9f4bebbb4b65c6094a984ec4cd647b3faf22265508020c4bab27c535ba04f.css"
+      integrity="sha256-0vn0vru0tlxglKmE7EzWR7P68iJlUIAgxLqyfFNboE8="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -45,8 +45,8 @@
   
   <link
     rel="stylesheet"
-    href="/css/markupHighlight.min.1e693fb58c0dd2891128fdf15e2e495910c0d5612411794344529697bfe7b4bc.css"
-    integrity="sha256-Hmk/tYwN0okRKP3xXi5JWRDA1WEkEXlDRFKWl7/ntLw="
+    href="/css/markupHighlight.min.e062ed49a496869292ba7f12741c960db2e2379c90618f01ecd5a326bc691a87.css"
+    integrity="sha256-4GLtSaSWhpKSun8SdByWDbLiN5yQYY8B7NWjJrxpGoc="
     crossorigin="anonymous"
     type="text/css"
   />
@@ -189,7 +189,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-use-restapi\/",
-        "wordCount" : "758",
+        "wordCount" : "782",
         "genre" : [ 
       
       "Framework"
@@ -406,6 +406,31 @@
          
         
       
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
     </div>
   </div><footer class="footer footer__sidebar">
   <ul class="footer__list">
@@ -547,6 +572,28 @@
                     <i class="fa-brands fa-react"></i>
                   
                   React.Js
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
                 </a>
                 
               </div>
@@ -744,85 +791,85 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </table>
 <br/>
 <p><strong>RestTemplate 생성</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RestTemplate</span> <span class="n">rest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">RestTemplate</span> <span class="n">rest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
 </span></span></code></pre></div><p>RestTemplate를 사용하려면 필요한 시점에 RestTemplate 인스턴스를 생성해야 한다.</p>
 <h3 id="get-method">GET method</h3>
 <p>RestTemplate에서는 GET 요청을 지원하는 메서드로 getForObject()와 getForEntity()가 있다.<br/><br/></p>
 <p><strong>getForObject() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>getForObject의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">응답이 바인딩되는 타입</span>, (3) <span class="ul">URL 문자열의 변수 값</span>이 된다.
 <br/>
 <br/></p>
 <p><strong>URL 변수 지정</strong></p>
 <p>URL 변수가 여러 개일 경우 getForObject의 세번째 매개변수부터 URL 변수가 순서대로 지정된다.<br/>
 하지만 하단의 코드처럼 Map을 사용하여 URL 변수를 지정해줄 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">urlVariables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">urlVariables</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">urlVariables</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">urlVariables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl">    <span class="n">urlVariables</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">urlVariables</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>URL 문자열의 {id} 변수는 키가 id인 Map 항목 값으로 교체된다.
 <br/><br/></p>
 <p><strong>URI 매개변수 사용</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">urlVariables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">urlVariables</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">URI</span> <span class="n">url</span> <span class="o">=</span> <span class="n">UriComponentsBuilder</span><span class="o">.</span><span class="na">fromHttpUrl</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                                  <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">urlVariables</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">urlVariables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">    <span class="n">urlVariables</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl">    <span class="n">URI</span> <span class="n">url</span> <span class="o">=</span> <span class="n">UriComponentsBuilder</span><span class="o">.</span><span class="na">fromHttpUrl</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl">                                  <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">urlVariables</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7">7</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>URL 문자열 대신 URI 객체를 사용할 수 있다.
 <br/><br/></p>
 <p><strong>getForEntity() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">responseEntity</span> <span class="o">=</span> 
-</span></span><span class="line"><span class="cl">            <span class="n">rest</span><span class="o">.</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">responseEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">getIngredientById</span><span class="o">(</span><span class="n">String</span> <span class="n">ingredientId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">responseEntity</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">            <span class="n">rest</span><span class="o">.</span><span class="na">getForEntity</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ingredientId</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="n">responseEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>getForEntity()는 getForObject()와 동일하지만, 응답 결과를 나타내는 도메인 객체를 반환하는 대신 도메인 객체를 포함하는 ResponseEntity 객체를 반환한다.
 <br/>
 → 응답 헤더와 같은 상세한 응답 컨텐츠가 포함된다.</p>
 <h3 id="put-method">PUT method</h3>
-<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다.
+<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다. 
 <br/><br/></p>
 <p><strong>put() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>put()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL로 전송하는 객체</span>, (3) <span class="ul">URL 문자열의 변수 값</span>이 된다. <br/>
 반환 타입은 void이므로 반환값을 처리할 필요가 없다.</p>
 <h3 id="delete-method">DELETE method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다.
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다. 
 <br/><br/></p>
 <p><strong>delete() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl">	<span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients/{id}&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>delete()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL 문자열의 변수 값</span>이 된다.</p>
 <h3 id="post-method">POST method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다.
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다. 
 <br/><br/></p>
 <p><strong>postForObject() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForObject</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>postForObject()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">서버에 전송될 객체</span>, (3) <span class="ul">리소스 객체의 타입</span>, (4) <span class="ul">URL 변수 값을 가지는 Map이나 가변 매개변수 리스트</span>가 된다.
 <br/><br/></p>
 <p><strong>postForLocation() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">URI</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForLocation</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">URI</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2">2</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForLocation</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>postForLocation()은 리소스 객체 대신 새로 생성된 리소스의 URI를 반환한다. <br/>
 반환된 URI는 해당 응답의 Locaton 헤더에서 얻는다.
 <br/><br/></p>
 <p><strong>postForEntity() 메서드</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">responseEntity</span> <span class="o">=</span> 
-</span></span><span class="line"><span class="cl">            <span class="n">rest</span><span class="o">.</span><span class="na">postForEntity</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">responseEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl">    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">responseEntity</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl">            <span class="n">rest</span><span class="o">.</span><span class="na">postForEntity</span><span class="o">(</span><span class="s">&#34;http://localhost:8080/ingredients&#34;</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="n">responseEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>postForEntity() 메서드를 사용한다면 새로 생성된 리소스의 위치와 리소스 객체 모두 얻을 수 있다.</p>
 <h2 id="traverson-사용">Traverson 사용</h2>
 <hr>
@@ -831,31 +878,31 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 Traverson을 통해 relation 이름으로 원하는 API를 사용할 수 있다.</p>
 </blockquote>
 <h3 id="traverson-객체-생성">Traverson 객체 생성</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Traverson</span> <span class="n">traverson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Traverson</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&#34;http://location:8080/api&#34;</span><span class="o">),</span> <span class="n">MediaTypes</span><span class="o">.</span><span class="na">HAL_JSON</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="n">Traverson</span> <span class="n">traverson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Traverson</span><span class="o">(</span><span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&#34;http://location:8080/api&#34;</span><span class="o">),</span> <span class="n">MediaTypes</span><span class="o">.</span><span class="na">HAL_JSON</span><span class="o">);</span>
 </span></span></code></pre></div><p>기본 API URI을 가지는 Traverson 객체를 생성하여 각 링크의 relation 이름으로 API를 사용할 수 있게 한다.<br/>
 또한 해당 API가 HAL 스타일의 하이퍼링크를 가지는 JSON 응답을 생성한다는 것을 인자로 지정해준다. - <span class="gray"><em>수신되는 리소스 데이터를 Traverson이 분석하기 위해</em></span></p>
 <h3 id="traverson-응용">Traverson 응용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;&gt;</span> <span class="n">ingredientType</span> <span class="o">=</span> 
-</span></span><span class="line"><span class="cl">                                <span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;&gt;()</span> <span class="o">{};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredientRes</span> <span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">).</span><span class="na">toObject</span><span class="o">(</span><span class="n">ingredientType</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span> <span class="o">=</span> <span class="n">ingredientRes</span><span class="o">.</span><span class="na">getContent</span><span class="o">();</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;&gt;</span> <span class="n">ingredientType</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2">2</a></span><span class="cl">                                <span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;&gt;()</span> <span class="o">{};</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3">3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4">4</a></span><span class="cl"><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredientRes</span> <span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">).</span><span class="na">toObject</span><span class="o">(</span><span class="n">ingredientType</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5">5</a></span><span class="cl"><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span> <span class="o">=</span> <span class="n">ingredientRes</span><span class="o">.</span><span class="na">getContent</span><span class="o">();</span>
 </span></span></code></pre></div><p>Traverson 객체의 follow() 메서드를 호출하면 리소스 링크의 relation 이름이 ingredients인 리소스로 이동할 수 있다. <br/>
 클라이언트는 ingredients로 이동했으므로 toObject()를 호출하여 해당 리소스를 가져올 수 있다.<br/>
 toObject() 메서드의 인자에는 데이터를 읽어들이는 객체 타입을 지정한다. <br/>
 → 자바에서는 제네릭 타입의 타입 정보(<Ingredient>)가 런타임 시에 소거되므로  ParameterizedTypeReference를 생성하여 리소스 타입을 지정해주어야 한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacoRes</span><span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="s">&#34;recents&#34;</span><span class="o">).</span><span class="na">toObject</span><span class="o">(</span><span class="n">tacoType</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1">1</a></span><span class="cl"><span class="n">Resources</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacoRes</span><span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="s">&#34;recents&#34;</span><span class="o">).</span><span class="na">toObject</span><span class="o">(</span><span class="n">tacoType</span><span class="o">);</span>
 </span></span></code></pre></div><p>follow() 메서드는 이와 같이 두 개 이상의 relation 이름을 인자로 지정하여 한번만 호출할 수 있다.</p>
 <h3 id="traverson-단점">Traverson 단점</h3>
 <p>Traverson을 사용하면 HATEOAS가 활성화된 API를 이동하면서 해당 API 리소스를 쉽게 가져올 수 있지만 <span class="red"><strong>리소스를 쓰거나 삭제하는 메서드를 제공하지 않는다.</strong></span><br/>
 따라서 API의 이동과 리소스 변경/삭제를 모두 해야 한다면 RestTemplate과 Traverson을 함께 사용해야 한다.
 <br/><br/></p>
 <p><strong>RestTemplate과 Traverson 사용 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">Ingredient</span> <span class="nf">addIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">ingredientsUrl</span> <span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">).</span><span class="na">asLink</span><span class="o">().</span><span class="na">getHref</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForObject</span><span class="o">(</span><span class="n">ingredientsUrl</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">Ingredient</span> <span class="nf">addIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2">2</a></span><span class="cl">    <span class="n">String</span> <span class="n">ingredientsUrl</span> <span class="o">=</span> <span class="n">traverson</span><span class="o">.</span><span class="na">follow</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">).</span><span class="na">asLink</span><span class="o">().</span><span class="na">getHref</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3">3</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="n">rest</span><span class="o">.</span><span class="na">postForObject</span><span class="o">(</span><span class="n">ingredientsUrl</span><span class="o">,</span> <span class="n">ingredient</span><span class="o">,</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-13-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-5">5</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ingredients 링크를 따라가 asLink()를 통해 ingredients 링크 자체를 요청하고, getHref()로 URL을 가져온다. 해당 URL을 통해 postForObject()를 호출하여 새로운 객체를 추가할 수 있다.</p>
 
 
