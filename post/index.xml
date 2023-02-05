@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[GoF 디자인 패턴] 추상 팩토리 (Abstract Factory) 패턴</title>
+      <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-abstract-factory/</link>
+      <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/architectural/gof-design-pattern-abstract-factory/</guid>
+      
+        <description>GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다.</description>
+      
+    </item>
+    
+    <item>
       <title>Golang - 복합타입 (맵, 구조체) 사용하기</title>
       <link>https://lhj8390.github.io/post/go/go-string-map-struct/</link>
       <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
