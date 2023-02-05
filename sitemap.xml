@@ -3,30 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/go/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/subcategories/go/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/golang/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/post/go/go_array_and_slice/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <loc>https://lhj8390.github.io/post/go/go-string-map-struct/</loc>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/language/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/subcategories/</loc>
-    <lastmod>2023-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/</loc>
+    <lastmod>2023-02-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/go/go_array_and_slice/</loc>
     <lastmod>2023-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/framework/</loc>

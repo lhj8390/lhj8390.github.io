@@ -6,7 +6,18 @@
     <description>Recent content on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 02 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang - 복합타입 (맵, 구조체) 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go-string-map-struct/</link>
+      <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-string-map-struct/</guid>
+      
+        <description>golang에서 복합타입 중 맵, 구조체의 개념과 사용법, 예제를 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>Golang - 배열과 슬라이스 사용하기</title>
       <link>https://lhj8390.github.io/post/go/go_array_and_slice/</link>
