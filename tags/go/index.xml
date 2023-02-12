@@ -6,7 +6,18 @@
     <description>Recent content in Go on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 05 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang - 제어문 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go-if-switch/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-if-switch/</guid>
+      
+        <description>golang에서 제어문의 사용법, 예제를 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>Golang - 복합타입 (맵, 구조체) 사용하기</title>
       <link>https://lhj8390.github.io/post/go/go-string-map-struct/</link>

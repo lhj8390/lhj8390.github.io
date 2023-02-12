@@ -6,7 +6,18 @@
     <description>Recent content in Categories on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 05 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>language</title>
+      <link>https://lhj8390.github.io/categories/language/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/categories/language/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>architecture</title>
       <link>https://lhj8390.github.io/categories/architecture/</link>
@@ -19,33 +30,11 @@
     </item>
     
     <item>
-      <title>language</title>
-      <link>https://lhj8390.github.io/categories/language/</link>
-      <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/categories/language/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Framework</title>
-      <link>https://lhj8390.github.io/categories/framework/</link>
+      <title>web</title>
+      <link>https://lhj8390.github.io/categories/web/</link>
       <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/categories/framework/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>frontend</title>
-      <link>https://lhj8390.github.io/categories/frontend/</link>
-      <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/categories/frontend/</guid>
+      <guid>https://lhj8390.github.io/categories/web/</guid>
       
         <description></description>
       

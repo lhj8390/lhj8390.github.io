@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web on lhj8390</title>
+    <link>https://lhj8390.github.io/categories/web/</link>
+    <description>Recent content in web on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>영속성 컨텍스트(persistence context)의 개념</title>
+      <link>https://lhj8390.github.io/post/spring/spring-persistence-context/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-persistence-context/</guid>
+      
+        <description>JPA에서 영속성 컨텍스트(persistence context)의 개념을 정리한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] JMX로 스프링 모니터링</title>
+      <link>https://lhj8390.github.io/post/spring/spring-jmx/</link>
+      <pubDate>Wed, 14 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-jmx/</guid>
+      
+        <description>JMX 클라이언트를 사용하여 이벤트를 모니터링하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>React - JWT를 활용한 API 인증(with Axios)</title>
+      <link>https://lhj8390.github.io/post/react/react-authorized-jwt-with-axios/</link>
+      <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react/react-authorized-jwt-with-axios/</guid>
+      
+        <description>React axios를 사용해서 API 호출 시 JWT 인증을 수행하는 방법에 대해 기록한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 스프링 관리</title>
+      <link>https://lhj8390.github.io/post/spring/spring-boot-admin-basic/</link>
+      <pubDate>Fri, 09 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-boot-admin-basic/</guid>
+      
+        <description>스프링 부트 Admin을 생성 및 관리하고 액추에이터 데이터를 수집하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 스프링 액추에이터 사용</title>
+      <link>https://lhj8390.github.io/post/spring/spring-actuator/</link>
+      <pubDate>Sun, 20 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-actuator/</guid>
+      
+        <description>스프링 액추에이터를 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>Redux Toolkit(RTK) 개념 및 예제</title>
+      <link>https://lhj8390.github.io/post/react/redux-toolkit/</link>
+      <pubDate>Wed, 09 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react/redux-toolkit/</guid>
+      
+        <description>Redux Toolkit 예제와 기존 Redux와 Redux Toolkit(RTK)의 차이점에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 실패와 지연 처리</title>
+      <link>https://lhj8390.github.io/post/spring/spring-circuit-breaker/</link>
+      <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-circuit-breaker/</guid>
+      
+        <description>스프링에서 실패와 지연을 처리하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>Spring Security &#43; JWT 인증</title>
+      <link>https://lhj8390.github.io/post/spring/spring-security-jwt/</link>
+      <pubDate>Sat, 29 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-security-jwt/</guid>
+      
+        <description>스프링 시큐리티에서 JWT 인증을 수행하는 방법에 대해 정리했다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 클라우드 구성 관리</title>
+      <link>https://lhj8390.github.io/post/spring/spring-cloud-config/</link>
+      <pubDate>Sun, 16 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-cloud-config/</guid>
+      
+        <description>스프링에서 클라우드를 구성하는 법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 마이크로서비스 이해</title>
+      <link>https://lhj8390.github.io/post/spring/spring-microservice/</link>
+      <pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-microservice/</guid>
+      
+        <description>스프링에서 마이크로서비스의 개념에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 리액티브 데이터 퍼시스턴스</title>
+      <link>https://lhj8390.github.io/post/spring/spring-reactive-data-persistence/</link>
+      <pubDate>Wed, 24 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-reactive-data-persistence/</guid>
+      
+        <description>스프링에서 Reactive Repository를 생성하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 리액티브 API 개발</title>
+      <link>https://lhj8390.github.io/post/spring/spring-reactive-api/</link>
+      <pubDate>Fri, 19 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-reactive-api/</guid>
+      
+        <description>스프링에서 리액티브 API를 개발하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 리액터 개요</title>
+      <link>https://lhj8390.github.io/post/spring/spring-reactor/</link>
+      <pubDate>Sat, 13 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-reactor/</guid>
+      
+        <description>스프링에서 리액터에 대한 기초 개념에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 스프링 통합 플로우 사용</title>
+      <link>https://lhj8390.github.io/post/spring/spring-integration/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-integration/</guid>
+      
+        <description>스프링에서 통합 패턴을 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 비동기 메시지 전송하기 - Kafka</title>
+      <link>https://lhj8390.github.io/post/spring/spring-messaging-kafka/</link>
+      <pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-messaging-kafka/</guid>
+      
+        <description>스프링에서 Kafka를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 비동기 메시지 전송하기 - RabbitMQ</title>
+      <link>https://lhj8390.github.io/post/spring/spring-messaging-rabbitmq/</link>
+      <pubDate>Sun, 07 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-messaging-rabbitmq/</guid>
+      
+        <description>스프링에서 RabbitMQ를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 비동기 메시지 전송하기 - JMS</title>
+      <link>https://lhj8390.github.io/post/spring/spring-messaging-jms/</link>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-messaging-jms/</guid>
+      
+        <description>스프링에서 JMS를 사용하여 비동기 메시지를 전송하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] REST API 사용하기</title>
+      <link>https://lhj8390.github.io/post/spring/spring-use-restapi/</link>
+      <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-use-restapi/</guid>
+      
+        <description>스프링에서 REST API를 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] REST API 생성하기</title>
+      <link>https://lhj8390.github.io/post/spring/spring-add-restapi/</link>
+      <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-add-restapi/</guid>
+      
+        <description>스프링에서 REST API를 생성하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 구성 속성 사용</title>
+      <link>https://lhj8390.github.io/post/spring/spring-config/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-config/</guid>
+      
+        <description>스프링에서 구성 속성을 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 스프링 시큐리티</title>
+      <link>https://lhj8390.github.io/post/spring/spring-security/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-security/</guid>
+      
+        <description>스프링에서 스프링 시큐리티를 이용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 데이터로 작업하기</title>
+      <link>https://lhj8390.github.io/post/spring/spring-db/</link>
+      <pubDate>Thu, 30 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-db/</guid>
+      
+        <description>스프링에서 JDBC, JPA를 이용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>Redux-Thunk를 이용한 상태관리</title>
+      <link>https://lhj8390.github.io/post/react/redux-thunk/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react/redux-thunk/</guid>
+      
+        <description>Redux-Thunk 사용 이유 및 작동 원리, 기본적인 적용방법에 대해 작성했다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[스프링인액션] 스프링 초기 설정</title>
+      <link>https://lhj8390.github.io/post/spring/spring-basic/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/spring/spring-basic/</guid>
+      
+        <description>스프링부트 초기의 gradle 빌드 명세, 부트스트랩(구동) 클래스, DevTools에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>React Webpack 개념 및 설정</title>
+      <link>https://lhj8390.github.io/post/react/react-webpack/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/react/react-webpack/</guid>
+      
+        <description>React 초기 설정인 Webpack 기본 개념 및 초기 설정에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
