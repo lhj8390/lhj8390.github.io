@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Golang - 포인터 사용하기 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang에서 포인터의 개념 및 함수에서의 사용법, 주의사항에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.2f604df480f84ff6415fc685caa908ddcb87c745baa11def4a91b709d56fb43e.css"
+      integrity="sha256-L2BN9ID4T/ZBX8aFyqkI3cuHx0W6oR3vSpG3CdVvtD4="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.b374260bc49a52bc6d0976d7bd23c96fae00552bcf5ae5cd91d58c4b6cb427bc.css"
+    integrity="sha256-s3QmC8SaUrxtCXbXvSPJb64AVSvPWuXNkdWMS2y0J7w="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-use-pointer/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Golang - 포인터 사용하기"/>
+<meta name="twitter:description" content="golang에서 포인터의 개념 및 함수에서의 사용법, 주의사항에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Golang - 포인터 사용하기" />
+<meta property="og:description" content="golang에서 포인터의 개념 및 함수에서의 사용법, 주의사항에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-use-pointer/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-20T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Golang - 포인터 사용하기",
+        "headline": "Golang - 포인터 사용하기",
+        "alternativeHeadline": "",
+        "description": "
+      golang에서 포인터의 개념 및 함수에서의 사용법, 주의사항에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-use-pointer\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-02-20T00:00:00.00Z",
+        "datePublished": "2023-02-20T00:00:00.00Z",
+        "dateModified": "2023-02-20T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-use-pointer\/",
+        "wordCount" : "795",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>블로그</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(6)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class=" watched ">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(6)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#포인터의-개념">포인터의 개념</a>
+      <ul>
+        <li><a href="#포인터-타입">포인터 타입</a></li>
+        <li><a href="#기본-타입-리터럴에서의-포인터">기본 타입 리터럴에서의 포인터</a></li>
+      </ul>
+    </li>
+    <li><a href="#함수에서의-사용">함수에서의 사용</a></li>
+    <li><a href="#포인터-사용시-주의사항">포인터 사용시 주의사항</a>
+      <ul>
+        <li><a href="#안티-패턴">안티 패턴</a></li>
+        <li><a href="#모범-패턴">모범 패턴</a></li>
+        <li><a href="#포인터-파라미터를-사용하는-경우">포인터 파라미터를 사용하는 경우</a></li>
+        <li><a href="#슬라이스를-사용하는-경우">슬라이스를 사용하는 경우</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Golang - 포인터 사용하기</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                20/2/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 4분</span>
+          </li>
+        </ul>
+
+      <h2 id="포인터의-개념">포인터의 개념</h2>
+<hr>
+<blockquote>
+<p>포인터는 값이 저장된 메모리의 위치 값을 가지고 있는 변수이다.</p>
+</blockquote>
+<p>모든 변수는 하나 이상의 연속된 메모리 공간에 저장되는데, 그것을 <strong>주소</strong>라고 부른다. 포인터는 단순히 다른 변수가 저장된 주소를 내용으로 가지는 변수이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int32</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="kd">var</span> <span class="nx">y</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="nx">pointerX</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">x</span>
+</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="nx">pointerY</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">y</span>
+</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl"><span class="kd">var</span> <span class="nx">pointerZ</span> <span class="o">*</span><span class="kt">string</span>
+</span></span></code></pre></div><figure class="large"><img src="/images/go-use-pointer/1.png"/>
+</figure>
+
+<p>서로 다른 타입은 서로 다른 수의 메모리를 차지하지만, 모든 포인터는 어떤 타입을 가리키던 간에 항상 같은 크기를 가진다. <code>pointerX</code> 의 값은 x의 주소인 1, <code>pointerY</code> 의 값은 y의 주소인 5, <code>pointerZ</code> 는 아무것도 가리키고 있지 않기 때문에 0의 값을 가진다. <strong>포인터의 제로 값은 nil이다.</strong></p>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="nx">pointerToX</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">x</span>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">pointerToX</span><span class="p">)</span>    <span class="c1">// 메모리 주소 출력
+</span></span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">*</span><span class="nx">pointerToX</span><span class="p">)</span>   <span class="c1">// 10
+</span></span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl"><span class="nx">z</span> <span class="o">:=</span> <span class="mi">5</span> <span class="o">+</span> <span class="o">*</span><span class="nx">pointerToX</span>
+</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">z</span><span class="p">)</span>             <span class="c1">// 15
+</span></span></span></code></pre></div><p><code>&amp;</code> 는 주소 연산자로, 변수 앞에 <code>&amp;</code>를 붙이면 해당 변수의 값이 저장된 메모리 위치의 주소를 반환한다.<br/>
+<code>*</code>는 간접 연산자로, 포인터 타입 변수 앞에 붙이면 가리키는 값을 반환하고 <span class="red">역참조</span>라고 부른다.</p>
+<aside>
+💡 포인터 역참조 전에 포인터가 nil이 아닌지 확인이 필요하다. nil을 가진 포인터로 역참조를 시도하면 패닉을 일으킨다.<br/>
+</aside>
+<h3 id="포인터-타입">포인터 타입</h3>
+<p>포인터가 어떤 타입을 가리키는지 나타낸다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="kd">var</span> <span class="nx">pointerToX</span> <span class="o">*</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="nx">pointerToX</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x</span>
+</span></span></code></pre></div><p>타입(int) 앞에 *를 사용하여 작성한다. 모든 타입을 기반으로 만들 수 있다.</p>
+<br/>
+<p>내장 함수 new는 포인터 변수를 생성한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">*</span><span class="nx">x</span><span class="p">)</span>        <span class="c1">// 0
+</span></span></span></code></pre></div><p>제공된 타입의 제로 값을 나타내는 포인터를 반환한다.</p>
+<h3 id="기본-타입-리터럴에서의-포인터">기본 타입 리터럴에서의 포인터</h3>
+<p>기본 타입 리터럴(숫자, 불리언, 문자열)나 상수 앞에는 메모리 주소를 가지지 않기 때문에 &amp;를 사용할 수 없다. 기본타입을 위한 포인터가 필요하면 다음과 같이 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">x</span>
+</span></span></code></pre></div><br/>
+<p>하나의 구조체 내에 기본 타입을 가리키는 포인터가 있다면, 리터럴을 해당 항목에 직접 할당할 수 없다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">  <span class="nx">FirstName</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl">  <span class="nx">LastName</span> <span class="o">*</span><span class="kt">string</span>
+</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="nx">p</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7">7</a></span><span class="cl">  <span class="nx">FirstName</span> <span class="s">&#34;Pat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8">8</a></span><span class="cl">  <span class="nx">LastName</span><span class="p">:</span> <span class="s">&#34;Perry&#34;</span><span class="p">,</span>  <span class="c1">// 컴파일 에러
+</span></span></span><span class="line"><span class="ln" id="hl-5-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-9">9</a></span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>이 문제를 해결하려면 두 가지 방법이 존재한다.</p>
+<ol>
+<li>변수에 상수의 값을 가지게 한다.</li>
+<li>헬퍼 함수를 작성하여 불리언, 숫자, 문자열 타입을 파라미터로 받아 해당 타입의 포인터를 반환한다.</li>
+</ol>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">func</span> <span class="nf">stringp</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl">  <span class="k">return</span> <span class="o">&amp;</span><span class="nx">s</span>
+</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl"><span class="nx">p</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl">  <span class="nx">FirstName</span><span class="p">:</span> <span class="s">&#34;Pat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl">  <span class="nx">LastName</span><span class="p">:</span> <span class="nf">stringp</span><span class="p">(</span><span class="s">&#34;Perry&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8">8</a></span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>상수를 함수로 전달했을 떄, 상수는 파라미터로 복사되고 변수가 되기 때문에 메모리에서 주소를 가지게 된다. 해당 함수는 결국 변수의 메모리 주소를 반환할 수 있게 된다.</p>
+<h2 id="함수에서의-사용">함수에서의 사용</h2>
+<hr>
+<blockquote>
+<p>Go는 값에 의한 호출을 사용하는 언어이기 때문에 기본타입, 구조체, 배열과 같은 비 포인터 타입들은 호출된 함수에서 원본의 불변성을 보장한다. 하지만 포인터가 함수로 전달되면 호출된 함수에서 원본 데이터를 수정할 수 있다.</p>
+</blockquote>
+<p>포인터를 함수에서 사용할 때 고려할 사항은 다음과 같다.</p>
+<p><strong>1. nil 포인터를 함수로 전달했을 때, 해당 값을 nil이 아닌 값으로 만들 수 없다.</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="kd">func</span> <span class="nf">failedUpdate</span><span class="p">(</span><span class="nx">g</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl">  <span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl">  <span class="nx">g</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x</span>
+</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5">5</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6">6</a></span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7">7</a></span><span class="cl">  <span class="kd">var</span> <span class="nx">f</span> <span class="o">*</span><span class="kt">int</span>      <span class="c1">// f = nil
+</span></span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8">8</a></span><span class="cl"><span class="c1"></span>  <span class="nf">failedUpdate</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9">9</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>  <span class="c1">// nil
+</span></span></span></code></pre></div><p>예시에서 <code>f</code> 변수는 nil을 가지고 시작하는데, failedUpdate를 호출하면 내부에서 <code>g</code> 변수가 <code>x</code>를 가리키도록 변경되지,  main에 있는 <code>f</code> 변수를 변경하지는 않는다. 따라서 failedUpdate가 종료되고 main으로 돌아와도 <code>f</code> 변수는 여전히 nil을 가진다. <span class="red">즉, 포인터에 이미 할당된 값이 있는 경우에만 값을 재할당 할 수 있다.</span></p>
+<br/>
+<p><strong>2. 포인터 파라미터에 할당된 값을 유지하려면 포인터를 <span class="red">역참조</span>하여 값을 설정해야 한다.</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="kd">func</span> <span class="nf">failedUpdate</span><span class="p">(</span><span class="nx">px</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">  <span class="nx">x2</span> <span class="o">:=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">  <span class="nx">px</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x2</span>
+</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl"><span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="nx">px</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl">  <span class="o">*</span><span class="nx">px</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl">  <span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl">  <span class="nf">failedUpdate</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln" id="hl-8-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-13">13</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>   <span class="c1">// 10
+</span></span></span><span class="line"><span class="ln" id="hl-8-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-14">14</a></span><span class="cl"><span class="c1"></span>  <span class="nf">update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln" id="hl-8-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-15">15</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>   <span class="c1">// 20
+</span></span></span><span class="line"><span class="ln" id="hl-8-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-16">16</a></span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>failedUpdate에서는 <strong><code>px</code></strong> 포인터가 <strong><code>x2</code></strong> 의 주소를 가리키도록 변경되지만, 이는 <strong><code>x</code></strong> 의 주소와는 관련이 없다. 따라서 main으로 돌아왔을 때, main의 <code>x</code> 의 값은 변경되지 않는다. 하지만 <span class="red">update 에서는 <code>x</code> 의 주소를 가리키고 있는 <code>px</code> 파라미터를 역참조하여 값을 수정했기 때문에 main의 <code>x</code> 값이 변경된다.</span></p>
+<h2 id="포인터-사용시-주의사항">포인터 사용시 주의사항</h2>
+<hr>
+<blockquote>
+<p>포인터는 데이터 흐름을 이해하기 어렵게 만들며, 가비지 컬렉터에게 추가적인 작업을 준다.</p>
+</blockquote>
+<h3 id="안티-패턴">안티 패턴</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kd">func</span> <span class="nf">MakeFoo</span><span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Foo</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl">  <span class="nx">f</span><span class="p">.</span><span class="nx">Field1</span> <span class="p">=</span> <span class="s">&#34;val&#34;</span>
+</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl">  <span class="nx">f</span><span class="p">.</span><span class="nx">Field2</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl">  <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>구조체 전달을 포인트로 하여 항목을 채우는 것은 좋지 않은 코드이다.</p>
+<h3 id="모범-패턴">모범 패턴</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="kd">func</span> <span class="nf">MakeFoo</span><span class="p">()</span> <span class="p">(</span><span class="nx">Foo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl">  <span class="nx">f</span> <span class="o">:=</span> <span class="nx">Foo</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl">    <span class="nx">Field1</span><span class="p">:</span> <span class="s">&#34;val&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl">    <span class="nx">Field2</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5">5</a></span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6">6</a></span><span class="cl">  <span class="k">return</span> <span class="nx">f</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln" id="hl-10-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-7">7</a></span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>함수 내에서 구조체를 초기화하고 반환하는 것이 좋다.</p>
+<h3 id="포인터-파라미터를-사용하는-경우">포인터 파라미터를 사용하는 경우</h3>
+<p>포인터 파라미터를 사용해야 하는 경우는 함수가 해당 포인터를 인터페이스로 예상하는 경우에만 적용된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="nx">f</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2">2</a></span><span class="cl">  <span class="nx">Name</span> <span class="kt">string</span> <span class="s">`json:&#34;name&#34;`</span>
+</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3">3</a></span><span class="cl">  <span class="nx">Age</span> <span class="kt">int</span> <span class="s">`json:&#34;age&#34;`</span>
+</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4">4</a></span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5">5</a></span><span class="cl"><span class="nx">err</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`{&#34;name&#34;: &#34;Bob&#34;, &#34;age&#34;: 30}`</span><span class="p">),</span> <span class="o">&amp;</span><span class="nx">f</span><span class="p">)</span>
+</span></span></code></pre></div><p>충분히 큰 구조체의 경우, 포인터를 이용하여 입력 파라미터 또는 반환값으로 구조체를 사용하여 성능을 향상시킬 수 있다. 모든 데이터 타입을 위한 포인터의 크기가 동일하기 때문이다. 대개의 경우, 포인터를 사용하는 것이 프로그램 성능에 영향을 주지 않지만, 함수 간에 메가바이트 이상의 데이터를 전달하는 경우 고려해볼만 하다.</p>
+<h3 id="슬라이스를-사용하는-경우">슬라이스를 사용하는 경우</h3>
+<p>슬라이스는 길이, 수용력, 메모리 블록을 가리키는 포인터, 3개의 항목을 이루는 구조체로 이루어져 있다. 함수로 슬라이스를 넘길 경우 아래와 같은 사진처럼 복제된다. 길이와 수용력을 변경하는 것은 복사본만 변경되지 원본이 바뀔 수가 없다.</p>
+<figure class="large"><img src="/images/go-use-pointer/2.png"/>
+</figure>
+
+<p>즉, 슬라이스의 내용을 수정하는 것은 원본에 반영이 되지만 append를 통해 길이를 변경하는 것은 <span class="red">슬라이스의 수용력과 관계 없이 원본에 반영되지 않는다.</span> 기본적으로 함수로 넘겨진 슬라이스는 수정하지 않는 것이 권장된다.</p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-type-method/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 타입과 메서드 사용하기</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-use-function/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 함수 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script></body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
