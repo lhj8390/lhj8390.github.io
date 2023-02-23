@@ -726,7 +726,7 @@
 </span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7">7</a></span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 </span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8">8</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s a good number:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9">9</a></span><span class="cl"><span class="p">}</span> 
-</span></span></code></pre></div><p>if 혹은 else 문의 중괄호 내에 선언된 모든 변수는 블록 내에서만 유효하다.
+</span></span></code></pre></div><p>if 혹은 else 문의 중괄호 내에 선언된 모든 변수는 블록 내에서만 유효하다. 
 <br/><br/></p>
 <p><span class="red">if, else 블록 범위내에서만 사용 가능한 변수</span>를 설정할 수 있다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="k">if</span> <span class="nx">n</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Int</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="nx">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>

@@ -188,7 +188,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-abstract-factory\/",
-        "wordCount" : "524",
+        "wordCount" : "596",
         "genre" : [ 
       
       "architecture"
@@ -691,6 +691,7 @@
         <li><a href="#추상-팩토리-구성요소">추상 팩토리 구성요소</a></li>
         <li><a href="#구현-예제">구현 예제</a></li>
         <li><a href="#추상-팩토리-패턴-고려사항">추상 팩토리 패턴 고려사항</a></li>
+        <li><a href="#팩토리-메서드-패턴과의-차이점">팩토리 메서드 패턴과의 차이점</a></li>
       </ul>
     </li>
   </ul>
@@ -743,63 +744,72 @@
 </span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2"> 2</a></span><span class="cl">
 </span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3"> 3</a></span><span class="cl">    <span class="kd">static</span> <span class="n">BaseProductFactory</span> <span class="nf">getFactory</span><span class="o">(</span><span class="n">ProductType</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4"> 4</a></span><span class="cl">        <span class="k">switch</span> <span class="o">(</span><span class="n">type</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5"> 5</a></span><span class="cl">            <span class="k">case</span> <span class="n">COMPUTER</span><span class="o">:</span>
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6"> 6</a></span><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">ComputerFactory</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7"> 7</a></span><span class="cl">            <span class="k">case</span> <span class="n">TABLET</span><span class="o">:</span>
-</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8"> 8</a></span><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">TabletFactory</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9"> 9</a></span><span class="cl">            <span class="k">case</span> <span class="n">PHONE</span><span class="o">:</span>
-</span></span><span class="line"><span class="ln" id="hl-0-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-10">10</a></span><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">PhoneFactory</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-11">11</a></span><span class="cl">            <span class="k">default</span><span class="o">:</span>
-</span></span><span class="line"><span class="ln" id="hl-0-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-12">12</a></span><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-13">13</a></span><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-14">14</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-15">15</a></span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5"> 5</a></span><span class="cl">            <span class="k">case</span> <span class="n">SAMSUNG</span><span class="o">:</span>
+</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6"> 6</a></span><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">SamsungFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7"> 7</a></span><span class="cl">            <span class="k">case</span> <span class="n">LG</span><span class="o">:</span>
+</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8"> 8</a></span><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">LGFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9"> 9</a></span><span class="cl">            <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="ln" id="hl-0-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-10">10</a></span><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-0-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-11">11</a></span><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-0-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-12">12</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-0-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-13">13</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>추상 팩토리 패턴에서 중요한 역할을 하는 클래스로, 어떤 팩토리 구상 팩토리(ConcreteFactory)를 생성할지 결정하고, 그에 맞는 팩토리 객체를 생성하여 반환한다. <br/>
 → <em>“추상 팩토리와 구상 팩토리 간의 의존성을 감소시켜줌으로써 프로그램의 유연성을 높일 수 있다”</em></p>
 <br/>
 <p>추상 팩토리(AbstractFactory) 클래스를 만들어준다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">BaseProductFactory</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>각 <span class="red">구상 팩토리(ConcreteFactory)에서 구현해야 하는 메소드를 정의</span>한다. → <span class="gray"><em>예제에서는 createProduct() 메소드</em></span>  추상 메소드를 제공함으로써 각 구상 팩토리(ConcreteFactory)에서는 제품의 생성 방법만 구현하면 된다. <br/>
-→ <em>“구상 팩토리(ConcreteFactory) 간의 중복 코드를 줄이고 가독성을 높인다.”</em></p>
+</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Phone</span> <span class="nf">createPhone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Tablet</span> <span class="nf">createTablet</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Computer</span> <span class="nf">createComputer</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8">8</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9">9</a></span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>각 <span class="red">관련 제품 개체를 만드는 추상 메서드 집합을 정의</span>한다. 추상 메소드를 제공함으로써 각 구상 팩토리(ConcreteFactory)에서는 제품의 생성 방법만 구현하면 된다.<br/>
+→ <em>“소프트웨어에서 다른 부분에 영향을 미치지 않고도 제품 객체들을 변경할 수 있기 때문에 시스템을 쉽게 유지보수하고 수정할 수 있다.”</em></p>
 <br/>
 <p>구상 팩토리(ConcreteFactory) 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComputerFactory</span> <span class="kd">extends</span> <span class="n">BaseProductFactory</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Computer</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6">6</a></span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>BaseProductFactory 클래스(추상 팩토리)를 상속받아 createProduct() 메소드에서 구상 제품(ConcreteProduct) 객체를 반환한다. 즉, 구상 팩토리(ConcreteFactory) 클래스에서는 <span class="red">제품의 생성 방법을 정의하고 추상 팩토리(AbstractFactory)에서 제공하는 추상 메소드를 구현</span>한다. <br/>
-→ <em>“프로그램의 구조를 깔끔하게 유지할 수 있다”</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SamsungFactory</span> <span class="kd">extends</span> <span class="n">BaseProductFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Phone</span> <span class="nf">createPhone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">SamsungPhone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Tablet</span> <span class="nf">createTablet</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">SamsungTablet</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">
+</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Computer</span> <span class="nf">createComputer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-2-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-15">15</a></span><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">SamsungComputer</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln" id="hl-2-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-16">16</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-2-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-17">17</a></span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>BaseProductFactory 클래스(추상 팩토리)를 상속받아 여러 메소드에서 구상 제품(ConcreteProduct) 객체를 반환한다. 즉, 구상 팩토리(ConcreteFactory) 클래스에서는 <span class="red">제품의 생성 방법을 정의하고 추상 팩토리(AbstractFactory)에서 제공하는 추상 메소드를 구현</span>한다.<br/>
+→ <em>“클라이언트 코드에 영향을 주지 않고 제품 생성 프로세스를 변경하거나 업데이트할 수 있으므로 소프트웨어 시스템에서 유연성을 확보할 수 있다.”</em></p>
 <br/>
 <p>추상 제품(AbstractProduct) 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Computer</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl">
 </span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">();</span>
 </span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl">
 </span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">buy</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;제품을 구매하였습니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;컴퓨터를 구매하였습니다.&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7">7</a></span><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8">8</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>각 구상 제품(ConcreteProduct)에서 구현해야 하는 <span class="red">공통적인 메소드를 정의</span>한다. 예제에서는 use() 메소드와 buy() 메소드를 정의하였는데 구상 제품(ConcreteProduct) 클래스에서는 use() 메소드와 buy() 메소드의 구체적인 기능을 정의할 수 있다.<br/>
 → <em>“패턴의 일관성을 유지하면서도 제품의 종류에 따라 다양한 기능을 정의할 수 있다”</em></p>
 <br/>
 <p>구상 제품(ConcreteProduct) 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1"> 1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Computer</span> <span class="kd">extends</span> <span class="n">Product</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2"> 2</a></span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3"> 3</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">Computer</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4"> 4</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5"> 5</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7"> 7</a></span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-4-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-8"> 8</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-9"> 9</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#34; 컴퓨터를 사용합니다.&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-4-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-10">10</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-11">11</a></span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Product 클래스(추상 제품)를 상속받아 <span class="red">추상 메소드에 대한 구체적인 기능을 구현</span>한다. 예제에서는 buy() 메소드를 추상 제품 클래스인 Product 클래스에서 정의한 그대로 사용하고 use() 메소드를 구체적으로 정의하였다.<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SamsungComputer</span> <span class="kd">extends</span> <span class="n">Computer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;삼성 컴퓨터를 사용합니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6">6</a></span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Computer 클래스(추상 제품)를 상속받아 <span class="red">추상 메소드에 대한 구체적인 기능을 구현</span>한다. 예제에서는 buy() 메소드를 추상 제품 클래스인 Computer 클래스에서 정의한 그대로 사용하고 use() 메소드를 구체적으로 정의하였다.<br/>
 → <em>“제품의 종류에 따라 구체적인 클래스를 생성할 수 있어, 다양한 제품을 쉽게 구현할 수 있다”</em></p>
 <h3 id="추상-팩토리-패턴-고려사항">추상 팩토리 패턴 고려사항</h3>
 <blockquote>
@@ -819,6 +829,10 @@
 <li>클래스 수가 증가하고, 코드의 복잡성이 증가한다.</li>
 <li>새로운 제품을 추가할 때, 팩토리 구조를 변경할 수도 있다.</li>
 </ol>
+<br/>
+<h3 id="팩토리-메서드-패턴과의-차이점">팩토리 메서드 패턴과의 차이점</h3>
+<p>추상 팩토리 패턴은 한 팩토리에서 한 번에 여러 종속적이거나 관련된 객체 유형을 생성할 수 있다. (create() 메서드가 팩토리 클래스에 여러 개 존재)<br/>
+그러나 팩토리 메서드 패턴은 하나의 팩토리 메서드를 통해 하나의 객체 유형만을 생성한다.</p>
 <br/>
 
 <div class="related">
