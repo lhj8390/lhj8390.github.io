@@ -6,13 +6,46 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>architectural</title>
       <link>https://lhj8390.github.io/tags/architectural/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/architectural/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>design pattern</title>
+      <link>https://lhj8390.github.io/tags/design-pattern/</link>
+      <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/design-pattern/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>GoF design pattern</title>
+      <link>https://lhj8390.github.io/tags/gof-design-pattern/</link>
+      <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/gof-design-pattern/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Prototype</title>
+      <link>https://lhj8390.github.io/tags/prototype/</link>
+      <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/prototype/</guid>
       
         <description></description>
       
@@ -24,28 +57,6 @@
       <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/builder/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>design pattern</title>
-      <link>https://lhj8390.github.io/tags/design-pattern/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/design-pattern/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>GoF design pattern</title>
-      <link>https://lhj8390.github.io/tags/gof-design-pattern/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/gof-design-pattern/</guid>
       
         <description></description>
       
