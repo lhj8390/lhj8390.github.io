@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.ba2b56a14b3d7ab3af1db443554a435ac8accb7687fe4f3dd8389f467f6a2c34.css"
-      integrity="sha256-uitWoUs9erOvHbRDVUpDWsisy3aH/k892DifRn9qLDQ="
+      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
+      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -322,7 +322,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(3)</span>
+          <span>(4)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -510,7 +510,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(3)</span>
+            <span>(4)</span>
           </a>
           
           
@@ -846,7 +846,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 <br/>
 → 응답 헤더와 같은 상세한 응답 컨텐츠가 포함된다.</p>
 <h3 id="put-method">PUT method</h3>
-<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다. 
+<p>RestTemplate에서는 PUT 요청을 지원하는 메서드로 put()를 제공한다.
 <br/><br/></p>
 <p><strong>put() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -855,7 +855,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span></code></pre></div><p>put()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL로 전송하는 객체</span>, (3) <span class="ul">URL 문자열의 변수 값</span>이 된다. <br/>
 반환 타입은 void이므로 반환값을 처리할 필요가 없다.</p>
 <h3 id="delete-method">DELETE method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다. 
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 delete()를 제공한다.
 <br/><br/></p>
 <p><strong>delete() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>
@@ -863,7 +863,7 @@ REST 리소스를 사용하는 데 있어 메서드 호출만으로도 반복적
 </span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>delete()의 매개변수는 차례로 (1) <span class="ul">URL 문자열</span>, (2) <span class="ul">URL 문자열의 변수 값</span>이 된다.</p>
 <h3 id="post-method">POST method</h3>
-<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다. 
+<p>RestTemplate에서는 DELETE 요청을 지원하는 메서드로 postForObject(), postForLocation(), postForEntity()를 제공한다.
 <br/><br/></p>
 <p><strong>postForObject() 메서드</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Ingredient</span> <span class="nf">createIngredient</span><span class="o">(</span><span class="n">Ingredient</span> <span class="n">ingredient</span><span class="o">)</span> <span class="o">{</span>

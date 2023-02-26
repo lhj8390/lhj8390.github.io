@@ -6,7 +6,18 @@
     <description>Recent content in architecture on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 25 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[GoF 디자인 패턴] 팩토리 메서드 (Factory Method) 패턴</title>
+      <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-factory-method/</link>
+      <pubDate>Sun, 26 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/architectural/gof-design-pattern-factory-method/</guid>
+      
+        <description>GoF 디자인 패턴 중 팩토리 메서드 패턴에 대해 설명하고 적용해본다.</description>
+      
+    </item>
+    
     <item>
       <title>[GoF 디자인 패턴] 원형 (Prototype) 패턴</title>
       <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-prototype/</link>
