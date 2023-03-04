@@ -6,7 +6,29 @@
     <description>Recent content in Go on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Tue, 21 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang - 오류 처리하기</title>
+      <link>https://lhj8390.github.io/post/go/go-error/</link>
+      <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-error/</guid>
+      
+        <description>golang에서 오류를 처리하는 방법과 오류 래핑, 패닉과 복구에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
+      <title>Golang - 인터페이스 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go-interface/</link>
+      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-interface/</guid>
+      
+        <description>golang에서 인터페이스의 개념과 사용법, 예제를 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>Golang - 타입과 메서드 사용하기</title>
       <link>https://lhj8390.github.io/post/go/go-type-method/</link>

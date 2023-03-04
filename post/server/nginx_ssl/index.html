@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -265,7 +275,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -321,7 +331,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -385,7 +395,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -458,7 +468,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -509,7 +529,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -567,7 +587,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -727,34 +747,34 @@
 </blockquote>
 <h2 id="발급된-키-공개키-만들기">발급된 키 공개키 만들기</h2>
 <p>순서대로 서버 인증서, chain, root파일을 cert.pem 파일로 병합한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl">$ cat domain.crt chain.pem root.crt &gt; cert.pem
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ cat domain.crt chain.pem root.crt &gt; cert.pem
 </span></span></code></pre></div><p>💡 <span class="red">순서가 어긋나면 인증서 사용 불가!</span></p>
 <h2 id="nginx에-https-적용">Nginx에 HTTPS 적용</h2>
 <p>합쳐진 cert.pem 파일과 비공개 키를 nginx 에 적용하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1"> 1</a></span><span class="cl">server {
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2"> 2</a></span><span class="cl">       listen 443 ssl default_server;
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3"> 3</a></span><span class="cl">       ssl on // deprecated from Nginx v1.15
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4"> 4</a></span><span class="cl">       server_name example.com
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5"> 5</a></span><span class="cl">       ssl_certificate /directory/to/cert.pem // 병합한 파일
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6"> 6</a></span><span class="cl">       ssl_certificate_key /directory/to/domain.key.pem  // 비공개 키
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7"> 7</a></span><span class="cl">       ssl_protocols TLSv1.1 TLSv1.2;
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8"> 8</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9"> 9</a></span><span class="cl">       location / {
-</span></span><span class="line"><span class="ln" id="hl-1-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-10">10</a></span><span class="cl">           root /home/ubuntu/web/dist/;
-</span></span><span class="line"><span class="ln" id="hl-1-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-11">11</a></span><span class="cl">           index index.html index.htm index.nginx-debian.html;
-</span></span><span class="line"><span class="ln" id="hl-1-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-12">12</a></span><span class="cl">           try_files $uri $uri/ /index.html;
-</span></span><span class="line"><span class="ln" id="hl-1-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-13">13</a></span><span class="cl">       }
-</span></span><span class="line"><span class="ln" id="hl-1-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-14">14</a></span><span class="cl">}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln"> 1</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">       listen 443 ssl default_server;
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">       ssl on // deprecated from Nginx v1.15
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">       server_name example.com
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">       ssl_certificate /directory/to/cert.pem // 병합한 파일
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">       ssl_certificate_key /directory/to/domain.key.pem  // 비공개 키
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">       ssl_protocols TLSv1.1 TLSv1.2;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">       location / {
+</span></span><span class="line"><span class="ln">10</span><span class="cl">           root /home/ubuntu/web/dist/;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">           index index.html index.htm index.nginx-debian.html;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">           try_files $uri $uri/ /index.html;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">       }
+</span></span><span class="line"><span class="ln">14</span><span class="cl">}
 </span></span></code></pre></div><ul>
 <li><code>ssl_certificate</code> 에는 합쳐진 cert.pem 명시</li>
 <li><code>ssl_certificate_key</code> 에는 비공개 키 명시</li>
 </ul>
 <h2 id="http를-https로-리다이렉션">HTTP를 HTTPS로 리다이렉션</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl">server {
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">       listen 80;
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl">       server_name example.com;
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl">       return 301 HTTPS://$server_name$request_uri;
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl">}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">2</span><span class="cl">       listen 80;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">       server_name example.com;
+</span></span><span class="line"><span class="ln">4</span><span class="cl">       return 301 HTTPS://$server_name$request_uri;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">}
 </span></span></code></pre></div><p>80포트로 접속 시 301(영구 리다이렉션)하도록 설정한다.</p>
 
 
@@ -848,7 +868,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

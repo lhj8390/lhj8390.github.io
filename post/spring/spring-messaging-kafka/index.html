@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -273,7 +283,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -329,7 +339,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -393,7 +403,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -466,7 +476,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -517,7 +537,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -575,7 +595,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -774,18 +794,18 @@
 <h3 id="카프카-설정">카프카 설정</h3>
 <p>카프카를 프로젝트 빌드에 추가한다.<br/>
 JMS나 RabbitMQ와 달리 카프카는 스프링 부트 스타터가 없다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.kafka:spring-kafka:2.1.8.RELEASE&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.kafka:spring-kafka:2.1.8.RELEASE&#39;</span>
 </span></span></code></pre></div><p>이를 통해 KafkaTemplate을 사용할 수 있다.</p>
 <h3 id="실무환경에서의-카프카-설정">실무환경에서의 카프카 설정</h3>
 <p>카프카는 기본적으로 localhost의 9092 포트를 사용한다. 로컬에서 실행되는 개발 환경일 경우 로컬의 카프카 브로커를 사용하면 좋다.<br/>
 하지만 실무 환경에서는 카프카의 호스트나 포트를 application.yaml 파일에 구성해야 한다.</p>
 <p><strong>카프카 서버 설정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">bootstrap-servers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">      </span>- <span class="l">kafka.tacocloud.com:9092</span><span class="w">
 </span></span></span></code></pre></div><p><code>spring.kafka.bootstrap-servers</code> 속성을 통해 카프카 클러스터로의 초기 연결에 사용되는 하나 이상의 카프카 서버 위치를 설정할 수 있다. 이 속성은 복수형이며, 여러 서버를 지정할 수 있다.</p>
 <h2 id="kafkatemplate을-사용하여-메시지-전송">KafkaTemplate을 사용하여 메시지 전송</h2>
 <hr>
@@ -804,24 +824,24 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
 <p>여기서 필수값은 <strong>메시지가 전송될 토픽과 페이로드</strong>이다.</p>
 </blockquote>
 <h3 id="send-메서드로-메시지-전송">send() 메서드로 메시지 전송</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>send() 메서드를 이용하여 &ldquo;tacocloud.orders.topic&quot;이라는 이름의 토픽으로 Order 객체를 전송한다.</p>
 <h3 id="senddefault-메서드로-메시지-전송">sendDefault() 메서드로 메시지 전송</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">sendDefault</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">KafkaTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">kafkaTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="n">kafkaTemplate</span><span class="o">.</span><span class="na">sendDefault</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><strong>기본 토픽</strong>으로 Order 객체를 전송하고 싶으면 토픽 이름을 인자로 전달하지 않고 send() 메소드 대신 sendDefault() 메서드를 사용한다.<br/><br/></p>
 <p><strong>기본 토픽 설정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">default-topic</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders.topic</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">default-topic</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders.topic</span><span class="w">
 </span></span></span></code></pre></div><p>기본 토픽은 <code>spring.kafka.template.default-topic</code> 속성을 이용하면 된다.</p>
 <h2 id="카프카-리스너-작성">카프카 리스너 작성</h2>
 <hr>
@@ -830,38 +850,38 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
 따라서 스프링을 사용하여 카프카 토픽의 메시지를 가져오는 유일한 방법은 메시지 리스너를 작성하는 것이다.</p>
 </blockquote>
 <h3 id="리스너를-이용하여-메시지-수신">리스너를 이용하여 메시지 수신</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>@KafkaListener 어노테이션을 지정하여 &ldquo;tacocloud.orders.topic&rdquo; 이름의 토픽에 메시지가 도착할 때 자동 호출되도록 설정하였다.</p>
 <h3 id="추가적인-메타데이터가-필요한-경우">추가적인 메타데이터가 필요한 경우</h3>
 <p>ConsumerRecord나 Message 객체를 인자로 받아 메시지의 메타데이터를 받을 수 있다. 
 <br/><br/></p>
 <p><strong>ConsumerRecord 사용</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">ConsumerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">record</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;파티션 : {}, timestamp : {}&#34;</span><span class="o">,</span> <span class="n">record</span><span class="o">.</span><span class="na">partition</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">timestamp</span><span class="o">());</span>
-</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8">8</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">ConsumerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Order</span><span class="o">&gt;</span> <span class="n">record</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;파티션 : {}, timestamp : {}&#34;</span><span class="o">,</span> <span class="n">record</span><span class="o">.</span><span class="na">partition</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">timestamp</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ConsumerRecord를 통해 수신된 메시지의 파티션과 타입스탬프를 로깅하는 코드이다.
 <br/><br/></p>
 <p><strong>Message 객체 사용</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1"> 1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2"> 2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3"> 3</a></span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4"> 4</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">Message</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5"> 5</a></span><span class="cl">  <span class="n">MessageHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6"> 6</a></span><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Received from partition {} with timestamp {}&#34;</span><span class="o">,</span>
-</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7"> 7</a></span><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_PARTITION_ID</span><span class="o">),</span>
-</span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8"> 8</a></span><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_TIMESTAMP</span><span class="o">));</span>
-</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9"> 9</a></span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-7-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-10">10</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nd">@KafkaListener</span><span class="o">(</span><span class="n">topics</span><span class="o">=</span><span class="s">&#34;tacocloud.orders.topic&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">,</span> <span class="n">Message</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="n">MessageHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Received from partition {} with timestamp {}&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_PARTITION_ID</span><span class="o">),</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">      <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">KafkaHeaders</span><span class="o">.</span><span class="na">RECEIVED_TIMESTAMP</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Message 객체를 통해 메시지의 파티션과 타입스탬프를 로깅하는 코드이다.
 <br/><br/></p>
 <aside>
@@ -1025,7 +1045,17 @@ KafkaTemplate은 제너릭 타입을 사용하고 메시지를 전송할 때 직
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

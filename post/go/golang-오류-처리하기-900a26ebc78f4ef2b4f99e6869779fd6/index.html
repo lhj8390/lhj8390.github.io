@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Golang - 오류 처리하기 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang에서 오류를 처리하는 방법과 오류 래핑, 패닉과 복구에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.b374260bc49a52bc6d0976d7bd23c96fae00552bcf5ae5cd91d58c4b6cb427bc.css"
+    integrity="sha256-s3QmC8SaUrxtCXbXvSPJb64AVSvPWuXNkdWMS2y0J7w="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/golang-%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-900a26ebc78f4ef2b4f99e6869779fd6/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Golang - 오류 처리하기"/>
+<meta name="twitter:description" content="golang에서 오류를 처리하는 방법과 오류 래핑, 패닉과 복구에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Golang - 오류 처리하기" />
+<meta property="og:description" content="golang에서 오류를 처리하는 방법과 오류 래핑, 패닉과 복구에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/golang-%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-900a26ebc78f4ef2b4f99e6869779fd6/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-01T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Golang - 오류 처리하기",
+        "headline": "Golang - 오류 처리하기",
+        "alternativeHeadline": "",
+        "description": "
+      golang에서 오류를 처리하는 방법과 오류 래핑, 패닉과 복구에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/golang-%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-900a26ebc78f4ef2b4f99e6869779fd6\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-03-01T00:00:00.00Z",
+        "datePublished": "2023-03-01T00:00:00.00Z",
+        "dateModified": "2023-03-01T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/golang-%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5-900a26ebc78f4ef2b4f99e6869779fd6\/",
+        "wordCount" : "1528",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(8)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class=" watched ">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(8)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#오류-처리-기초">오류 처리 기초</a>
+      <ul>
+        <li><a href="#오류를-생성하는-방법">오류를 생성하는 방법</a></li>
+      </ul>
+    </li>
+    <li><a href="#센티넬-오류">센티넬 오류</a></li>
+    <li><a href="#자신만의-오류-정의">자신만의 오류 정의</a>
+      <ul>
+        <li><a href="#주의할-점">주의할 점</a></li>
+      </ul>
+    </li>
+    <li><a href="#오류-래핑">오류 래핑</a>
+      <ul>
+        <li><a href="#is와-as">IS와 AS</a></li>
+        <li><a href="#defer-사용">defer 사용</a></li>
+      </ul>
+    </li>
+    <li><a href="#패닉과-복구">패닉과 복구</a>
+      <ul>
+        <li><a href="#패닉-생성">패닉 생성</a></li>
+        <li><a href="#패닉-복구">패닉 복구</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Golang - 오류 처리하기</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                1/3/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 8분</span>
+          </li>
+        </ul>
+
+      <h2 id="오류-처리-기초">오류 처리 기초</h2>
+<hr>
+<blockquote>
+<p>Go는 함수에 마지막 반환 값으로 error 타입의 값을 반환하여 오류를 처리한다. 함수가 예상했던 대로 수행이 되면 error 파라미터로 nil이 반환된다. 만약 문제가 있다면 오류 값이 반환된다.</p>
+</blockquote>
+<p>함수의 마지막 반환값을 이용하여 오류를 처리하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">calcRemainderAndMod</span><span class="p">(</span><span class="nx">numerator</span><span class="p">,</span> <span class="nx">denominator</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">if</span> <span class="nx">denominator</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;denominator is 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="k">return</span> <span class="nx">numerator</span> <span class="o">/</span> <span class="nx">denominator</span><span class="p">,</span> <span class="nx">numerator</span> <span class="o">%</span> <span class="nx">denominator</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>새로운 오류는 error 패키지에 있는 New 함수를 호출하면서 문자열과 함께 생성된다. 예외가 있는 언어들과는 달리, Go는 오류가 반환되는 것을 검출하는 특별한 구문이 없다.</p>
+<br/>
+<p>error 는 단일 메서드를 정의하는 내장 인터페이스이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>해당 인터페이스를 구현하는 모든 것은 오류로 간주된다.</p>
+<h3 id="오류를-생성하는-방법">오류를 생성하는 방법</h3>
+<p>Go의 표준 라이브러리는 문자열로 오류를 생성하는 두 가지 방법을 제공한다.</p>
+<p><strong><code>errors.New</code>  함수 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">doubleEven</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">if</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;only even numbers are processed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="k">return</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>이 문자열은 반환된 오류 인스턴스의 Error 메서드를 호출했을 때 반환된다. → <span class="gray"><em>오류를 fmt.Println로 넘기면 자동으로 Error 메서드를 호출한다.</em></span></p>
+<br/>
+<p><strong><code>fmt.Errorf</code> 함수 사용</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">doubleEven</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">if</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;%d isn&#39;t an even number&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="k">return</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>이 함수는 fmt.Printf에 대한 모든 포매팅 동사를 사용하여 오류를 생성할 수 있다. <code>errors.New</code> 처럼 반환된 오류 인스턴스의 Error 메서드를 호출할 때 문자열이 반환된다.</p>
+<h2 id="센티넬-오류">센티넬 오류</h2>
+<hr>
+<blockquote>
+<p>센티넬 오류는 패키지 레벨에 선언된 몇 가지 변수 중 하나이다. 센티넬 오류는 대개 처리를 시작하거나 지속할 수 없음을 나타낼 때 사용한다.</p>
+</blockquote>
+<p>더 이상 처리가 가능하지 않고 오류 상태를 설명할 필요가 없는 특정 상태에 도달했을 때 센티넬 오류로 처리하는 것이 적합하다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kn">package</span> <span class="nx">consterr</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">type</span> <span class="nx">Sentinel</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kd">func</span><span class="p">(</span><span class="nx">s</span> <span class="nx">Sentinel</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><br/>
+<p>위와 같은 package가 있을 경우 다음과 같이 센티널 오류를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kn">package</span> <span class="nx">mypkg</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nx">ErrFoo</span> <span class="p">=</span> <span class="nx">consterr</span><span class="p">.</span><span class="nf">Sentinel</span><span class="p">(</span><span class="s">&#34;foo error&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nx">ErrBar</span> <span class="p">=</span> <span class="nx">consterr</span><span class="p">.</span><span class="nf">Sentinel</span><span class="p">(</span><span class="s">&#34;bar error&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>문자열 리터럴을 error 인터페이스를 구현하는 타입으로 전환했다. ErrFoo와 ErrBar의 값 변경은 불가능하다.</p>
+<h2 id="자신만의-오류-정의">자신만의 오류 정의</h2>
+<hr>
+<blockquote>
+<p>오류는 인터페이스이기 때문에 로깅이나 오류 처리를 위한 정보를 포함아여 자신만의 오류를 정의할 수 있다. 예를 들어 오류의 일부로 상태 코드를 포함할 수 있다.</p>
+</blockquote>
+<br/>
+<p>다음은 커스텀 오류를 정의하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">type</span> <span class="nx">Status</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nx">InvalidLogin</span> <span class="nx">Status</span> <span class="p">=</span> <span class="kc">iota</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nx">NotFound</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>상태 코드를 나타내는 열거형을 정의한다.</p>
+<br/>
+<p>해당 값을 가지는 StatusErr를 정의한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">type</span> <span class="nx">StatusErr</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">Status</span> <span class="nx">Status</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nx">Message</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">se</span> <span class="nx">StatusErr</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="k">return</span> <span class="nx">se</span><span class="p">.</span><span class="nx">Message</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><br>
+<p>다음과 같이 StatusErr를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">LoginAndGetData</span><span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">,</span> <span class="nx">file</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nf">login</span><span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">StatusErr</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">InvalidLogin</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">      <span class="nx">Message</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;invalid credentials for user %s&#34;</span><span class="p">,</span> <span class="nx">uid</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">getData</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">StatusErr</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">NotFound</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">      <span class="nx">Message</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;file %s not found&#34;</span><span class="p">,</span> <span class="nx">file</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="k">return</span> <span class="nx">data</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>사용자 정의 오류 타입을 정의하는 경우에도 반환 타입으로 error를 사용하는 것이 좋다. 함수에서 다양한 오류 타입을 반환할 수 있고 함수 호출자가 특정 오류 타입에 의존하지 않도록 선택할 수 있다.</p>
+<h3 id="주의할-점">주의할 점</h3>
+<p>자신만의 오류 타입을 반환할 때 초기화되지 않은 인스턴스를 반환하지 않도록 주의하자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">GenerateError</span><span class="p">(</span><span class="nx">flag</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="kd">var</span> <span class="nx">genErr</span> <span class="nx">StatusErr</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="nx">flag</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">genErr</span> <span class="p">=</span> <span class="nx">StatusErr</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">NotFound</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">return</span> <span class="nx">genErr</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nf">GenerateError</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span>  <span class="nx">err</span> <span class="p">=</span> <span class="nf">GenerateError</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span></code></pre></div><p>err 가 nil 이 아닌 이유는 error는 인터페이스이기 때문이다. 인터페이스가 nil 로 간주되려면 기본 타입과 값이 반드시 nil 이어야 한다.</p>
+<br/>
+<p>해당 문제를 고치려면 명시적으로 error 값을 nil 로 반환해주면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">GenerateError</span><span class="p">(</span><span class="nx">flag</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">if</span> <span class="nx">flag</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="nx">StatusErr</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">NotFound</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>반환문에 error 변수가 제대로 정의되었는지 코드를 읽을 필요가 없다는 장점이 있다.</p>
+<br/>
+<p>지역 변수를 error 타입으로 지정해도 해결할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">GenerateError</span><span class="p">(</span><span class="nx">flag</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="kd">var</span> <span class="nx">genErr</span> <span class="kt">error</span>  <span class="c1">// error 타입 지정
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="nx">flag</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="nx">genErr</span> <span class="p">=</span> <span class="nx">StatusErr</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">NotFound</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="k">return</span> <span class="nx">genErr</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="오류-래핑">오류 래핑</h2>
+<hr>
+<blockquote>
+<p>오류가 코드를 통해 다시 전달될 때, 추가 정보를 넣으면서 오류를 유지하는 것을 <strong>오류 래핑</strong>이라고 한다. 일련의 오류 래핑을 가질 때, <strong>오류 체인</strong>이라고 부른다.</p>
+</blockquote>
+<p>Go 표준 라이브러리에는 오류를 래핑하는 함수인 <code>fmt.Errorf</code> 와 오류를 언래핑하기 위한 errors 패키지의 <code>Unwrap</code> 함수가 있다.</p>
+<p>두 개의 함수를 사용하여 오류를 래핑하고 다시 언래핑하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">fileChecker</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;in fileChecker: %w&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// 오류 래핑
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nf">fileChecker</span><span class="p">(</span><span class="s">&#34;not_exist.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="k">if</span> <span class="nx">wrapperdErr</span> <span class="o">:=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Unwrap</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="nx">wrappedErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">wrappedErr</span><span class="p">)</span> <span class="c1">// 오류 언래핑
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1">// in fileChecker: open not_exist.txt: no such file or directory
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1">// open not_exist.txt: no such file or directory
+</span></span></span></code></pre></div><br/>
+<p>사용자 지정 타입으로 오류를 래핑하려면 Unwrap 메서드를 구현해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">StatusErr</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">Status</span> <span class="nx">Status</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">Message</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">se</span> <span class="nx">StatusErr</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">return</span> <span class="nx">se</span><span class="p">.</span><span class="nx">Message</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">se</span> <span class="nx">StatusError</span><span class="p">)</span> <span class="nf">Unwrap</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">return</span> <span class="nx">se</span><span class="p">.</span><span class="nx">err</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>구현한 Unwrap 메서드는 파라미터가 없고 error를 반환한다.</p>
+<br/>
+<p>이제 StatusErr로 기본 오류를 래핑할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">LoginAndGetData</span><span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">,</span> <span class="nx">file</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nf">login</span><span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">StatusErr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">InvalidLogin</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">      <span class="nx">Message</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;invalid credentials for user %s&#34;</span><span class="p">,</span> <span class="nx">uid</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="nx">Err</span><span class="p">:</span> <span class="nx">err</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">getData</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">StatusErr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">      <span class="nx">Status</span><span class="p">:</span> <span class="nx">NotFound</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="nx">Message</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;file %s not found&#34;</span><span class="p">,</span> <span class="nx">file</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">      <span class="nx">Err</span><span class="p">:</span> <span class="nx">err</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="k">return</span> <span class="nx">data</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="is와-as">IS와 AS</h3>
+<p>오류 래핑은 오류와 관련하여 추가 정보를 얻기 위한 유용한 방법이지만 센티넬 오류가 래핑되었을 때 확인을 위해 <code>==</code> 를 사용할 수 없으며 타입 단언이나 타입 스위치를 사용할 수도 없다. Go는 이러한 문제를 해결하기 위해 <strong>IS</strong>와 <strong>AS</strong>를 제공한다.</p>
+<br/>
+<p>반환된 오류나 래핑된 모든 오류가 센티넬 오류와 일치하는지 확인하려면 <code>errors.Is</code> 를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">fileChecker</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;in fileChecker: %w&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nf">fileChecker</span><span class="p">(</span><span class="s">&#34;not_exist.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="k">if</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">ErrNotExist</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That file doesn&#39;t exist&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>errors.Is</code> 함수는 확인될 오류와 대응되는 인스턴스를 파라미터로 받고 센티넬 오류와 일치하는 오류 체인에 해당 오류가 있다면 true를 반환한다.</p>
+<br/>
+<p>사용자 정의 오류 타입을 지정했을 때 비교 불가능한 타입일 경우 Is 메서드를 구현해야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">MyErr</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">Codes</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">me</span> <span class="nx">MyErr</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;codes: %v&#34;</span><span class="p">,</span> <span class="nx">me</span><span class="p">.</span><span class="nx">Codes</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">me</span> <span class="nx">MyErr</span><span class="p">)</span> <span class="nf">Is</span><span class="p">(</span><span class="nx">target</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">if</span> <span class="nx">me2</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">target</span><span class="p">.(</span><span class="nx">MyErr</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">return</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">DeepEqual</span><span class="p">(</span><span class="nx">me</span><span class="p">,</span> <span class="nx">m2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>reflect.DeepEqual</code> 메서드는 슬라이스를 포함한 모든 것을 비교할 수 있다. 자체 Is 메서드는 동일한 인스턴스가 아닌 오류에 대해서 비교가 가능하게 한다.</p>
+<br/>
+<p><code>errors.As</code> 함수는 반환된 오류가 특정 타입과 일치하는지 확인할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">err</span> <span class="o">:=</span> <span class="nf">AFunctionThatReturnsAnError</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">var</span> <span class="nx">myErr</span> <span class="nx">MyErr</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="k">if</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">As</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">myErr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">myErr</span><span class="p">.</span><span class="nx">Code</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>errors.As</code> 함수는 두 개의 파라미터를 가지는데, 첫 번째는 검사할 오류이고 두 번째는 찾고자 하는 타입의 변수를 가리키는 포인터이다. 함수가 true를 반환하면 일치하는 오류가 두 번째 파라미터로 할당된다. → <span class="gray"><em>에러 인스턴스를 해당 에러 타입으로 캐스팅한다.</em></span></p>
+<p>결론적으로 특정 에러 인스턴스나 특정 값을 찾을 때 <code>errors.Is</code> 를 사용하고 특정 에러 타입을 찾을 때는 <code>errors.As</code> 를 사용한다.</p>
+<h3 id="defer-사용">defer 사용</h3>
+<p>defer를 사용하여 오류를 래핑할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">DoSomeThings</span><span class="p">(</span><span class="nx">val1</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">val2</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">_</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">      <span class="nx">err</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;in DoSomeThings: %w&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nx">var3</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">doThing1</span><span class="p">(</span><span class="nx">val1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nx">var4</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">doThing2</span><span class="p">(</span><span class="nx">val2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="k">return</span> <span class="nf">doThing3</span><span class="p">(</span><span class="nx">val3</span><span class="p">,</span> <span class="nx">val4</span><span class="p">)</span>
+</span></span></code></pre></div><p>지연된 함수에서 err를 참조할 수 있도록 반환 값에 이름을 부여하였다. <span class="red">같은 메시지로 래핑된 모든 오류를 처리할 경우</span> 유용하게 사용할 수 있다.</p>
+<h2 id="패닉과-복구">패닉과 복구</h2>
+<hr>
+<blockquote>
+<p>Go는 다음에 무슨 일이 일어날지 알 수 없는 상황이 생겼을 경우 패닉을 발생시킨다. 프로그래밍 오류나 환경적인 문제로부터 발생할 수 있다.</p>
+</blockquote>
+<p>패닉이 발생하면 함수는 즉시 종료되고 현재 함수에 연결된 defer 함수가 실행된다. defer가 main 함수에 도달할 때까지 실행되다가 메시지와 스택 트레이스 출력과 함께 종료된다.</p>
+<h3 id="패닉-생성">패닉 생성</h3>
+<p>프로그램이 복구될 수 없는 상황이라면 직접 패닉을 생성할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">doPanic</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">panic</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nf">doPanic</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>내장 함수 panic 은 어떤 타입이든 하나의 파라미터만 받고 문자열을 사용한다.</p>
+<h3 id="패닉-복구">패닉 복구</h3>
+<p>패닉이 발생한 후 프로그램이 비정상적으로 종료되는 것을 막을 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">div60</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">if</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">v</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="mi">60</span> <span class="o">/</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="nf">div60</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>내장 함수 recover는 패닉을 확인하기 위한 defer 내부에서 호출된다. defer 함수를 등록하고 if 문 내에서 recover 함수를 호출하고 nil이 아닌 값인지 확인한다.</p>
+<aside>
+💡 패닉이 발생하면 defer로 등록된 함수만 실행할 수 있기 때문에 recover는 반드시 defer 내부에서 호출해야 한다.<br/>
+</aside>
+<p><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-interface/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 인터페이스 사용하기</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-type-method/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 타입과 메서드 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>

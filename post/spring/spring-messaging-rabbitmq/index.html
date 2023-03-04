@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -266,7 +276,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -322,7 +332,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -386,7 +396,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -459,7 +469,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -510,7 +530,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -568,7 +588,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -799,7 +819,7 @@ AMQP(Advenced Message Queing Protocol)을 따르는 오픈소스 메시지 브�
 </table>
 <h3 id="rabbitmq-설정">RabbitMQ 설정</h3>
 <p>스프링 부트의 AMQP를 프로젝트 빌드에 추가한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-amqp&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-amqp&#39;</span>
 </span></span></code></pre></div><p>AMQP 연결 팩토리와 RabbitTemplate 빈을 자동으로 구성해준다.
 <br/></p>
 <h3 id="실무환경에서의-rabbitmq-설정">실무환경에서의 RabbitMQ 설정</h3>
@@ -858,23 +878,23 @@ AMQP(Advenced Message Queing Protocol)을 따르는 오픈소스 메시지 브�
 </aside>
 <br/>
 <h3 id="send-메서드로-메시지-전송">send() 메서드로 메시지 전송</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8">8</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>MessageConverter로 Order 객체를 Message 객체로 변환한다.<br/>
 <strong>메시지 속성 제공</strong> : MessageProperties - <span class="gray"><em>메시지 속성 설정하지 않을 경우에는 기본 인스턴스 전달</em></span>
 <br/><br/></p>
 <p><strong>거래소 기본값 설정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4">4</a></span><span class="cl"><span class="w">            </span><span class="nt">exchange</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5">5</a></span><span class="cl"><span class="w">            </span><span class="nt">routing-key</span><span class="p">:</span><span class="w"> </span><span class="l">kitchens.central</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">            </span><span class="nt">exchange</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud.orders</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">            </span><span class="nt">routing-key</span><span class="p">:</span><span class="w"> </span><span class="l">kitchens.central</span><span class="w">
 </span></span></span></code></pre></div><p>기본 거래소 이름은 빈 문자열인 “”이며, RabbitMQ 브로커가 자동으로 생성하는 기본 거래소이다.<br/>
 기본 라우팅 키도 거래소와 동일하게 “”이다.</p>
 <p>기본값을 변경할 경우 해당 yaml 파일처럼 지정해준다. (exchange, routing-key 속성)</p>
@@ -912,30 +932,30 @@ AMQP(Advenced Message Queing Protocol)을 따르는 오픈소스 메시지 브�
 <p>기본적으로는 SimpleMessageConverter가 사용되며, 메시지 변환기를 변경해야 할 경우에는 MessageConverter 타입의 빈을 구성하면 된다.
 <br/><br/></p>
 <p><strong>메시지 변환기 변경 예제</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="nd">@Bean</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="kd">public</span> <span class="n">MessageConverter</span> <span class="nf">messageConverter</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">Jackson2JsonMessageConverter</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@Bean</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">public</span> <span class="n">MessageConverter</span> <span class="nf">messageConverter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">Jackson2JsonMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><h3 id="메시지-속성-설정">메시지 속성 설정</h3>
 <p><strong>send() 메서드에서 속성 설정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl">    <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6">6</a></span><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7">7</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="n">MessageConverter</span> <span class="n">converter</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">getMessageConverter</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="na">toMessage</span><span class="o">(</span><span class="n">order</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="n">rabbit</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="s">&#34;tacocloud.order&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>MessageProperties 인스턴스를 통해 커스텀 헤더를 설정할 수 있다.
 <br/><br/></p>
 <p><strong>convertAndSend() 메서드에서 속성 설정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">  <span class="n">rabbit</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl">          <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl">            <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getMessageProperties</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">            <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl">            <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7">7</a></span><span class="cl">          <span class="o">});</span>
-</span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8">8</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">rabbit</span><span class="o">.</span><span class="na">convertAndSend</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> <span class="n">order</span><span class="o">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">          <span class="n">message</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">            <span class="n">MessageProperties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">getMessageProperties</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">            <span class="n">props</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;X_ORDER_SOURCE&#34;</span><span class="o">,</span> <span class="s">&#34;WEB&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">            <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">          <span class="o">});</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>convertAndSend() 메서드에서는 MessagePostProcessor를 사용하여 구현한다.<br/>
 Message 객체의 MessageProperties를 가져온 후 setHeader()를 호출하여 헤더를 설정한다.</p>
 <h2 id="rabbitmq로부터-메시지-수신">RabbitMQ로부터 메시지 수신</h2>
@@ -965,35 +985,35 @@ Message 객체의 MessageProperties를 가져온 후 setHeader()를 호출하여
 </aside>
 <br/><br/>
 <p><strong>receive() 사용</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl"><span class="kd">private</span> <span class="n">MessageConverter</span> <span class="n">converter</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">&#34;tacocloud.orders&#34;</span><span class="o">,</span> <span class="n">30000</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl">    <span class="k">return</span> <span class="n">message</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">converter</span><span class="o">.</span><span class="na">fromMessage</span><span class="o">(</span><span class="n">message</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">private</span> <span class="n">MessageConverter</span> <span class="n">converter</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="s">&#34;tacocloud.orders&#34;</span><span class="o">,</span> <span class="n">30000</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="k">return</span> <span class="n">message</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">converter</span><span class="o">.</span><span class="na">fromMessage</span><span class="o">(</span><span class="n">message</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>타입아웃 값인 30초가 지났을 경우에 Message 객체 혹은 null이 반환된다. (30초간 대기)<br/>
 Message 객체 반환되었을 경우 : MessageConverter를 사용하여 Message 객체를 Order 객체로 변환
 <br/><br/></p>
 <p><strong>구성을 통해 타임아웃 값 지정</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl"><span class="w">            </span><span class="nt">receive-timeout</span><span class="p">:</span><span class="w"> </span><span class="m">30000</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">    </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">        </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">            </span><span class="nt">receive-timeout</span><span class="p">:</span><span class="w"> </span><span class="m">30000</span><span class="w">
 </span></span></span></code></pre></div><p>receive() 메서드의 타임아웃 값을 제거하고 구성 파일을 통해 타임아웃 값을 설정할 수 있다.
 <br/><br/></p>
 <p><strong>receiveAndConvert() 사용</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3">3</a></span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4">4</a></span><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5">5</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">RabbitTemplate</span> <span class="n">rabbit</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>메시지 변환기 대신 receiveAndConvert() 메서드를 이용하면 손쉽게 메시지 변환이 가능하다.</p>
 <p><strong>캐스팅 대신 특정 객체 수신</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> 
-</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl">	<span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;()</span> <span class="o">{});</span>
-</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="n">Order</span> <span class="nf">receiveOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">Order</span><span class="o">)</span> <span class="n">rabbit</span><span class="o">.</span><span class="na">receiveAndConvert</span><span class="o">(</span><span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="ln">3</span><span class="cl">	<span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;()</span> <span class="o">{});</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ParameterizedTypeReference를 인자로 전달하여 직접 Order 객체를 수신하게 할 수 있다.<br/>
 <span class="red">※ 메시지 변환기가 SmartMessageConverter 인터페이스를 구현한 클래스이어야 한다.</span></p>
 <h3 id="리스너-사용">리스너 사용</h3>
@@ -1001,12 +1021,12 @@ Message 객체 반환되었을 경우 : MessageConverter를 사용하여 Message
 메시지가 큐에 도착할 때 메서드가 자동 호출되도록 하기 위해서는 @RabbitListener 어노테이션을 RabbitMQ 빈의 메서드에 지정해야 한다.
 <br/><br/></p>
 <p><strong>리스너 선언</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl"><span class="nd">@RabbitListener</span><span class="o">(</span><span class="n">queues</span> <span class="o">=</span> <span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">receiveOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5">5</a></span><span class="cl">	<span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6">6</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">private</span> <span class="n">KitchenUI</span> <span class="n">ui</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nd">@RabbitListener</span><span class="o">(</span><span class="n">queues</span> <span class="o">=</span> <span class="s">&#34;tacocloud.order.queue&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">receiveOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">	<span class="n">ui</span><span class="o">.</span><span class="na">displayOrder</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>리스너 선언은 어노테이션을 RabbitListener로 지정했다는 것 이외에는 JmsListener와 동일하다.</p>
 
 
@@ -1164,7 +1184,17 @@ Message 객체 반환되었을 경우 : MessageConverter를 사용하여 Message
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

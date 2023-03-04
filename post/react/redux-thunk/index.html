@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -265,7 +275,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -321,7 +331,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -385,7 +395,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -458,7 +468,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -509,7 +529,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -567,7 +587,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -743,17 +763,17 @@
 <hr>
 <p>redux-thunk는 API 호출이 필요할 때 사용한다.</p>
 <h3 id="async--await-호출">async / await 호출</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1"> 1</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2"> 2</a></span><span class="cl">  <span class="k">return</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3"> 3</a></span><span class="cl">    <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4"> 4</a></span><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5"> 5</a></span><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6"> 6</a></span><span class="cl">        <span class="p">})</span>
-</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7"> 7</a></span><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8"> 8</a></span><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListFailed</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
-</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9"> 9</a></span><span class="cl">        <span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-0-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-10">10</a></span><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-11">11</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">return</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">            <span class="nx">dispatch</span><span class="p">(</span><span class="nx">getPostListFailed</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Redux-thunk를 사용하지 않고 해당 코드로 action 호출 시 하단의 에러 코드가 노출된다.</p>
 <p><mark>action must be plain objects. Use custom middleware for async actions</mark> <br>
 → 액션 생성함수는 오직 plain object 형태만 리턴해야 하는데, 위와 같이 비동기적인 코드에선 함수도 리턴하기 때문.</p>
@@ -765,14 +785,14 @@
 </aside>
 <br/>
 <h3 id="promise로-호출">promise로 호출</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">	<span class="k">return</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl">		<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET_POST_LIST_SUCCESS&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl">		<span class="nx">payload</span><span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8">8</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPost</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/post&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  
+</span></span><span class="line"><span class="ln">4</span><span class="cl">	<span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">		<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET_POST_LIST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">		<span class="nx">payload</span><span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>액션 함수를 비동기적으로 처리를 하지 않는다면 에러는 발생하지 않지만, 데이터가 API Fetch되기 전에 액션이 리듀서에게 전달하기 때문에 data를 받아서 랜더링할 수 없다.</p>
 <p><strong>Promise를 사용하면 순식간에 실행된 reducer에서 &lsquo;반환된 데이터가 아직 없다&rsquo;(객체에 아무것도 없다!)라고 판단한다.</strong></p>
 <br/>
@@ -795,9 +815,9 @@
 <h2 id="redux-적용">Redux 적용</h2>
 <hr>
 <h3 id="미들웨어-설치">미들웨어 설치</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl">$ npm i redux-logger
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">$ npm i redux-thunk
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl">$ npm i reudx-devtools-extension
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ npm i redux-logger
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ npm i redux-thunk
+</span></span><span class="line"><span class="ln">3</span><span class="cl">$ npm i reudx-devtools-extension
 </span></span></code></pre></div><p>스토어에 적용해주기 전에 라이브러리를 설치했다.</p>
 <p>redux-thunk 뿐만 아니라 State, Props 등을 콘솔에서 보여주는 <strong>Logger,</strong> 크롬 익스텐션인 <strong>Redux-devtools</strong> 를 사용할 수 있도록 하는 <strong>composeWithDevTools</strong> 를 설치한다.</p>
 <figure class="medium"><img src="/images/redux-thunk/1.png"
@@ -808,26 +828,26 @@
 
 <br/>
 <h3 id="미들웨어-적용">미들웨어 적용</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1"> 1</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">applyMiddleware</span><span class="p">,</span> <span class="nx">compose</span><span class="p">,</span> <span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2"> 2</a></span><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="nx">from</span> <span class="s1">&#39;../reducers&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3"> 3</a></span><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s2">&#34;redux-thunk&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4"> 4</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">createLogger</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-logger/src&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5"> 5</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">composeWithDevTools</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-devtools-extension&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7"> 7</a></span><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">();</span>
-</span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8"> 8</a></span><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>  <span class="c1">// thunk와 logger를 미들웨어에 추가
-</span></span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9"> 9</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-3-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-10">10</a></span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-11">11</a></span><span class="cl">  <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{};</span>
-</span></span><span class="line"><span class="ln" id="hl-3-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-12">12</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-13">13</a></span><span class="cl">  <span class="k">return</span> <span class="nx">createStore</span><span class="p">(</span>
-</span></span><span class="line"><span class="ln" id="hl-3-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-14">14</a></span><span class="cl">      <span class="nx">rootReducer</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-15">15</a></span><span class="cl">      <span class="nx">initialState</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-16">16</a></span><span class="cl">      <span class="nx">compose</span><span class="p">(</span>
-</span></span><span class="line"><span class="ln" id="hl-3-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-17">17</a></span><span class="cl">          <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">))</span>  <span class="c1">//middlewares 배열을 넣어주었다.
-</span></span></span><span class="line"><span class="ln" id="hl-3-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-18">18</a></span><span class="cl"><span class="c1"></span>      <span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-3-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-19">19</a></span><span class="cl">  <span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-20">20</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">applyMiddleware</span><span class="p">,</span> <span class="nx">compose</span><span class="p">,</span> <span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="nx">from</span> <span class="s1">&#39;../reducers&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s2">&#34;redux-thunk&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">createLogger</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-logger/src&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">composeWithDevTools</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-devtools-extension&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>  <span class="c1">// thunk와 logger를 미들웨어에 추가
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">return</span> <span class="nx">createStore</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="nx">rootReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">      <span class="nx">initialState</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">      <span class="nx">compose</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">          <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">))</span>  <span class="c1">//middlewares 배열을 넣어주었다.
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"></span>      <span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>createStore 마지막 인자는 리덕스에 미들웨어를 추가할 수 있도록 도와준다.</p>
 <p>middleware 배열에 thunk와 logger를 넣고 <code>applyMiddleware(...middlewares)</code> 를 사용하여 middleware 배열의 미들웨어를 사용하겠다고 명시한다.</p>
 <p>크롬 익스텐션인 Redux-devtools를 사용하려면  applyMiddleware(..) 함수 자체를 composeWithDevTools로 감싸주면 된다.</p>
@@ -923,7 +943,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

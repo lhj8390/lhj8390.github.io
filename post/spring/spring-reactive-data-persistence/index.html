@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -266,7 +276,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -322,7 +332,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -386,7 +396,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -459,7 +469,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -510,7 +530,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -568,7 +588,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -758,27 +778,27 @@
 <h3 id="기존-repository에서의-변환">기존 Repository에서의 변환</h3>
 <p>스프링 데이터 JPA를 사용할 경우 Mono나 Flux 리액티브 타입을 반환하지 않기 때문에 오퍼레이션을 수행할 수 없게 된다. <br/>
 이를 해결하기 위해서는 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findByUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromIterable</span><span class="o">(</span><span class="n">orders</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findByUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderFlux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">fromIterable</span><span class="o">(</span><span class="n">orders</span><span class="o">);</span>
 </span></span></code></pre></div><p>Flux의 fromIterable(), fromArray(), fromStream() 메서드를 통해 Flux로 변환시킬 수 있다.</p>
 <p>Mono일 경우는 다음과 같다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="n">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderMono</span> <span class="o">=</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orderMono</span> <span class="o">=</span> <span class="n">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">order</span><span class="o">);</span>
 </span></span></code></pre></div><p>Mono의 just() 메서드를 통해 Mono로 변환이 가능하다.<br/><br/></p>
 <p><strong>Mono에서의 데이터 추출</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="n">Taco</span> <span class="n">taco</span> <span class="o">=</span> <span class="n">tacoMono</span><span class="o">.</span><span class="na">block</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Taco</span> <span class="n">taco</span> <span class="o">=</span> <span class="n">tacoMono</span><span class="o">.</span><span class="na">block</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
 </span></span></code></pre></div><p>Mono의 block() 메서드를 호출해서 데이터를 추출할 수 있다.<br/><br/></p>
 <p><strong>Flux에서의 데이터 추출</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacos</span> <span class="o">=</span> <span class="n">tacoFlux</span><span class="o">.</span><span class="na">toIterable</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="n">tacos</span><span class="o">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="n">tacos</span> <span class="o">=</span> <span class="n">tacoFlux</span><span class="o">.</span><span class="na">toIterable</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="n">tacos</span><span class="o">);</span>
 </span></span></code></pre></div><p>Flux의 toIterable() 메서드를 통해 Flux의 모든 객체를 Iterable 타입으로 추출한다.</p>
 <aside>
 Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span class="red">추출 작업 시 블로킹 처리 된다.</span></strong> <br/>
 이를 해결하기 위해서는 구독 발행 요소 각각에 오퍼레이션을 수행하는 것이 나은 방법이다.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="n">tacoFlux</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">taco</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">  <span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl"><span class="o">});</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">tacoFlux</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">taco</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">});</span>
 </span></span></code></pre></div><p><span class="gray">※ JPA repository의 save() 메서드를 제외하고는 리액티브하다.</span></p>
 </aside>
 <h2 id="리액티브-카산드라-사용">리액티브 카산드라 사용</h2>
@@ -793,22 +813,22 @@ Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span cla
 </ol>
 </blockquote>
 <h3 id="카산드라-의존성-추가">카산드라 의존성 추가</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-cassandra-reactive&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-cassandra-reactive&#39;</span>
 </span></span></code></pre></div><p>리액티브한 카산드라 repository를 작성할 것이므로 해당 스타터 dependency를 추가한다.<br/>
 스프링 Initializr에서 지정할 경우 NoSQL의 <strong>“Spring Data Reactive for Apache Cassandra”</strong> 를 선택한다.</p>
 <h3 id="카산드라-설정-변경">카산드라 설정 변경</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1"> 1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2"> 2</a></span><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3"> 3</a></span><span class="cl"><span class="w">    </span><span class="nt">cassandra</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4"> 4</a></span><span class="cl"><span class="w">      </span><span class="nt">keyspace-name</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5"> 5</a></span><span class="cl"><span class="w">      </span><span class="nt">schema-action</span><span class="p">:</span><span class="w"> </span><span class="l">recreate-drop-unused</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6"> 6</a></span><span class="cl"><span class="w">      </span><span class="nt">contact-points</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7"> 7</a></span><span class="cl"><span class="w">      </span>- <span class="l">casshost-1.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8"> 8</a></span><span class="cl"><span class="w">      </span>- <span class="l">casshost-2.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9"> 9</a></span><span class="cl"><span class="w">      </span>- <span class="l">casshost-3.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-10">10</a></span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9043</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-11">11</a></span><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-6-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-12">12</a></span><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w">    </span><span class="nt">cassandra</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">      </span><span class="nt">keyspace-name</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">      </span><span class="nt">schema-action</span><span class="p">:</span><span class="w"> </span><span class="l">recreate-drop-unused</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">      </span><span class="nt">contact-points</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">      </span>- <span class="l">casshost-1.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">      </span>- <span class="l">casshost-2.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span>- <span class="l">casshost-3.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9043</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
 </span></span></span></code></pre></div><ul>
 <li>
 <p><code>keyspace-name</code> : <strong>카산드라가 해당 키 공간을 사용하도록 알린다.</strong><br/>
@@ -835,27 +855,27 @@ Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span cla
 </ul>
 <h3 id="카산드라-도메인-타입-매핑">카산드라 도메인 타입 매핑</h3>
 <p>카산드라 퍼시스턴스는 도메인 타입 매핑 어노테이션을 제공한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1"> 1</a></span><span class="cl"><span class="nd">@Data</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2"> 2</a></span><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3"> 3</a></span><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4"> 4</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6"> 6</a></span><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">PARTITIONED</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7"> 7</a></span><span class="cl">  <span class="kd">private</span> <span class="n">UUID</span> <span class="n">id</span> <span class="o">=</span> <span class="n">UUIDs</span><span class="o">.</span><span class="na">timeBased</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8"> 8</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9"> 9</a></span><span class="cl">  <span class="nd">@NotNull</span>
-</span></span><span class="line"><span class="ln" id="hl-7-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-10">10</a></span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-11">11</a></span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-7-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-12">12</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-7-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-13">13</a></span><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">CLUSTERED</span><span class="o">,</span>
-</span></span><span class="line"><span class="ln" id="hl-7-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-14">14</a></span><span class="cl">                    <span class="n">ordering</span><span class="o">=</span><span class="n">Ordering</span><span class="o">.</span><span class="na">DESCENDING</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-15">15</a></span><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-7-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-16">16</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-7-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-17">17</a></span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-18">18</a></span><span class="cl">  <span class="nd">@Column</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-7-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-19">19</a></span><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">IngredientUDT</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-7-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-20">20</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-7-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-21">21</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">PARTITIONED</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="kd">private</span> <span class="n">UUID</span> <span class="n">id</span> <span class="o">=</span> <span class="n">UUIDs</span><span class="o">.</span><span class="na">timeBased</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nd">@NotNull</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nd">@PrimaryKeyColumn</span><span class="o">(</span><span class="n">type</span><span class="o">=</span><span class="n">PrimaryKeyType</span><span class="o">.</span><span class="na">CLUSTERED</span><span class="o">,</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">                    <span class="n">ordering</span><span class="o">=</span><span class="n">Ordering</span><span class="o">.</span><span class="na">DESCENDING</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="nd">@Column</span><span class="o">(</span><span class="s">&#34;ingredients&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">IngredientUDT</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li><strong>@Table</strong> : 테이블의 이름 지정 <span class="gray"> <strong>-</strong> <em>JPA에서는 @Entity</em></span></li>
 <li><strong>@PrimaryKeyColumn</strong> : 기본 키 지정<br/>
@@ -870,14 +890,14 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
   <span class="red">UDT 클래스를 새로 만들어 데이터가 어떻게 저장되는지 정의해야 한다.</span><br/>
 </aside>   <br/><br/>
 <p><strong>UDT 클래스 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1">1</a></span><span class="cl"><span class="nd">@Data</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2">2</a></span><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3">3</a></span><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4">4</a></span><span class="cl"><span class="nd">@UserDefinedType</span><span class="o">(</span><span class="s">&#34;ingredient&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5">5</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IngredientUDT</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6">6</a></span><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7">7</a></span><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">Type</span> <span class="n">type</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8">8</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nd">@RequiredArgsConstructor</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nd">@NoArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nd">@UserDefinedType</span><span class="o">(</span><span class="s">&#34;ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IngredientUDT</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Ingredient</span><span class="o">.</span><span class="na">Type</span> <span class="n">type</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li>@UserDefinedType : 카산드라의 UDT(사용자 정의 타입)임을 명시</li>
 <li>id 속성을 별도로 포함하지 않는다.</li>
@@ -885,15 +905,15 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
 <h3 id="카산드라-repository-작성">카산드라 Repository 작성</h3>
 <p>Repository를 작성할 때는 두 개의 기본 인터페이스인 ReactiveCassandraRepository 나 ReactiveCrudRepository를 선택할 수 있다. ReactiveCassandraRepository가 ReactiveCrudRepository의 확장된 버전이다.</p>
 <p><strong>기본 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>이와 같이 ReactiveCrudRepository를 extends 처리하면 된다. findAll() 메서드 사용 시 Flux<Ingredient>를 반환한다. Flux를 반환하기 때문에 페이징 처리도 신경 쓸 필요가 없다. - <span class="gray"><em>take() 메서드 활용 가능</em></span></p>
 <p><strong>where 절</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCassandraRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">UUID</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl">  <span class="nd">@AllowFiltering</span>
-</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5">5</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveCassandraRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">UUID</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nd">@AllowFiltering</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>카산드라에서는 where 절로 쿼리할 수 없다. where 절을 사용하기 위해서는 @AllowFiltering 어노테이션을 사용한다. <span class="red">allow filtering 절은 <span class="ul">쿼리 성능에 영향을 주지만 수행해야 한다</span>라는 것을 카산드라에게 알려준다.</span></p>
 <h2 id="리액티브-몽고db-사용">리액티브 몽고DB 사용</h2>
 <hr>
@@ -901,17 +921,17 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
 <p>몽고DB는 잘 알려진 NoSQL 데이터베이스 중 하나이다. 카산드라가 테이블의 행으로 데이터를 저장하는 반면, 몽고DB는 <strong>문서형 데이터베이스</strong>이다.</p>
 </blockquote>
 <h3 id="몽고db-의존성-추가">몽고DB 의존성 추가</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-mongodb-reactive&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">implementation</span> <span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-mongodb-reactive&#39;</span>
 </span></span></code></pre></div><p>리액티브한 몽고DB repository를 작성할 것이므로 해당 스타터 dependency를 추가한다.<br/>
 스프링 Initializr에서 지정할 경우 NoSQL의 <strong>“Spring Data Reactive MongoDB”</strong> 를 선택한다.</p>
 <h3 id="몽고db-설정-변경">몽고DB 설정 변경</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1">1</a></span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">mongodb</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb.tacocloud.com</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-5">5</a></span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">27018</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-6">6</a></span><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-12-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-7">7</a></span><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mongodb</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb.tacocloud.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">27018</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">tacocloud</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">taco123</span><span class="w">
 </span></span></span></code></pre></div><ul>
 <li><code>host</code> : 몽고DB 서버가 실행 중인 호스트 이름. 기본값 - localhost</li>
 <li><code>port</code> : 몽고DB 서버가 리스닝하는 포트. 기본값 - 27017</li>
@@ -920,25 +940,25 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
 </ul>
 <h3 id="도메인-타입-매핑">도메인 타입 매핑</h3>
 <p>스프링 데이터 몽고DB는 문서 구조로 도메인 타입을 매핑하는 데 유용한 어노테이션을 제공한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1"> 1</a></span><span class="cl"><span class="nd">@Data</span>
-</span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2"> 2</a></span><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3"> 3</a></span><span class="cl"><span class="nd">@Document</span>
-</span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4"> 4</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-13-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-5"> 5</a></span><span class="cl">  <span class="nd">@Id</span>
-</span></span><span class="line"><span class="ln" id="hl-13-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-6"> 6</a></span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-13-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-7"> 7</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-13-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-8"> 8</a></span><span class="cl">  <span class="nd">@NotNull</span>
-</span></span><span class="line"><span class="ln" id="hl-13-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-9"> 9</a></span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-13-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-10">10</a></span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-13-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-11">11</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-13-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-12">12</a></span><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-13-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-13">13</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-13-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-14">14</a></span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-13-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-15">15</a></span><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-13-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-16">16</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-13-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-17">17</a></span><span class="cl">  <span class="nd">@Field</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln" id="hl-13-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-18">18</a></span><span class="cl">  <span class="kd">private</span> <span class="n">User</span> <span class="n">user</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-13-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-19">19</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Data</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nd">@RestResource</span><span class="o">(</span><span class="n">rel</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#34;tacos&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nd">@Document</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taco</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nd">@Id</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nd">@NotNull</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Name must be at least 5 characters long&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="kd">private</span> <span class="n">Date</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&#34;You must choose at least 1 ingredient&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">&gt;</span> <span class="n">ingredients</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nd">@Field</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="kd">private</span> <span class="n">User</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><ul>
 <li><strong>@Id</strong> : 문서 ID로 지정
 <ul>
@@ -956,15 +976,15 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
 <h3 id="몽고db-repository-작성">몽고DB Repository 작성</h3>
 <p>Repository를 작성할 때는 두 개의 기본 인터페이스인 ReactiveMongoRepository 나 ReactiveCrudRepository를 선택할 수 있다. ReactiveCrudRepository가 새로운 문서나 기존 문서의 save() 메서드에 의존하는 반면, ReactiveMongoRepository는 <strong>새로운 문서의 저장에 최적화된 insert() 메서드</strong>를 제공한다.</p>
 <p><strong>기본 예시</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-14-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> 
-</span></span><span class="line"><span class="ln" id="hl-14-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-2">2</a></span><span class="cl">         <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-14-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-3">3</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IngredientRepository</span> 
+</span></span><span class="line"><span class="ln">2</span><span class="cl">         <span class="kd">extends</span> <span class="n">ReactiveCrudRepository</span><span class="o">&lt;</span><span class="n">Ingredient</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>ReactiveCrudRepository를 이용하여 Repository를 작성할 경우 몽고DB와 카산드라 모두 똑같은 인터페이스를 활용할 수 있다.</p>
 <p><strong>where 절</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-15-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-1">1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveMongoRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-15-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-15-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-3">3</a></span><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-15-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-15-4">4</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">ReactiveMongoRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>몽고DB는 커스텀 쿼리 메서드의 명명 규칙을 따른다.</p>
 
 
@@ -1122,7 +1142,17 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

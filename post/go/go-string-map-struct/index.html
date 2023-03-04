@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -251,7 +261,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -307,7 +317,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -371,7 +381,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -444,7 +454,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -495,7 +515,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -553,7 +573,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -722,17 +742,17 @@
 </blockquote>
 <h3 id="문자열-선언">문자열 선언</h3>
 <p>문자열은 다음과 같이 선언할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;Hello&#34;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="kt">byte</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="kd">var</span> <span class="nx">s2</span> <span class="kt">string</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1">// &#34;Hel&#34;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="kt">byte</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">var</span> <span class="nx">s2</span> <span class="kt">string</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1">// &#34;Hel&#34;
 </span></span></span></code></pre></div><p>배열이나 슬라이스에서 단일 값을 추출하는 것처럼, 문자열도 인덱스 표현으로 단일 값을 꺼내올 수 있다.</p>
 <h3 id="문자열-변환">문자열 변환</h3>
 <p>단일 룬 혹은 바이트는 문자열로 변환이 가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">rune</span>    <span class="p">=</span> <span class="sc">&#39;x&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>  <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="kt">byte</span>    <span class="p">=</span> <span class="sc">&#39;y&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl"><span class="kd">var</span> <span class="nx">s2</span> <span class="kt">string</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">rune</span>    <span class="p">=</span> <span class="sc">&#39;x&#39;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>  <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="kt">byte</span>    <span class="p">=</span> <span class="sc">&#39;y&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kd">var</span> <span class="nx">s2</span> <span class="kt">string</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="맵">맵</h2>
 <hr>
 <blockquote>
@@ -747,55 +767,55 @@
 </ol>
 <h3 id="맵-선언">맵 선언</h3>
 <p>문자열 타입의 키와 정수를 값으로 가지는 맵을 선언한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">map1</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl"><span class="c1">// 비어있는 맵 리터럴 할당
-</span></span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl"><span class="c1"></span><span class="nx">map2</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl"><span class="c1">// 기본 크기 지정
-</span></span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl"><span class="c1"></span><span class="nx">map3</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">][]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl"><span class="c1">// 비어있지 않은 맵 리터럴
-</span></span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl"><span class="c1"></span><span class="nx">map4</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">  <span class="s">&#34;Orcas&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Fred&#34;</span><span class="p">,</span> <span class="s">&#34;Ralph&#34;</span><span class="p">,</span> <span class="s">&#34;Bijou&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">  <span class="s">&#34;Lions&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Sarah&#34;</span><span class="p">,</span> <span class="s">&#34;Peter&#34;</span><span class="p">,</span> <span class="s">&#34;Billie&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">  <span class="s">&#34;Kittens&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Waldo&#34;</span><span class="p">,</span> <span class="s">&#34;Raul&#34;</span><span class="p">,</span> <span class="s">&#34;Ze&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">map1</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">// 비어있는 맵 리터럴 할당
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"></span><span class="nx">map2</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">// 기본 크기 지정
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span><span class="nx">map3</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">][]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1">// 비어있지 않은 맵 리터럴
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span><span class="nx">map4</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="s">&#34;Orcas&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Fred&#34;</span><span class="p">,</span> <span class="s">&#34;Ralph&#34;</span><span class="p">,</span> <span class="s">&#34;Bijou&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="s">&#34;Lions&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Sarah&#34;</span><span class="p">,</span> <span class="s">&#34;Peter&#34;</span><span class="p">,</span> <span class="s">&#34;Billie&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="s">&#34;Kittens&#34;</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Waldo&#34;</span><span class="p">,</span> <span class="s">&#34;Raul&#34;</span><span class="p">,</span> <span class="s">&#34;Ze&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>map1 의 제로 값은 nil이 되고 길이가 0이 된다. map1 에 값을 쓰려고 하면 panic이 발생한다. <br/>
 비어있는 맵 리터럴인 map2 는 길이는 0이지만 비어있는 맵 리터럴이 할당된 맵을 읽고 쓸 수 있다.</p>
 <h3 id="맵-응용">맵 응용</h3>
 <p>다음과 같이 맵을 읽고 쓸 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="nx">map1</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Orcas&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>          <span class="c1">// 맵 쓰기
-</span></span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="c1"></span><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Lions&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Orcas&#34;</span><span class="p">])</span> <span class="c1">// 맵 읽기
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">map1</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Orcas&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>          <span class="c1">// 맵 쓰기
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Lions&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">map1</span><span class="p">[</span><span class="s">&#34;Orcas&#34;</span><span class="p">])</span> <span class="c1">// 맵 읽기
 </span></span></span></code></pre></div><p>아직 설정하지 않은 맵 키에 할당된 값을 읽으려고 시도할 경우에는 맵의 값이 되는 타입의 제로 값을 반환한다.<br/><br/></p>
 <p>맵에 키가 있는지 확인하고 싶을 때는 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">  <span class="s">&#34;hello&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">  <span class="s">&#34;world&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6">6</a></span><span class="cl"><span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;hello&#34;</span><span class="p">]</span>  <span class="c1">// 5 true
-</span></span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7">7</a></span><span class="cl"><span class="c1"></span><span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;noData&#34;</span><span class="p">]</span>  <span class="c1">// 0 false
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;hello&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="s">&#34;world&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;hello&#34;</span><span class="p">]</span>  <span class="c1">// 5 true
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"></span><span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;noData&#34;</span><span class="p">]</span>  <span class="c1">// 0 false
 </span></span></span></code></pre></div><br/>
 <p>맵에서 값을 삭제하는 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">  <span class="s">&#34;hello&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl">  <span class="s">&#34;world&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="nb">delete</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;hello&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="s">&#34;world&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nb">delete</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>delete 함수는 맵과 키를 받아 해당 키에 해당하는 키-값 쌍을 제거한다. 키가 맵에 없거나 맵이 nil인 경우에는 아무일도 일어나지 않는다.<br/><br/></p>
 <p>맵을 셋(Set)처럼 이용하려면 다음과 같이 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="nx">intSet</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">bool</span><span class="p">{}</span>
-</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl"><span class="nx">vals</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">vals</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl">	<span class="nx">intSet</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8">8</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nx">intSet</span><span class="p">))</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">intSet</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">bool</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">vals</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">vals</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">	<span class="nx">intSet</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nx">intSet</span><span class="p">))</span>
 </span></span></code></pre></div><p>Go는 셋을 지원하지 않지만, 맵을 이용해서 셋처럼 사용할 수 있다. 값을 boolean으로 설정하여 키에 대응되는 값으로 true를 설정한다.</p>
 <h2 id="구조체">구조체</h2>
 <hr>
@@ -804,49 +824,49 @@
 </blockquote>
 <h3 id="구조체-선언">구조체 선언</h3>
 <p>type 키워드로 구조체 타입의 이름을 지정하고 중괄호로 구조체를 정의한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1"> 1</a></span><span class="cl"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2"> 2</a></span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3"> 3</a></span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4"> 4</a></span><span class="cl">  <span class="nx">pet</span>  <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5"> 5</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7"> 7</a></span><span class="cl"><span class="c1">// 구조체 타입으로 변수 선언
-</span></span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8"> 8</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">person1</span> <span class="nx">person</span>
-</span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9"> 9</a></span><span class="cl"><span class="c1">// 구조체 리터럴
-</span></span></span><span class="line"><span class="ln" id="hl-7-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-10">10</a></span><span class="cl"><span class="c1"></span><span class="nx">person2</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">pet</span>  <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// 구조체 타입으로 변수 선언
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">person1</span> <span class="nx">person</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1">// 구조체 리터럴
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span><span class="nx">person2</span> <span class="o">:=</span> <span class="nx">person</span><span class="p">{}</span>
 </span></span></code></pre></div><p>맵 리터럴과는 다르게 항목들 간에 구분을 위한 콤마를 사용하지 않는다.  person1, person2 두 변수 모두 구조체 내에 존재하는 모든 항목들이 <span class="red">각 타입에 맞는 제로 값으로 설정</span>된다.</p>
 <h3 id="구조체-응용">구조체 응용</h3>
 <p>구조체 타입 이름을 지정하지 않고 구조체 타입을 구현하는 <strong>익명 구조체</strong>를 선언할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl">  <span class="nx">pet</span>  <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;bob&#34;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">age</span> <span class="p">=</span> <span class="mi">50</span>
-</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">pet</span> <span class="p">=</span> <span class="s">&#34;dog&#34;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl"><span class="nx">pet</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-8-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-13">13</a></span><span class="cl">  <span class="nx">kind</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-8-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-14">14</a></span><span class="cl"><span class="p">}{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-15">15</a></span><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Fido&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-8-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-16">16</a></span><span class="cl">  <span class="nx">kind</span><span class="p">:</span> <span class="s">&#34;dog&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-8-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-17">17</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">pet</span>  <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="p">=</span> <span class="s">&#34;bob&#34;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">age</span> <span class="p">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">pet</span> <span class="p">=</span> <span class="s">&#34;dog&#34;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nx">pet</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nx">kind</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="s">&#34;Fido&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="nx">kind</span><span class="p">:</span> <span class="s">&#34;dog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>person과 pet 변수는 익명 구조체이다. 익명 구조체는 <strong>1)</strong> 외부 데이터를 구조체로 전환 혹은 구조체를 외부 데이터로 전환할 때, <strong>2)</strong> 테스트 작성할 때 주로 사용한다. <br/><br/></p>
 <p>Go에서 다른 기본 타입의 변수들 간의 비교를 허용하지 않는 것처럼, 다른 타입 구성의 구조체의 비교도 허용하지 않는다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1"> 1</a></span><span class="cl"><span class="kd">type</span> <span class="nx">firstPerson</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2"> 2</a></span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3"> 3</a></span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4"> 4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6"> 6</a></span><span class="cl"><span class="kd">type</span> <span class="nx">secondPerson</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7"> 7</a></span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="ln" id="hl-9-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-8"> 8</a></span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-9-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-9"> 9</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-9-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-10">10</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-9-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-11">11</a></span><span class="cl"><span class="nx">firstPerson</span> <span class="o">==</span> <span class="nx">secondPerson</span> <span class="c1">// 비교 불가능!!
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">firstPerson</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="kd">type</span> <span class="nx">secondPerson</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nx">name</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nx">age</span>  <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nx">firstPerson</span> <span class="o">==</span> <span class="nx">secondPerson</span> <span class="c1">// 비교 불가능!!
 </span></span></span></code></pre></div><p>firstPerson 구조체와 secondPerson 구조체는 서로 다른 타입이기 때문에 ==를 사용하여 비교는 불가능하다. 하지만 <span class="red">익명 구조체이면서 두 구조체 모두 같은 이름, 순서, 타입을 가진다면 타입 변환 없이 비교가 가능하다.</span></p>
 
 
@@ -854,12 +874,12 @@
   <div class="related--list">
     
       
-        <a href="/post/go/go-type-method/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 타입과 메서드 사용하기</p></a>
+        <a href="/post/go/go-error/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 오류 처리하기</p></a>
       
 
     
       
-        <a href="/post/go/go-use-pointer/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 포인터 사용하기</p></a>
+        <a href="/post/go/go-interface/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 인터페이스 사용하기</p></a>
       
 
     
@@ -940,7 +960,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

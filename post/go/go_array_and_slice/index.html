@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -251,7 +261,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -307,7 +317,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -371,7 +381,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -444,7 +454,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -495,7 +515,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -553,7 +573,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -717,32 +737,32 @@
 </blockquote>
 <h3 id="배열-선언">배열 선언</h3>
 <p>배열의 모든 요소는 지정된 타입이어야 한다. 배열을 지정할 때 값을 초기화하지 않으면 정수 0으로 초기화된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="c1">// 초기값 주기
-</span></span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6">6</a></span><span class="cl"><span class="c1">// 배열 리터럴로 배열 초기화
-</span></span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7">7</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">// 초기값 주기
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">// 배열 리터럴로 배열 초기화
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
 </span></span></code></pre></div><br/>
 <p><strong>희소 배열</strong> (대부분의 요소 값이 0으로 설정된 배열)을 만드려면 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="c1">// [1, 0, 0, 4, 6, 0, 100, 15] 
-</span></span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">// [1, 0, 0, 4, 6, 0, 100, 15] 
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">}</span>
 </span></span></code></pre></div><br/>
 <p><strong>다차원 배열</strong> (배열의 요소로 다른 배열을 포함하는 배열)은 다음과 같이 선언한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
 </span></span></code></pre></div><h3 id="배열-응용">배열 응용</h3>
 <p><code>==</code> 과 <code>!=</code> 를 사용하여 배열 간의 비교가 가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="kd">var</span> <span class="nx">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="nx">y</span><span class="p">)</span>  <span class="c1">// true
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">var</span> <span class="nx">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="nx">y</span><span class="p">)</span>  <span class="c1">// true
 </span></span></span></code></pre></div><p>대부분의 언어와 마찬가지로 괄호를 이용해 값을 읽거나 쓸 수 있다.
 <br/><br/></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl"><span class="c1">// 배열의 길이
-</span></span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">// 배열의 길이
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>
 </span></span></code></pre></div><p>배열의 끝을 넘어서거나 음수의 인덱스를 사용하여 값을 읽거나 쓸 수 없다.</p>
 <h2 id="슬라이스">슬라이스</h2>
 <hr>
@@ -752,87 +772,87 @@
 </blockquote>
 <h3 id="슬라이스-선언">슬라이스 선언</h3>
 <p>배열 선언과 비슷하지만 가장 큰 차이점은 슬라이스의 크기를 지정할 필요가 없다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl"><span class="c1">// [1, 0, 0, 4, 6, 0, 100, 15] 
-</span></span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="c1">// 다차원 슬라이스
-</span></span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7">7</a></span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">[][]</span><span class="kt">int</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">// [1, 0, 0, 4, 6, 0, 100, 15] 
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">// 다차원 슬라이스
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="p">[][]</span><span class="kt">int</span>
 </span></span></code></pre></div><h3 id="배열과의-차이점">배열과의 차이점</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>  <span class="c1">// nil
-</span></span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">// true
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>  <span class="c1">// nil
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></div><p>정수 슬라이스에서 값을 할당하지 않으면 x에는 nil이라는 제로 값으로 할당된다. Go에서 <strong>nil</strong>은 <span class="red">타입의 부재를 표현한 식별자</span>이다. 슬라이스가 nil 이라는 것은 어떤 요소도 가지고 있지 않다는 뜻이다.</p>
 <p>슬라이스는 <span class="red"><strong>비교가 불가능한 타입</strong></span>으로, 두 슬라이스를 비교하기 위해 <code>==</code> 나 <code>=!</code> 를 사용하면 컴파일 오류가 발생한다. 슬라이스는 오로지 nil로만 비교가 가능하다.</p>
 <h3 id="슬라이스-응용">슬라이스 응용</h3>
 <p>배열과 같이 크기를 넘어서거나 음수의 인덱스로는 읽기와 쓰기가 불가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span></span></code></pre></div><br/>
 <p>슬라이스에서 <code>len()</code>, <code>append()</code> 같은 내장 함수들을 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <span class="c1">// 0
-</span></span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>      <span class="c1">// [10]
-</span></span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>      <span class="c1">// [10, 20, 30, 40]
-</span></span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="o">...</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <span class="c1">// 0
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>      <span class="c1">// [10]
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>      <span class="c1">// [10, 20, 30, 40]
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="o">...</span><span class="p">)</span>
 </span></span></code></pre></div><br/>
 <p>슬라이스는 수용력(예약된 메모리 공간의 크기)을 가지는데, 슬라이스의 길이와 수용력이 같아진 시점에 값을 추가하면 append 는 더 큰 수용력을 가지는 슬라이스를 할당한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>  <span class="c1">// 수용력 크기 출력
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>  <span class="c1">// 수용력 크기 출력
 </span></span></span></code></pre></div><br/>
 <p>선택적으로 수용력을 지정하여 슬라이스를 만들 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">// 길이 5, 수용력 5를 가지는 정수 슬라이스 생성
-</span></span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl"><span class="c1"></span><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">// 길이 5, 수용력 10을 가지는 정수 슬라이스 생성
-</span></span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>    <span class="c1">// [0, 0, 0, 0, 0, 10]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">// 길이 5, 수용력 5를 가지는 정수 슬라이스 생성
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">// 길이 5, 수용력 10을 가지는 정수 슬라이스 생성
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>    <span class="c1">// [0, 0, 0, 0, 0, 10]
 </span></span></span></code></pre></div><p>x[0] 부터 x[4]까지 접근 가능한 요소이며, 모두 0으로 초기화된다.
 <br/><br/></p>
 <p>슬라이스 연산자를 사용하여 슬라이스에서 슬라이스를 만들 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1">1</a></span><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>   <span class="c1">// [1, 2, 3, 4]
-</span></span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2">2</a></span><span class="cl"><span class="c1"></span><span class="nx">b</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>               <span class="c1">// [1, 2]
-</span></span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3">3</a></span><span class="cl"><span class="c1"></span><span class="nx">c</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>               <span class="c1">// [2, 3, 4]
-</span></span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4">4</a></span><span class="cl"><span class="c1"></span><span class="nx">d</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>              <span class="c1">// [2, 3]
-</span></span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5">5</a></span><span class="cl"><span class="c1"></span><span class="nx">e</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:]</span>                <span class="c1">// [1, 2, 3, 4]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>   <span class="c1">// [1, 2, 3, 4]
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">b</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>               <span class="c1">// [1, 2]
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span><span class="nx">c</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>               <span class="c1">// [2, 3, 4]
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"></span><span class="nx">d</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>              <span class="c1">// [2, 3]
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"></span><span class="nx">e</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:]</span>                <span class="c1">// [1, 2, 3, 4]
 </span></span></span></code></pre></div><p>슬라이스에서 슬라이스를 가져오면 데이터를 복사하지 않고 <span class="red">메모리를 공유하는 두 개의 변수를 가지게 된다.</span> 이는 슬라이스의 요소를 변경하면 모든 슬라이스에 영향이 생긴다는 것을 의미한다.
 <br/><br/></p>
 <p>슬라이스끼리 영향이 생기는 것을 막기 위해서는 하위 슬라이스에 append 를 사용하지 않거나 full slice expression을 사용해야 한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-12-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-12-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-2">2</a></span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-12-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-3">3</a></span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-</span></span><span class="line"><span class="ln" id="hl-12-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-4">4</a></span><span class="cl"><span class="nx">z</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
-</span></span><span class="line"><span class="ln" id="hl-12-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-12-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-6">6</a></span><span class="cl"><span class="c1">// append 사용
-</span></span></span><span class="line"><span class="ln" id="hl-12-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-7">7</a></span><span class="cl"><span class="c1"></span><span class="nx">y</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1">// x = [1, 2, 3, 4, 60]
-</span></span></span><span class="line"><span class="ln" id="hl-12-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-8">8</a></span><span class="cl"><span class="c1"></span><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>          <span class="c1">// y = [1, 2, 30, 40, 50]
-</span></span></span><span class="line"><span class="ln" id="hl-12-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-12-9">9</a></span><span class="cl"><span class="c1"></span><span class="nx">z</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">z</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>          <span class="c1">// z = [3, 4, 70]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">z</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">// append 사용
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"></span><span class="nx">y</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1">// x = [1, 2, 3, 4, 60]
+</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"></span><span class="nx">x</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>          <span class="c1">// y = [1, 2, 30, 40, 50]
+</span></span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="c1"></span><span class="nx">z</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">z</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>          <span class="c1">// z = [3, 4, 70]
 </span></span></span></code></pre></div><p>완전한 슬라이스 연산(full slice expression)은 부모 슬라이스에서 파생된 하위 슬라이스에 얼마나 많은 메모리를 공유할 것인지 명확하게 해준다. 세번째 인자에는 <span class="red">부모 슬라이스의 수용력의 마지막 위치를 지정</span>한다.<br/>
 하위 슬라이스의 수용력은 <code>세번째 인자 - 시작 오프셋</code> 이 된다.
 <br/><br/></p>
 <p>배열을 슬라이스로 만들수도 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-13-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span>     <span class="c1">// [10, 6, 7, 8]
-</span></span></span><span class="line"><span class="ln" id="hl-13-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-2">2</a></span><span class="cl"><span class="c1"></span><span class="nx">y</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>                  <span class="c1">// [10, 6]
-</span></span></span><span class="line"><span class="ln" id="hl-13-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-3">3</a></span><span class="cl"><span class="c1"></span><span class="nx">z</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>                  <span class="c1">// [7, 8]
-</span></span></span><span class="line"><span class="ln" id="hl-13-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-13-4">4</a></span><span class="cl"><span class="c1"></span><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span>     <span class="c1">// [10, 6, 7, 8]
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">y</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>                  <span class="c1">// [10, 6]
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span><span class="nx">z</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>                  <span class="c1">// [7, 8]
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"></span><span class="nx">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">10</span>
 </span></span></code></pre></div><p>배열을 슬라이스로 만들 때도 슬라이스에서 슬라이스를 만들 때와 마찬가지로 메모리를 서로 공유한다.
 <br/><br/></p>
 <p>원본 슬라이스로부터 독립적인 슬라이스를 만드려면 copy를 사용할 수도 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-14-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-1">1</a></span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-14-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-2">2</a></span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-14-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-3">3</a></span><span class="cl"><span class="nx">num</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-14-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-4">4</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span>    <span class="c1">// [1, 2, 3, 4] 4
-</span></span></span><span class="line"><span class="ln" id="hl-14-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-5">5</a></span><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="ln" id="hl-14-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-6">6</a></span><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-14-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-7">7</a></span><span class="cl"><span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-14-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-8">8</a></span><span class="cl"><span class="nx">num2</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-14-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-14-9">9</a></span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span>   <span class="c1">// [1, 2] 2 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">x</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">y</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nx">num</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span>    <span class="c1">// [1, 2, 3, 4] 4
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="nx">num2</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span>   <span class="c1">// [1, 2] 2 
 </span></span></span></code></pre></div><p>copy의 첫 번째 파라미터는 대상 슬라이스이고, 두 번째 파라미터는 원본 슬라이스이다. 길이를 기준으로 원본 슬라이스에서 대상 슬라이스로 값을 복사하고 실제 복사된 요소의 개수를 반환한다.</p>
 
 
@@ -840,12 +860,12 @@
   <div class="related--list">
     
       
-        <a href="/post/go/go-type-method/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 타입과 메서드 사용하기</p></a>
+        <a href="/post/go/go-error/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 오류 처리하기</p></a>
       
 
     
       
-        <a href="/post/go/go-use-pointer/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 포인터 사용하기</p></a>
+        <a href="/post/go/go-interface/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 인터페이스 사용하기</p></a>
       
 
     
@@ -926,7 +946,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

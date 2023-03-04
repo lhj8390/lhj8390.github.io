@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -265,7 +275,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -321,7 +331,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -385,7 +395,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -458,7 +468,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -509,7 +529,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -567,7 +587,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -749,29 +769,29 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <h2 id="store-설정">Store 설정</h2>
 <hr>
 <p>기존 Redux에서 Store를 설정할 때는 다음과 같이 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">combineReducers</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="c1">// reducer를 결합하는 rootReducer 생성
-</span></span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">rootReducer</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6">6</a></span><span class="cl">   <span class="nx">test</span>: <span class="kt">testReducer</span>
-</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7">7</a></span><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8">8</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9">9</a></span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">rootReducer</span><span class="p">;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1"> 1</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2"> 2</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">composeWithDevTools</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-devtools-extension&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3"> 3</a></span><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="kr">from</span> <span class="s1">&#39;redux-thunk&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4"> 4</a></span><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/rootReducer&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6"> 6</a></span><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7"> 7</a></span><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8"> 8</a></span><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9"> 9</a></span><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>
-</span></span><span class="line"><span class="ln" id="hl-1-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-10">10</a></span><span class="cl"><span class="kr">const</span> <span class="nx">composedEnhancer</span> <span class="o">=</span> <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">));</span>
-</span></span><span class="line"><span class="ln" id="hl-1-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-11">11</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-12">12</a></span><span class="cl"><span class="c1">// rootReducer와 enhancer를 결합하여 store 생성
-</span></span></span><span class="line"><span class="ln" id="hl-1-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-13">13</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">rootReducer</span><span class="p">,</span> <span class="nx">composedEnhancer</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-14">14</a></span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">store</span><span class="p">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">combineReducers</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">// reducer를 결합하는 rootReducer 생성
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">rootReducer</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">   <span class="nx">test</span>: <span class="kt">testReducer</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">rootReducer</span><span class="p">;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">composeWithDevTools</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-devtools-extension&#39;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="kr">from</span> <span class="s1">&#39;redux-thunk&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kr">import</span> <span class="nx">rootReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/rootReducer&#39;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="kr">const</span> <span class="nx">middlewares</span> <span class="o">=</span> <span class="p">[</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">logger</span><span class="p">];</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kr">const</span> <span class="nx">composedEnhancer</span> <span class="o">=</span> <span class="nx">composeWithDevTools</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(...</span><span class="nx">middlewares</span><span class="p">));</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">// rootReducer와 enhancer를 결합하여 store 생성
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">rootReducer</span><span class="p">,</span> <span class="nx">composedEnhancer</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">store</span><span class="p">;</span>
 </span></span></code></pre></div><ol>
 <li>combineReducers를 통해 reducers들을 하나로 묶는 rootReducer를 만든다.</li>
 <li>middleware와 devtools를 하나로 합친 enhancer를 만든다.</li>
@@ -780,21 +800,21 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <p>store를 설정할 때 이와 같이 필요한 패키지들이 많은 것을 알 수 있다. 하지만 Redux Toolkit을 사용하면 간편하게 strore를 설정할 수 있다.</p>
 <h3 id="configurestore-사용">configureStore 사용</h3>
 <p>Redux Toolkit의 <strong>configureStore</strong>는 store 설정을 단순화하도록 도와준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">configureStore</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@reduxjs/toolkit&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createLogger</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-logger&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl"><span class="kr">const</span> <span class="nx">loggers</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">    <span class="nx">reducer</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">      <span class="nx">test</span>: <span class="kt">testReducer</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
-</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl">    <span class="nx">devTools</span>: <span class="kt">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-15">15</a></span><span class="cl"><span class="p">});</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">configureStore</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@reduxjs/toolkit&#39;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createLogger</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;redux-logger&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kr">import</span> <span class="nx">testReducer</span> <span class="kr">from</span> <span class="s1">&#39;./reducers/testReducer&#39;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kr">const</span> <span class="nx">loggers</span> <span class="o">=</span> <span class="nx">createLogger</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">collapsed</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="nx">reducer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">      <span class="nx">test</span>: <span class="kt">testReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="nx">devTools</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">});</span>
 </span></span></code></pre></div><p>configureStore를 사용하면 다음과 같은 이점이 있다.</p>
 <ul>
 <li>reducer들을 rootReducer로 자동으로 변환해준다.</li>
@@ -804,43 +824,43 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <h2 id="action-reducer-생성">action, reducer 생성</h2>
 <hr>
 <p>기존 Redux에서 action과 reducer를 생성할 때는 디렉터리를 따로 분리하여 action과 reducer 파일을 별도로 생성하였다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1"> 1</a></span><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2"> 2</a></span><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3"> 3</a></span><span class="cl">    <span class="nx">TEST_FAILED</span> <span class="o">=</span> <span class="s1">&#39;TEST_FAILED&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4"> 4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6"> 6</a></span><span class="cl"><span class="c1">// 액션 선언
-</span></span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7"> 7</a></span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8"> 8</a></span><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
-</span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9"> 9</a></span><span class="cl">    <span class="nx">testFailed</span><span class="o">:</span> <span class="p">(</span><span class="nx">error</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">,</span> <span class="nx">payload</span>: <span class="kt">error</span><span class="p">}),</span>
-</span></span><span class="line"><span class="ln" id="hl-3-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-10">10</a></span><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-3-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-11">11</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-12">12</a></span><span class="cl"><span class="c1">// 액션 타입 지정
-</span></span></span><span class="line"><span class="ln" id="hl-3-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-13">13</a></span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;</span> <span class="o">|</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testFailed</span><span class="p">&gt;;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1"> 1</a></span><span class="cl"><span class="kr">type</span> <span class="nx">TestState</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2"> 2</a></span><span class="cl">  <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3"> 3</a></span><span class="cl">  <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4"> 4</a></span><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6"> 6</a></span><span class="cl"><span class="c1">// 초기 상태 지정
-</span></span></span><span class="line"><span class="ln" id="hl-4-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-7"> 7</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">initialState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-8"> 8</a></span><span class="cl">  <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-4-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-9"> 9</a></span><span class="cl">  <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-4-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-10">10</a></span><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-4-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-11">11</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-12">12</a></span><span class="cl"><span class="c1">// 리듀서 생성
-</span></span></span><span class="line"><span class="ln" id="hl-4-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-13">13</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">TestAction</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-14">14</a></span><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="kr">type</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-15">15</a></span><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_SUCCESS</span>:
-</span></span><span class="line"><span class="ln" id="hl-4-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-16">16</a></span><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">true</span> <span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-4-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-17">17</a></span><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_FAILED</span>:
-</span></span><span class="line"><span class="ln" id="hl-4-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-18">18</a></span><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span> <span class="nx">test</span>: <span class="kt">action.payload</span> <span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-4-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-19">19</a></span><span class="cl">    <span class="k">default</span><span class="o">:</span>
-</span></span><span class="line"><span class="ln" id="hl-4-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-20">20</a></span><span class="cl">      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-21">21</a></span><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-22">22</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-23">23</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-4-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-24">24</a></span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testReducer</span><span class="p">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">TEST_FAILED</span> <span class="o">=</span> <span class="s1">&#39;TEST_FAILED&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">// 액션 선언
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">testFailed</span><span class="o">:</span> <span class="p">(</span><span class="nx">error</span>: <span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">,</span> <span class="nx">payload</span>: <span class="kt">error</span><span class="p">}),</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">// 액션 타입 지정
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;</span> <span class="o">|</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testFailed</span><span class="p">&gt;;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">type</span> <span class="nx">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">// 초기 상태 지정
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">initialState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">// 리듀서 생성
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">TestAction</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="kr">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_SUCCESS</span>:
+</span></span><span class="line"><span class="ln">16</span><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">true</span> <span class="p">};</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="k">case</span> <span class="nx">TestActionTypes.TEST_FAILED</span>:
+</span></span><span class="line"><span class="ln">18</span><span class="cl">      <span class="kt">return</span> <span class="p">{</span> <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span> <span class="nx">test</span>: <span class="kt">action.payload</span> <span class="p">};</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testReducer</span><span class="p">;</span>
 </span></span></code></pre></div><p>어플리케이션의 크기가 커진다면 action, reducer 코드 자체의 볼륨도 커져 관리가 힘들어진다. 이를 해결하기 위해 Redux Toolkit이 대안으로 내놓은 함수가 바로 <code>createSlice</code> 이다.</p>
 <h3 id="createslice-사용">createSlice 사용</h3>
 <p>createSlice는 세가지 옵션 필드가 존재한다.</p>
@@ -850,61 +870,61 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <li>reducers : 특정 액션이 수행될 경우에 대한 reducer 설정</li>
 </ul>
 <p>createSlice를 사용한 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1"> 1</a></span><span class="cl"><span class="c1">// 초기 상태값에 대한 인터페이스 선언
-</span></span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2"> 2</a></span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">TestState</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3"> 3</a></span><span class="cl">    <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4"> 4</a></span><span class="cl">    <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5"> 5</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7"> 7</a></span><span class="cl"><span class="c1">// 초기 상태값 설정
-</span></span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8"> 8</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">defaultState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-9"> 9</a></span><span class="cl">    <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-10">10</a></span><span class="cl">    <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-11">11</a></span><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-5-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-12">12</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-13">13</a></span><span class="cl"><span class="c1">// crateSlice를 활용하여 action, reducer 생성
-</span></span></span><span class="line"><span class="ln" id="hl-5-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-14">14</a></span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-5-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-15">15</a></span><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-16">16</a></span><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-17">17</a></span><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-18">18</a></span><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-19">19</a></span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-20">20</a></span><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-21">21</a></span><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-22">22</a></span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-23">23</a></span><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-24">24</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-25">25</a></span><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-5-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-26">26</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-27">27</a></span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">reducer</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-5-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-28">28</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testSuccess</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">];</span>
-</span></span><span class="line"><span class="ln" id="hl-5-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-29">29</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testFailed</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">];</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// 초기 상태값에 대한 인터페이스 선언
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">TestState</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">initialized</span>: <span class="kt">boolean</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">test</span>: <span class="kt">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// 초기 상태값 설정
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">defaultState</span>: <span class="kt">TestState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">initialized</span>: <span class="kt">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="nx">test</span>: <span class="kt">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// crateSlice를 활용하여 action, reducer 생성
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">        <span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">]</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span>: <span class="kt">TestState</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">reducer</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testSuccess</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">];</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testFailed</span> <span class="o">=</span> <span class="nx">testSlice</span><span class="p">.</span><span class="nx">actions</span><span class="p">[</span><span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_FAILED</span><span class="p">];</span>
 </span></span></code></pre></div><p>reducer를 작성할 때 사용하던 switch 문 대신 객체 내부의 함수로 reducer를 작성할 수 있다. 또한 작성한 리듀서에 따라 액션이 자동으로 생성되어 별도로 액션을 생성할 필요가 없다.</p>
 <h2 id="thunks-작성하기">Thunks 작성하기</h2>
 <hr>
 <p>기존 비동기 API를 처리하기 위해서는 Redux-thunk 미들웨어를 사용하여 다음과 같은 코드로 구현했었다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1"> 1</a></span><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2"> 2</a></span><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3"> 3</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4"> 4</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5"> 5</a></span><span class="cl"><span class="c1">// 액션 선언
-</span></span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6"> 6</a></span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7"> 7</a></span><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
-</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8"> 8</a></span><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9"> 9</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-10">10</a></span><span class="cl"><span class="c1">// 액션 타입 지정
-</span></span></span><span class="line"><span class="ln" id="hl-6-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-11">11</a></span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;;</span>
-</span></span><span class="line"><span class="ln" id="hl-6-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-12">12</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-13">13</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="p">()</span><span class="o">:</span> <span class="nx">ThunkAction</span><span class="o">&lt;</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;,</span> <span class="nx">RootState</span><span class="p">,</span> <span class="p">{},</span> <span class="nx">TestAction</span> <span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-14">14</a></span><span class="cl">  <span class="c1">// 3초 뒤 실행
-</span></span></span><span class="line"><span class="ln" id="hl-6-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-15">15</a></span><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">dispatch</span>: <span class="kt">ThunkDispatch</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">TestAction</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-16">16</a></span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-17">17</a></span><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-18">18</a></span><span class="cl">           <span class="nx">dispatch</span><span class="p">(</span><span class="nx">testActions</span><span class="p">.</span><span class="nx">testSuccess</span><span class="p">());</span>
-</span></span><span class="line"><span class="ln" id="hl-6-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-19">19</a></span><span class="cl">        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-6-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-20">20</a></span><span class="cl">    <span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-6-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-21">21</a></span><span class="cl">  <span class="p">};</span>
-</span></span><span class="line"><span class="ln" id="hl-6-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-22">22</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">export</span> <span class="kr">enum</span> <span class="nx">TestActionTypes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="nx">TEST_SUCCESS</span> <span class="o">=</span> <span class="s1">&#39;TEST_SUCCESS&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">// 액션 선언
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">testActions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">testSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">}),</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// 액션 타입 지정
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">type</span> <span class="nx">TestAction</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">testActions.testSuccess</span><span class="p">&gt;;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="p">()</span><span class="o">:</span> <span class="nx">ThunkAction</span><span class="o">&lt;</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;,</span> <span class="nx">RootState</span><span class="p">,</span> <span class="p">{},</span> <span class="nx">TestAction</span> <span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="c1">// 3초 뒤 실행
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">dispatch</span>: <span class="kt">ThunkDispatch</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">TestAction</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">           <span class="nx">dispatch</span><span class="p">(</span><span class="nx">testActions</span><span class="p">.</span><span class="nx">testSuccess</span><span class="p">());</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>ThunkAction의 타입을 계속 신경써줘야 하기 때문에 상당히 번거롭다. <span class="gray">(ThunkAction의 Custom 함수를 만들어 쓰는 방법도 있다.)</span> 이럴 경우, <code>createAsyncThunk</code> 를 사용하면 비동기 thunk 액션을 손쉽게 구현할 수 있다.</p>
 <h3 id="createasyncthunk-사용">createAsyncThunk 사용</h3>
 <p>createAsyncThunk를 두 가지 옵션 필드가 존재한다.</p>
@@ -913,13 +933,13 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <li>Promise를 반환하는 콜백 함수</li>
 </ul>
 <p>createAsyncThunk 를 사용한 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="kr">const</span> <span class="nx">testAsync</span> <span class="o">=</span> <span class="nx">createAsyncThunk</span><span class="p">(</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl">    <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">,</span>    <span class="c1">// TEST_SUCCESS
-</span></span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl"><span class="c1"></span>    <span class="kr">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl">        <span class="k">await</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
-</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5">5</a></span><span class="cl">        <span class="k">return</span> <span class="s1">&#39;data&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6">6</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7">7</a></span><span class="cl"><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">const</span> <span class="nx">testAsync</span> <span class="o">=</span> <span class="nx">createAsyncThunk</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nx">TestActionTypes</span><span class="p">.</span><span class="nx">TEST_SUCCESS</span><span class="p">,</span>    <span class="c1">// TEST_SUCCESS
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"></span>    <span class="kr">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="k">await</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">        <span class="k">return</span> <span class="s1">&#39;data&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">);</span>
 </span></span></code></pre></div><p>createAsyncThunk는 3개의 action creator와 action type를 생성하게 된다. 생성되는 action creator와 action type는 다음과 같다.</p>
 <ul>
 <li>testAsync.pending : TEST_SUCCESS/pending</li>
@@ -927,23 +947,23 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <li>testAsync.rejected : TEST_SUCCESS/rejected</li>
 </ul>
 <p>단, 이렇게 만든 action은 createSlice 외부에서 구현한 것이기 때문에 createSlice의 <strong>extraReducers</strong> 옵션을 활용해야 한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl">    <span class="nx">extraReducers</span><span class="o">:</span> <span class="p">(</span><span class="nx">builder</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl">        <span class="nx">builder</span>
-</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">pending</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">statue</span> <span class="o">=</span> <span class="s2">&#34;loading&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl">          <span class="p">})</span>
-</span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">rejected</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-11">11</a></span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-12">12</a></span><span class="cl">          <span class="p">})</span>
-</span></span><span class="line"><span class="ln" id="hl-8-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-13">13</a></span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-14">14</a></span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln" id="hl-8-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-15">15</a></span><span class="cl">          <span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-8-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-16">16</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-8-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-17">17</a></span><span class="cl"><span class="p">});</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">const</span> <span class="nx">testSlice</span> <span class="o">=</span> <span class="nx">createSlice</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TEST&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">initialState</span>: <span class="kt">defaultState</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">reducers</span><span class="o">:</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">extraReducers</span><span class="o">:</span> <span class="p">(</span><span class="nx">builder</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="nx">builder</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">pending</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">statue</span> <span class="o">=</span> <span class="s2">&#34;loading&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">          <span class="p">})</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">rejected</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">          <span class="p">})</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">          <span class="p">.</span><span class="nx">addCase</span><span class="p">(</span><span class="nx">testAsync</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">,</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span>: <span class="kt">PayloadAction</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">          <span class="p">});</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">});</span>
 </span></span></code></pre></div><p>이제 createAsyncThunk로 생성한 액션으로부터 상태 값을 받아서 처리할 수 있다.</p>
 <h2 id="typed-hooks-정의">Typed hooks 정의</h2>
 <hr>
@@ -953,19 +973,19 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
 <li>useDispatch를 사용할 경우 기본 Dispatch는 thunk 타입을 인식하지 못하기 때문에 thunk를 dispatch하기 위해서는 thunk 미들웨어가 추가된 store에서 dispatch를 직접 받아와야 한다.</li>
 </ol>
 <p>configureStore로 만들어진 store를 이용해 RootState와 AppDispatch를 선언한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1">1</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2">2</a></span><span class="cl">    <span class="nx">reducer</span>: <span class="kt">rootReducer</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3">3</a></span><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
-</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4">4</a></span><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6">6</a></span><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">RootState</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">store.getState</span><span class="p">&gt;;</span>
-</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7">7</a></span><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">configureStore</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nx">reducer</span>: <span class="kt">rootReducer</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="nx">middleware</span><span class="o">:</span> <span class="p">(</span><span class="nx">getDefaultMiddleware</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">getDefaultMiddleware</span><span class="p">().</span><span class="nx">concat</span><span class="p">(</span><span class="nx">loggers</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">RootState</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">typeof</span> <span class="na">store.getState</span><span class="p">&gt;;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="kr">export</span> <span class="kr">type</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">;</span>
 </span></span></code></pre></div><p>store에서 정의된 RootState와 AppDispatch를 사용하여 Typed hooks를 정의한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">TypedUseSelectorHook</span><span class="p">,</span> <span class="nx">useDispatch</span><span class="p">,</span> <span class="nx">useSelector</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-redux&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl"><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">RootState</span><span class="p">,</span> <span class="nx">AppDispatch</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./store&#39;</span>
-</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppDispatch</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="nx">useDispatch</span>
-</span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5">5</a></span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppSelector</span>: <span class="kt">TypedUseSelectorHook</span><span class="p">&lt;</span><span class="nt">RootState</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">useSelector</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">TypedUseSelectorHook</span><span class="p">,</span> <span class="nx">useDispatch</span><span class="p">,</span> <span class="nx">useSelector</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-redux&#39;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">RootState</span><span class="p">,</span> <span class="nx">AppDispatch</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./store&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppDispatch</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">AppDispatch</span> <span class="o">=</span> <span class="nx">useDispatch</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useAppSelector</span>: <span class="kt">TypedUseSelectorHook</span><span class="p">&lt;</span><span class="nt">RootState</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">useSelector</span>
 </span></span></code></pre></div><p>이제 useSelector와 useDispatch 대신 useAppDispatch와 useAppSelector를 사용하면 된다.</p>
 
 
@@ -1059,7 +1079,17 @@ Redux 개발팀은 이 문제를 해결하기 위해 <span class="red"><strong>R
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

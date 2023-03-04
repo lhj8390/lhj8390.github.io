@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -251,7 +261,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -307,7 +317,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -371,7 +381,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -444,7 +454,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -495,7 +515,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -553,7 +573,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -717,25 +737,25 @@
 </blockquote>
 <h3 id="if-문-선언">if 문 선언</h3>
 <p>기본적으로 다음과 같이 선언한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="nx">n</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="k">if</span> <span class="nx">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too low&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">n</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6">6</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too big:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7">7</a></span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8">8</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s a good number:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9">9</a></span><span class="cl"><span class="p">}</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">n</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">if</span> <span class="nx">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too low&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">n</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too big:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s a good number:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></div><p>if 혹은 else 문의 중괄호 내에 선언된 모든 변수는 블록 내에서만 유효하다.
 <br/><br/></p>
 <p><span class="red">if, else 블록 범위내에서만 사용 가능한 변수</span>를 설정할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="k">if</span> <span class="nx">n</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Int</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="nx">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too low&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">n</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too big:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s a good number:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl"><span class="p">}</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">if</span> <span class="nx">n</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Int</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="nx">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too low&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">n</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s too big:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;That&#39;s a good number:&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span> 
 </span></span></code></pre></div><p>if/else 문이 마무리되면 n은 더 이상 접근이 되지 않는다.</p>
 <h2 id="for-문">for 문</h2>
 <hr>
@@ -744,120 +764,120 @@
 </blockquote>
 <h3 id="완전한-for-문">완전한 for 문</h3>
 <p>다른 언어의 for 문과 유사하다. if 문 처럼 감싸는 괄호는 없다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1">1</a></span><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2">2</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3">3</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>변수를 초기화하기 위해서는 반드시 := 를 사용해야 한다. → <span class="gray"><em>var 키워드는 허용하지 않는다.</em></span></p>
 <h3 id="조건식만-사용하는-for-문">조건식만 사용하는 for 문</h3>
 <p>for 문에서 초기값과 증감식을 생략할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">  <span class="nx">i</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nx">i</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>다른 언어의 while 문을 사용하는 것과 비슷하다.</p>
 <h3 id="for-문을-이용한-무한루프">for 문을 이용한 무한루프</h3>
 <p>조건식도 사용하지 않고 for 문을 사용하면 무한루프가 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="k">for</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">  <span class="k">if</span> <span class="p">!</span><span class="nx">CONDITION</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl">    <span class="k">break</span>
-</span></span><span class="line"><span class="ln" id="hl-4-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-5">5</a></span><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-4-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-6">6</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="k">if</span> <span class="p">!</span><span class="nx">CONDITION</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="k">break</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>즉시 루프에서 빠져나오려면 break 문을 사용하고 다음 루프로 넘기려면 continue 를 사용한다.</p>
 <h3 id="for-range-문">for-range 문</h3>
 <p>Go의 어떤 내장 타입의 요소를 순회하며 루프를 수행하는 for 문이다. for-range 문의 각각의 값들은 복합 타입 변수의 값을 복사한 값이므로 <span class="red">for-range 문 내에서 값을 수정하더라도 원본이 변경되지 않는다.</span></p>
 <p>슬라이스를 사용하여 for-range 루프를 만든 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1">1</a></span><span class="cl"><span class="nx">evenVals</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2">2</a></span><span class="cl"><span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="o">:=</span> <span class="k">range</span> <span class="nx">evenVals</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3">3</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4">4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6">6</a></span><span class="cl"><span class="c1">// 0 2
-</span></span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7">7</a></span><span class="cl"><span class="c1">// 1 4
-</span></span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8">8</a></span><span class="cl"><span class="c1">// 2 6
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">evenVals</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="o">:=</span> <span class="k">range</span> <span class="nx">evenVals</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">// 0 2
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">// 1 4
+</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1">// 2 6
 </span></span></span></code></pre></div><p>for-range 루프는 두 개의 변수를 얻을 수 있다. 첫 번째는 현재 순회 중인 값의 위치이고, 두 번째는 해당 위치의 값이다.</p>
 <br/>
 <p>맵을 사용하여 for-range 루프를 만든 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-6-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-1">1</a></span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-2">2</a></span><span class="cl">  <span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-6-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-3">3</a></span><span class="cl">  <span class="s">&#34;c&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-6-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-4">4</a></span><span class="cl">  <span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-6-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-5">5</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-6-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-6">6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-6-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-7">7</a></span><span class="cl"><span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">m</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-6-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-8">8</a></span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-6-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-6-9">9</a></span><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="s">&#34;c&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">m</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>출력은 <span class="red">맵의 순서와 관계 없이 매번 다르게 나온다.</span> 그 이유는 Go 팀이 해시 도스 공격 같은 문제를 해결하기 위해 해시 알고리즘을 수정하여 맵 변수가 생성될 때마다 무작위 숫자를 포함시켰고, for-range 순회 순서를 루프가 반복될 때마다 조금씩 달라지게 했기 때문이다.</p>
 <br/>
 <p>문자열을 사용하여 for-range 루프를 만든 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-7-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-1">1</a></span><span class="cl"><span class="nx">samples</span> <span class="o">:=</span> <span class="s">&#34;a_π!&#34;</span>
-</span></span><span class="line"><span class="ln" id="hl-7-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-2">2</a></span><span class="cl"><span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">samples</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-7-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-3">3</a></span><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">r</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln" id="hl-7-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-4">4</a></span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-7-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-5">5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-7-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-6">6</a></span><span class="cl"><span class="c1">// 0 97 a
-</span></span></span><span class="line"><span class="ln" id="hl-7-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-7">7</a></span><span class="cl"><span class="c1">// 1 95 _
-</span></span></span><span class="line"><span class="ln" id="hl-7-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-8">8</a></span><span class="cl"><span class="c1">// 2 960 π
-</span></span></span><span class="line"><span class="ln" id="hl-7-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-7-9">9</a></span><span class="cl"><span class="c1">// 4 33 !
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">samples</span> <span class="o">:=</span> <span class="s">&#34;a_π!&#34;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">samples</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">r</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">// 0 97 a
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">// 1 95 _
+</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1">// 2 960 π
+</span></span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="c1">// 4 33 !
 </span></span></span></code></pre></div><p>index가 3을 건너뛴 것을 알 수 있다. for-range 루프로 문자열을 순회할 때는 룬을 순회하기 때문에 오프셋은 룬이 가지고 있는 바이트 수에 따라 증가한다.</p>
 <br/>
 <p>잘 사용하지는 않지만 중첩된 순회문이 있을 경우 바까쪽 루프의 순회를 종료하고 싶을 경우 레이블을 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-8-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-1"> 1</a></span><span class="cl"><span class="nx">outer</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-8-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-2"> 2</a></span><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">outerVal</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">outerValues</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-3"> 3</a></span><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">innerVal</span> <span class="o">:=</span> <span class="nx">rnage</span> <span class="nx">outerVal</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-4"> 4</a></span><span class="cl">      <span class="c1">// innerVal 처리
-</span></span></span><span class="line"><span class="ln" id="hl-8-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-5"> 5</a></span><span class="cl"><span class="c1"></span>      <span class="k">if</span> <span class="nf">invalidSituation</span><span class="p">(</span><span class="nx">innerVal</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-8-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-6"> 6</a></span><span class="cl">        <span class="k">continue</span> <span class="nx">outer</span>
-</span></span><span class="line"><span class="ln" id="hl-8-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-7"> 7</a></span><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-8-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-8"> 8</a></span><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-8-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-9"> 9</a></span><span class="cl">    <span class="c1">// innerVal 처리가 성공적으로 처리되었을 때 수행되는 부분 
-</span></span></span><span class="line"><span class="ln" id="hl-8-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-8-10">10</a></span><span class="cl"><span class="c1"></span>  <span class="p">}</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">outer</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">outerVal</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">outerValues</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">innerVal</span> <span class="o">:=</span> <span class="nx">rnage</span> <span class="nx">outerVal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">      <span class="c1">// innerVal 처리
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span>      <span class="k">if</span> <span class="nf">invalidSituation</span><span class="p">(</span><span class="nx">innerVal</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="k">continue</span> <span class="nx">outer</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="c1">// innerVal 처리가 성공적으로 처리되었을 때 수행되는 부분 
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span>  <span class="p">}</span> 
 </span></span></code></pre></div><h2 id="switch-문">Switch 문</h2>
 <hr>
 <blockquote>
 <p>다른 언어들은 break 문을 명시하지 않는다면 아래의 case 문도 함께 실행되어 switch 문의 사용을 선호하지 않는다. 하지만 Go는 다른 언어와 다르게 break 문을 사용하지 않아도 다음 case 문을 실행하지 않는다는 것을 기본으로 한다.</p>
 </blockquote>
 <br/>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-9-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-1"> 1</a></span><span class="cl"><span class="nx">words</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;smile&#34;</span><span class="p">,</span> <span class="s">&#34;octopus&#34;</span><span class="p">,</span> <span class="s">&#34;anthropologist&#34;</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-9-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-2"> 2</a></span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-3"> 3</a></span><span class="cl">  <span class="k">switch</span> <span class="nx">size</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span> <span class="nx">size</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-9-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-4"> 4</a></span><span class="cl">  <span class="k">case</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-9-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-5"> 5</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a short word!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-9-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-6"> 6</a></span><span class="cl">  <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-9-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-7"> 7</a></span><span class="cl">    <span class="nx">wordLen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-9-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-8"> 8</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is exactly the right length:&#34;</span><span class="p">,</span> <span class="nx">wordLen</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-9-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-9"> 9</a></span><span class="cl">  <span class="k">case</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-9-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-10">10</a></span><span class="cl">  <span class="k">default</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-9-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-11">11</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a long word!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-9-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-12">12</a></span><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-9-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-13">13</a></span><span class="cl"><span class="p">}</span>  
-</span></span><span class="line"><span class="ln" id="hl-9-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-14">14</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-9-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-15">15</a></span><span class="cl"><span class="c1">// a is a short word!
-</span></span></span><span class="line"><span class="ln" id="hl-9-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-16">16</a></span><span class="cl"><span class="c1">// smile is exactly the right length: 5
-</span></span></span><span class="line"><span class="ln" id="hl-9-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-9-17">17</a></span><span class="cl"><span class="c1">// anthropologist is a long word!
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">words</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;smile&#34;</span><span class="p">,</span> <span class="s">&#34;octopus&#34;</span><span class="p">,</span> <span class="s">&#34;anthropologist&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">switch</span> <span class="nx">size</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span> <span class="nx">size</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">case</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a short word!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">wordLen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is exactly the right length:&#34;</span><span class="p">,</span> <span class="nx">wordLen</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="k">case</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a long word!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1">// a is a short word!
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">// smile is exactly the right length: 5
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1">// anthropologist is a long word!
 </span></span></span></code></pre></div><p>if 문과 마찬가지로 비교가 되는 값을 감싸는 괄호는 넣을 필요가 없다. 또한 switch 문 내에 어디든 접근 가능한 변수를 선언할 수 있다. 비어 있는 case 문에 대해서는 아무 일도 일어나지 않는다.</p>
 <br/>
 <p>for문 안에 switch 문이 들어가 있을 경우 for 루프를 빠져나와야 한다면 레이블을 활용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-10-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-1">1</a></span><span class="cl"><span class="nx">loop</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-10-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-2">2</a></span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="nx">P</span>
-</span></span><span class="line"><span class="ln" id="hl-10-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-3">3</a></span><span class="cl">    <span class="k">switch</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-10-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-4">4</a></span><span class="cl">			<span class="c1">// 생략..
-</span></span></span><span class="line"><span class="ln" id="hl-10-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-5">5</a></span><span class="cl"><span class="c1"></span>		<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-10-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-6">6</a></span><span class="cl">			<span class="k">break</span> <span class="nx">loop</span> <span class="c1">// for 문 루프 빠져나오기
-</span></span></span><span class="line"><span class="ln" id="hl-10-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-10-7">7</a></span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">loop</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="nx">P</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">switch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">			<span class="c1">// 생략..
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"></span>		<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">			<span class="k">break</span> <span class="nx">loop</span> <span class="c1">// for 문 루프 빠져나오기
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span></code></pre></div><br/>
 <p>switch 문에서 비교가 되는 값을 명시하지 않는 <span class="red">공백 switch 문</span>을 사용할 수도 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln" id="hl-11-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-1"> 1</a></span><span class="cl"><span class="nx">words</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;smile&#34;</span><span class="p">,</span> <span class="s">&#34;octopus&#34;</span><span class="p">,</span> <span class="s">&#34;anthropologist&#34;</span><span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-11-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-2"> 2</a></span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-11-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-3"> 3</a></span><span class="cl">  <span class="k">switch</span> <span class="nx">wordLen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-11-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-4"> 4</a></span><span class="cl">  <span class="k">case</span> <span class="nx">wordLen</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-11-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-5"> 5</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a short word!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-11-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-6"> 6</a></span><span class="cl">  <span class="k">case</span> <span class="nx">wordLen</span> <span class="p">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-11-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-7"> 7</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a long word!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-11-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-8"> 8</a></span><span class="cl">  <span class="k">default</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln" id="hl-11-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-9"> 9</a></span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is exactly the right length.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln" id="hl-11-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-10">10</a></span><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="ln" id="hl-11-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-11-11">11</a></span><span class="cl"><span class="p">}</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">words</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;smile&#34;</span><span class="p">,</span> <span class="s">&#34;octopus&#34;</span><span class="p">,</span> <span class="s">&#34;anthropologist&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">switch</span> <span class="nx">wordLen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">case</span> <span class="nx">wordLen</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a short word!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="k">case</span> <span class="nx">wordLen</span> <span class="p">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is a long word!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="s">&#34;is exactly the right length.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>  
 </span></span></code></pre></div><p>각 case 문에 boolean 결과를 내는 비교는 모두 가능하다.</p>
 
 
@@ -865,12 +885,12 @@
   <div class="related--list">
     
       
-        <a href="/post/go/go-type-method/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 타입과 메서드 사용하기</p></a>
+        <a href="/post/go/go-error/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 오류 처리하기</p></a>
       
 
     
       
-        <a href="/post/go/go-use-pointer/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 포인터 사용하기</p></a>
+        <a href="/post/go/go-interface/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 인터페이스 사용하기</p></a>
       
 
     
@@ -951,7 +971,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -265,7 +275,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -321,7 +331,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -385,7 +395,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -458,7 +468,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -509,7 +529,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -567,7 +587,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -735,103 +755,103 @@
 </ul>
 <h3 id="구현-예제">구현 예제</h3>
 <p>Java의 Cloneable 인터페이스를 사용하여 <span class="red"><strong>Shallow Copy</strong></span> 를 구현한 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1"> 1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2"> 2</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3"> 3</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4"> 4</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Address</span> <span class="n">address</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6"> 6</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-7"> 7</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-8"> 8</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-9"> 9</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-10">10</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-11">11</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-12">12</a></span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-0-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-13">13</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-14">14</a></span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-15">15</a></span><span class="cl">            <span class="k">return</span> <span class="o">(</span><span class="n">Person</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-16">16</a></span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-17">17</a></span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-0-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-18">18</a></span><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-19">19</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-20">20</a></span><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-21">21</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-22">22</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Address</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-23">23</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">location</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-24">24</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-25">25</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-0-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-26">26</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">Address</span><span class="o">(</span><span class="n">String</span> <span class="n">location</span><span class="o">,</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-0-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-27">27</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-28">28</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">zipCode</span> <span class="o">=</span> <span class="n">zipCode</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-0-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-29">29</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-0-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-30">30</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">private</span> <span class="n">Address</span> <span class="n">address</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">            <span class="k">return</span> <span class="o">(</span><span class="n">Person</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Address</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">location</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="kd">public</span> <span class="nf">Address</span><span class="o">(</span><span class="n">String</span> <span class="n">location</span><span class="o">,</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">zipCode</span> <span class="o">=</span> <span class="n">zipCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Clonable 인터페이스를 구현하는 클래스를 만들어준다. Clonable 인터페이스를 이용하면 손쉽게 프로토타입을 구현할 수 있다.<br/>
 → “<em>객체 생성 비용을 절약할 수 있다</em>.”</p>
 <br/>
 <p>Prototype 패턴을 사용하는 Client 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1">1</a></span><span class="cl"><span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="s">&#34;사람 1&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Address</span><span class="o">(</span><span class="s">&#34;Montgomery&#34;</span><span class="o">,</span> <span class="s">&#34;36104&#34;</span><span class="o">));</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2">2</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Person : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3">3</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4">4</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5">5</a></span><span class="cl"><span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6">6</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clone : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7">7</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="s">&#34;사람 1&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Address</span><span class="o">(</span><span class="s">&#34;Montgomery&#34;</span><span class="o">,</span> <span class="s">&#34;36104&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Person : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clone : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
 </span></span></code></pre></div><p><strong>Person</strong>(ConcretePrototype) 클래스에서 구현한 clone() 메소드를 사용하여 Person 객체를 복제한다. 하지만 복제된 객체와 원본 객체의 address 필드가 동일한 Address 객체를 참조하게 된다.</p>
 <br/>
 <p>Java의 Cloneable 인터페이스를 사용하여 <span class="red"><strong>Deep Copy</strong></span> 를 구현한 예제이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">    <span class="kd">private</span> <span class="n">Address</span> <span class="n">address</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-15">15</a></span><span class="cl">            <span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="o">(</span><span class="n">Person</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-16">16</a></span><span class="cl">            <span class="o">**</span><span class="n">clone</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">().</span><span class="na">clone</span><span class="o">());**</span>
-</span></span><span class="line"><span class="ln" id="hl-2-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-17">17</a></span><span class="cl">            <span class="k">return</span> <span class="n">clone</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-18">18</a></span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-19">19</a></span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-20">20</a></span><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-21">21</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-22">22</a></span><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-23">23</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-24">24</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Address</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-25">25</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">location</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-26">26</a></span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-27">27</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-28">28</a></span><span class="cl">    <span class="kd">public</span> <span class="nf">Address</span><span class="o">(</span><span class="n">String</span> <span class="n">location</span><span class="o">,</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-29">29</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-30">30</a></span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">zipCode</span> <span class="o">=</span> <span class="n">zipCode</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-31"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-31">31</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-32"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-32">32</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-33"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-33">33</a></span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-2-34"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-34">34</a></span><span class="cl">    <span class="kd">public</span> <span class="n">Address</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-35"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-35">35</a></span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-36"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-36">36</a></span><span class="cl">            <span class="k">return</span> <span class="o">(</span><span class="n">Address</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-37"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-37">37</a></span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-38"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-38">38</a></span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-39"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-39">39</a></span><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-40"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-40">40</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-41"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-41">41</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">private</span> <span class="n">Address</span> <span class="n">address</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">            <span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="o">(</span><span class="n">Person</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">            <span class="o">**</span><span class="n">clone</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">().</span><span class="na">clone</span><span class="o">());**</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">            <span class="k">return</span> <span class="n">clone</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Address</span> <span class="kd">implements</span> <span class="n">Cloneable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">location</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    <span class="kd">public</span> <span class="nf">Address</span><span class="o">(</span><span class="n">String</span> <span class="n">location</span><span class="o">,</span> <span class="n">String</span> <span class="n">zipCode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">zipCode</span> <span class="o">=</span> <span class="n">zipCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">    <span class="kd">public</span> <span class="n">Address</span> <span class="nf">clone</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">            <span class="k">return</span> <span class="o">(</span><span class="n">Address</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CloneNotSupportedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Person 클래스와 Address 클래스 각각에 대해 Clonable 인터페이스를 구현한다. Person의 clone() 메서드에 Person 객체를 복제한 후 <strong><code>clone.getAddress().clone()</code></strong> 를 호출하여 Address 객체도 복제를 수행한다.</p>
 <br/>
 <p>Prototype 패턴을 사용하는 Client 코드이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1">1</a></span><span class="cl"><span class="n">Address</span> <span class="n">address</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Address</span><span class="o">(</span><span class="s">&#34;Montgomery&#34;</span><span class="o">,</span> <span class="s">&#34;36104&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2">2</a></span><span class="cl"><span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="s">&#34;사람 1&#34;</span><span class="o">,</span> <span class="n">address</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3">3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4">4</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Person : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5">5</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
-</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6">6</a></span><span class="cl"><span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7">7</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8">8</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clone : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9">9</a></span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Address</span> <span class="n">address</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Address</span><span class="o">(</span><span class="s">&#34;Montgomery&#34;</span><span class="o">,</span> <span class="s">&#34;36104&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="s">&#34;사람 1&#34;</span><span class="o">,</span> <span class="n">address</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Person : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="n">Person</span> <span class="n">clone</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clone : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Address : &#34;</span> <span class="o">+</span> <span class="n">clone</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
 </span></span></code></pre></div><p><strong>Person</strong>(ConcretePrototype) 클래스에서 구현한 clone() 메소드를 사용하여 Person 객체를 복제한다. Person 객체를 복제하면서 Address 객체도 같이 복제되기 때문에 원본 객체와 복제된 객체의 Address 객체는 서로 다른 주소값을 가지게 된다.</p>
 <h3 id="원형-패턴-고려사항">원형 패턴 고려사항</h3>
 <blockquote>
@@ -857,12 +877,12 @@
   <div class="related--list">
     
       
-        <a href="/post/architectural/gof-design-pattern-factory-method/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 팩토리 메서드 (Factory Method) 패턴</p></a>
+        <a href="/post/architectural/gof-design-pattern-singleton/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 단일체 (Singleton) 패턴</p></a>
       
 
     
       
-        <a href="/post/architectural/gof-design-pattern-builder/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[GoF 디자인 패턴] 빌더 (builder) 패턴</p></a>
+        <a href="/post/architectural/gof-design-pattern-factory-method/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[GoF 디자인 패턴] 팩토리 메서드 (Factory Method) 패턴</p></a>
       
 
     
@@ -943,7 +963,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

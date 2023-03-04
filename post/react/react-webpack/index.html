@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -258,7 +268,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -314,7 +324,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -378,7 +388,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -451,7 +461,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -502,7 +522,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -560,7 +580,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -754,7 +774,7 @@
 <h2 id="webpack-기본-명령어">Webpack 기본 명령어</h2>
 <hr>
 <h3 id="webpack-설치">Webpack 설치</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl">$ npm install webpack webpack-cli html-webpack-plugin webpack-dev-server --save-dev
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ npm install webpack webpack-cli html-webpack-plugin webpack-dev-server --save-dev
 </span></span></code></pre></div><ul>
 <li><strong>html-webpack-plugin</strong> : 웹팩으로 빌드한 결과물을 HTML 파일로 생성해주는 플러그인</li>
 <li><strong>webpack-dev-server</strong> : 웹팩으로 빌드 후 빌드한 파일을 서버로 띄어주는 역할
@@ -763,51 +783,51 @@
 <h2 id="webpack-설정-파일-생성">Webpack 설정 파일 생성</h2>
 <hr>
 <h3 id="webpack-기본-설정">Webpack 기본 설정</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1"> 1</a></span><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2"> 2</a></span><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3"> 3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4"> 4</a></span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5"> 5</a></span><span class="cl">  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6"> 6</a></span><span class="cl">  <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7"> 7</a></span><span class="cl">  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8"> 8</a></span><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9"> 9</a></span><span class="cl">    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-1-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-10">10</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-1-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-11">11</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p><strong>entry</strong> : entry를 통해 Reack 파일이 시작하는 entry 포인트를 지정해주었다. <br>
 <strong>output</strong> : __dirname은 현재 디렉터리로, /dist 폴더에 번들링한 index_bundle.js 이름의 파일을 넣어주겠다고 명시.
 <br /><br /></p>
 <h3 id="babel-설정">babel 설정</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl">    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">      <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">        <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">          <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">          <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>webpack 설정 내부에서 babel loader가 실행할 규칙을 지정하였다.</p>
 <p><strong>test</strong> : .js, .jsx로 끝나는 파일은 babel loader가 컴파일해준다고 명시 <br>
 <strong>exclude</strong> : /node_module/은 babel 컴파일에서 제외
 <br /><br /></p>
 <h3 id="devserver-설정">devServer 설정</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-3-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-1"> 1</a></span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-2"> 2</a></span><span class="cl">  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-3"> 3</a></span><span class="cl">    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-4"> 4</a></span><span class="cl">    <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-5"> 5</a></span><span class="cl">    <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-6"> 6</a></span><span class="cl">    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-7"> 7</a></span><span class="cl">      <span class="s1">&#39;/api&#39;</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-3-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-8"> 8</a></span><span class="cl">        <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-3-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-9"> 9</a></span><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-3-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-10">10</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-3-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-11">11</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-3-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-3-12">12</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="s1">&#39;/api&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>webpack-dev-server가 사용할 host와 port를 지정하였다. <br>
 proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 요청을 받아주도록 설정!
 <br /><br /></p>
@@ -820,51 +840,51 @@ proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 �
 <br /><br />
 <h2 id="webpack-실행">Webpack 실행</h2>
 <hr>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="ln" id="hl-4-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-1">1</a></span><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-4-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-2">2</a></span><span class="cl">    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack --config ./webpack.config.js&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-4-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-3">3</a></span><span class="cl">    <span class="s2">&#34;start&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-dev-server --config ./webpack.config.js&#34;</span>
-</span></span><span class="line"><span class="ln" id="hl-4-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-4-4">4</a></span><span class="cl">  <span class="p">},</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="ln">1</span><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack --config ./webpack.config.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="s2">&#34;start&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-dev-server --config ./webpack.config.js&#34;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">},</span>
 </span></span></code></pre></div><p><strong>npm start</strong> : webpack.config.js 설정 파일을 이용하여 webpack-dev-server를 구동한다. <br>
 <strong>npm build</strong> : webpack.config.js 설정 파일을 이용하여 webpack 빌드를 수행한다.
 <br /><br /></p>
 <h3 id="전체-webpackconfigjs-코드">전체 webpack.config.js 코드</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln" id="hl-5-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-1"> 1</a></span><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-5-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-2"> 2</a></span><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln" id="hl-5-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-3"> 3</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-5-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-4"> 4</a></span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-5"> 5</a></span><span class="cl">  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-6"> 6</a></span><span class="cl">  <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-7"> 7</a></span><span class="cl">  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-8"> 8</a></span><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="ln" id="hl-5-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-9"> 9</a></span><span class="cl">    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-10">10</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-11">11</a></span><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-12">12</a></span><span class="cl">    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="ln" id="hl-5-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-13">13</a></span><span class="cl">      <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-14">14</a></span><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-15">15</a></span><span class="cl">        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-16">16</a></span><span class="cl">        <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-17">17</a></span><span class="cl">          <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-18">18</a></span><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-19">19</a></span><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-20">20</a></span><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="ln" id="hl-5-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-21">21</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-22">22</a></span><span class="cl">  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-23">23</a></span><span class="cl">    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-24">24</a></span><span class="cl">    <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-25">25</a></span><span class="cl">    <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-26">26</a></span><span class="cl">    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-27"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-27">27</a></span><span class="cl">      <span class="s1">&#39;/api&#39;</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln" id="hl-5-28"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-28">28</a></span><span class="cl">        <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-29"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-29">29</a></span><span class="cl">      <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-30"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-30">30</a></span><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-31"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-31">31</a></span><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="ln" id="hl-5-32"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-32">32</a></span><span class="cl">  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="ln" id="hl-5-33"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-33">33</a></span><span class="cl">    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
-</span></span><span class="line"><span class="ln" id="hl-5-34"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-34">34</a></span><span class="cl">      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;./src/index.html&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln" id="hl-5-35"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-35">35</a></span><span class="cl">    <span class="p">}),</span>
-</span></span><span class="line"><span class="ln" id="hl-5-36"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-36">36</a></span><span class="cl">  <span class="p">],</span>
-</span></span><span class="line"><span class="ln" id="hl-5-37"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-5-37">37</a></span><span class="cl"><span class="p">};</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/dist&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index_bundle.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_module/</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">          <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">      <span class="s1">&#39;/api&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">        <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;./src/index.html&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    <span class="p">}),</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div>
 
 <div class="related">
@@ -957,7 +977,17 @@ proxy를 통해 /api로 접근하면 http://localhost:8000 서버에서 해당 �
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   

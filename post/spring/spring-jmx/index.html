@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.de9fb7673b06006733535fa8b0c9b8688d94d771d8994e0afa788a36bca5a369.css"
-      integrity="sha256-3p&#43;3ZzsGAGczU1&#43;osMm4aI2U13HYmU4K&#43;niKNrylo2k="
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -50,6 +50,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
   
   
   <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
@@ -266,7 +276,7 @@
 
       
       <div class="sidebar__introduction-description">
-        <p>블로그</p>
+        <p>꾸준히 성장하자</p>
       </div>
     </div>
     <ul class="sidebar__list">
@@ -322,7 +332,7 @@
             <i class="fa-solid fa-sitemap"></i>
           
           Architecture 
-          <span>(4)</span>
+          <span>(5)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -386,7 +396,7 @@
             <i class="fa-solid fa-code"></i>
           
           Language 
-          <span>(6)</span>
+          <span>(8)</span>
           <div class="icon down">
             <i class="fa-solid fa-angle-down"></i>
           </div>
@@ -459,7 +469,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></div>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
 <script>
   const arrows = document.getElementsByClassName('down');
   for (i = 0; i < arrows.length ; i++) {
@@ -510,7 +530,7 @@
               <i class="fa-solid fa-sitemap"></i>
             
             Architecture 
-            <span>(4)</span>
+            <span>(5)</span>
           </a>
           
           
@@ -568,7 +588,7 @@
               <i class="fa-solid fa-code"></i>
             
             Language 
-            <span>(6)</span>
+            <span>(8)</span>
           </a>
           
           
@@ -740,68 +760,68 @@
 <p>/heapdump를 제외한 모든 엑추에이터 엔드포인트는 MBeans로 노출되어 있다. 따라서 어떤 JMX 클라이언트를 사용해도 액추에이터 엔드포인트 MBeans와 연결할 수 있다. MBeans는 HTTP 처럼 명시적으로 포함시키지 않아도 기본적으로 노출된다.</p>
 <h3 id="노출되는-엔드포인트-설정">노출되는 엔드포인트 설정</h3>
 <p>application.yml 설정 파일에 노출하거나 제외할 엔드포인트를 설정하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln" id="hl-0-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-1">1</a></span><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-0-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-2">2</a></span><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-0-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-3">3</a></span><span class="cl"><span class="w">    </span><span class="nt">jmx</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-0-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-4">4</a></span><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-0-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-5">5</a></span><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, bean, conditions</span><span class="w">
-</span></span></span><span class="line"><span class="ln" id="hl-0-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-0-6">6</a></span><span class="cl"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="l">env, metrics</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">jmx</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">exposure</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, bean, conditions</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="l">env, metrics</span><span class="w">
 </span></span></span></code></pre></div><p>노출할 때는 <span class="red">include</span> 설정을, 노출에서 제외할 때는 <span class="red">exclude</span> 를 설정한다.</p>
 <h3 id="mbenas-생성">MBenas 생성</h3>
 <p>빈 클래스에 @ManagedResource 어노테이션을 지정하고, 메서드에는 @ManagedOperation, 속성에는 @ManagedAttribute만 지정해주면 어떤 빈도 JMX MBeans로 쉽게 노출할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-1-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-1"> 1</a></span><span class="cl"><span class="nd">@Service</span>
-</span></span><span class="line"><span class="ln" id="hl-1-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-2"> 2</a></span><span class="cl"><span class="nd">@ManagedResource</span>
-</span></span><span class="line"><span class="ln" id="hl-1-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-4"> 4</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-5"> 5</a></span><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-1-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-6"> 6</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-7"> 7</a></span><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCounter</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-8"> 8</a></span><span class="cl">    <span class="kt">long</span> <span class="n">initialCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-9"> 9</a></span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicLong</span><span class="o">(</span><span class="n">initialCount</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-10">10</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-1-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-11">11</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-1-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-12">12</a></span><span class="cl">  <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-1-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-13">13</a></span><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-14">14</a></span><span class="cl">    <span class="n">counter</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-15">15</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-1-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-16">16</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-17">17</a></span><span class="cl">  <span class="nd">@ManagedAttribute</span>
-</span></span><span class="line"><span class="ln" id="hl-1-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-18">18</a></span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">getTacoCount</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-19">19</a></span><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-1-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-20">20</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-1-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-21">21</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-1-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-22">22</a></span><span class="cl">  <span class="nd">@ManagedOperation</span>
-</span></span><span class="line"><span class="ln" id="hl-1-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-23">23</a></span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-1-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-24">24</a></span><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-1-25"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-25">25</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-1-26"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-1-26">26</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nd">@ManagedResource</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="kd">public</span> <span class="nf">TacoCounter</span><span class="o">(</span><span class="n">TacoRepository</span> <span class="n">tacoRepo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="kt">long</span> <span class="n">initialCount</span> <span class="o">=</span> <span class="n">tacoRepo</span><span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicLong</span><span class="o">(</span><span class="n">initialCount</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onAfterCreate</span><span class="o">(</span><span class="n">Taco</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="n">counter</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nd">@ManagedAttribute</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">getTacoCount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="nd">@ManagedOperation</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>클래스 인스턴스에 @ManagedResource 를 지정하여 이 빈이 MBeans도 된다는 것을 나타낸다. @ManagedAttribute로 지정한 getTacoCount() 메서드는 MBeans 속성으로 노출되고, @ManagedOperation 으로 지정한 increment() 메서드는 MBeans 오퍼레이션으로 노출된다.</p>
 <h3 id="알림-전송">알림 전송</h3>
 <p>기본적으로 MBeans 오퍼레이션과 속성은 pull 방식을 사용하므로 MBeans 값이 변경되더라도 자동으로 알려주지 않는다. 그러나 <span class="red">스프링의 NotificationPublisher를 사용하여</span> MBeans는 JMX 클라이언트에 알림을 push 할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln" id="hl-2-1"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-1"> 1</a></span><span class="cl"><span class="nd">@Service</span>
-</span></span><span class="line"><span class="ln" id="hl-2-2"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-2"> 2</a></span><span class="cl"><span class="nd">@ManagedResource</span>
-</span></span><span class="line"><span class="ln" id="hl-2-3"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-3"> 3</a></span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> 
-</span></span><span class="line"><span class="ln" id="hl-2-4"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-4"> 4</a></span><span class="cl">  <span class="kd">implements</span> <span class="n">NotificationPublisherAware</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-5"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-5"> 5</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-6"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-6"> 6</a></span><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-7"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-7"> 7</a></span><span class="cl">  <span class="kd">private</span> <span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-8"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-8"> 8</a></span><span class="cl">  
-</span></span><span class="line"><span class="ln" id="hl-2-9"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-9"> 9</a></span><span class="cl">  <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln" id="hl-2-10"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-10">10</a></span><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNotificationPublisher</span><span class="o">(</span><span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-11"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-11">11</a></span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">np</span> <span class="o">=</span> <span class="n">np</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-12"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-12">12</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-13"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-13">13</a></span><span class="cl">
-</span></span><span class="line"><span class="ln" id="hl-2-14"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-14">14</a></span><span class="cl">  <span class="nd">@ManagedOperation</span>
-</span></span><span class="line"><span class="ln" id="hl-2-15"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-15">15</a></span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-16"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-16">16</a></span><span class="cl">    <span class="kt">long</span> <span class="n">before</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln" id="hl-2-17"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-17">17</a></span><span class="cl">    <span class="kt">long</span> <span class="n">after</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-2-18"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-18">18</a></span><span class="cl">    <span class="k">if</span> <span class="o">((</span><span class="n">after</span> <span class="o">/</span> <span class="n">100</span><span class="o">)</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">before</span> <span class="o">/</span> <span class="n">100</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln" id="hl-2-19"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-19">19</a></span><span class="cl">      <span class="n">Notification</span> <span class="n">notification</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Notification</span><span class="o">(</span><span class="s">&#34;taco.count&#34;</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="n">before</span><span class="o">,</span> <span class="n">after</span> <span class="o">+</span> <span class="s">&#34;th taco created!&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-2-20"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-20">20</a></span><span class="cl">      <span class="n">np</span><span class="o">.</span><span class="na">sendNotification</span><span class="o">(</span><span class="n">notification</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln" id="hl-2-21"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-21">21</a></span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-22"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-22">22</a></span><span class="cl">    <span class="k">return</span> <span class="n">after</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln" id="hl-2-23"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-23">23</a></span><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="ln" id="hl-2-24"><a style="outline: none; text-decoration:none; color:inherit" href="#hl-2-24">24</a></span><span class="cl"><span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nd">@ManagedResource</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TacoCounter</span> <span class="kd">extends</span> <span class="n">AbstractRepositoryEventListener</span><span class="o">&lt;</span><span class="n">Taco</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="kd">implements</span> <span class="n">NotificationPublisherAware</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="kd">private</span> <span class="n">AtomicLong</span> <span class="n">counter</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="kd">private</span> <span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNotificationPublisher</span><span class="o">(</span><span class="n">NotificationPublisher</span> <span class="n">np</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">np</span> <span class="o">=</span> <span class="n">np</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="nd">@ManagedOperation</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">long</span> <span class="n">delta</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="kt">long</span> <span class="n">before</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="kt">long</span> <span class="n">after</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">addAndGet</span><span class="o">(</span><span class="n">delta</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">if</span> <span class="o">((</span><span class="n">after</span> <span class="o">/</span> <span class="n">100</span><span class="o">)</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">before</span> <span class="o">/</span> <span class="n">100</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">      <span class="n">Notification</span> <span class="n">notification</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Notification</span><span class="o">(</span><span class="s">&#34;taco.count&#34;</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="n">before</span><span class="o">,</span> <span class="n">after</span> <span class="o">+</span> <span class="s">&#34;th taco created!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">      <span class="n">np</span><span class="o">.</span><span class="na">sendNotification</span><span class="o">(</span><span class="n">notification</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="k">return</span> <span class="n">after</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>MBeans가 알림을 발행하려면 NotificationPublisherAware 인터페이스의 setNotificationPublisher() 메서드를 구현하면 된다. 위의 예시는 NotificationPublisherAware 인터페이스를 구현하고, 주입된 NotificationPublisher를 사용하여 100개의 객체가 생성될 때마다 알림을 전송하는 코드이다.</p>
 
 
@@ -959,7 +979,17 @@
     src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
     integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
     crossorigin="anonymous"
-  ></script></body>
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
   <script>
     const searchWrapper = document.getElementById('searchWrapper');
   
