@@ -8,7 +8,7 @@
   <title>
     
       
-        [GoF 디자인 패턴] 빌더 (builder) 패턴 |
+        [GoF 디자인 패턴] 장식자(Decorator) 패턴 |
 
       
       lhj8390
@@ -23,7 +23,7 @@
   <meta
     name="description"
     content="
-      GoF 디자인 패턴 중 빌더 패턴에 대해 설명하고 적용해본다.
+      GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다.
 
 
     "
@@ -82,7 +82,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://lhj8390.github.io/post/architectural/gof-design-pattern-builder/" />
+  <link rel="canonical" href="https://lhj8390.github.io/post/architectural/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9/" />
 
   
   
@@ -117,18 +117,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="[GoF 디자인 패턴] 빌더 (builder) 패턴"/>
-<meta name="twitter:description" content="GoF 디자인 패턴 중 빌더 패턴에 대해 설명하고 적용해본다."/>
+<meta name="twitter:title" content="[GoF 디자인 패턴] 장식자(Decorator) 패턴"/>
+<meta name="twitter:description" content="GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다."/>
 
 
 
   
-  <meta property="og:title" content="[GoF 디자인 패턴] 빌더 (builder) 패턴" />
-<meta property="og:description" content="GoF 디자인 패턴 중 빌더 패턴에 대해 설명하고 적용해본다." />
+  <meta property="og:title" content="[GoF 디자인 패턴] 장식자(Decorator) 패턴" />
+<meta property="og:description" content="GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lhj8390.github.io/post/architectural/gof-design-pattern-builder/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-02-23T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-02-23T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+<meta property="og:url" content="https://lhj8390.github.io/post/architectural/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-09T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
 
 
 
@@ -142,11 +142,11 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "post",
-        "name": "[GoF 디자인 패턴] 빌더 (builder) 패턴",
-        "headline": "[GoF 디자인 패턴] 빌더 (builder) 패턴",
+        "name": "[GoF 디자인 패턴] 장식자(Decorator) 패턴",
+        "headline": "[GoF 디자인 패턴] 장식자(Decorator) 패턴",
         "alternativeHeadline": "",
         "description": "
-      GoF 디자인 패턴 중 빌더 패턴에 대해 설명하고 적용해본다.
+      GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다.
 
 
     ",
@@ -154,7 +154,7 @@
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-builder\/"
+            "@id": "https:\/\/lhj8390.github.io\/post\/architectural\/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9\/"
         },
         "author" : {
             "@type": "Person",
@@ -173,9 +173,9 @@
             "name": "lhj8390"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-02-23T00:00:00.00Z",
-        "datePublished": "2023-02-23T00:00:00.00Z",
-        "dateModified": "2023-02-23T00:00:00.00Z",
+        "dateCreated": "2023-03-09T00:00:00.00Z",
+        "datePublished": "2023-03-09T00:00:00.00Z",
+        "dateModified": "2023-03-09T00:00:00.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "lhj8390",
@@ -197,8 +197,8 @@
       ]
 
     ,
-        "url" : "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-builder\/",
-        "wordCount" : "562",
+        "url" : "https:\/\/lhj8390.github.io\/post\/architectural\/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9\/",
+        "wordCount" : "434",
         "genre" : [ 
       
       "architecture"
@@ -213,7 +213,7 @@
         ,
 
       
-      "builder"
+      "abstract Factory"
 
     
       
@@ -706,11 +706,11 @@
       <h3>Table of Contents</h3>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#빌더-builder-패턴">빌더 (builder) 패턴</a>
+    <li><a href="#장식자decorator-패턴">장식자(Decorator) 패턴</a>
       <ul>
-        <li><a href="#빌더-패턴-구성요소">빌더 패턴 구성요소</a></li>
+        <li><a href="#장식자-패턴-구성요소">장식자 패턴 구성요소</a></li>
         <li><a href="#구현-예제">구현 예제</a></li>
-        <li><a href="#빌더-패턴-고려사항">빌더 패턴 고려사항</a></li>
+        <li><a href="#장식자-패턴-고려사항">장식자 패턴 고려사항</a></li>
       </ul>
     </li>
   </ul>
@@ -718,14 +718,14 @@
     </div>
     
     <div class="post__content detail">
-      <h1>[GoF 디자인 패턴] 빌더 (Builder) 패턴</h1>
+      <h1>[GoF 디자인 패턴] 장식자(Decorator) 패턴</h1>
       
         <ul class="post__meta">
           <li class="post__meta-item">
             <em class="fas fa-calendar-day post__meta-icon"></em>
             <span class="post__meta-text"
               >
-                23/2/2023
+                9/3/2023
 
 
               
@@ -737,138 +737,100 @@
           </li>
         </ul>
 
-      <h2 id="빌더-builder-패턴">빌더 (builder) 패턴</h2>
+      <h2 id="장식자decorator-패턴">장식자(Decorator) 패턴</h2>
 <hr>
 <blockquote>
-<p><span class="red">생성(Creational) 패턴 중 하나</span>로 복잡한 객체의 생성 과정과 표현 방법을 분리하여, 서로 다른 표현이더라도 동일한 절차로 생성하는 방법을 제공한다.</p>
+<p>구조(structural) 패턴 중 하나로, 기존 객체에 새로운 기능을 동적으로 추가할 수 있도록 하는 패턴이다.</p>
 </blockquote>
-<p>객체를 생성하는 과정이 복잡할 때 깔끔하게 관리할 수 있고, 객체를 생성할 때 필요한 데이터만을 골라 호출할 수 있다.</p>
-<figure><img src="/images/gof-design-pattern-builder/1.png"
-         alt="image"/>
-</figure>
-
-<h3 id="빌더-패턴-구성요소">빌더 패턴 구성요소</h3>
-<blockquote>
-<p>Builder, ConcreteBuilder, Director, Product로 총 4개의 컴포넌트로 구성된다.</p>
-</blockquote>
+<p>기능을 추가하기 위해 서브클래스를 생성하는 것보다 융통성 있는 방법을 제공한다.</p>
+<h3 id="장식자-패턴-구성요소">장식자 패턴 구성요소</h3>
 <ul>
-<li><strong>Builder</strong> : Product 객체의 일부 요소를 생성하기 위한 추상 인터페이스를 정의한다.</li>
-<li><strong>ConcreteBuilder</strong> : Builder 클래스에 정의된 인터페이스를 구현한다.</li>
-<li><strong>Director</strong> : ConcreteBuilder와 클라이언트 사이에서 중계자 역할을 수행한다.</li>
-<li><strong>Product</strong> : 생성될 대상의 객체를 나타내는 클래스이다.</li>
+<li><strong>Component</strong> : 기본 객체의 추상화된 인터페이스</li>
+<li><strong>Concrete Component</strong> : Component의 구현체로 실제로 기능을 수행하는 객체</li>
+<li><strong>Decorator</strong> : Component의 인터페이스를 구현하며 Component를 감싸는 역할 수행</li>
+<li><strong>Concrete Decorator</strong> : Decorator 클래스의 서브클래스로, 추가적인 기능을 제공하는 구체적인 클래스</li>
 </ul>
 <h3 id="구현-예제">구현 예제</h3>
-<p>Product 객체를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">price</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">type</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
-</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPrice</span><span class="o">(</span><span class="kt">int</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">
-</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setType</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">type</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">
-</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="k">return</span> <span class="s">&#34;Product{&#34;</span> <span class="o">+</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl">                <span class="s">&#34;name=&#39;&#34;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">                <span class="s">&#34;, price=&#34;</span> <span class="o">+</span> <span class="n">price</span> <span class="o">+</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">                <span class="s">&#34;, type=&#39;&#34;</span> <span class="o">+</span> <span class="n">type</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
-</span></span><span class="line"><span class="ln">24</span><span class="cl">                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>최종적으로 만들어질 객체의 데이터 타입, 구조, 속성 등을 표현한다. 각각의 Builder는 이 Product 클래스의 객체를 생성하고, 이를 구성하는 작업을 수행한다.<br/>
-→ <em>“Builder 패턴의 중심이다”</em></p>
-<br/>
-<p>Builder 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="o">();</span>
+<p>Component 인터페이스를 선언한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Pizza는 추상화된 개념으로, 이를 구현하는 클래스는 실제 피자를 나타낸다.</p>
+<p>Component 인터페이스를 구현하는 Concrete Component 객체를 만들어준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BasePizza</span> <span class="kd">implements</span> <span class="n">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;기본 재료로 피자를 만듭니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Pizza 인터페이스에서 선언된 <code>addIngredients()</code> 를 오버라이드하여 기본적인 기능을 제공한다.</p>
+<p>Component 인터페이스를 구현하고, Component 객체를 감싸는 Decorator 추상 클래스를 정의한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ToppingDecorator</span> <span class="kd">implements</span> <span class="n">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">;</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Builder</span> <span class="nf">buildName</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Builder</span> <span class="nf">buildPrice</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Builder</span> <span class="nf">buildType</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="kd">public</span> <span class="n">Product</span> <span class="nf">getResult</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">return</span> <span class="n">product</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Product 객체를 생성하고 각 구성요소의 build 메소드를 정의한다. 생성된 Product 객체를 반환하는 getResult() 메소드도 가지고 있다.<br/>
-→ <em>“<span class="red">Builder 패턴의 구조만 제공</span>하고 추상 메서드의 실제 구현과 제품 클래스는 특정 문제에 대한 요구 사항에 따라 달라질 수 있다”</em></p>
-<br/>
-<p>ConcreteBuilder 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComputerBuilder</span> <span class="kd">extends</span> <span class="n">Builder</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">buildName</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="n">product</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;LG gram&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">public</span> <span class="nf">ToppingDecorator</span><span class="o">(</span><span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">basePizza</span> <span class="o">=</span> <span class="n">basePizza</span><span class="o">;</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">buildPrice</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="n">product</span><span class="o">.</span><span class="na">setPrice</span><span class="o">(</span><span class="n">3000000</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">
-</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">buildType</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="n">product</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">&#34;computer&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Product의 다양한 요소를 조합하여 원하는 객체를 생성하기 위한 Builder 클래스의 추상 메소드를 구현한다. 생성한 객체는 Director 클래스에 의해 관리된다.<br/>
-→ <em>“Product 객체에 대한 구체적인 정의를 가지고 있어 객체 생성 과정을 보다 유연하게 만든다”</em></p>
-<br/>
-<p>Director 클래스를 만들어준다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Director</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Builder</span> <span class="n">builder</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">public</span> <span class="nf">Director</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">builder</span> <span class="o">=</span> <span class="n">builder</span><span class="o">;</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="kd">public</span> <span class="n">Product</span> <span class="nf">construct</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">buildName</span><span class="o">()</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">                <span class="o">.</span><span class="na">buildPrice</span><span class="o">()</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">                <span class="o">.</span><span class="na">buildType</span><span class="o">()</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">                <span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>클라이언트는 ConcreteBuilder 클래스의 메소드를 직접 호출하는 것이 아니라, Director 클래스를 통해 ConcreteBuilder 클래스의 construct() 메소드를 사용하여 호출하게 된다.<br/>
-→ <em>“ConcreteBuilder 클래스에서 생성한 객체의 구성 과정을 제어하고, <span class="red">원하는 객체를 생성하기 위한 구성 과정을 통일적으로 관리하는 역할</span>을 수행한다.”</em></p>
-<h3 id="빌더-패턴-고려사항">빌더 패턴 고려사항</h3>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="n">basePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>추상 클래스로 구현되어 있기 때문에 직접 객체를 생성할 수 없으나 이 클래스를 상속받은 구체적인 클래스를 정의하여 객체를 생성할 수 있다.</p>
+<p>→ <em>“객체의 기능을 동적으로 추가하거나 제거할 수 있어 코드의 유연성과 확장성이 증가한다.”</em></p>
+<p>추가적인 기능을 제공하는 Concrete Decorator 클래스를 만든다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Meat</span> <span class="kd">extends</span> <span class="n">ToppingDecorator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">public</span> <span class="nf">Meat</span><span class="o">(</span><span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">basePizza</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;고기를 추가합니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Meat 객체는 기존 객체에 덮어씌워지는 형태로 사용되며, 기존 객체의 기능에 추가적인 기능을 넣을 수 있다.</p>
+<p>→ <em>“객체의 기능을 쉽게 확장하고 유지보수할 수 있으며, 코드의 재사용성과 확장성을 높일 수 있다.”</em></p>
+<p>decorator 패턴을 사용하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Pizza</span> <span class="n">basePizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasePizza</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">basePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">Pizza</span> <span class="n">cheesePizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">basePizza</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">cheesePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">Pizza</span> <span class="n">meatPizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Meat</span><span class="o">(</span><span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">basePizza</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="n">meatPizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span></code></pre></div><p>우선 기본 피자 객체인 basePizza 객체를 생성한다. 그 다음 basePizza 객체를 감싸는 형태로 Cheese, Meat 이름의 Concrete Decorator 클래스를 생성하여 추가적인 기능을 수행하도록 했다. cheesePizza, meatPizza 객체는 각자 다른 재료를 추가하여 다양한 종류의 피자를 생성할 수 있다.</p>
+<p>→ <em>“OCP(Open-Closed Principle) 원칙을 준수하면서 기능을 추가하거나 수정할 수 있는 유연성을 제공한다.”</em></p>
+<h3 id="장식자-패턴-고려사항">장식자 패턴 고려사항</h3>
 <blockquote>
-<p>빌더 패턴은 복잡한 객체 생성을 단순화하고 객체의 속성을 분리하여 생성할 수 있기 때문에 유연하다.<br/>
-객체의 속성이 많거나 객체 생성 과정에서 유연성이 요구되는 경우, 객체 생성 과정이 복잡할 때 빌더 패턴을 고려해 볼 수 있다.</p>
+<p>기존 객체에 동적으로 새로운 기능을 추가할 때 유용하게 사용할 수 있지만 객체의 생성과 사용이 분리되어 있는 경우, 객체 구조가 복잡한 경우 장식자 패턴을 사용하기 어렵다.</p>
 </blockquote>
-<br/>
-<p><strong>빌더 패턴 적용 시 장점</strong></p>
+<p><strong>장식자 패턴 사용시 장점</strong></p>
 <ol>
-<li>객체의 생성 과정이 복잡할 때 코드 가독성을 높여준다.</li>
-<li>생성 과정에서 필요한 변수를 명확하게 구분할 수 있어 생성 과정의 오류를 줄여준다.</li>
-<li>생성 과정에서 다양한 타입의 객체를 생성할 수 있어서 유연성이 높아진다.</li>
+<li>
+<p>적으로 새로운 기능을 추가할 수 있기 때문에 확장성이 높아진다.</p>
+</li>
+<li>
+<p>객체의 책임을 분리함으로써 단일 책임 원칙을 준수할 수 있다. (OCP 원칙 준수)</p>
+<p>기존 객체는 자신이 수행해야 하는 책임에만 집중</p>
+</li>
 </ol>
-<br/>
-<p><strong>빌더 패턴 적용 시 단점</strong></p>
+<p><strong>장식자 패턴 사용시 단점</strong></p>
 <ol>
-<li>생성 과정이 복잡한 객체를 생성할 때 구조가 복잡해질 수 있다.</li>
-<li>객체 생성 과정에서 필요한 변수가 많아질 경우 Builder 클래스의 코드가 복잡해질 수 있다.</li>
-<li>객체의 상태를 변경할 때 마다 새로운 객체를 생성하게 되어 성능이 저하될 수 있다.</li>
+<li>객체를 래핑하여 추가적인 기능을 부여하는 방식이기 때문에 구조가 복잡해진다.</li>
+<li>추가적인 기능을 구현하기 위해 객체를 계속해서 생성하기 때문에 객체 수가 증가한다.</li>
+<li>상속을 사용하여 구현되므로 상속 구조에 제한이 생길 수 있다.</li>
 </ol>
-<br/>
+
 
 <div class="related">
   <div class="related--list">
     
       
-        <a href="/post/architectural/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 장식자(Decorator) 패턴</p></a>
+        <a href="/post/architectural/gof-design-pattern-abstract-factory/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 추상 팩토리 (Abstract Factory) 패턴</p></a>
       
 
     
@@ -892,7 +854,7 @@
       
 
       
-        <span><a class="tag" href="/tags/gof-design-pattern/">GoF design pattern</a><a class="tag" href="/tags/builder/">builder</a><a class="tag" href="/tags/architectural/">architectural</a><a class="tag" href="/tags/design-pattern/">design pattern</a></span>
+        <span><a class="tag" href="/tags/gof-design-pattern/">GoF design pattern</a><a class="tag" href="/tags/abstract-factory/">abstract Factory</a><a class="tag" href="/tags/architectural/">architectural</a><a class="tag" href="/tags/design-pattern/">design pattern</a></span>
 
 
 
