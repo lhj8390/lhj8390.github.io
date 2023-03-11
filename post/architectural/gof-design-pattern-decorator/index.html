@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [GoF 디자인 패턴] 장식자(Decorator) 패턴 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      GoF 디자인 패턴 중 장식자 패턴, Decorator 패턴에 대해 설명하고 적용해본다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.a31cf0154dfb32d9a05a4549107c123d7e09a41601446b90de780854f66b90c3.css"
+      integrity="sha256-oxzwFU37MtmgWkVJEHwSPX4JpBYBRGuQ3ngIVPZrkMM="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.b374260bc49a52bc6d0976d7bd23c96fae00552bcf5ae5cd91d58c4b6cb427bc.css"
+    integrity="sha256-s3QmC8SaUrxtCXbXvSPJb64AVSvPWuXNkdWMS2y0J7w="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/architectural/gof-design-pattern-decorator/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.5c2d8adfb9cfbaa7936df065fd4f32f3137c1877a2fe15478d3ffb1a69db1471.js" integrity="sha256-XC2K37nPuqeTbfBl/U8y8xN8GHei/hVHjT/7GmnbFHE="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[GoF 디자인 패턴] 장식자(Decorator) 패턴"/>
+<meta name="twitter:description" content="GoF 디자인 패턴 중 장식자 패턴, Decorator 패턴에 대해 설명하고 적용해본다."/>
+
+
+
+  
+  <meta property="og:title" content="[GoF 디자인 패턴] 장식자(Decorator) 패턴" />
+<meta property="og:description" content="GoF 디자인 패턴 중 장식자 패턴, Decorator 패턴에 대해 설명하고 적용해본다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/architectural/gof-design-pattern-decorator/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-09T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[GoF 디자인 패턴] 장식자(Decorator) 패턴",
+        "headline": "[GoF 디자인 패턴] 장식자(Decorator) 패턴",
+        "alternativeHeadline": "",
+        "description": "
+      GoF 디자인 패턴 중 장식자 패턴, Decorator 패턴에 대해 설명하고 적용해본다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-decorator\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-03-09T00:00:00.00Z",
+        "datePublished": "2023-03-09T00:00:00.00Z",
+        "dateModified": "2023-03-09T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-decorator\/",
+        "wordCount" : "434",
+        "genre" : [ 
+      
+      "architecture"
+
+    ],
+        "keywords" : [ 
+      
+      "GoF design pattern"
+
+    
+      
+        ,
+
+      
+      "Decorator"
+
+    
+      
+        ,
+
+      
+      "architectural"
+
+    
+      
+        ,
+
+      
+      "design pattern"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(7)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(8)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class=" watched ">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(7)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(8)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#장식자decorator-패턴">장식자(Decorator) 패턴</a>
+      <ul>
+        <li><a href="#장식자-패턴-구성요소">장식자 패턴 구성요소</a></li>
+        <li><a href="#구현-예제">구현 예제</a></li>
+        <li><a href="#장식자-패턴-고려사항">장식자 패턴 고려사항</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[GoF 디자인 패턴] 장식자(Decorator) 패턴</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                9/3/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="장식자decorator-패턴">장식자(Decorator) 패턴</h2>
+<hr>
+<blockquote>
+<p><span class="red">구조(structural) 패턴 중 하나</span>로, 기존 객체에 새로운 기능을 동적으로 추가할 수 있도록 하는 패턴이다.</p>
+</blockquote>
+<p>기능을 추가하기 위해 서브클래스를 생성하는 것보다 융통성 있는 방법을 제공한다.</p>
+<h3 id="장식자-패턴-구성요소">장식자 패턴 구성요소</h3>
+<ul>
+<li><strong>Component</strong> : 기본 객체의 추상화된 인터페이스</li>
+<li><strong>Concrete Component</strong> : Component의 구현체로 실제로 기능을 수행하는 객체</li>
+<li><strong>Decorator</strong> : Component의 인터페이스를 구현하며 Component를 감싸는 역할 수행</li>
+<li><strong>Concrete Decorator</strong> : Decorator 클래스의 서브클래스로, 추가적인 기능을 제공하는 구체적인 클래스</li>
+</ul>
+<h3 id="구현-예제">구현 예제</h3>
+<p>Component 인터페이스를 선언한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Pizza는 추상화된 개념으로, 이를 구현하는 클래스는 실제 피자를 나타낸다.</p>
+<br/>
+<p>Component 인터페이스를 구현하는 Concrete Component 객체를 만들어준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BasePizza</span> <span class="kd">implements</span> <span class="n">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;기본 재료로 피자를 만듭니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Pizza 인터페이스에서 선언된 <code>addIngredients()</code> 를 오버라이드하여 기본적인 기능을 제공한다.</p>
+<br/>
+<p>Component 인터페이스를 구현하고, Component 객체를 감싸는 Decorator 추상 클래스를 정의한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ToppingDecorator</span> <span class="kd">implements</span> <span class="n">Pizza</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">public</span> <span class="nf">ToppingDecorator</span><span class="o">(</span><span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">basePizza</span> <span class="o">=</span> <span class="n">basePizza</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="n">basePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>추상 클래스로 구현되어 있기 때문에 직접 객체를 생성할 수 없으나 이 클래스를 상속받은 구체적인 클래스를 정의하여 객체를 생성할 수 있다.<br/>
+→ <em>“객체의 기능을 동적으로 추가하거나 제거할 수 있어 코드의 유연성과 확장성이 증가한다.”</em></p>
+<br/>
+<p>추가적인 기능을 제공하는 Concrete Decorator 클래스를 만든다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Meat</span> <span class="kd">extends</span> <span class="n">ToppingDecorator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">public</span> <span class="nf">Meat</span><span class="o">(</span><span class="n">Pizza</span> <span class="n">basePizza</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">basePizza</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addIngredients</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;고기를 추가합니다.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Meat 객체는 기존 객체에 덮어씌워지는 형태로 사용되며, 기존 객체의 기능에 추가적인 기능을 넣을 수 있다.<br/>
+→ <em>“객체의 기능을 쉽게 확장하고 유지보수할 수 있으며, 코드의 재사용성과 확장성을 높일 수 있다.”</em></p>
+<br/>
+<p>decorator 패턴을 사용하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">Pizza</span> <span class="n">basePizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasePizza</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">basePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">Pizza</span> <span class="n">cheesePizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">basePizza</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">cheesePizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">Pizza</span> <span class="n">meatPizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Meat</span><span class="o">(</span><span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">basePizza</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="n">meatPizza</span><span class="o">.</span><span class="na">addIngredients</span><span class="o">();</span>
+</span></span></code></pre></div><p>우선 기본 피자 객체인 basePizza 객체를 생성한다. 그 다음 basePizza 객체를 감싸는 형태로 Cheese, Meat 이름의 Concrete Decorator 클래스를 생성하여 추가적인 기능을 수행하도록 했다. cheesePizza, meatPizza 객체는 각자 다른 재료를 추가하여 다양한 종류의 피자를 생성할 수 있다.<br/>
+→ <em>“OCP(Open-Closed Principle) 원칙을 준수하면서 기능을 추가하거나 수정할 수 있는 유연성을 제공한다.”</em></p>
+<h3 id="장식자-패턴-고려사항">장식자 패턴 고려사항</h3>
+<blockquote>
+<p>기존 객체에 동적으로 새로운 기능을 추가할 때 유용하게 사용할 수 있지만 <span class="red">객체의 생성과 사용이 분리되어 있는 경우, 객체 구조가 복잡한 경우 장식자 패턴을 사용하기 어렵다.</span></p>
+</blockquote>
+<br/>
+<p><strong>장식자 패턴 사용시 장점</strong></p>
+<ol>
+<li>적으로 새로운 기능을 추가할 수 있기 때문에 확장성이 높아진다.</li>
+<li>객체의 책임을 분리함으로써 단일 책임 원칙을 준수할 수 있다. (OCP 원칙 준수)<br/>
+기존 객체는 자신이 수행해야 하는 책임에만 집중</li>
+</ol>
+<br/>
+<p><strong>장식자 패턴 사용시 단점</strong></p>
+<ol>
+<li>객체를 래핑하여 추가적인 기능을 부여하는 방식이기 때문에 구조가 복잡해진다.</li>
+<li>추가적인 기능을 구현하기 위해 객체를 계속해서 생성하기 때문에 객체 수가 증가한다.</li>
+<li>상속을 사용하여 구현되므로 상속 구조에 제한이 생길 수 있다.</li>
+</ol>
+<br/>
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/architectural/gof-design-pattern-facade/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 퍼사드 (Facade) 패턴</p></a>
+      
+
+    
+      
+        <a href="/post/architectural/gof-design-pattern-singleton/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[GoF 디자인 패턴] 단일체 (Singleton) 패턴</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/architecture/">architecture</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/gof-design-pattern/">GoF design pattern</a><a class="tag" href="/tags/decorator/">Decorator</a><a class="tag" href="/tags/architectural/">architectural</a><a class="tag" href="/tags/design-pattern/">design pattern</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>

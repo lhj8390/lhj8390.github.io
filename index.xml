@@ -6,15 +6,26 @@
     <description>Recent content on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[GoF 디자인 패턴] 장식자(Decorator) 패턴</title>
-      <link>https://lhj8390.github.io/post/architectural/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9/</link>
-      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <title>[GoF 디자인 패턴] 퍼사드 (Facade) 패턴</title>
+      <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-facade/</link>
+      <pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://lhj8390.github.io/post/architectural/gof-%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1-decorator-%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB-a052258624e24626898b229932f13af9/</guid>
+      <guid>https://lhj8390.github.io/post/architectural/gof-design-pattern-facade/</guid>
       
         <description>GoF 디자인 패턴 중 추상 팩토리 패턴에 대해 설명하고 적용해본다.</description>
+      
+    </item>
+    
+    <item>
+      <title>[GoF 디자인 패턴] 장식자(Decorator) 패턴</title>
+      <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-decorator/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/architectural/gof-design-pattern-decorator/</guid>
+      
+        <description>GoF 디자인 패턴 중 장식자 패턴, Decorator 패턴에 대해 설명하고 적용해본다.</description>
       
     </item>
     
