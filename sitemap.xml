@@ -3,36 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/architectural/gof-design-pattern-flyweight/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/architectural/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/categories/architecture/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/categories/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/design-pattern/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/design-pattern/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/flyweight/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/gof-design-pattern/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/</loc>
+    <lastmod>2023-03-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/architectural/gof-design-pattern-facade/</loc>
     <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lhj8390.github.io/tags/architectural/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/categories/architecture/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/design-pattern/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/subcategories/design-pattern/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://lhj8390.github.io/tags/facade/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/gof-design-pattern/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/subcategories/</loc>
-    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/</loc>
     <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/architectural/gof-design-pattern-decorator/</loc>
@@ -297,9 +303,6 @@
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/subcategories/kubernetes/</loc>
-    <lastmod>2022-06-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/series/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B0%9C%EB%85%90/</loc>
     <lastmod>2022-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/kubernetes/k8s_service/</loc>
