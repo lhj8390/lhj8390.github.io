@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        [GoF 디자인 패턴] 해석자 (Interpreter) 패턴 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      GoF 디자인 패턴 중 해석자 패턴에 대해 설명하고 적용해본다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.189ae8ebc41eca4591d0a22cc42b22dd1715c37a68a01671b833ebbdbb9b2621.css"
+      integrity="sha256-GJro68QeykWR0KIsxCsi3RcVw3pooBZxuDPrvbubJiE="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.639813242b25939e126605df9fb7ecf4497542e990495fd3a926e654383072e6.css"
+    integrity="sha256-Y5gTJCslk54SZgXfn7fs9El1QumQSV/TqSbmVDgwcuY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/architectural/gof-design-pattern-interpreter/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="[GoF 디자인 패턴] 해석자 (Interpreter) 패턴"/>
+<meta name="twitter:description" content="GoF 디자인 패턴 중 해석자 패턴에 대해 설명하고 적용해본다."/>
+
+
+
+  
+  <meta property="og:title" content="[GoF 디자인 패턴] 해석자 (Interpreter) 패턴" />
+<meta property="og:description" content="GoF 디자인 패턴 중 해석자 패턴에 대해 설명하고 적용해본다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/architectural/gof-design-pattern-interpreter/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-23T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "[GoF 디자인 패턴] 해석자 (Interpreter) 패턴",
+        "headline": "[GoF 디자인 패턴] 해석자 (Interpreter) 패턴",
+        "alternativeHeadline": "",
+        "description": "
+      GoF 디자인 패턴 중 해석자 패턴에 대해 설명하고 적용해본다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-interpreter\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-03-23T00:00:00.00Z",
+        "datePublished": "2023-03-23T00:00:00.00Z",
+        "dateModified": "2023-03-23T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/architectural\/gof-design-pattern-interpreter\/",
+        "wordCount" : "552",
+        "genre" : [ 
+      
+      "architecture"
+
+    ],
+        "keywords" : [ 
+      
+      "GoF design pattern"
+
+    
+      
+        ,
+
+      
+      "Interpreter"
+
+    
+      
+        ,
+
+      
+      "architectural"
+
+    
+      
+        ,
+
+      
+      "design pattern"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(9)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(8)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(9)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(8)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#해석자-interpreter-패턴">해석자 (Interpreter) 패턴</a>
+      <ul>
+        <li><a href="#해석자-패턴-구성요소">해석자 패턴 구성요소</a></li>
+        <li><a href="#구현-예제">구현 예제</a></li>
+        <li><a href="#해석자-패턴-고려사항">해석자 패턴 고려사항</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>[GoF 디자인 패턴] 해석자 (Interpreter) 패턴</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                23/3/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <h2 id="해석자-interpreter-패턴">해석자 (Interpreter) 패턴</h2>
+<hr>
+<blockquote>
+<p><span class="red">행동(behavioral) 패턴 중 하나</span>로, 문법에 대한 표현을 정의하고 이를 이용해 언어/문법을 해석하는 패턴이다.</p>
+</blockquote>
+<p>컴파일러나 인터프리터에서 사용되며, 일반적으로 문법 규칙을 정의하고 이에 대한 해석 클래스들을 만든다. 각 클래스들은 특정 규칙을 해석하며, 이들의 조합으로 전체 문장을 해석할 수 있다.</p>
+<h3 id="해석자-패턴-구성요소">해석자 패턴 구성요소</h3>
+<ul>
+<li><strong>AbstractExpression</strong>(추상 표현식) : 해석할 문법 규칙에 대한 추상 클래스. 해석 메서드 정의</li>
+<li><strong>TerminalExpression</strong>(단말 표현식) : 추상 표현식에서 정의한 해석 메서드를 구현한 클래스. 단순한 값 해석</li>
+<li><strong>NonterminalExpression</strong>(비단말 표현식) : 추상 표현식에서 정의한 해석 메서드를 구현한 클래스. 더 복잡한 문법 규칙을 해석하는 데 사용</li>
+<li><strong>Context</strong>(문맥) : 해석에 필요한 정보 제공</li>
+<li><strong>Client</strong>(클라이언트) : 구문을 분석하는 클라이언트</li>
+</ul>
+<h3 id="구현-예제">구현 예제</h3>
+<p><strong>AbstractExpression</strong> 역할을 하는 인터페이스를 선언한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Expression</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="kt">boolean</span> <span class="nf">interpret</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>해석을 위한 interpret() 메서드를 선언한다.</p>
+<br/>
+<p>해석에 필요한 정보를 제공하는 Context 클래스를 만든다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Context</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">context</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">public</span> <span class="nf">Context</span><span class="o">(</span><span class="n">String</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">lookup</span><span class="o">(</span><span class="n">String</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>context 변수를 통해 해석 규칙에서 사용하는 변수나 데이터를 저장하고, lookup() 메서드는 data 인자를 받아 data 문자열이 포함되어 있는지 여부를 반환한다.</p>
+<br/>
+<p>Expression 인터페이스를 구현한 TerminalExpression 클래스를 만든다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TerminalExpression</span> <span class="kd">implements</span> <span class="n">Expression</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">data</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="kd">public</span> <span class="nf">TerminalExpression</span><span class="o">(</span><span class="n">String</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">interpret</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>해석 규칙의 마지막에 나오는 단순한 규칙(터미널 규칙)을 처리하는데 사용한다. <br/>
+<span class="gray">(ex) A and B : “A” 또는 “B” 가 터미널 규칙</span> <br/>
+→ <em>“해석 규칙에 대한 최종 판단을 담당한다.”</em></p>
+<br/>
+<p>Expression 인터페이스를 구현한 NonterminalExpression 클래스를 만든다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AndExpression</span> <span class="kd">implements</span> <span class="n">Expression</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Expression</span> <span class="n">expr1</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Expression</span> <span class="n">expr2</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="kd">public</span> <span class="nf">AndExpression</span><span class="o">(</span><span class="n">Expression</span> <span class="n">expr1</span><span class="o">,</span> <span class="n">Expression</span> <span class="n">expr2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">expr1</span> <span class="o">=</span> <span class="n">expr1</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">expr2</span> <span class="o">=</span> <span class="n">expr2</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">interpret</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="k">return</span> <span class="n">expr1</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">expr2</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrExpression</span> <span class="kd">implements</span> <span class="n">Expression</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Expression</span> <span class="n">expr1</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Expression</span> <span class="n">expr2</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="kd">public</span> <span class="nf">OrExpression</span><span class="o">(</span><span class="n">Expression</span> <span class="n">expr1</span><span class="o">,</span> <span class="n">Expression</span> <span class="n">expr2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">expr1</span> <span class="o">=</span> <span class="n">expr1</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">expr2</span> <span class="o">=</span> <span class="n">expr2</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">interpret</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">        <span class="k">return</span> <span class="n">expr1</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">)</span> <span class="o">||</span> <span class="n">expr2</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Expression 객체들의 조합에 대한 규칙을 정의하며, 해당 규칙에 맞게 Expression 객체들을 연결한다. 하나 이상의 하위 규칙을 갖고 있으며, 규칙 트리의 가장 상위 규칙이 될 수 있다.</p>
+<br/>
+<p>사용자가 실제로 사용하는 Client 클래스이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;Computer Tablet&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">Expression</span> <span class="n">terminal1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TerminalExpression</span><span class="o">(</span><span class="s">&#34;Computer&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">Expression</span> <span class="n">terminal2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TerminalExpression</span><span class="o">(</span><span class="s">&#34;Phone&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="n">Expression</span> <span class="n">and</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AndExpression</span><span class="o">(</span><span class="n">terminal1</span><span class="o">,</span> <span class="n">terminal2</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">Expression</span> <span class="n">terminal3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TerminalExpression</span><span class="o">(</span><span class="s">&#34;Tablet&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="n">Expression</span> <span class="n">or</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OrExpression</span><span class="o">(</span><span class="n">terminal2</span><span class="o">,</span> <span class="n">terminal3</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kt">boolean</span> <span class="n">andResult</span> <span class="o">=</span> <span class="n">and</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kt">boolean</span> <span class="n">orResult</span> <span class="o">=</span> <span class="n">or</span><span class="o">.</span><span class="na">interpret</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;\&#34; is &#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">andResult</span> <span class="o">?</span> <span class="s">&#34;valid&#34;</span> <span class="o">:</span> <span class="s">&#34;invalid&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;\&#34; is &#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">orResult</span> <span class="o">?</span> <span class="s">&#34;valid&#34;</span> <span class="o">:</span> <span class="s">&#34;invalid&#34;</span><span class="o">));</span>
+</span></span></code></pre></div><p>문자열에 대한 규칙을 정의하고 data 문자열이 규칙을 만족하는지 검사하는 예제이다.</p>
+<h3 id="해석자-패턴-고려사항">해석자 패턴 고려사항</h3>
+<blockquote>
+<p>언어나 문법 등을 해석하거나 분석할 때 유용하게 사용할 수 있다. 하지만 문법이 자주 변경되거나 문자열의 길이가 긴 문법을 처리할 때는 적절하지 않다.</p>
+</blockquote>
+<br/>
+<p><strong>해석자 패턴 사용 시 장점</strong></p>
+<ol>
+<li>새로운 문법 규칙을 추가할 때 기존 클래스를 수정하지 않아도 되기 때문에 쉽게 확장할 수 있다.</li>
+<li>각 해석자 클래스는 단일 책임 원칙을 따르기 때문에 재사용성이 높아진다.</li>
+</ol>
+<br/>
+<p><strong>해석자 패턴 사용 시 단점</strong></p>
+<ol>
+<li>입력 데이터의 크기에 따라 성능이 저하될 수 있다.</li>
+<li>유연성과 확장성을 제공하지만 그만큼 코드의 복잡성이 높아지기 때문에 유지보수가 어려울 수 있다.</li>
+</ol>
+<p><br/><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/architectural/gof-design-pattern-flyweight/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>[GoF 디자인 패턴] 플라이급 (Flyweight) 패턴</p></a>
+      
+
+    
+      
+        <a href="/post/architectural/gof-design-pattern-facade/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>[GoF 디자인 패턴] 퍼사드 (Facade) 패턴</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/architecture/">architecture</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/gof-design-pattern/">GoF design pattern</a><a class="tag" href="/tags/interpreter/">Interpreter</a><a class="tag" href="/tags/architectural/">architectural</a><a class="tag" href="/tags/design-pattern/">design pattern</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
