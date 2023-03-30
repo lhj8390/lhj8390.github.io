@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-reactive-data-persistence\/",
-        "wordCount" : "1011",
+        "wordCount" : "1009",
         "genre" : [ 
       
       "Web"
@@ -794,7 +794,7 @@
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">tacoRepo</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="n">tacos</span><span class="o">);</span>
 </span></span></code></pre></div><p>Flux의 toIterable() 메서드를 통해 Flux의 모든 객체를 Iterable 타입으로 추출한다.</p>
 <aside>
-Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span class="red">추출 작업 시 블로킹 처리 된다.</span></strong> <br/>
+Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span class="red">추출 작업 시 블로킹 처리 된다.</span></strong>
 이를 해결하기 위해서는 구독 발행 요소 각각에 오퍼레이션을 수행하는 것이 나은 방법이다.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">tacoFlux</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">taco</span> <span class="o">-&gt;</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">tacoRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">taco</span><span class="o">);</span>
@@ -834,7 +834,7 @@ Mono의 block() 메서드나 Flux의 toIterable() 메서드는 <strong><span cla
 <p><code>keyspace-name</code> : <strong>카산드라가 해당 키 공간을 사용하도록 알린다.</strong><br/>
 스프링 데이터 카산드라에서 키 공간을 자동으로 생성하도록 설정할 수 있지만 직접 생성할 수도 있다. 키 공간은 <strong>CQL</strong>(<em>Cassandra Query Language</em>) 셸에서 <code>create keyspace</code> 명령어를 통해 생성할 수 있다.</p>
   <aside>
-    💡 키 공간 : 카산드라 노드의 테이블을 모아 놓은 것이다. 관계형 데이터베이스의 <strong>스키마와 유사하다.</strong>
+  키 공간 : 카산드라 노드의 테이블을 모아 놓은 것이다. 관계형 데이터베이스의 <strong>스키마와 유사하다.</strong>
   </aside>
 </li>
 <li>
@@ -885,8 +885,8 @@ PrimaryKeyType.CLUSTERED : 해당 속성이 클러스터링 키임을 명시</li
 여기서는 <strong>네이티브 타입(정수, 문자열 등)의 컬렉션</strong>이거나, <strong>UDT(사용자 정의 타입)의 컬렉션</strong>이어야 한다.</li>
 </ul>
 <aside>
-  💡 <strong>Ingredient 클래스를 재사용할 수 없는 이유</strong><br/>
-  해당 클래스에는 이미 @Table 어노테이션을 통해 카산드라의 도메인 타입으로 매핑을 했기 때문이다. <br/>
+  <strong>Ingredient 클래스를 재사용할 수 없는 이유</strong><br/>
+  해당 클래스에는 이미 @Table 어노테이션을 통해 카산드라의 도메인 타입으로 매핑을 했기 때문이다.
   <span class="red">UDT 클래스를 새로 만들어 데이터가 어떻게 저장되는지 정의해야 한다.</span><br/>
 </aside>   <br/><br/>
 <p><strong>UDT 클래스 예시</strong></p>

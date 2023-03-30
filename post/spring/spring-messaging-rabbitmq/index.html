@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -873,8 +873,8 @@ AMQP(Advenced Message Queing Protocol)을 따르는 오픈소스 메시지 브�
 <li><strong>convertAndSend()</strong> : 객체로부터 변환된 메시지 전송하거나 인자에 MessagePostProcessor를 포함하여 전송에 앞서 후처리되는 메시지 전송 가능</li>
 </ul>
 <aside>
-💡 Destination 객체 대신 거래소와 라우팅 키를 지정하는 문자열 값을 인자로 받는다! <br/>
-        라우팅 키를 인자로 받지 않을 경우 기본 라우팅 키로 전송되는 메시지를 가진다.<br/>
+Destination 객체 대신 거래소와 라우팅 키를 지정하는 문자열 값을 인자로 받는다!
+라우팅 키를 인자로 받지 않을 경우 기본 라우팅 키로 전송되는 메시지를 가진다.<br/>
 </aside>
 <br/>
 <h3 id="send-메서드로-메시지-전송">send() 메서드로 메시지 전송</h3>
@@ -975,13 +975,11 @@ Message 객체의 MessageProperties를 가져온 후 setHeader()를 호출하여
 <li>receiveAndConvert() : 메시지를 수신한 후 메시지 변환기를 사용하여 도메인 객체로 변환하고 반환</li>
 </ul>
 <aside>
-💡 <strong>JmsTemplate와의 차이점</strong> 
-<ol>
-<li>수신 메서드는 거래소나 라우팅 키를 갖지 않는다.
-→ 어플리케이션은 큐만 알면 되기 때문에 <span class="red">(거래소나 라우팅 키는 메시지를 큐로 전달할 때만 사용)</span></li>
-<li>메시지의 수신 타임아웃을 나타내기 위해 long 타입의 매개변수를 가진다.
-타임아웃 값을 인자로 전달하면 메시지가 도착하거나 타임아웃에 걸릴 때까지 메서드는 대기하게 된다. (기본값 0)</li>
-</ol>
+<strong>JmsTemplate와의 차이점</strong><br/>
+1. 수신 메서드는 거래소나 라우팅 키를 갖지 않는다. 
+  → 어플리케이션은 큐만 알면 되기 때문에 <span class="red">(거래소나 라우팅 키는 메시지를 큐로 전달할 때만 사용)</span>
+2. 메시지의 수신 타임아웃을 나타내기 위해 long 타입의 매개변수를 가진다.
+   타임아웃 값을 인자로 전달하면 메시지가 도착하거나 타임아웃에 걸릴 때까지 메서드는 대기하게 된다. (기본값 0)<br/>
 </aside>
 <br/><br/>
 <p><strong>receive() 사용</strong></p>

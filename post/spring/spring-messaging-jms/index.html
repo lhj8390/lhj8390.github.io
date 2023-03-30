@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-messaging-jms\/",
-        "wordCount" : "1131",
+        "wordCount" : "1130",
         "genre" : [ 
       
       "Web"
@@ -886,7 +886,7 @@ JmsTemplate는 다음과 같은 메서드들을 가지고 있다.</p>
 </ol>
 <p>MessageCreator 인터페이스의 <strong>createMessage(Session) 함수를 오버라이딩하여</strong> 전달된 Order 객체로부터 새로운 메시지를 생성한다.</p>
 <aside>
-💡 람다식으로 적용하면 다음과 같다.
+람다식으로 적용하면 다음과 같다.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@Override</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendOrder</span><span class="o">(</span><span class="n">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="n">jms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="n">session</span><span class="o">.</span><span class="na">createObjectMessage</span><span class="o">(</span><span class="n">order</span><span class="o">));</span>

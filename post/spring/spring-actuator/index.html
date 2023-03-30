@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-actuator\/",
-        "wordCount" : "1759",
+        "wordCount" : "1756",
         "genre" : [ 
       
       "Web"
@@ -811,7 +811,7 @@
 </span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">        </span><span class="nt">include</span><span class="p">:</span><span class="w"> </span><span class="l">health, info, beans, conditions</span><span class="w">
 </span></span></span></code></pre></div><p>application.yml 파일의 <code>management.endpoint.web.exclude</code> 와  <code>management.endpoint.web.include</code> 속성을 통해 노출을 원하는 엔드포인트를 지정할 수 있다. exclude는 제외할 엔드포인트, include는 노출할 엔드포인트를 의미한다.</p>
 <aside>
-💡 include 속성에는 <span class="red">와일드카드(*)</span>를 통해 모든 엔드포인트를 노출하도록 설정할 수 있다.<br/>
+include 속성에는 <span class="red">와일드카드(*)</span>를 통해 모든 엔드포인트를 노출하도록 설정할 수 있다.<br/>
 </aside>
 <h2 id="액추에이터-엔드포인트-사용">액추에이터 엔드포인트 사용</h2>
 <hr>
@@ -917,7 +917,7 @@
 </span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="p">}</span>  
 </span></span></code></pre></div><p>activeProfiles 필드를 통해 활성화된 프로파일을 알 수 있고, propertySources 필드에서는 스프링 어플리케이션 환경의 속성 근원들을 포함한다.</p>
 <aside>
-💡 /env 엔드포인트에 POST 요청을 하면 실행 중인 어플리케이션의 속성을 설정할 수 있다.<br/>
+/env 엔드포인트에 POST 요청을 하면 실행 중인 어플리케이션의 속성을 설정할 수 있다.<br/>
 </aside>
 <br/>
 <p><strong>모든 HTTP 요청 핸들러 내역을 확인</strong>하려면 /mappings 엔드포인트를 사용한다.</p>
@@ -969,7 +969,7 @@
 </span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>응답의 맨 앞에는 모든 로깅 레벨 내역이 노출되고, 각 패키지에 대한 로깅 상세 내역을 볼 수 있다. configuredLevel 속성은 명시적으로 구성된 로깅 레벨이고, effectiveLevel 속성은 상속받을 수 있는 유효 로깅 레벨이다.</p>
 <aside>
-💡 /loggers 엔드포인트에 POST 요청을 하면 로깅 레벨을 변경할 수 있다.<br/>
+/loggers 엔드포인트에 POST 요청을 하면 로깅 레벨을 변경할 수 있다.<br/>
 </aside>
 <h3 id="어플리케이션-모니터링">어플리케이션 모니터링</h3>
 <p><strong>메모리나 스레드 문제를 찾는 gzip 형태의 HPROF 힙 덤프 파일을 다운로드</strong>하려면 /heapdump 엔드포인트를 사용한다.<br/></p>

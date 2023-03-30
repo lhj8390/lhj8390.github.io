@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -198,7 +198,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-concurrency\/",
-        "wordCount" : "2508",
+        "wordCount" : "2506",
         "genre" : [ 
       
       "language"
@@ -792,7 +792,7 @@
 </span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">b</span>     <span class="c1">// ch 에 b의 값을 쓴다.
 </span></span></span></code></pre></div><p>채널 변수 왼쪽에 <code>&lt;-</code> 연산자를 두면 <span class="orange"><em>채널로부터 데이터를 읽고</em></span> 채널 변수 오른쪽에 <code>&lt;-</code> 연산자를 두면 <span class="orange"><em>채널에 데이터를 쓸 수 있다.</em></span></p>
 <aside>
-💡 <span class="red">하나의 고루틴으로 같은 채널을 읽고 쓰는 것은 불가능하다.</span> 읽기 전용이라는 것을 나타내기 위해 chan 키워드 앞에 `<-` 연산자를 (<span class="gray">ch ←chan int</span>), 쓰기 전용이라는 것을 나타내기 위해 chan 키워드 뒤에 `<-` 연산자를 (<span class="gray">ch chan← int</span>) 사용한다.<br/>
+<span class="red">하나의 고루틴으로 같은 채널을 읽고 쓰는 것은 불가능하다.</span> 읽기 전용이라는 것을 나타내기 위해 chan 키워드 앞에 `<-` 연산자를 (<span class="gray">ch ←chan int</span>), 쓰기 전용이라는 것을 나타내기 위해 chan 키워드 뒤에 `<-` 연산자를 (<span class="gray">ch chan← int</span>) 사용한다.<br/>
 </aside>
 <h3 id="버퍼링">버퍼링</h3>
 <p>기본적으로 채널은 <span class="red">버퍼가 없다</span>. 버퍼가 없는 채널에서는 데이터를 보내는 고루틴과 데이터를 받는 고루틴이 동시에 실행되지 않고, 보내는 고루틴이 데이터를 보낸 후에는 받는 고루틴이 데이터를 가져갈 때까지 대기한다.</p>
@@ -1149,7 +1149,7 @@
 <li>Wait : 카운터가 0이 될 때까지 고루틴 일시중지</li>
 </ul>
 <aside>
-💡 WaitGroup은 사용하기 쉽지만 고루틴을 설계할 때 무조건 사용해서는 안된다. 작업 고루틴이 종료하고 나서 정리할 필요가 있을 경우에만 사용하는 것이 좋다.<br/>
+WaitGroup은 사용하기 쉽지만 고루틴을 설계할 때 무조건 사용해서는 안된다. 작업 고루틴이 종료하고 나서 정리할 필요가 있을 경우에만 사용하는 것이 좋다.<br/>
 </aside>
 <h3 id="한-번만-코드-실행">한 번만 코드 실행</h3>
 <p>지연 로딩을 하거나 초기화 코드를 정확히 한 번만 호출하고 싶을 경우 sync 패키지의 Once 타입을 사용한다.</p>

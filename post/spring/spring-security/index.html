@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-security\/",
-        "wordCount" : "2014",
+        "wordCount" : "2013",
         "genre" : [ 
       
       "Web"
@@ -728,10 +728,10 @@
     </li>
     <li><a href="#사용자-스토어-구성">사용자 스토어 구성</a>
       <ul>
-        <li><a href="#인메모리-사용자-스토어"><strong>인메모리 사용자 스토어</strong></a></li>
-        <li><a href="#jdbc-기반의-사용자-스토어"><strong>JDBC 기반의 사용자 스토어</strong></a></li>
-        <li><a href="#ldap-기반의-사용자-스토어"><strong>LDAP 기반의 사용자 스토어</strong></a></li>
-        <li><a href="#사용자-인증-커스터마이징"><strong>사용자 인증 커스터마이징</strong></a></li>
+        <li><a href="#인메모리-사용자-스토어">인메모리 사용자 스토어</a></li>
+        <li><a href="#jdbc-기반의-사용자-스토어">JDBC 기반의 사용자 스토어</a></li>
+        <li><a href="#ldap-기반의-사용자-스토어">LDAP 기반의 사용자 스토어</a></li>
+        <li><a href="#사용자-인증-커스터마이징">사용자 인증 커스터마이징</a></li>
       </ul>
     </li>
     <li><a href="#암호화된-비밀번호-사용하기">암호화된 비밀번호 사용하기</a>
@@ -846,7 +846,7 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </ul>
 <p>사용자 스토어는 SecurityConfig 클래스에서 <strong>configure(AuthenticationManagerBuilder)</strong> 메서드를 오버라이딩하여 구성할 수 있다.</p>
 </blockquote>
-<h3 id="인메모리-사용자-스토어"><strong>인메모리 사용자 스토어</strong></h3>
+<h3 id="인메모리-사용자-스토어">인메모리 사용자 스토어</h3>
 <p>user1, user2라는 사용자를 인메모리 사용자 스토어에 구성하는 예제이다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Override</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
@@ -866,7 +866,7 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 <li>authorities() : 권한 설정 - <span class="gray it">roles(”user”) 로도 사용할 수 있다.</span></li>
 <li>and() : 연속해서 withUser() 호출 가능</li>
 </ul>
-<h3 id="jdbc-기반의-사용자-스토어"><strong>JDBC 기반의 사용자 스토어</strong></h3>
+<h3 id="jdbc-기반의-사용자-스토어">JDBC 기반의 사용자 스토어</h3>
 <p>관계형 데이터베이스에 유지되는 사용자 정보를 스토어에 구성하는 예제이다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@Override</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
@@ -881,15 +881,14 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 <p><span class="red">→ usersByUsernameQuery() 와 authoritiesByUsernameQuery() 메서드를 사용하여 사용자 정보와 권한 쿼리를 대체하였다.</span>
 <br/><br/></p>
 <aside>
-💡  <span class="red">스프링 시큐리티의 SQL 쿼리를 대체할 때의 주의사항!</span>
-<pre><code>1.  스프링 시큐리티의 기본 데이터베이스 테이블 이름이 달라도 되지만 테이블이 갖는 데이터 타입과 길이는 일치해야 한다.
+<span class="red">스프링 시큐리티의 SQL 쿼리를 대체할 때의 주의사항!</span><br/>
+1.  스프링 시큐리티의 기본 데이터베이스 테이블 이름이 달라도 되지만 테이블이 갖는 데이터 타입과 길이는 일치해야 한다.
 2.  where 절에서 사용되는 매개변수는 하나이고, 그 매개변수는 username이어야 한다.
 3. 사용자 정보 인증 쿼리에서는 username, password, enabled 열의 값을 반환하여야 한다.
 4. 사용자 권한 쿼리에서는 username과 authority을 포함하는 0 또는 다수의 행을 반환할 수 있다.
-5. 그룹 권한 쿼리에서는 group id, group_name, authority을 포함하는 0 또는 다수의 행을 반환할 수 있다.
-</code></pre>
+5. 그룹 권한 쿼리에서는 group id, group_name, authority을 포함하는 0 또는 다수의 행을 반환할 수 있다.<br/>
 </aside>
-<h3 id="ldap-기반의-사용자-스토어"><strong>LDAP 기반의 사용자 스토어</strong></h3>
+<h3 id="ldap-기반의-사용자-스토어">LDAP 기반의 사용자 스토어</h3>
 <p>LDAP 인증의 간단한 구성방법에 대한 예제이다.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nd">@Override</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
@@ -909,7 +908,7 @@ SecurityConfig 클래스는 보안 구성 클래스인 WebSecurityConfigurerAdap
 </span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p><strong>userSearchFilter()</strong> 와 <strong>groupSearchFilter()</strong> 메서드 : LDAP 기본 쿼리의 필터를 제공하기 위해 사용한다. 사용자와 그룹을 검색할 수 있다.<br/>
 <strong>userSearchBase()</strong> 와 <strong>groupSearchBase()</strong> 메서드 : 사용자와 그룹을 찾기 위한 기준점 쿼리를 지정할 수 있다. - <span class="gray it">루트로부터 검색하지 않고 사용자는 people 구성 단위(OU), 그룹은 groups 구성 단위부터 검색이 시작된다.</span></p>
-<h3 id="사용자-인증-커스터마이징"><strong>사용자 인증 커스터마이징</strong></h3>
+<h3 id="사용자-인증-커스터마이징">사용자 인증 커스터마이징</h3>
 <p>사용자 데이터를 JPA를 통해 처리하기 위해서는 사용자 도메인 객체와 퍼시스턴스를 직접 정의해야 한다.<br/>
 사용자 데이터를 구현하는 User 객체와 user 데이터를 넣는 repository를 만든 다음,  스프링 시큐리티 구성 내부에 UserDetailsService 구현체를 넘겨줘서 구현한다.</p>
 <br/>

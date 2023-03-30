@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -198,7 +198,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/server\/nginx_ssl\/",
-        "wordCount" : "155",
+        "wordCount" : "140",
         "genre" : [ 
       
       "DevOps"
@@ -751,31 +751,31 @@
 </span></span></code></pre></div><p>💡 <span class="red">순서가 어긋나면 인증서 사용 불가!</span></p>
 <h2 id="nginx에-https-적용">Nginx에 HTTPS 적용</h2>
 <p>합쳐진 cert.pem 파일과 비공개 키를 nginx 에 적용하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln"> 1</span><span class="cl">server {
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">       listen 443 ssl default_server;
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">       ssl on // deprecated from Nginx v1.15
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">       server_name example.com
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">       ssl_certificate /directory/to/cert.pem // 병합한 파일
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">       ssl_certificate_key /directory/to/domain.key.pem  // 비공개 키
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">       ssl_protocols TLSv1.1 TLSv1.2;
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">       location / {
-</span></span><span class="line"><span class="ln">10</span><span class="cl">           root /home/ubuntu/web/dist/;
-</span></span><span class="line"><span class="ln">11</span><span class="cl">           index index.html index.htm index.nginx-debian.html;
-</span></span><span class="line"><span class="ln">12</span><span class="cl">           try_files $uri $uri/ /index.html;
-</span></span><span class="line"><span class="ln">13</span><span class="cl">       }
-</span></span><span class="line"><span class="ln">14</span><span class="cl">}
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>server {
+       listen 443 ssl default_server;
+       ssl on // deprecated from Nginx v1.15
+       server_name example.com
+       ssl_certificate /directory/to/cert.pem // 병합한 파일
+       ssl_certificate_key /directory/to/domain.key.pem  // 비공개 키
+       ssl_protocols TLSv1.1 TLSv1.2;
+
+       location / {
+           root /home/ubuntu/web/dist/;
+           index index.html index.htm index.nginx-debian.html;
+           try_files $uri $uri/ /index.html;
+       }
+}
+</code></pre><ul>
 <li><code>ssl_certificate</code> 에는 합쳐진 cert.pem 명시</li>
 <li><code>ssl_certificate_key</code> 에는 비공개 키 명시</li>
 </ul>
 <h2 id="http를-https로-리다이렉션">HTTP를 HTTPS로 리다이렉션</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">server {
-</span></span><span class="line"><span class="ln">2</span><span class="cl">       listen 80;
-</span></span><span class="line"><span class="ln">3</span><span class="cl">       server_name example.com;
-</span></span><span class="line"><span class="ln">4</span><span class="cl">       return 301 HTTPS://$server_name$request_uri;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">}
-</span></span></code></pre></div><p>80포트로 접속 시 301(영구 리다이렉션)하도록 설정한다.</p>
+<pre tabindex="0"><code>server {
+       listen 80;
+       server_name example.com;
+       return 301 HTTPS://$server_name$request_uri;
+}
+</code></pre><p>80포트로 접속 시 301(영구 리다이렉션)하도록 설정한다.</p>
 
 
 <div class="related">

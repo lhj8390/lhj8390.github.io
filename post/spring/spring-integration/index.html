@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-integration\/",
-        "wordCount" : "1827",
+        "wordCount" : "1824",
         "genre" : [ 
       
       "Web"
@@ -836,7 +836,7 @@
 </span></span></code></pre></div><p><strong>GenericTransformer (변환기 역할)</strong> : @Transformer을 통해 textInChannel의 메시지를 받아서 fileWirterChannel로 쓰는 <span class="red">통합 플로우 변환기</span>라는 것을 명시한다.</p>
 <p><strong>FileWritingMessageHandler (파일 아웃바운드 채널 어뎁터 역할)</strong> : @ServiceActivator을 통해 fileWriterChannel로부터 메시지를 받아 FileWritingMessageHandler의 인스턴스로 정의된 서비스에 넘겨 메시지 페이로드를 지정된 디렉터리의 파일에 쓴다.</p>
 <aside>
-💡 채널들을 별도로 선언하지 않았는데, textInChannel과 fileWriterChannel 이름의 빈이 없으면 채널이 <span class="ul">자동으로 생성</span>되기 때문이다.<br/>
+채널들을 별도로 선언하지 않았는데, textInChannel과 fileWriterChannel 이름의 빈이 없으면 채널이 <span class="ul">자동으로 생성</span>되기 때문이다.<br/>
 </aside>
 <br/><br/>
 <p><strong>DSL을 이용한 자바 구성</strong></p>
@@ -896,7 +896,7 @@
 </ul>
 <p><span class="red">자바 구성과 DSL 구성 모두 입력 채널은 자동으로 생성되며, 기본적으로 DirectChannel이 사용된다.</span></p>
 <aside>
-💡 <strong>QueueChannel 사용시 주의사항</strong><br/>
+<strong>QueueChannel 사용시 주의사항</strong><br/>
 컨슈머가 이 채널을 polling(도착 메시지가 있는지 지속적으로 확인)하도록 구성해야 한다.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@ServiceActivator</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;orderChannel&#34;</span><span class="o">,</span> <span class="n">poller</span><span class="o">=</span><span class="nd">@Poller</span><span class="o">(</span><span class="n">fixedRate</span><span class="o">=</span><span class="s">&#34;1000&#34;</span><span class="o">))</span>
 </span></span></code></pre></div><p>orderChannel로부터 1초당 한번씩 메시지가 있는지 확인하는 코드이다.<br/></p>
@@ -997,7 +997,7 @@ numberChannel 채널로부터 Integer 값을 수신하고 toRoman()을 사용하
 </span></span></code></pre></div><p>poChannel 채널로 도착한 주문 메시지는 OrderSplitter로 분할된다.<br/>
 분할된 메시지는 PayloadTypeRouter에 의해 <strong>각 페이로드 타입을 기반으로 서로 다른 채널에 메시지를 전달한다.</strong> BillingInfo 파입의 페이로드는 billingInfoChannel로, List 타입의 페이로드는 lineItemsChannel에 전달된다.</p>
 <aside>
-💡 <strong>List 내부의 객체를 별도로 처리하고 싶은 경우</strong>
+<strong>List 내부의 객체를 별도로 처리하고 싶은 경우</strong>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@Splitter</span><span class="o">(</span><span class="n">inputChannel</span><span class="o">=</span><span class="s">&#34;lineItemsChannel&#34;</span> <span class="n">outputChannel</span><span class="o">=</span><span class="s">&#34;lineItemChannel&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="nf">lineItemSplitter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="n">lineItems</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">return</span> <span class="n">lineItems</span><span class="o">;</span>

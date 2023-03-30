@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -198,7 +198,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/kubernetes\/k8s_service\/",
-        "wordCount" : "668",
+        "wordCount" : "664",
         "genre" : [ 
       
       "DevOps"
@@ -837,7 +837,7 @@
 <p>→ “단일 클러스터 IP로 모든 서비스 포트가 노출된다.”
 <br/><br/></p>
 <aside>
-💡 <strong>주의점</strong>
+<strong>주의점</strong>
 <p>멀티포트 서비스를 만들 때는 각 포트의 이름을 지정해주어야 한다.</p>
 </aside>
 <br/><br/>
@@ -868,7 +868,7 @@ Cluster IP와 유사하지만 서비스의 내부 클러스터IP 뿐만 아니�
 생략 시, 쿠버네티스 컨트롤 플레인은 포트 범위에서 자동 할당해준다 (기본값: 30000-32767)</p>
 <br/>
 <aside>
-💡 <strong>주의점</strong>
+<strong>주의점</strong>
 <p>nodePort를 생략할 경우 서비스 재시작 시 nodePort는 계속 변경된다.</p>
 </aside>
 <br/><br/>
@@ -878,7 +878,7 @@ Cluster IP와 유사하지만 서비스의 내부 클러스터IP 뿐만 아니�
 <p>노드의 특정 IP 192.168.1.1 의 31000 포트에 접근한다면 <span class="bg_y">트래픽이 가장 원활한 곳</span>에 자동으로 연결을 시도한다.<br/>
 해당 트래픽은 서비스의 80포트를 찾고, 컨테이너 내부 80포트를 읽는 구조로 진행된다.</p>
 <aside>
-💡 <strong>주의점</strong>
+<strong>주의점</strong>
 <p>특정 노드에 장애가 발생 시, 클라이언트는 해당 서비스에 액세스할 수 없게 되고 자동으로 다른 노드를 통해 접근이 불가능하다.
 이를 해결하기 위해서는 별도의 로드밸런서가 필요하다.</p>
 </aside>
@@ -937,7 +937,7 @@ Cluster IP와 유사하지만 서비스의 내부 클러스터IP 뿐만 아니�
 a 네임스페이스의 my-service로 라우팅된다. <strong>(my-service.a.svc.cluster.local)</strong></p>
 <p><br/><br/></p>
 <aside>
-💡 <strong>특징</strong>
+<strong>특징</strong>
 <p>서비스를 사용하는 파드에서 <em>실제 서비스 이름과 위치가 숨겨져</em>
 나중에 externalName 속성을 변경하거나 서비스 스펙을 수정하면 다른 서비스를 가리킬 수 있다.</p>
 </aside>

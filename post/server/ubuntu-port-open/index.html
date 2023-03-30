@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -744,11 +744,11 @@
 </ul>
 <h2 id="netcat-사용법">netcat 사용법</h2>
 <p><strong>netcat 설치</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install netcat
-</span></span></code></pre></div><br/>
+<pre tabindex="0"><code>$ sudo apt-get install netcat
+</code></pre><br/>
 <p><strong>netcat 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ nc [-options] &lt;host-ip-adress&gt; &lt;port-number&gt;
-</span></span></code></pre></div><br/>
+<pre tabindex="0"><code>$ nc [-options] &lt;host-ip-adress&gt; &lt;port-number&gt;
+</code></pre><br/>
 <p><strong>주요 option</strong></p>
 <ul>
 <li><strong>z</strong> : 스캐닝에 사용되는 제로 I/O 모드</li>
@@ -757,20 +757,20 @@
 </ul>
 <br/>
 <p><strong>example</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ nc -zvw10 192.168.0.1 22
-</span></span></code></pre></div><p>성공하면 <code>Connection to &lt;ip 주소&gt;&lt;port&gt; succeeded!</code> 가 표시된다.</p>
+<pre tabindex="0"><code>$ nc -zvw10 192.168.0.1 22
+</code></pre><p>성공하면 <code>Connection to &lt;ip 주소&gt;&lt;port&gt; succeeded!</code> 가 표시된다.</p>
 <h2 id="nmap-사용법">nmap 사용법</h2>
 <p><strong>nmap 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ nmap [-options] &lt;IP 또는 hostname&gt; -p &lt;port&gt;
-</span></span></code></pre></div><br/>
+<pre tabindex="0"><code>$ nmap [-options] &lt;IP 또는 hostname&gt; -p &lt;port&gt;
+</code></pre><br/>
 <p><strong>주요 옵션</strong></p>
 <ul>
 <li><strong>-v</strong> : 자세한 정보</li>
 </ul>
 <br/>
 <p><strong>example</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ nmap - v 192.168.0.1 -p 22
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>$ nmap - v 192.168.0.1 -p 22
+</code></pre><ul>
 <li><strong>open</strong> : 스캔된 포트가 listen 상태</li>
 <li><strong>filtered</strong> : 방화벽이나 필터에 막혀 해당 포트의 open, close 여부를 알 수 없을 때</li>
 <li><strong>closed</strong> : 포트스캔을 한 시점에는 listen 상태가 아님</li>
@@ -778,8 +778,8 @@
 </ul>
 <h2 id="telnet-사용법">telnet 사용법</h2>
 <p><strong>telnet 기본 명령어</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">$ telnet &lt;IP 또는 Hostname&gt; &lt;Port&gt;
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>$ telnet &lt;IP 또는 Hostname&gt; &lt;Port&gt;
+</code></pre><ul>
 <li>
 <p><span class="red">telnet: Unable to connect to remote host: Connection refused</span><br/>
 : 방화벽 오픈은 되었으나 listen 상태가 아니다.</p>

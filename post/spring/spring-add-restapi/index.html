@@ -34,8 +34,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
-      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      href="/scss/main.min.dab00b090addce482409e61d4ba58a073693489310c7e534da2e396334213b00.css"
+      integrity="sha256-2rALCQrdzkgkCeYdS6WKBzaTSJMQx&#43;U02i45YzQhOwA="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -199,7 +199,7 @@
 
     ,
         "url" : "https:\/\/lhj8390.github.io\/post\/spring\/spring-add-restapi\/",
-        "wordCount" : "1497",
+        "wordCount" : "1494",
         "genre" : [ 
       
       "Web"
@@ -844,7 +844,7 @@
 </span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>PATCH는 데이터의 일부만 변경하도록 각각의 필드값이 null이 아닌지 확인 후 해당 필드 값만 변경을 시도한다.</p>
 <aside>
-⚠️ 어노테이션은 어떤 종류의 요청을 메서드에서 처리하는지만 나타내기 때문에 일부 데이터를 변경하는 로직을 직접 작성해야 한다.<br/>
+어노테이션은 어떤 종류의 요청을 메서드에서 처리하는지만 나타내기 때문에 일부 데이터를 변경하는 로직을 직접 작성해야 한다.<br/>
 </aside>
 <h3 id="delete-요청-처리">DELETE 요청 처리</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">&#34;/{orderId}&#34;</span><span class="o">)</span>
@@ -950,7 +950,7 @@ List<Taco>를 반환하는 대신 CollectionModel 객체를 반환하는 코드�
 <li><strong>WebMvcLinkBuilder.withRel() :</strong> 해당 URL의 relation name을 지정한다.</li>
 </ul>
 <aside>
-💡 WebMvcLinkBuilder의 slash() 메서드 대신 <strong>methodOn()</strong> 메서드를 사용할 수 있다.
+WebMvcLinkBuilder의 slash() 메서드 대신 <strong>methodOn()</strong> 메서드를 사용할 수 있다.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">WebMvcLinkBuilder</span><span class="o">.</span><span class="na">linkTo</span><span class="o">(</span><span class="n">methodOn</span><span class="o">(</span><span class="n">DesignTacoController</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">recentTacos</span><span class="o">()).</span><span class="na">withRel</span><span class="o">(</span><span class="s">&#34;recents&#34;</span><span class="o">)</span>
 </span></span></code></pre></div><p>method() 메서드를 통해 recentTacos()의 매핑 경로를 알 수 있다.</p>
 </aside>
@@ -1095,7 +1095,7 @@ List<Taco>를 반환하는 대신 CollectionModel 객체를 반환하는 코드�
 </span></span></code></pre></div><p>스프링 데이터 REST의 기본 경로를 request mapping에 적용하기 위해 <span class="red">@RepositoryRestController</span>를 사용하였다.<br/>
 즉 @GetMapping은 /tacos/recent 경로로 매핑되지만 @RepositoryRestController를 통해 recentTacos() 메서드는 /api/tacos/recent의 GET 요청을 처리하게 된다.</p>
 <aside>
-💡 <strong>주의할 점!</strong>
+<strong>주의할 점!</strong>
 <p>@RepositoryRestController는 @RestController와 동일한 기능을 수행하지 않는다.
 따라서 @ResponseBody 어노테이션을 지정하거나 응답 데이터를 포함하는 ResponseEntity를 반환해야 한다.</p>
 </aside>
