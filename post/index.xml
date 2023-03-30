@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Golang - 동시성 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go-concurrency/</link>
+      <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-concurrency/</guid>
+      
+        <description>golang에서 동시성 사용과 함께 고루틴, 채널, 뮤텍스를 사용하는 방법를 설명한다.</description>
+      
+    </item>
+    
+    <item>
       <title>[GoF 디자인 패턴] 책임 연쇄 (Chain of Responsibility) 패턴</title>
       <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-chain-of-responsibility/</link>
       <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>

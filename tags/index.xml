@@ -6,7 +6,29 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://lhj8390.github.io/tags/go/</link>
+      <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/go/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://lhj8390.github.io/tags/golang/</link>
+      <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/golang/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>architectural</title>
       <link>https://lhj8390.github.io/tags/architectural/</link>
@@ -101,28 +123,6 @@
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/decorator/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://lhj8390.github.io/tags/go/</link>
-      <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/go/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://lhj8390.github.io/tags/golang/</link>
-      <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/golang/</guid>
       
         <description></description>
       

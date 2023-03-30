@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Golang - 동시성 사용하기 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang에서 동시성 사용과 함께 고루틴, 채널, 뮤텍스를 사용하는 방법를 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.1d924c930cf66e8aad0158953d87220e3f744842a2fd64e3c00c5adb2a6bdb09.css"
+      integrity="sha256-HZJMkwz2boqtAViVPYciDj90SEKi/WTjwAxa2ypr2wk="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-concurrency/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Golang - 동시성 사용하기"/>
+<meta name="twitter:description" content="golang에서 동시성 사용과 함께 고루틴, 채널, 뮤텍스를 사용하는 방법를 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Golang - 동시성 사용하기" />
+<meta property="og:description" content="golang에서 동시성 사용과 함께 고루틴, 채널, 뮤텍스를 사용하는 방법를 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-concurrency/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-30T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Golang - 동시성 사용하기",
+        "headline": "Golang - 동시성 사용하기",
+        "alternativeHeadline": "",
+        "description": "
+      golang에서 동시성 사용과 함께 고루틴, 채널, 뮤텍스를 사용하는 방법를 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-concurrency\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-03-30T00:00:00.00Z",
+        "datePublished": "2023-03-30T00:00:00.00Z",
+        "dateModified": "2023-03-30T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-concurrency\/",
+        "wordCount" : "2508",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(11)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(9)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(11)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(9)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#동시성">동시성</a>
+      <ul>
+        <li><a href="#동시성-사용-시점">동시성 사용 시점</a></li>
+      </ul>
+    </li>
+    <li><a href="#고루틴">고루틴</a>
+      <ul>
+        <li><a href="#고루틴의-장점">고루틴의 장점</a></li>
+      </ul>
+    </li>
+    <li><a href="#채널">채널</a>
+      <ul>
+        <li><a href="#읽기-쓰기">읽기, 쓰기</a></li>
+        <li><a href="#버퍼링">버퍼링</a></li>
+        <li><a href="#for-range">for-range</a></li>
+        <li><a href="#채널-닫기">채널 닫기</a></li>
+        <li><a href="#채널-동작-방식">채널 동작 방식</a></li>
+      </ul>
+    </li>
+    <li><a href="#select-문">select 문</a></li>
+    <li><a href="#동시성-사례와-패턴">동시성 사례와 패턴</a>
+      <ul>
+        <li><a href="#루프-변수-캡처-문제">루프 변수 캡처 문제</a></li>
+        <li><a href="#고루틴-정리">고루틴 정리</a></li>
+        <li><a href="#done-채널-패턴">Done 채널 패턴</a></li>
+        <li><a href="#고루틴-종료를-위한-취소-함수-사용">고루틴 종료를 위한 취소 함수 사용</a></li>
+        <li><a href="#버퍼-사용-시점">버퍼 사용 시점</a></li>
+        <li><a href="#배압-backpressure">배압 (backpressure)</a></li>
+        <li><a href="#select에서-case-문-해제">select에서 case 문 해제</a></li>
+        <li><a href="#타임아웃-처리">타임아웃 처리</a></li>
+        <li><a href="#waitgroup-사용">WaitGroup 사용</a></li>
+        <li><a href="#한-번만-코드-실행">한 번만 코드 실행</a></li>
+      </ul>
+    </li>
+    <li><a href="#뮤텍스-사용">뮤텍스 사용</a>
+      <ul>
+        <li><a href="#채널-사용-예시">채널 사용 예시</a></li>
+        <li><a href="#뮤텍스-사용-예시">뮤텍스 사용 예시</a></li>
+        <li><a href="#주의사항">주의사항</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Golang - 동시성 사용하기</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                30/3/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 12분</span>
+          </li>
+        </ul>
+
+      <h2 id="동시성">동시성</h2>
+<hr>
+<blockquote>
+<p>동시성은 단일 프로세스를 독립적인 컴포넌트로 분리하고 해당 컴포넌트가 안전하게 데이터를 공유하는 방법을 지정한다. 대부분의 언어는 Lock을 획득하여 공유 데이터에 접근하지만 Go는 CSP(순차적 프로세스 통신)에 기반한다.</p>
+</blockquote>
+<h3 id="동시성-사용-시점">동시성 사용 시점</h3>
+<p>프로그램에서 동시성 사용의 여부는 단계에 따른 데이터 흐름, 문제의 복잡도, 실행 시간 등에 따라 결정된다. 독립적으로 수행할 수 있는 여러 처리로부터 데이터를 결합시키려면 동시성을 사용하는 것이 좋은 방법이다. <span class="red">하지만, 동시성은 불필요한 오버헤드를 발생시키기 때문에, 동시에 실행되는 시간이 매우 짧을 때는 동시성을 사용하는 것은 좋지 않다.</span> 이 경우에는 일반적인 순차적인 처리 방식으로 구현하는 것이 더 효율적일 수 있다.</p>
+<p>보통 동시성은 I/O 작업을 위해 사용된다. 디스크나 네트워크로부터 읽거나 쓰기는 인메모리 처리보다 천 배정도 느리기 때문이다.</p>
+<h2 id="고루틴">고루틴</h2>
+<hr>
+<blockquote>
+<p>고루틴은 Go 런타임에서 관리하는 가벼운 <strong>프로세스</strong>로 Go 동시성 모델의 핵심 개념이다.</p>
+</blockquote>
+<p>Go 런타임은 여러 스레드를 생성하고 프로그램을 실행하기 위해 단일 고루틴을 시작한다. Go 런타임 스케줄러는 해당 고루틴을 실행하기 위해 적절한 스레드를 할당하며, 고루틴이 종료될 때는 해당 스레드를 반환한다.</p>
+<h3 id="고루틴의-장점">고루틴의 장점</h3>
+<ol>
+<li>운영체제 자원을 생성하지 않기 때문에 스레드 생성보다 생성 속도가 빠르다.</li>
+<li>고루틴은 메모리를 더 효율적으로 사용할 수 있다.</li>
+<li>고루틴 간의 전환은 프로세스 내부에서만 일어나기 때문에 스레드 사이의 전환보다 빠르다.</li>
+<li>스케줄러는 Go 프로세스 일부이기 때문에 스케줄링 결정을 최적화할 수 있다.</li>
+</ol>
+<h2 id="채널">채널</h2>
+<hr>
+<blockquote>
+<p>고루틴은 채널을 통해 통신한다. make 함수를 사용하여 생성할 수 있는 내장 타입이다.</p>
+</blockquote>
+<p>채널을 생성하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span></code></pre></div><p>참조 타입이기 때문에 채널을 함수로 전달하면 실제로 채널에 대한 포인터를 전달한다. 제로 값은 nil 이다.</p>
+<h3 id="읽기-쓰기">읽기, 쓰기</h3>
+<p><code>&lt;-</code> 연산자를 사용하여 채널과 상호작용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span>  <span class="c1">// ch 에서 값을 읽는다.
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">b</span>     <span class="c1">// ch 에 b의 값을 쓴다.
+</span></span></span></code></pre></div><p>채널 변수 왼쪽에 <code>&lt;-</code> 연산자를 두면 <span class="orange"><em>채널로부터 데이터를 읽고</em></span> 채널 변수 오른쪽에 <code>&lt;-</code> 연산자를 두면 <span class="orange"><em>채널에 데이터를 쓸 수 있다.</em></span></p>
+<aside>
+💡 <span class="red">하나의 고루틴으로 같은 채널을 읽고 쓰는 것은 불가능하다.</span> 읽기 전용이라는 것을 나타내기 위해 chan 키워드 앞에 `<-` 연산자를 (<span class="gray">ch ←chan int</span>), 쓰기 전용이라는 것을 나타내기 위해 chan 키워드 뒤에 `<-` 연산자를 (<span class="gray">ch chan← int</span>) 사용한다.<br/>
+</aside>
+<h3 id="버퍼링">버퍼링</h3>
+<p>기본적으로 채널은 <span class="red">버퍼가 없다</span>. 버퍼가 없는 채널에서는 데이터를 보내는 고루틴과 데이터를 받는 고루틴이 동시에 실행되지 않고, 보내는 고루틴이 데이터를 보낸 후에는 받는 고루틴이 데이터를 가져갈 때까지 대기한다.</p>
+<p>버퍼가 있는 채널은 블로킹(<span class="gray">작업이 완료될 때까지 대기</span>) 없이 제한된 쓰기의 버퍼를 가진다. 버퍼가 다 채워지면, 채널이 읽어질 때까지 쓰기 고루틴은 일시 중지된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></div><p>버퍼가 있는 채널을 생성하는 예시이다. 버퍼의 수용력을 지정하여 만들 수 있다.</p>
+<h3 id="for-range">for-range</h3>
+<p>for-range 루프를 사용하여 채널의 값을 읽을 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>채널이 닫힐 때까지나 break, return 문에 도달할 때까지 루프는 지속된다.</p>
+<h3 id="채널-닫기">채널 닫기</h3>
+<p>채널에 쓰기를 완료했을 때 close 내장 함수를 이용하여 채널을 닫을 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span>  <span class="c1">// 채널에서 값을 읽을 때 ok로 채널의 닫힘 유무 확인 가능
+</span></span></span></code></pre></div><p>닫힌 채널에 쓰기를 시도하거나 다시 닫으려 하면 패닉이 발생하지만, <span class="red">읽기를 시도하는 것은 가능하다.</span> 채널이 버퍼가 없거나 버퍼가 있는 채널에 값이 없다면 제로 값을 반환한다. 채널에서 값을 읽을 때는 채널이 닫혀있는지 여부를 확인하는 것이 좋다.</p>
+<h3 id="채널-동작-방식">채널 동작 방식</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>버퍼 X, 열림</th>
+<th>버퍼 X, 닫힘</th>
+<th>버퍼 O, 열림</th>
+<th>버퍼 O, 닫힘</th>
+<th>Nil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>읽기</td>
+<td>써질 때까지 일시중지</td>
+<td>제로 값 반환</td>
+<td>버퍼가 빌 때까지 <br/>일시중지</td>
+<td>버퍼에 남은 값을 반환하고 <br/> 비어 있으면 제로 값 반환</td>
+<td>무한정 대기</td>
+</tr>
+<tr>
+<td>쓰기</td>
+<td>읽을 때까지 일시중지</td>
+<td>패닉</td>
+<td>버퍼가 가득 찰 때까지  <br/>일시중지</td>
+<td>패닉</td>
+<td>무한정 대기</td>
+</tr>
+<tr>
+<td>닫기</td>
+<td>동작</td>
+<td>패닉</td>
+<td>동작</td>
+<td>패닉</td>
+<td>패닉</td>
+</tr>
+</tbody>
+</table>
+<h2 id="select-문">select 문</h2>
+<hr>
+<blockquote>
+<p>여러 채널 작업을 모니터링하고, 그 중에서 준비된 작업을 수행하는 방법을 제공하는 제어 구문이다.</p>
+</blockquote>
+<p>select 문을 사용하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">case</span> <span class="nx">v</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="k">case</span> <span class="nx">v</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="k">case</span> <span class="nx">ch3</span> <span class="o">&lt;-</span> <span class="nx">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;wrote&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch4</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;got value on ch4, but ignored it&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>select 문의 각 case는 채널에 읽기나 쓰기를 수행하는데, 읽기나 쓰기가 가능한 case에서 블록이 실행된다. select 문 내에서 여러 채널이 읽거나 쓸 수 있다면 <span class="red">순서와 상관없이 여러 case 중 하나를 임의로 선택한다.</span></p>
+<br/>
+<p>select 문의 장점은 교착상태를 방지할 수 있다는 것에 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">v</span> <span class="o">:=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">ch1</span> <span class="o">&lt;-</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">v2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nx">v</span> <span class="o">:=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="kd">var</span> <span class="nx">v2</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="k">case</span> <span class="nx">ch2</span> <span class="o">&lt;-</span> <span class="nx">v</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="k">case</span> <span class="nx">v2</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>select 구문은 여러 채널에서 대기하다가 준비된 작업이 있으면 해당 작업을 처리하므로, 교착 상태를 방지할 수 있다.</p>
+<h2 id="동시성-사례와-패턴">동시성 사례와 패턴</h2>
+<hr>
+<blockquote>
+<p>동시성은 Go 언어의 강력한 기능 중 하나이며, 이를 올바르게 활용함으로써 효율적인 프로그램을 작성할 수 있다.동시성을 적용한 프로그램을 작성할 때 자주 사용되는 Go의 동시성 패턴과 사례를 설명한다.</p>
+</blockquote>
+<h3 id="루프-변수-캡처-문제">루프 변수 캡처 문제</h3>
+<p>고루틴을 사용할 때 for 루프의 값이나 인덱스를 캡처하면 예상치 못한 오류가 발생할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">a</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// 6
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">// 6
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">// 6
+</span></span></span></code></pre></div><p>고루틴이 시작할 때 이미 v의 값이 6으로 변경되어 있기 때문에 이런 결과가 출력된다. for 루프뿐만 아니라 값이 바뀔 수 있는 변수에 의존하고 있는 고루틴이라면 이런 오류가 생길 수 있다.</p>
+<br/>
+<p>이 문제를 해결하려면 1) <span class="ul">루프 내에 값을 섀도잉하거나</span> 2) <span class="ul">파라미터로 값을 넘겨줘야 한다.</span></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// 값 섀도잉
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">v</span> <span class="o">:=</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1">// 파라미터로 값 전달
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">}(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="고루틴-정리">고루틴 정리</h3>
+<p>고루틴이 종료되지 않는다면 스케줄러는 해당 고루틴에게 주기적으로 시간을 할당하므로 프로그램이 느려질 수 있다. (<span class="gray"><em>고루틴 leak</em></span>) 일반적으로 값들의 모두를 사용하는 경우 고루틴은 종료한다.</p>
+<p>다음은 일반적으로 고루틴이 종료되는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">countTo</span><span class="p">(</span><span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">return</span> <span class="nx">ch</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nf">countTo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>for-range 문에서 모든 값들을 순회하여 고루틴을 사용하기 때문에 순회가 끝난 후 고루틴은 정상 종료된다.</p>
+<br/>
+<p>메모리 누수가 발생하는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">countTo</span><span class="p">(</span><span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">return</span> <span class="nx">ch</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nf">countTo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="k">break</span>  <span class="c1">// 루프를 빠르게 종료
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>루프를 빠르게 종료하여 고루틴은 채널에서 값을 읽기 위해 영원히 기다리게 된다.</p>
+<h3 id="done-채널-패턴">Done 채널 패턴</h3>
+<p>Done 채널 패턴은 처리를 종료해야 하는 시점을 고루틴에게 알려준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">searchData</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">searchers</span> <span class="p">[]</span><span class="kd">func</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">searcher</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">searchers</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">searcher</span> <span class="kd">func</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">      <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="k">case</span> <span class="nx">result</span> <span class="o">&lt;-</span> <span class="nf">searcher</span><span class="p">(</span><span class="nx">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">      <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">}(</span><span class="nx">searcher</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nx">r</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">result</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="k">return</span> <span class="nx">r</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>여기서 done 채널은 searchData 함수를 호출한 측에서 함수의 실행을 강제로 종료시키기 위한 용도로 사용된다.</p>
+<p>해당 코드는 다음과 같이 작동한다.</p>
+<ol>
+<li>고루틴은 searcher 함수를 실행하고 검색 결과를 result 채널에 보내거나 done 채널이 닫힐 때까지 기다린다.</li>
+<li>가장 먼저 결과를 반환한 searcher 함수의 검색결과를 r 변수에 저장한다.</li>
+<li>모든 고루틴이 종료되도록 done 채널을 닫는다. (<span class="gray"><em>select 문에서 &lt;-done을 수신하고 모든 고루틴은 종료된다</em></span>)</li>
+<li>검색 결과를 슬라이스(r)로 반환한다.</li>
+</ol>
+<p><span class="red">여러 검색 함수(searchers) 를 동시에 실행하고 가장 먼저 결과를 반환한 검색 함수(searcher) 의 결과만 반환</span>한다. 이를 통해 검색 속도를 높일 수 있다.</p>
+<h3 id="고루틴-종료를-위한-취소-함수-사용">고루틴 종료를 위한 취소 함수 사용</h3>
+<p>done 패턴을 사용하여 취소 함수를 함께 반환하는 패턴을 구현할 수도 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">countTo</span><span class="p">(</span><span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="kd">func</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">cancel</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">      <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nb">close</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="k">return</span> <span class="nx">ch</span><span class="p">,</span> <span class="nx">cancel</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="nx">ch</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nf">countTo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">      <span class="k">break</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="nf">cancel</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>countTo 함수의 두 개의 채널은 1) <span class="ul">데이터를 반환</span>하고, 2) <span class="ul">종료 시그널을 보낸다.</span> done 채널을 직접 반환하는 것보다 done 채널을 닫는 클로저를 생성하여 대신 반환하는 것이 더 낫다.</p>
+<h3 id="버퍼-사용-시점">버퍼 사용 시점</h3>
+<p>버퍼가 있는 채널은 얼마나 많은 고루틴이 실행될 지를 알고 있을 때, <span class="red">실행시킬 고루틴의 개수를 제한하거나 대기 중인 작업의 양을 제한하려는 경우</span>에 유용하다. 시스템에서 대기중인 작업의 양을 관리하여 서비스가 뒤처지거나 과부하가 걸리는 것을 방지한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">processChannel</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="kd">const</span> <span class="nx">conc</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">results</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">conc</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">      <span class="nx">results</span> <span class="o">&lt;-</span> <span class="nf">process</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="kd">var</span> <span class="nx">out</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">conc</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="nx">out</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">out</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">results</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">return</span> <span class="nx">out</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>정확히 몇 개의 고루틴이 실행되어야 하는지 알고 있고 각 고루틴은 작업이 끝나는 대로 종료된다. 값을 채널에 보낼 때마다 버퍼가 차지 않았다면 송신자는 계속해서 값을 보낼 수 있지만, 버퍼가 가득 찼다면 송신자는 채널이 값을 수신할 때까지 블록된다. 따라서, 채널에 대한 송수신 작업이 서로 다른 속도로 발생하는 경우에도 송신자가 계속해서 값을 보낼 수 있다.</p>
+<h3 id="배압-backpressure">배압 (backpressure)</h3>
+<p>버퍼가 있는 채널과 구현될 수 있는 다른 기술은 <strong>배압</strong>이다. 버퍼가 있는 채널을 사용하고 select문으로 시스템에 동시에 들어오는 요청 수를 제한할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">PressureGauge</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">ch</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">limit</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">PressureGauge</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">limit</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">limit</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">return</span> <span class="o">&amp;</span><span class="nx">PressureGauge</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="nx">ch</span><span class="p">:</span> <span class="nx">ch</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">pg</span> <span class="o">*</span><span class="nx">PressureGauge</span><span class="p">)</span> <span class="nf">Process</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">())</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">pg</span><span class="p">.</span><span class="nx">ch</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="nf">f</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="nx">pg</span><span class="p">.</span><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;no more capacity&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="nx">pg</span> <span class="o">:=</span> <span class="nf">New</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/request&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">pg</span><span class="p">.</span><span class="nf">Process</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">      <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;done&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">      <span class="nx">w</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusTooManyRequests</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">      <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;Too many request&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>고루틴은 Process 함수를 사용하길 원하고 select는 채널로부터 토큰을 읽으려고 한다. 토큰을 읽는다면 함수를 실행하고 토큰이 반환된다. 토큰을 읽을 수 없으면 토큰 대신 오류를 반환한다.</p>
+<h3 id="select에서-case-문-해제">select에서 case 문 해제</h3>
+<p>select case 중 하나가 닫힌 채널을 읽는다면 항상 성공하고 제로 값을 반환한다. 따라서 값이 유효한지 검사를 해야하고 case를 건너뛰어야 한다. select에서 case를 비활성화하기 위해서는 nil 채널을 활용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">case</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">in</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">      <span class="nx">in</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">// 해당 case는 더 이상 성공할 수 없음
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"></span>      <span class="k">continue</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">case</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">in2</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="nx">in2</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">// 해당 case는 더 이상 성공할 수 없음
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span>      <span class="k">continue</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>채널이 닫혔다는 것을 감지했을 때 채널 변수를 nil로 설정한다. 연관된 case 문은 nil 채널에서 값을 반환하지 않기 때문에 더 이상 실행되지 않는다.</p>
+<h3 id="타임아웃-처리">타임아웃 처리</h3>
+<p>동시성 처리를 통해 하나의 요청을 수행하는 시간을 관리할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">timeLimit</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="kd">var</span> <span class="nx">result</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nf">doSomeWork</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">return</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;work timed out&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>result와 err에 값을 할당하고 done 채널을 닫기 위해 클로저를 고루틴으로 사용했다. done 채널이 닫히면, done 채널로부터 값을 성공적으로 읽게 된다. doSomeWork 함수가 끝나기 전에 <code>time.After(2 * time.Second)</code> case 값이 읽힌다면 timeLimit은 타임 오류를 반환한다.</p>
+<h3 id="waitgroup-사용">WaitGroup 사용</h3>
+<p>단일 고루틴을 기다리려면 done 채널 패턴을 사용하지만 몇몇 고루틴을 기다려야 한다면 표준 라이브러리 sync 패키지의 <strong>WaitGroup</strong>을 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">processAndGather</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">processor</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">num</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">out</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="c1">// 고루틴의 수를 미리 알림
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span>  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">num</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> <span class="c1">// 고루틴이 패닉에 빠지더라도 호출되는 것을 보장하기 위해 defer를 사용
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span>      <span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="nx">out</span> <span class="o">&lt;-</span> <span class="nf">processor</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>  <span class="c1">// 모든 고루틴이 완료될 때까지 대기
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"></span>    <span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="kd">var</span> <span class="nx">result</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">out</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="nx">result</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>여러 고루틴이 같은 채널에 쓰기를 하는 경우 쓰기를 위한 채널은 단 한번만 닫혀지는 것을 보장해야 한다. 이를 위한 해결책이 WaitGroup이다.</p>
+<p>WaitGroup이 제공하는 메서드는 다음과 같다.</p>
+<ul>
+<li>Add : 대기할 고루틴의 카운터 증가</li>
+<li>Done : 완료 시점에 고루틴에 의해 호출되어 카운터 감소</li>
+<li>Wait : 카운터가 0이 될 때까지 고루틴 일시중지</li>
+</ul>
+<aside>
+💡 WaitGroup은 사용하기 쉽지만 고루틴을 설계할 때 무조건 사용해서는 안된다. 작업 고루틴이 종료하고 나서 정리할 필요가 있을 경우에만 사용하는 것이 좋다.<br/>
+</aside>
+<h3 id="한-번만-코드-실행">한 번만 코드 실행</h3>
+<p>지연 로딩을 하거나 초기화 코드를 정확히 한 번만 호출하고 싶을 경우 sync 패키지의 Once 타입을 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">SlowComplicatedParser</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nf">Parse</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kd">var</span> <span class="nx">parser</span> <span class="nx">SlowComplicatedParser</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="kd">var</span> <span class="nx">once</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="kd">func</span> <span class="nf">Parse</span><span class="p">(</span><span class="nx">dataToParse</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nx">once</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="nx">parser</span> <span class="p">=</span> <span class="nf">initParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">return</span> <span class="nx">parser</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">dataToParse</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="kd">func</span> <span class="nf">initParser</span><span class="p">()</span> <span class="nx">SlowComplicatedParser</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="c1">// 설정 또는 로딩 수행
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>WaitGroup과 같이 sync.Once의 인스턴스를 설정할 필요는 없다. 예제에서는 once의 Do 메서드로 전달된 클로저 내부에서 parser 값을 설정했다. Parse가 한 번 이상 호출된다면 once.Do는 클로저를 다시 실행하지 않는다.</p>
+<h2 id="뮤텍스-사용">뮤텍스 사용</h2>
+<hr>
+<blockquote>
+<p>뮤텍스는 공유된 데이터의 접근이나 어떤 코드의 동시 실행을 제한한다. 뮤텍스를 사용하는 일반적인 경우는 고루틴이 공유된 값을 읽거나 쓰는 경우이지만 값을 처리하지는 않는다.</p>
+</blockquote>
+<h3 id="채널-사용-예시">채널 사용 예시</h3>
+<p>채널을 사용하여 공유된 값을 읽거나 쓰는 예시이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">scoreboardManager</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">func</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">),</span> <span class="nx">done</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">scoreboard</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">      <span class="k">return</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="k">case</span> <span class="nx">f</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">in</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">      <span class="nf">f</span><span class="p">(</span><span class="nx">scoreboard</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>하나의 채널로 맵을 읽거나 수정하는 함수를 기다리고 두번째 채널에서 종료 시점을 알린다.</p>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">ChannelScoreboardManager</span> <span class="kd">chan</span> <span class="kd">func</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">func</span> <span class="nf">NewChannelScoreboardManager</span><span class="p">()</span> <span class="p">(</span><span class="nx">ChannelScoreboardManager</span><span class="p">,</span> <span class="kd">func</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">ChannelScoreboardManager</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="k">go</span> <span class="nf">scoreboardManager</span><span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">return</span> <span class="nx">ch</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">csm</span> <span class="nx">ChannelScoreboardManager</span><span class="p">)</span> <span class="nf">Update</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nx">csm</span> <span class="o">&lt;-</span> <span class="kd">func</span><span class="p">(</span><span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="nx">m</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">val</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>업데이트 메서드는 굉장히 직관적이지만 값을 읽기 위해서는 scoreboardManager에 전달되는 함수를 기다리는 done 패턴을 사용해야 한다.<br/>
+해당 코드는 번거롭고 한 번에 하나의 읽기만 허용된다는 단점이 있다. 이를 개선하기 위해서는 뮤텍스를 사용한다.</p>
+<h3 id="뮤텍스-사용-예시">뮤텍스 사용 예시</h3>
+<p>sync 패키지에는 두 개의 뮤텍스 구현(<span class="gray">Mutex, RWMutex</span>)이 있다.</p>
+<ul>
+<li>Mutex : Lock과 Unlock 메서드 존재</li>
+<li>RWMutex : 읽기 잠금(RLock, RUnlock), 쓰기 잠금(Lock, Unlock) 존재</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">MutexScoreboardManager</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">l</span>          <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	<span class="nx">scoreboard</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="kd">func</span> <span class="nf">NewMutexScoreboardManager</span><span class="p">()</span> <span class="o">*</span><span class="nx">MutexScoreboardManager</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">MutexScoreboardManager</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		<span class="nx">scoreboard</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{},</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">msm</span> <span class="o">*</span><span class="nx">MutexScoreboardManager</span><span class="p">)</span> <span class="nf">Update</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">val</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="nx">msm</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="k">defer</span> <span class="nx">msm</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	<span class="nx">msm</span><span class="p">.</span><span class="nx">scoreboard</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">val</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">msm</span> <span class="o">*</span><span class="nx">MutexScoreboardManager</span><span class="p">)</span> <span class="nf">Read</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="nx">msm</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">RLock</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="k">defer</span> <span class="nx">msm</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">RUnlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	<span class="nx">val</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">msm</span><span class="p">.</span><span class="nx">scoreboard</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">	<span class="k">return</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">ok</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>뮤텍스 잠금을 획득하고자 할 때, 잠금이 해제되었는지 확인해야 한다. Lock과 RLock이 호출된 후에 즉시 Unlock 호출을 위해 defer문을 사용하였다.</p>
+<h3 id="주의사항">주의사항</h3>
+<p>채널 또는 뮤텍스는 다음과 같은 경우에 사용하는 것이 좋다.</p>
+<ul>
+<li>고루틴을 조정하거나 고루틴에 의해 변경되는 값을 추적할 경우에는 <strong>채널</strong></li>
+<li>구조체에 항목을 공유하여 접근하는 경우에는 <strong>뮤텍스</strong></li>
+<li>채널을 사용할 때 성능의 문제가 있고 이슈가 고쳐지지 않을 경우에는 <strong>뮤텍스</strong></li>
+</ul>
+<p>데이터가 HTTP 서버나 데이터베이스 같은 외부 서비스에 저장되어 있다면 뮤텍스를 사용하지 않는 것이 좋다. 또한 잠금과 잠금 해제의 쌍을 올바르게 유지하지 않으면 프로그램이 교착 상태에 빠질 수 있으니 주의해야 한다.</p>
+<p><br/><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-error/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 오류 처리하기</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-interface/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 인터페이스 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
