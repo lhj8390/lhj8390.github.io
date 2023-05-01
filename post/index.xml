@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[GoF 디자인 패턴] 적응자(Adapter) 패턴</title>
+      <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-adapter/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/architectural/gof-design-pattern-adapter/</guid>
+      
+        <description>GoF 디자인 패턴 중 적응자(Adapter) 패턴에 대해 설명하고 적용해본다.</description>
+      
+    </item>
+    
+    <item>
       <title>[GoF 디자인 패턴] 명령 (Command) 패턴</title>
       <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-command/</link>
       <pubDate>Mon, 03 Apr 2023 00:00:00 +0000</pubDate>
