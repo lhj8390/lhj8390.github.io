@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>channel on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/channel/</link>
+    <description>Recent content in channel on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/channel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang - 채널 버퍼링</title>
+      <link>https://lhj8390.github.io/post/go/go-channel-buffering/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-channel-buffering/</guid>
+      
+        <description>golang에서 unbuffered channel, buffer channel 개념과 차이점을 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
