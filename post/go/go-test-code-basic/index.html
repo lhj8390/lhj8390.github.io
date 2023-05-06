@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Golang - 테스트 작성하기 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang에서 테스트 코드를 작성하는 기초에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.db95cdf2d5dea4c9618e9bac56243a3120000dfe83cf60503eb5cc563428b5d7.css"
+      integrity="sha256-25XN8tXepMlhjpusViQ6MSAADf6Dz2BQPrXMVjQotdc="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-test-code-basic/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Golang - 테스트 작성하기"/>
+<meta name="twitter:description" content="golang에서 테스트 코드를 작성하는 기초에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Golang - 테스트 작성하기" />
+<meta property="og:description" content="golang에서 테스트 코드를 작성하는 기초에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-test-code-basic/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-05-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-06T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Golang - 테스트 작성하기",
+        "headline": "Golang - 테스트 작성하기",
+        "alternativeHeadline": "",
+        "description": "
+      golang에서 테스트 코드를 작성하는 기초에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-test-code-basic\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-05-06T00:00:00.00Z",
+        "datePublished": "2023-05-06T00:00:00.00Z",
+        "dateModified": "2023-05-06T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-test-code-basic\/",
+        "wordCount" : "1473",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(14)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(11)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(14)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(11)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#go의-테스팅">Go의 테스팅</a>
+      <ul>
+        <li><a href="#기본-테스트-예제">기본 테스트 예제</a></li>
+        <li><a href="#테스트-실패-보고">테스트 실패 보고</a></li>
+        <li><a href="#설정-및-해제">설정 및 해제</a></li>
+      </ul>
+    </li>
+    <li><a href="#테이블-테스트">테이블 테스트</a>
+      <ul>
+        <li><a href="#사용-예시">사용 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#코드-커버리지-확인">코드 커버리지 확인</a></li>
+    <li><a href="#벤치마크">벤치마크</a></li>
+    <li><a href="#스텁">스텁</a></li>
+    <li><a href="#httptest">httptest</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Golang - 테스트 작성하기</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                6/5/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 7분</span>
+          </li>
+        </ul>
+
+      <h2 id="go의-테스팅">Go의 테스팅</h2>
+<hr>
+<blockquote>
+<p>Go의 표준 라이브러리인 testing 패키지는 테스트를 위한 타입과 함수를 제공하고 go test 도구는 테스트를 실행하고 보고서를 만든다. 다른 언어들과는 다르게 프로덕션 코드와 같은 디렉터리와 패키지에 배치된다.</p>
+</blockquote>
+<h3 id="기본-테스트-예제">기본 테스트 예제</h3>
+<p>간단한 함수를 테스트하는 예제이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">addNumber</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><br/>
+<p>이에 대응되는 테스트 코드는 adder/adder_test.go에 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">Test_addNumbers</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nx">result</span> <span class="o">:=</span> <span class="nf">addNumber</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">if</span> <span class="nx">result</span> <span class="o">!=</span> <span class="mi">5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="nx">t</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;incorrect result: expected 5, got&#34;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>모든 테스트는 이름이 <code>_test.go</code> 로 끝나는 파일에 작성된다. foo.go라는 파일의 테스트를 작성하려면 foo_test.go 이름의 파일에 작성해야 한다.<br/>
+테스트 함수는 Test라는 단어로 시작하고 단일 파라미터로 *test.T 타입을 받는다. <code>go build</code> 후 현재 디렉터리의 테스트를 실행하려면 <code>go test</code> 명령어를 사용한다.</p>
+<br/>
+<h3 id="테스트-실패-보고">테스트 실패 보고</h3>
+<p>테스트 실패 메시지를 생성하기 위해 Printf 스타일 포멧을 선호한다면 Errorf 메서드를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;incorrect result: expected %d, got %s&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span></code></pre></div><p>여러 개의 독립적인 항목을 한 번에 테스팅할 경우 Error/Errorf 를 사용한다.</p>
+<br/>
+<p>실패가 발견되는 대로 <span class="red">진행을 멈춰야 한다면</span> Fatal과 fatalf 메서드를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="s">&#34;Test failed.&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>실패 확인 후에도 계속 실패하거나 테스트가 패닉을 유발한다면 Fatal/Fatalf 를 사용한다.</p>
+<br/>
+<h3 id="설정-및-해제">설정 및 해제</h3>
+<p>테스트 실행 전 초기화 및 테스트 실행 후 정리 작업을 수행하려면 TestMain 함수를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">testTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">func</span> <span class="nf">TestMain</span><span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">M</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Set up stuff&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="nx">testTime</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="nx">exitVal</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span>  <span class="c1">// 테스트 함수 수행
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;clean up stuff&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="nx">exitVal</span><span class="p">)</span> <span class="c1">// Run()에서 반환된 종료 코드와 함께 반드시 호출해야 한다.
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kd">func</span> <span class="nf">TestFirst</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;TestFirst uses stuff&#34;</span><span class="p">,</span> <span class="nx">testTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="kd">func</span> <span class="nf">TestSecond</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;TestSecond uses stuff&#34;</span><span class="p">,</span> <span class="nx">testTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>TestMain은 개별 테스트 이전과 이후에 호출되는 것이 아니라 한 번만 실행된다. 또한 패키지 별로 단 하나만 가질 수 있다. TestMain은 보통 데이터베이스와 같은 데이터 설정이 필요한 경우, 패키지 레벨 변수에 의존적인 코드가 테스트될 때 주로 사용한다.</p>
+<br/>
+<p>*testing.T의 Cleanup 메서드는 단일 테스트를 위해 생성된 임시 자원을 정리하기 위해 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">createFile</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;tempFile&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">		<span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nf">Cleanup</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nf">Name</span><span class="p">())</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	<span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="kd">func</span> <span class="nf">TestFileProcessing</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="nx">fName</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">createFile</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	<span class="c1">// 테스트 수행. 
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>테스트가 완료되면 수행된다. 해당 예제와 같이 <span class="red">샘플 데이터를 설정하기 위한 헬퍼 함수에 의존적일 때</span> 유용하게 사용할 수 있다. Cleanup은 여러 번 호출되어도 괜찮고 defer와 같이 마지막에 추가된 것이 처음 호출된다.</p>
+<h2 id="테이블-테스트">테이블 테스트</h2>
+<hr>
+<blockquote>
+<p>여러 개의 입력 값을 묶어서 테스트하는 방식이다. 코드의 커버리지를 높이고 중복을 줄일 수 있다.</p>
+</blockquote>
+<h3 id="사용-예시">사용 예시</h3>
+<p>먼저 익명 구조체의 슬라이스를 선언한다. 슬라이스의 각 항목은 서로 다른 테스트를 나타낸다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">		<span class="nx">name</span>     <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">		<span class="nx">num1</span>     <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">		<span class="nx">num2</span>     <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">		<span class="nx">op</span>       <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">		<span class="nx">expected</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">		<span class="nx">errMsg</span>   <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">}{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">		<span class="p">{</span><span class="s">&#34;addition&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">		<span class="p">{</span><span class="s">&#34;subtraction&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">		<span class="p">{</span><span class="s">&#34;multiplication&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#34;*&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">		<span class="p">{</span><span class="s">&#34;division&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">		<span class="p">{</span><span class="s">&#34;bad_division&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">`division by zero`</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">DoMath</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">num2</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">op</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="k">if</span> <span class="nx">result</span> <span class="o">!=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">expected</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">      <span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;Expected %d, got %d&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">expected</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="kd">var</span> <span class="nx">errMsg</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">      <span class="nx">errMsg</span> <span class="p">=</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="k">if</span> <span class="nx">errMsg</span> <span class="o">!=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">errMsg</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">      <span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;Expected error message `%s`, got `%s`&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">errMsg</span><span class="p">,</span> <span class="nx">errMsg</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>data 내에 테스트 케이스를 순회하여 매번 Run 메서드를 호출한다. 함수 내부에서는 data의 항목들을 사용하고 동일한 로직을 반복적으로 사용하여 DoMath를 호출한다.</p>
+<h2 id="코드-커버리지-확인">코드 커버리지 확인</h2>
+<hr>
+<blockquote>
+<p>코드 커버리지는 테스트 코드 중 어떤 경우를 놓쳤는지를 알 수 있도록 해주는 도구이다. 100% 코드 커버리지에 도달했다고 하더라도 코드에 버그가 없다는 것을 보장하지는 않는다.</p>
+</blockquote>
+<p>go test 명령어에 -cover 플래그를 붙여 커버리지 정보를 계산할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">go</span> <span class="nx">test</span> <span class="o">-</span><span class="nx">v</span> <span class="o">-</span><span class="nx">cover</span> <span class="o">-</span><span class="nx">coverprofile</span><span class="p">=</span><span class="nx">c</span><span class="p">.</span><span class="nx">out</span>
+</span></span></code></pre></div><p>-coverprofile 플래그를 포함하면 파일에 커버리지 정보를 저장할 수 있다.</p>
+<br/>
+<p>cover 도구를 사용하여 커버리지 분석 결과를 HTML 포맷으로 출력할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">go</span> <span class="nx">tool</span> <span class="nx">cover</span> <span class="o">-</span><span class="nx">html</span><span class="p">=</span><span class="nx">c</span><span class="p">.</span><span class="nx">out</span>
+</span></span></code></pre></div><p>이 명령어를 실행하면 웹 브라우저가 열리고 테스트 된 코드 라인과 테스트 되지 않은 코드 라인을 한눈에 파악할 수 있다.</p>
+<h2 id="벤치마크">벤치마크</h2>
+<hr>
+<blockquote>
+<p>코드의 성능이나 코드 처리 시간 등을 파악하려면 테스팅 프레임워크에 내장된 벤치마크를 사용할 수 있다. 벤치마크를 작성하여 함수 또는 코드 조각의 처리 시간, 메모리 사용량 등을 측정할 수 있다.</p>
+</blockquote>
+<p>Go에서 벤치마크는 Benchmark라는 단어로 시작하고 타입 *testing.B의 단일 파라미터를 받는다. *testing.B 타입은 *testing.T의 기능 모두와 벤치마크를 위한 추가적인 기능을 제공한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">blackhole</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">func</span> <span class="nf">BenchmarkFileLen1</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">		<span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">FileLen</span><span class="p">(</span><span class="s">&#34;testdata/data.txt&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">			<span class="nx">b</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">		<span class="nx">blackhole</span> <span class="p">=</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>모든 Go 벤치마크 함수는 0에서 b.N만큼 순회하여 루프를 수행한다. 예시에서 blackhole 변수를 패키지 레벨에 작성하였는데, 이는 컴파일러가 코드를 최적화하여 벤치마크를 망치는 상황을 방지한다.</p>
+<br/>
+<p>벤치마크를 실행하는 명령어이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">go</span> <span class="nx">test</span> <span class="o">-</span><span class="nx">bench</span><span class="p">=.</span>
+</span></span></code></pre></div><h2 id="스텁">스텁</h2>
+<hr>
+<blockquote>
+<p>테스트하려는 코드가 다른 코드와 의존적일 경우 스텁이라는 실제 기능을 대체하는 가짜 함수를 만들 수 있다. 실제 함수와 같은 인터페이스를 가지며 미리 정해진 결과를 반환한다.</p>
+</blockquote>
+<p>테스트를 하려는 ProcessExpression 메서드를 정의했다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">Processor</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">Solver</span> <span class="nx">MathSolver</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kd">type</span> <span class="nx">MathSolver</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="nf">Resolve</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">expression</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">Processor</span><span class="p">)</span> <span class="nf">ProcessExpression</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">r</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	<span class="nx">curExpression</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">readToNewLine</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">curExpression</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;no expression to read&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="nx">answer</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Solver</span><span class="p">.</span><span class="nf">Resolve</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">curExpression</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	<span class="k">return</span> <span class="nx">answer</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><br/>
+<p>다음은 ProcessExpression을 스텁을 사용하여 테스트하는 코드이다. 테스트를 위해 Resolve 메서드를 간단하게 구현한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">MathSolverStub</span> <span class="kd">struct</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">ms</span> <span class="nx">MathSolverStub</span><span class="p">)</span> <span class="nf">Resolve</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">expr</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	<span class="k">switch</span> <span class="nx">expr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="k">case</span> <span class="s">&#34;2 + 2 * 10&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">		<span class="k">return</span> <span class="mi">22</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="k">case</span> <span class="s">&#34;(2 + 2) * 10&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		<span class="k">return</span> <span class="mi">40</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	<span class="k">case</span> <span class="s">&#34;(2 + 2 * 10&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;invalid expression: (2 + 2 * 10&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="kd">func</span> <span class="nf">TestProcessorProcessExpression</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	<span class="nx">p</span> <span class="o">:=</span> <span class="nx">Processor</span><span class="p">{</span><span class="nx">MathSolverStub</span><span class="p">{}}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="nx">in</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="s">`2 + 2 * 10
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="s">(2 + 2) * 10
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="s">(2 + 2 * 10`</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mi">22</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">		<span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">.</span><span class="nf">ProcessExpression</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">in</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">			<span class="nx">t</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">		<span class="k">if</span> <span class="nx">result</span> <span class="o">!=</span> <span class="nx">d</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">			<span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;Expected result %f, got %f&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>MathSolver 인터페이스를 구현하는 MathSolverStub 구조체를 사용하여 스텁을 구현하였다. 이를 통해 MathSolver 인터페이스의 실제 구현체를 작성하지 않고도 Processor 객체가 예상한 대로 동작하는지를 검증할 수 있다.</p>
+<h2 id="httptest">httptest</h2>
+<hr>
+<blockquote>
+<p>Go에서는 표준 라이브러리인 httptest 패키지를 사용하여 HTTP 핸들러 함수를 테스트할 수 있다.</p>
+</blockquote>
+<p>HTTP 서비스를 호출하는 MathSolver의 구현체이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">RemoteSolver</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">MathServerURL</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	<span class="nx">Client</span>        <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">rs</span> <span class="nx">RemoteSolver</span><span class="p">)</span> <span class="nf">Resolve</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">expression</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequestWithContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">MethodGet</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		<span class="nx">rs</span><span class="p">.</span><span class="nx">MathServerURL</span><span class="o">+</span><span class="s">&#34;?expression=&#34;</span><span class="o">+</span><span class="nx">url</span><span class="p">.</span><span class="nf">QueryEscape</span><span class="p">(</span><span class="nx">expression</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">		<span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rs</span><span class="p">.</span><span class="nx">Client</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	<span class="nx">contents</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">	<span class="k">if</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="o">!=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">contents</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">	<span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">ParseFloat</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">contents</span><span class="p">),</span> <span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">	<span class="k">return</span> <span class="nx">result</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>이 코드에 대한 테스트 코드를 작성할 예정이다.</p>
+<br/>
+<p><span class="red">함수에 전달된 데이터가 서버에 도착하는지 확인</span>하는 것이 목표이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">type</span> <span class="nx">info</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">	<span class="nx">expression</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">	<span class="nx">code</span>       <span class="kt">int</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">	<span class="nx">body</span>       <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="kd">var</span> <span class="nx">io</span> <span class="nx">info</span>
+</span></span></code></pre></div><p>테스트 함수에 입력과 출력을 저장하기 위해 info 타입과 입력과 출력이 할당되는 io 변수를 선언한다.</p>
+<br/>
+<p>가상의 원격 서버를 설정하고 이를 사용하여 RemoteSolver의 인스턴스를 구성한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">server</span> <span class="o">:=</span> <span class="nx">httptest</span><span class="p">.</span><span class="nf">NewServer</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">rw</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">expression</span> <span class="o">:=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;expression&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">if</span> <span class="nx">expression</span> <span class="o">!=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">expression</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nx">rw</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">rw</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;invalid expression: &#34;</span> <span class="o">+</span> <span class="nx">io</span><span class="p">.</span><span class="nx">expression</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nx">rw</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">code</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nx">rw</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}))</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="k">defer</span> <span class="nx">server</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="nx">rs</span> <span class="o">:=</span> <span class="nx">RemoteSolver</span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="nx">MathServerURL</span><span class="p">:</span> <span class="nx">server</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="nx">Client</span><span class="p">:</span> <span class="nx">server</span><span class="p">.</span><span class="nf">Client</span><span class="p">(),</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>NewServer</code> 함수를 사용하여 임의의 사용하지 않는 포트의 HTTP 서버를 생성하고 시작한다. 또한 요청을 처리하기 위한 http.Handler를 구현한다.</p>
+<br/>
+<p>테이블 테스트를 사용하여 테스트를 수행한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nx">name</span>   <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nx">io</span>     <span class="nx">info</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nx">result</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nx">errMsg</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="p">}{</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">{</span><span class="s">&#34;case1&#34;</span><span class="p">,</span> <span class="nx">info</span><span class="p">{</span><span class="s">&#34;2 + 2 * 10&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;22&#34;</span><span class="p">},</span> <span class="mi">22</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">{</span><span class="s">&#34;case2&#34;</span><span class="p">,</span> <span class="nx">info</span><span class="p">{</span><span class="s">&#34;( 2 + 2 ) * 10&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;40&#34;</span><span class="p">},</span> <span class="mi">40</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">{</span><span class="s">&#34;case3&#34;</span><span class="p">,</span> <span class="nx">info</span><span class="p">{</span><span class="s">&#34;( 2 + 2 * 10&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="s">&#34;invalid expression: ( 2 + 2 * 10&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	  <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;invalid expression: ( 2 + 2 * 10&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="nx">io</span> <span class="p">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">io</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rs</span><span class="p">.</span><span class="nf">Resolve</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">d</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="k">if</span> <span class="nx">result</span> <span class="o">!=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">result</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">      <span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;io `%f`, got `%f`&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">result</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="kd">var</span> <span class="nx">errMsg</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">      <span class="nx">errMsg</span> <span class="p">=</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">if</span> <span class="nx">errMsg</span> <span class="o">!=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">errMsg</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">      <span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;io error `%s`, got `%s`&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">errMsg</span><span class="p">,</span> <span class="nx">errMsg</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>data 변수에 테스트 케이스를 정의하고 이를 순회하며 RemoteSolver.Resolve 메소드를 호출하고 결과를 검증한다.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-channel-buffering/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 채널 버퍼링</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-concurrency/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 동시성 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
