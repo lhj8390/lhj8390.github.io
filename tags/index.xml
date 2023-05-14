@@ -6,11 +6,11 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Tue, 09 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>architectural</title>
       <link>https://lhj8390.github.io/tags/architectural/</link>
-      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/architectural/</guid>
       
@@ -21,7 +21,7 @@
     <item>
       <title>design pattern</title>
       <link>https://lhj8390.github.io/tags/design-pattern/</link>
-      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/design-pattern/</guid>
       
@@ -32,9 +32,20 @@
     <item>
       <title>GoF design pattern</title>
       <link>https://lhj8390.github.io/tags/gof-design-pattern/</link>
-      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/gof-design-pattern/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>visitor</title>
+      <link>https://lhj8390.github.io/tags/visitor/</link>
+      <pubDate>Sun, 14 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/visitor/</guid>
       
         <description></description>
       
