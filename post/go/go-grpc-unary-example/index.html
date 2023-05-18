@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Unary RPC 통신 방식 예제 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      grpc에서 통신 방식 중 unary RPC에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.db95cdf2d5dea4c9618e9bac56243a3120000dfe83cf60503eb5cc563428b5d7.css"
+      integrity="sha256-25XN8tXepMlhjpusViQ6MSAADf6Dz2BQPrXMVjQotdc="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-grpc-unary-example/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Unary RPC 통신 방식 예제"/>
+<meta name="twitter:description" content="grpc에서 통신 방식 중 unary RPC에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Unary RPC 통신 방식 예제" />
+<meta property="og:description" content="grpc에서 통신 방식 중 unary RPC에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-grpc-unary-example/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-05-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-18T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Unary RPC 통신 방식 예제",
+        "headline": "Unary RPC 통신 방식 예제",
+        "alternativeHeadline": "",
+        "description": "
+      grpc에서 통신 방식 중 unary RPC에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-grpc-unary-example\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-05-18T00:00:00.00Z",
+        "datePublished": "2023-05-18T00:00:00.00Z",
+        "dateModified": "2023-05-18T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-grpc-unary-example\/",
+        "wordCount" : "647",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    
+      
+        ,
+
+      
+      "gRPC"
+
+    
+      
+        ,
+
+      
+      "unary"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(16)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(13)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(16)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(13)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-proto-파일-생성">1. proto 파일 생성</a></li>
+        <li><a href="#2-서버-로직-구현">2. 서버 로직 구현</a></li>
+        <li><a href="#3-클라이언트-로직-구현">3. 클라이언트 로직 구현</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Unary RPC 통신 방식 예제</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                18/5/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 4분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>gRPC 통신 방법 중 하나로 클라이언트에서 단일 요청을 보내고 서버에서 단일 응답을 반환하는 형태이다.</p>
+</blockquote>
+<br/>
+<h3 id="1-proto-파일-생성">1. proto 파일 생성</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-protobuf" data-lang="protobuf"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">syntax</span> <span class="o">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err"></span><span class="kn">package</span> <span class="nn">ecommerce</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="k">option</span> <span class="n">go_package</span> <span class="o">=</span> <span class="s">&#34;productinfo/service/ecommerce&#34;</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="kd">service</span> <span class="n">ProductInfo</span> <span class="p">{</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="err"></span>	<span class="k">rpc</span> <span class="n">addProduct</span><span class="p">(</span><span class="n">Product</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">ProductId</span><span class="p">);</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="err"></span>	<span class="k">rpc</span> <span class="n">getProduct</span><span class="p">(</span><span class="n">ProductId</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Product</span><span class="p">);</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="err"></span><span class="p">}</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err"></span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">Product</span> <span class="p">{</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="err"></span>	<span class="kt">string</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="err"></span>	<span class="kt">string</span> <span class="n">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="err"></span>	<span class="kt">string</span> <span class="n">description</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="err"></span>	<span class="kt">float</span> <span class="n">price</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="err"></span><span class="p">}</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="err"></span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">ProductId</span> <span class="p">{</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="err"></span>	<span class="kt">string</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="err">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="err"></span><span class="p">}</span><span class="err">
+</span></span></span></code></pre></div><p>전체 서비스를 정의해준다. Product를 생성하고 id 값을 사용하여 Product 값을 반환받는 서비스를 작성할 예정이다.</p>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl">protoc productinfo/service/ecommerce/product.proto <span class="se">\
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>	--go_out<span class="o">=</span>. <span class="se">\
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>    --go_opt<span class="o">=</span><span class="nv">paths</span><span class="o">=</span>source_relative <span class="se">\
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="se"></span>    --go-grpc_out<span class="o">=</span>. <span class="se">\
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="se"></span>    --go-grpc_opt<span class="o">=</span><span class="nv">paths</span><span class="o">=</span>source_relative
+</span></span></code></pre></div><p>입력한 proto 파일을 토대로 protoc 명령어를 사용하여 protocol buffer 메시지와 gRPC 서비스 코드가 포함되어 있는 pb.go 파일과 grpc.pb.go 파일을 생성해준다.</p>
+<br/>
+<h3 id="2-서버-로직-구현">2. 서버 로직 구현</h3>
+<p>proto 파일에서 정의한 service 구현 작업이 필요하다. addProduct와 getProduct 메서드를 구현해준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">type</span> <span class="nx">server</span> <span class="kd">struct</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">pb</span><span class="p">.</span><span class="nx">UnimplementedProductInfoServer</span>  <span class="c1">// 상위 호환성 위해 추가
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1"></span>	<span class="nx">productMap</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Product</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">// Product 생성 기능 구현
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">server</span><span class="p">)</span> <span class="nf">AddProduct</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Product</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">ProductId</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	<span class="nx">out</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">uuid</span><span class="p">.</span><span class="nf">NewV4</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">status</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">Internal</span><span class="p">,</span> <span class="s">&#34;Error while generating Product ID&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="nx">in</span><span class="p">.</span><span class="nx">Id</span> <span class="p">=</span> <span class="nx">out</span><span class="p">.</span><span class="nf">String</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="k">if</span> <span class="nx">s</span><span class="p">.</span><span class="nx">productMap</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nx">productMap</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Product</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">productMap</span><span class="p">[</span><span class="nx">in</span><span class="p">.</span><span class="nx">Id</span><span class="p">]</span> <span class="p">=</span> <span class="nx">in</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">pb</span><span class="p">.</span><span class="nx">ProductId</span><span class="p">{</span><span class="nx">Value</span><span class="p">:</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Id</span><span class="p">},</span> <span class="nx">status</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">).</span><span class="nf">Err</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1">// Product 조회 기능 구현
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">server</span><span class="p">)</span> <span class="nf">GetProduct</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">ProductId</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Product</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">22</span><span class="cl">	<span class="nx">value</span><span class="p">,</span> <span class="nx">exists</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">productMap</span><span class="p">[</span><span class="nx">in</span><span class="p">.</span><span class="nx">Value</span><span class="p">]</span>  
+</span></span><span class="line"><span class="ln">23</span><span class="cl">	<span class="k">if</span> <span class="nx">exists</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">24</span><span class="cl">		<span class="k">return</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">status</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">).</span><span class="nf">Err</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">25</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln">26</span><span class="cl">	<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">status</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">NotFound</span><span class="p">,</span> <span class="s">&#34;Product does not exist.&#34;</span><span class="p">,</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>이때, protoc 명령어를 통해 생성된 인터페이스에 맞게 구현을 해야 한다.</p>
+<p>또한 server 구조체에 대해 <code>pb.UnimplementedProductInfoServer</code> 를 추가해준 것을 볼 수 있다. 그 이유는 mustEmbedUnimplemented 가 추가됨에 따라 모든 구현체는 상위 호환성을 위해 Unimplemented 메서드를 추가해주어야 하기 때문이다.</p>
+<br/>
+<p>이제 gRPC 서버를 구현하는 코드를 작성해준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="c1">// tcp 연결을 위한 port binding
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1"></span>	<span class="nx">lis</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;:50051&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;failed to listen: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="c1">// gRPC server 생성 및 서비스 등록
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span>	<span class="nx">s</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">NewServer</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	<span class="nx">pb</span><span class="p">.</span><span class="nf">RegisterProductInfoServer</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">server</span><span class="p">{})</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Starting gRPC listener on port &#34;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;failed to serve: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>50051 포트에 대해 TCP 연결을 수신 대기하고 새로운 gRPC 서버를 생성한다. 그리고 protoc 명령어를 통해 생성한 <code>ProductInfoServer</code> 서비스를 등록한다. 이때, <code>&amp;server{}</code>는 ProductInfoServer 인터페이스를 구현한 구조체이다. -&gt; <em><font color="#7f7f7f">이 구조체를 사용하여 실제 클라이언트 요청을 처리하는 로직을 구현한다.</font></em></p>
+<p>마지막으로 <code>s.Serve(lis)</code> 를 호출하여 서버를 실행한다.</p>
+<br/>
+<h3 id="3-클라이언트-로직-구현">3. 클라이언트 로직 구현</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;localhost:50051&#34;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">WithInsecure</span><span class="p">())</span>  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;did not connect: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	<span class="c1">// 서버와 통신할 클라이언트 인스턴스 생성
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span>	<span class="nx">c</span> <span class="o">:=</span> <span class="nx">pb</span><span class="p">.</span><span class="nf">NewProductInfoClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Apple iPhone 11&#34;</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	<span class="nx">description</span> <span class="o">:=</span> <span class="s">&#34;Meet Apple iPhone 11.&#34;</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="nx">price</span> <span class="o">:=</span> <span class="nb">float32</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	<span class="c1">// 호출 시간 제한 : 1초
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1"></span>	<span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="k">defer</span> <span class="nf">cancel</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">AddProduct</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pb</span><span class="p">.</span><span class="nx">Product</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">Description</span><span class="p">:</span> <span class="nx">description</span><span class="p">,</span> <span class="nx">Price</span><span class="p">:</span> <span class="nx">price</span><span class="p">})</span>  
+</span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">21</span><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Could not add product: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">22</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln">23</span><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Product ID: %s added successfully&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">24</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">25</span><span class="cl">	<span class="nx">product</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">GetProduct</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pb</span><span class="p">.</span><span class="nx">ProductId</span><span class="p">{</span><span class="nx">Value</span><span class="p">:</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Value</span><span class="p">})</span>  
+</span></span><span class="line"><span class="ln">26</span><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">27</span><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Could not get product: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">28</span><span class="cl">	<span class="p">}</span>  
+</span></span><span class="line"><span class="ln">29</span><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Product: %s&#34;</span><span class="p">,</span> <span class="nx">product</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>  
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>localhost의 50051 포트의 gRPC 서버와의 연결을 시도하는 클라이언트 코드이다.</p>
+<p>AddProduct 메서드를 호출하여 Product 정보를 추가하고, GetProduct 메서드를 호출하여 추가한 Product 정보를 조회하였다. 서버가 1초 이상 응답을 반환하지 않으면 오류가 발생한다. 마지막으로 defer 키워드를 사용하여 클라이언트 연결을 종료한다.</p>
+<br/>
+<p>위 코드는 Unary RPC를 이용한 통신을 보여준다. 이 코드를 통해 클라이언트와 서버가 서로 단일 요청과 단일 응답을 주고 받는 1:1 관계라는 것을 알 수 있다. 또한 클라이언트가 요청을 보내고 서버로부터 응답을 받을 때까지 대기하는 동기적 호출을 한다는 것을 보여준다.</p>
+<p>즉, unary 통신은 <font color="#c0504d">단순하고 신뢰성이 높은 통신을 주고 받을 경우</font> 많이 사용한다.</p>
+<p><br/><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-grpc-network/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>gRPC 통신 방식</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-test-code-basic/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Golang - 테스트 작성하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a><a class="tag" href="/tags/grpc/">gRPC</a><a class="tag" href="/tags/unary/">unary</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>

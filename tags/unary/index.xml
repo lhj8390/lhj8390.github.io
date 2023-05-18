@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>unary on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/unary/</link>
+    <description>Recent content in unary on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Thu, 18 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/unary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unary RPC 통신 방식 예제</title>
+      <link>https://lhj8390.github.io/post/go/go-grpc-unary-example/</link>
+      <pubDate>Thu, 18 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-grpc-unary-example/</guid>
+      
+        <description>grpc에서 통신 방식 중 unary RPC에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
