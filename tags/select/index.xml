@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>select on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/select/</link>
+    <description>Recent content in select on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Sat, 20 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/select/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Select 문 효과적으로 사용하기</title>
+      <link>https://lhj8390.github.io/post/go/go-use-select-basic/</link>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-use-select-basic/</guid>
+      
+        <description>golang의 select 문을 사용하는 이유, 장점, select 문 패턴, select 문 사용 시 주의사항에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

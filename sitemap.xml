@@ -3,30 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/channel/</loc>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/close/</loc>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/go/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/subcategories/go/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/golang/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/grpc/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/language/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/select/</loc>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/post/go/go-use-select-basic/</loc>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/subcategories/</loc>
-    <lastmod>2023-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/</loc>
+    <lastmod>2023-05-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/grpc/</loc>
     <lastmod>2023-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/unary/</loc>
@@ -73,9 +85,6 @@
   </url><url>
     <loc>https://lhj8390.github.io/tags/iterator/</loc>
     <lastmod>2023-05-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/channel/</loc>
-    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/go/go-channel-buffering/</loc>
     <lastmod>2023-05-03T00:00:00+00:00</lastmod>

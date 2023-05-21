@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        Select 문 효과적으로 사용하기 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang의 select 문을 사용하는 이유, 장점, select 문 패턴, select 문 사용 시 주의사항에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.db95cdf2d5dea4c9618e9bac56243a3120000dfe83cf60503eb5cc563428b5d7.css"
+      integrity="sha256-25XN8tXepMlhjpusViQ6MSAADf6Dz2BQPrXMVjQotdc="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-use-select-basic/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Select 문 효과적으로 사용하기"/>
+<meta name="twitter:description" content="golang의 select 문을 사용하는 이유, 장점, select 문 패턴, select 문 사용 시 주의사항에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="Select 문 효과적으로 사용하기" />
+<meta property="og:description" content="golang의 select 문을 사용하는 이유, 장점, select 문 패턴, select 문 사용 시 주의사항에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-use-select-basic/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-05-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-20T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Select 문 효과적으로 사용하기",
+        "headline": "Select 문 효과적으로 사용하기",
+        "alternativeHeadline": "",
+        "description": "
+      golang의 select 문을 사용하는 이유, 장점, select 문 패턴, select 문 사용 시 주의사항에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-use-select-basic\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-05-20T00:00:00.00Z",
+        "datePublished": "2023-05-20T00:00:00.00Z",
+        "dateModified": "2023-05-20T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-use-select-basic\/",
+        "wordCount" : "1137",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    
+      
+        ,
+
+      
+      "select"
+
+    
+      
+        ,
+
+      
+      "channel"
+
+    
+      
+        ,
+
+      
+      "close"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(16)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(5)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(14)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(16)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(5)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(14)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#select-문의-용도">Select 문의 용도</a></li>
+    <li><a href="#select-문의-이점">Select 문의 이점</a></li>
+    <li><a href="#select-문-주요-패턴들">Select 문 주요 패턴들</a>
+      <ul>
+        <li><a href="#1-추가-신호-채널로-채널-닫기">1. 추가 신호 채널로 채널 닫기</a></li>
+        <li><a href="#2-synconce-사용-패턴">2. sync.Once 사용 패턴</a></li>
+        <li><a href="#3-시간-초과-패턴">3. 시간 초과 패턴</a></li>
+      </ul>
+    </li>
+    <li><a href="#select-문-사용-시-주의점">Select 문 사용 시 주의점</a>
+      <ul>
+        <li><a href="#1-닫힌-채널에-대한-예외처리">1. 닫힌 채널에 대한 예외처리</a></li>
+        <li><a href="#2-default-문-사용">2. default 문 사용</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Select 문 효과적으로 사용하기</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                20/5/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 6분</span>
+          </li>
+        </ul>
+
+      <h2 id="select-문의-용도">Select 문의 용도</h2>
+<ol>
+<li><strong>비동기 처리</strong> : 여러 개의 채널을 동시에 감시하고, 도착한 값을 처리할 수 있다. 비동기적인 이벤트 처리를 구현할 수 있다.</li>
+<li><strong>블로킹 없는 통신</strong> : 감시하는 채널 중 하나에 값이 도착할 때까지 블로킹되며, 그렇지 않은 경우 다른 채널을 계속해서 감시할 수 있다. 이를 통해 블로킹 없이 효율적인 채널 통신을 구현할 수 있다.</li>
+<li><strong>타임아웃 처리</strong> : 타임아웃 채널과 함께 사용하여 일정 시간 동안 채널 값의 도착을 기다리다가 타임아웃이 발생하면 특정 동작을 수행할 수 있다.</li>
+</ol>
+<h2 id="select-문의-이점">Select 문의 이점</h2>
+<p>select를 사용하여 여러 개의 채널을 관리하면 다음과 같은 이점이 있다고 한다.</p>
+<ol>
+<li><strong>Improved Performance</strong>(성능 향상): By using multiple channels with the select statement, you can improve the performance of your Golang applications. This is because you can process data from multiple channels simultaneously, reducing the amount of time it takes to complete operations.</li>
+<li><strong>Reduced Resource Consumption</strong>(리소스 감소): Multiple channels allow you to break down large tasks into smaller, more manageable ones. This reduces the amount of resources needed to perform each task and improves the overall efficiency of your application.</li>
+<li><strong>Enhanced Concurrency</strong>(동시성 증가): With Golang select multiple channels, you can achieve higher levels of concurrency in your code. This is because multiple channels allow you to perform multiple tasks simultaneously, reducing the need for expensive synchronization primitives like locks.</li>
+<li><strong>Flexible Communication</strong>(유연한 커뮤니케이션): Multiple channels with select statements offer more flexibility in communication between goroutines. You can use the select statement to handle different types of communication, such as reading from multiple channels or sending data to multiple channels.</li>
+</ol>
+<p>출처 : <a href="https://hackthedeveloper.com/golang-select-multiple-channels/">https://hackthedeveloper.com/golang-select-multiple-channels/</a>
+<br/></p>
+<h2 id="select-문-주요-패턴들">Select 문 주요 패턴들</h2>
+<h3 id="1-추가-신호-채널로-채널-닫기">1. 추가 신호 채널로 채널 닫기</h3>
+<p>송신자가 N이고 수신자가 하나인 경우에는 값 전송을 중단해도 된다고 알릴 수 있는 추가적인 채널을 만들어 송신자 측에게 신호를 보낸다. (<font color="#7f7f7f">닫힌 채널에 데이터를 송신할 경우 패닉이 발생하기 때문에 기본적으로 송신자만 채널을 닫을 수 있다</font>.)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">stopChan</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="c1">// 추가적인 신호 채널 생성
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">// sender1  
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">stopChan</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;close chan1&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">            <span class="nb">close</span><span class="p">(</span><span class="nx">chan1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1">// sender2  
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"></span><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">25</span><span class="cl">        <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">26</span><span class="cl">        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">stopChan</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">27</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;close chan2&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">28</span><span class="cl">            <span class="nb">close</span><span class="p">(</span><span class="nx">chan2</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">29</span><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1">// receiver
+</span></span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"></span><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">36</span><span class="cl">    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>  
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span>  
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    <span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">39</span><span class="cl">        <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">40</span><span class="cl">        <span class="k">case</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">41</span><span class="cl">            <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">42</span><span class="cl">                <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln">43</span><span class="cl">                <span class="k">continue</span>  
+</span></span><span class="line"><span class="ln">44</span><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">45</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">46</span><span class="cl">        <span class="k">case</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">47</span><span class="cl">            <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">48</span><span class="cl">                <span class="nx">chan2</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln">49</span><span class="cl">                <span class="k">continue</span>  
+</span></span><span class="line"><span class="ln">50</span><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">51</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">52</span><span class="cl">        <span class="k">default</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">53</span><span class="cl">            <span class="k">if</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">54</span><span class="cl">                <span class="nb">close</span><span class="p">(</span><span class="nx">stopChan</span><span class="p">)</span>  <span class="c1">// stop 신호 
+</span></span></span><span class="line"><span class="ln">55</span><span class="cl"><span class="c1"></span>                <span class="k">return</span>  
+</span></span><span class="line"><span class="ln">56</span><span class="cl">            <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">57</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">58</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">59</span><span class="cl"><span class="p">}()</span>  
+</span></span><span class="line"><span class="ln">60</span><span class="cl">  
+</span></span><span class="line"><span class="ln">61</span><span class="cl"><span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span></code></pre></div><p>chan1 과 chan2 에서 값을 정상적으로 읽으면 <code>close(stopChan)</code> 이 실행되고, 각각 송신자의 select 문의 case 문이 통과되면서 채널을 닫을 수 있다.</p>
+<p><strong>Output</strong></p>
+<pre tabindex="0"><code>true
+true
+close chan1
+close chan2
+</code></pre><h3 id="2-synconce-사용-패턴">2. sync.Once 사용 패턴</h3>
+<p>여러 송신자가 하나의 채널을 공유할 경우 sync.Once 를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nx">once</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span><span class="p">{}</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// sender1  
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nx">once</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="nb">close</span><span class="p">(</span><span class="nx">chan1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">})</span>  
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// sender2  
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="nx">once</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="nb">close</span><span class="p">(</span><span class="nx">chan1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="p">})</span>  
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">case</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">25</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">26</span><span class="cl">            <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln">27</span><span class="cl">            <span class="k">break</span>  
+</span></span><span class="line"><span class="ln">28</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">29</span><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">30</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="k">if</span> <span class="nx">chan1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">32</span><span class="cl">        <span class="k">break</span>  
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>이미 닫은 채널을 또 닫으려고 시도할 경우 <code>close of closed channel panic</code> panic이 발생하지만 sync.Once 를 통해 한번만 수행되도록 보장할 수 있다.</p>
+<h3 id="3-시간-초과-패턴">3. 시간 초과 패턴</h3>
+<p>select 문에 time 패키지를 추가해 지정된 시간이 지날 경우 채널 읽기를 종료하도록 할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="nb">close</span><span class="p">(</span><span class="nx">chan1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	    
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="k">case</span> <span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">):</span>  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;timeout!!!!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<pre tabindex="0"><code>timeout!!!!
+</code></pre><br/>
+<h2 id="select-문-사용-시-주의점">Select 문 사용 시 주의점</h2>
+<p>select 문은 여러 개의 채널을 다루는 데에 있어 최적화되어 있지만 그만큼 잘못 사용하면 메모리 누수가 발생하는 원인이 될 수 있다.</p>
+<h3 id="1-닫힌-채널에-대한-예외처리">1. 닫힌 채널에 대한 예외처리</h3>
+<p>닫힌 채널에 대해 예외처리를 수행하지 않으면 지속적으로 select의 case 문 내부에 접근한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="nb">close</span><span class="p">(</span><span class="nx">chan1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">}()</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="kc">true</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="nb">close</span><span class="p">(</span><span class="nx">chan2</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="p">}()</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">        <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="k">case</span> <span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">19</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="k">case</span> <span class="nx">b</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">21</span><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">22</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>chan1 과 chan2 채널에 각각 데이터를 한 번만 전달하고 채널을 닫았음에도 불구하고 채널의 제로 값이 각각의 변수에 할당된다. 다른 case에서 데이터를 기다리더라도 닫힌 채널이 우선적으로 선택된다.</p>
+<p><strong>Output</strong></p>
+<pre tabindex="0"><code>true
+true
+false
+false
+.
+.
+. // memory leak!!!
+</code></pre><br/>
+<p><strong>해결방안</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">case</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">            <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">            <span class="k">break</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="p">}</span> 
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="k">case</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">            <span class="nx">chan2</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">            <span class="k">break</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="k">if</span> <span class="nx">chan1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">chan2</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">        <span class="k">break</span>  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>ok 문을 사용해서 채널이 닫혔는지 여부를 확인한 후 닫힌 채널이면 채널 변수를 nil로 설정한다. nil로 설정된 채널은 더 이상 값을 반환하지 못하기 때문에 case 문이 실행되지 않는다.</p>
+<h3 id="2-default-문-사용">2. default 문 사용</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">case</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">            <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">            <span class="c1">// break or continue?  
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span>        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">if</span> <span class="nx">chan1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>닫힌 채널에 대해 채널 변수를 nil로 설정할 때, default 문의 여부에 따라 break와 continue 사용이 달라진다.</p>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">case</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">            <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">            <span class="c1">// continue // deadlock 발생!
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span>            <span class="k">break</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="k">if</span> <span class="nx">chan1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>continue 문이 실행되면 select 문을 벗어나지 않고 다른 case문을 검사하게 되는데 default case문이 존재하지 않아 select 문이 무한히 실행되기 때문에 deadlock 이 발생한다. 따라서 continue 문 대신 break 문을 사용하여 select 문을 종료하거나 default 문을 추가해야 한다.</p>
+<br/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">for</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="k">select</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">case</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">            <span class="nx">chan1</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">            <span class="k">continue</span>  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">case</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">11</span><span class="cl">            <span class="nx">chan2</span> <span class="p">=</span> <span class="kc">nil</span>  
+</span></span><span class="line"><span class="ln">12</span><span class="cl">            <span class="k">continue</span>  
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>  
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="k">default</span><span class="p">:</span>  
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="k">if</span> <span class="nx">chan1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">chan2</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="ln">17</span><span class="cl">            <span class="k">return</span>  
+</span></span><span class="line"><span class="ln">18</span><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>다음과 같은 예제일 경우 continue도 사용 가능하다. chan1 과 chan2 채널 변수가 nil일 경우 default case 문을 통과하게 되고 nil 체크 후 select 문을 종료할 수 있다.</p>
+<p><br/><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-channel-buffering/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - 채널 버퍼링</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-grpc-unary-example/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Unary RPC 통신 방식 예제</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a><a class="tag" href="/tags/select/">select</a><a class="tag" href="/tags/channel/">channel</a><a class="tag" href="/tags/close/">close</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
