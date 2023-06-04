@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>context on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/context/</link>
+    <description>Recent content in context on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Sat, 03 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/context/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang - context 개념 및 기본 예제</title>
+      <link>https://lhj8390.github.io/post/go/go-context-concepts/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/go/go-context-concepts/</guid>
+      
+        <description>golang에서 context 패키지의 개념과 context를 사용하는 방법에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
