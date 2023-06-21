@@ -8,6 +8,17 @@
     <language>ko</language>
     <lastBuildDate>Tue, 05 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>NACL과 Security Group의 개념 및 구축 예제</title>
+      <link>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</guid>
+      
+        <description>AWS의 NACL과 Security Group(sg) 에 대해 설명한다.</description>
+      
+    </item>
+    
+    <item>
       <title>[GoF 디자인 패턴] 중재자 (Mediator) 패턴</title>
       <link>https://lhj8390.github.io/post/architectural/gof-design-pattern-mediator/</link>
       <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>

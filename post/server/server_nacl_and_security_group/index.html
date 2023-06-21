@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        NACL과 Security Group의 개념 및 구축 예제 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      AWS의 NACL과 Security Group(sg) 에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.db95cdf2d5dea4c9618e9bac56243a3120000dfe83cf60503eb5cc563428b5d7.css"
+      integrity="sha256-25XN8tXepMlhjpusViQ6MSAADf6Dz2BQPrXMVjQotdc="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/server/server_nacl_and_security_group/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="NACL과 Security Group의 개념 및 구축 예제"/>
+<meta name="twitter:description" content="AWS의 NACL과 Security Group(sg) 에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="NACL과 Security Group의 개념 및 구축 예제" />
+<meta property="og:description" content="AWS의 NACL과 Security Group(sg) 에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/server/server_nacl_and_security_group/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-06-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-21T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "NACL과 Security Group의 개념 및 구축 예제",
+        "headline": "NACL과 Security Group의 개념 및 구축 예제",
+        "alternativeHeadline": "",
+        "description": "
+      AWS의 NACL과 Security Group(sg) 에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/server\/server_nacl_and_security_group\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-06-21T00:00:00.00Z",
+        "datePublished": "2023-06-21T00:00:00.00Z",
+        "dateModified": "2023-06-21T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/server\/server_nacl_and_security_group\/",
+        "wordCount" : "502",
+        "genre" : [ 
+      
+      "DevOps"
+
+    ],
+        "keywords" : [ 
+      
+      "DevOps"
+
+    
+      
+        ,
+
+      
+      "server"
+
+    
+      
+        ,
+
+      
+      "AWS"
+
+    
+      
+        ,
+
+      
+      "NACL"
+
+    
+      
+        ,
+
+      
+      "Security Group"
+
+    
+      
+        ,
+
+      
+      "sg"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(17)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(6)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(15)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(17)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(6)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class=" watched ">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(15)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class="">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#네트워크-aclnacl-이란">네트워크 ACL(NACL) 이란?</a></li>
+        <li><a href="#보안-그룹security-group-이란">보안 그룹(Security Group) 이란?</a></li>
+        <li><a href="#nacl과-보안-그룹-비교">NACL과 보안 그룹 비교</a></li>
+        <li><a href="#실전-구축">실전 구축</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>NACL과 Security Group의 개념 및 구축 예제</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                21/6/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 3분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>AWS에는 VPC의 네트워크 트래픽을 제어할 수 있는 서비스인 <strong>네트워크 ACL</strong>과 <strong>보안 그룹</strong>, 2개의 서비스를 제공한다.
+VPC에 대한 네트워크 접근을 제어하는 기본 메커니즘으로 보안 그룹(Security Group)을 사용하고, 필요한 경우 네트워크 ACL(NACL)을 사용하여 stateless하게 네트워크 제어를 수행할 수 있다.</p>
+</blockquote>
+<br/>
+<figure><img src="/images/server_nacl_and_security_group/1.png"
+         alt="image"/>
+</figure>
+
+<br/>
+<h3 id="네트워크-aclnacl-이란">네트워크 ACL(NACL) 이란?</h3>
+<p>서브넷 수준에서 서브넷 내의 모든 인바운드 또는 아웃바운드 트래픽을 허용하거나 거부할 수 있는 가상 방화벽이다. NACL은 기본적으로 모든 트래픽을 허용하도록 설정되어 있다.
+Stateless 하기 때문에 요청과 응답에 대한 트래픽 (인바운드, 아웃바운드 규칙)을 별도로 설정해주어야 한다.</p>
+<br/>
+<h4 id="nacl의-특징">NACL의 특징</h4>
+<ul>
+<li>서브넷 기반 : 하나의 서브넷에 대해 하나의 NACL만 지정할 수 있다.</li>
+<li>순서 기반 규칙 : 여러 규칙이 충돌할 경우 숫자가 가장 작은 규칙이 우선적으로 적용된다.</li>
+<li>Stateless : 상태를 유지하지 않기 때문에 인바운드 규칙에서 지정한 트래픽이 아웃바운드 규칙에서 자동으로 허용되지 않는다.</li>
+</ul>
+<br/>
+<h3 id="보안-그룹security-group-이란">보안 그룹(Security Group) 이란?</h3>
+<p>인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽이다. 보안 그룹은 기본적으로 모든 트래픽을 차단하도록 설정되어 있다.
+Stateful 하기 때문에 요청에 대한 응답 트래픽을 자동으로 허용해준다.</p>
+<br/>
+<h4 id="보안-그룹의-특징">보안 그룹의 특징</h4>
+<ul>
+<li>인스턴스 기반 : 인스턴스 단위로 적용되며 각 인스턴스는 하나 이상의 보안 그룹에 속할 수 있다.</li>
+<li>Stateful : 인바운드 규칙을 통해 들어온 트래픽은 별도의 아웃바운드 규칙 없이 허용된다.</li>
+<li>Allow 규칙만 적용 : 특정 규칙에 대해 Deny는 불가능하고 Allow 규칙만 가능하다.</li>
+</ul>
+<br/>
+<h3 id="nacl과-보안-그룹-비교">NACL과 보안 그룹 비교</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">network ACL</th>
+<th style="text-align:left">Security Group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">서브넷 레벨에서 운영</td>
+<td style="text-align:left">인스턴스 레벨에서 운영</td>
+</tr>
+<tr>
+<td style="text-align:left">서브넷에서 배포된 모든 인스턴스에 적용</td>
+<td style="text-align:left">인스턴스에 연결된 경우에만 적용</td>
+</tr>
+<tr>
+<td style="text-align:left">허용 및 거부 규칙 지원</td>
+<td style="text-align:left">허용 규칙만 지원</td>
+</tr>
+<tr>
+<td style="text-align:left">낮은 번호부터 우선순위 부여</td>
+<td style="text-align:left">우선순위 없음</td>
+</tr>
+<tr>
+<td style="text-align:left">상태 비저장</td>
+<td style="text-align:left">상태 저장</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h3 id="실전-구축">실전 구축</h3>
+<h4 id="인바운드-규칙과-아웃바운드-규칙">인바운드 규칙과 아웃바운드 규칙</h4>
+<p>인바운드(Inbound) 규칙은 외부에서 내부로 들어오는 트래픽을 제어하는 규칙이며, 아웃바운드(Outbound) 규칙은 내부에서 외부로 나가는 트래픽을 제어하는 규칙이다. 즉 인바운드는 출발지라고 보면 되고, 아웃바운드는 도착지라고 이해하면 된다.</p>
+<br/>
+<h4 id="nacl과-보안-그룹-설정-예제">NACL과 보안 그룹 설정 예제</h4>
+<p>다음의 그림과 같이 NACL과 보안 그룹을 설정하는 것이 목표이다.</p>
+<ol>
+<li>10.0.0.1/24 대역대의 서브넷과 10.0.1.1/24 대역대의 서브넷이 서로 통신 가능</li>
+<li>다른 서브넷 안에 있는 Server1 과 Server2가 서로 통신 가능</li>
+<li>같은 서브넷 안에 있는 Server2와 Server4가 서로 통신 가능</li>
+<li>같은 보안 그룹 안에 있는 Server2와 Server3이 서로 통신 가능</li>
+</ol>
+<p>![[Pasted image 20230514145425.png]]</p>
+<p>우선 <font color="#c0504d">Server1에서 Server2로 트래픽이 전달되는 과정</font>을 기술한다.</p>
+<ol>
+<li><font color="#d99694">Server1의 보안 그룹 정책 확인</font> : Server2와 양방향 통신이 가능하도록 Inbound 규칙으로 Server2의 대역대를 지정한다. Inbound 규칙을 지정했기 때문에 별도의 Outbound 규칙 없이 트래픽을 보낼 수 있다.</li>
+<li><font color="#d99694">Server1의 서브넷의 NACL 정책 확인</font> : Server2의 서브넷으로 트래픽을 보내기 위해 Outbound 규칙을 지정한다. Server2의 대역대인 10.0.1.1/24를 허용하는 Outbound 규칙을 설정한다.</li>
+<li><font color="#d99694">Server2의 서브넷의 NACL 정책 확인</font> : Server1의 서브넷으로부터 온 트래픽을 받기 위해 Inbound 규칙을 확인한다. Server1의 대역대인 10.0.0.1/24를 허용하는 Inbound 규칙을 설정한다.</li>
+<li><font color="#d99694">Server2의 보안 그룹 정책 확인</font> : Server1로부터 통신이 가능하도록 Server1 대역대를 Inbound 규칙으로 지정한다. Inbound 규칙을 지정했기 때문에 별도의 Outbound 규칙 없이 Server1로 트래픽을 다시 보낼 수 있다.</li>
+</ol>
+<p>이와 같은 설정을 통해 10.0.0.1/24 대역대의 서브넷과 10.0.1.1/24 대역대의 서브넷끼리 서로 통신이 가능하며, 각각의 서브넷 안에 있는 Server1 과 Server2가 서로 통신이 가능해진다.</p>
+<p>같은 서브넷 안에 존재하는 Server2와 Server4가 서로 통신이 가능하게 하려면 보안 그룹의 Inbound 규칙만 추가하면 된다. Server2와 Server4를 포괄하는 대역대인 10.0.1.1/24 대역대를 Inbound 규칙에 설정한다. <font color="#7f7f7f">Server2와 Server4는 다른 보안 그룹이지만 같은 규칙을 적용받기 때문에 그림에서는 하나로 묶어서 표시하였다.</font> 이제 Server2와 Server4가 서로 통신이 가능하다.</p>
+<p>Server2와 Server3은 같은 보안 그룹 내에 존재하기 때문에 별도의 설정 없이 서로 통신이 가능하다.</p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/server/nginx_ssl/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>nginx에서 ssl 설정</p></a>
+      
+
+    
+      
+        <a href="/post/server/ubuntu-port-open/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>ubuntu 포트 사용 확인하는 법</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/devops/">DevOps</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/devops/">DevOps</a><a class="tag" href="/tags/server/">server</a><a class="tag" href="/tags/aws/">AWS</a><a class="tag" href="/tags/nacl/">NACL</a><a class="tag" href="/tags/security-group/">Security Group</a><a class="tag" href="/tags/sg/">sg</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>

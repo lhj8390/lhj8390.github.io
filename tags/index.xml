@@ -6,7 +6,73 @@
     <description>Recent content in Tags on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS</title>
+      <link>https://lhj8390.github.io/tags/aws/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/aws/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://lhj8390.github.io/tags/devops/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/devops/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>NACL</title>
+      <link>https://lhj8390.github.io/tags/nacl/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/nacl/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Security Group</title>
+      <link>https://lhj8390.github.io/tags/security-group/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/security-group/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>server</title>
+      <link>https://lhj8390.github.io/tags/server/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/server/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>sg</title>
+      <link>https://lhj8390.github.io/tags/sg/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/tags/sg/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>architectural</title>
       <link>https://lhj8390.github.io/tags/architectural/</link>
@@ -492,17 +558,6 @@
     </item>
     
     <item>
-      <title>DevOps</title>
-      <link>https://lhj8390.github.io/tags/devops/</link>
-      <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/devops/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
       <title>linux</title>
       <link>https://lhj8390.github.io/tags/linux/</link>
       <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
@@ -519,17 +574,6 @@
       <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://lhj8390.github.io/tags/nginx/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>server</title>
-      <link>https://lhj8390.github.io/tags/server/</link>
-      <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://lhj8390.github.io/tags/server/</guid>
       
         <description></description>
       

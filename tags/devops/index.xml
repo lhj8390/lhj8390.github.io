@@ -6,7 +6,18 @@
     <description>Recent content in DevOps on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NACL과 Security Group의 개념 및 구축 예제</title>
+      <link>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</guid>
+      
+        <description>AWS의 NACL과 Security Group(sg) 에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>nginx에서 ssl 설정</title>
       <link>https://lhj8390.github.io/post/server/nginx_ssl/</link>
