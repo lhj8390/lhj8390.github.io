@@ -8,7 +8,7 @@
     <language>ko</language>
     <lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/security-group/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>NACL과 Security Group의 개념 및 구축 예제</title>
+      <title>[AWS] NACL과 Security Group의 개념 및 구축 예제</title>
       <link>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</link>
       <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
       
