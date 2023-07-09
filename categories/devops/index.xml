@@ -6,7 +6,18 @@
     <description>Recent content in DevOps on lhj8390</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[AWS] Elastic Container Service (ECS)</title>
+      <link>https://lhj8390.github.io/post/server/aws-ecs/</link>
+      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/server/aws-ecs/</guid>
+      
+        <description>AWS의 Elastic Container Service, ECS의 개념에 대해 설명한다.</description>
+      
+    </item>
+    
     <item>
       <title>[AWS] NACL과 Security Group의 개념 및 구축 예제</title>
       <link>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</link>
