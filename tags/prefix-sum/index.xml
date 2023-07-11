@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prefix-sum on lhj8390</title>
+    <link>https://lhj8390.github.io/tags/prefix-sum/</link>
+    <description>Recent content in prefix-sum on lhj8390</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Tue, 11 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lhj8390.github.io/tags/prefix-sum/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>누적합(Prefix Sum)과 부분합</title>
+      <link>https://lhj8390.github.io/post/etc/algorithm-prefix-sum/</link>
+      <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lhj8390.github.io/post/etc/algorithm-prefix-sum/</guid>
+      
+        <description>알고리즘에서 누적합(Prefix Sum)과 부분합 개념 및 예제에 대해 설명한다.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
