@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="ko"
+  data-theme="dark"
+  class="html"
+><head>
+  <title>
+    
+      
+        semaphore 개념 |
+
+      
+      lhj8390
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.100.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="lhj8390" />
+  <meta
+    name="description"
+    content="
+      golang에서 semaphore의 개념 및 예제에 대해 설명한다.
+
+
+    "
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.409d0bbf9c4055b07963d8fb4f0c461fc49e2582e93224dfd200a538ecbab753.css"
+      integrity="sha256-QJ0Lv5xAVbB5Y9j7TwxGH8SeJYLpMiTf0gClOOy6t1M="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.65f44521c79433340855210bf038c69ad5fc4943d8d43d004e3f52eb7ee2bbc6.css"
+    integrity="sha256-ZfRFIceUMzQIVSEL8DjGmtX8SUPY1D0ATj9S637iu8Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/add-on.min.689594afbcd8ccf198e6061d49729aa7a63d16a0c7eccaf36ee85378bdbc3706.css"
+    integrity="sha256-aJWUr7zYzPGY5gYdSXKap6Y9FqDH7MrzbuhTeL28NwY="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+
+  
+  
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.1d14c463c20786ac959f4bd98e0ddc6056d936223bfc1dcbe7825ddc176121c1.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/solid.min.dbef5d0848ad38377fc1031d9a05829ad77d1cdd54177a1e7063905b0876018a.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+  <link rel="stylesheet" href="/fontawesome/css/brands.min.bd884e18f3674c4c3ae3e69a8a6d7d29b822c5638132c1dc845abec77e955c3f.css" integrity="" crossorigin="anonymous" type="text/css" />
+  
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira&#43;Code&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/font/font.33b216bf2ce0242fb770f85d02cdcb6ddf9205b13dc01fba22dce3be9658cc28.css" integrity="" crossorigin="anonymous" type="text/css" />
+
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://lhj8390.github.io/post/go/go-semaphore-basic/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.7a513c87595b64079c749049bbefff5a20a8d88467b9d5e813e33bfcd29880de.js"
+    integrity="sha256-elE8h1lbZAecdJBJu&#43;//WiCo2IRnudXoE&#43;M7/NKYgN4="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.1d1e60dd5031959e835e253306615c60139c78c47abbc27e3ef3e28bf82098b4.js"
+      integrity="sha256-HR5g3VAxlZ6DXiUzBmFcYBOceMR6u8J&#43;PvPii/ggmLQ="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  <link crossorigin="anonymous" rel="preload" as="fetch" href="/index.json">
+  <script defer crossorigin="anonymous" src="/assets/js/search.min.7b9eb258352a2fc995f8f79d12bf3965102b8aa1ac0b1fdb1738fc5c5ba5b9af.js" integrity="sha256-e56yWDUqL8mV&#43;PedEr85ZRAriqGsCx/bFzj8XFulua8="></script>
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lhj8390.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="semaphore 개념"/>
+<meta name="twitter:description" content="golang에서 semaphore의 개념 및 예제에 대해 설명한다."/>
+
+
+
+  
+  <meta property="og:title" content="semaphore 개념" />
+<meta property="og:description" content="golang에서 semaphore의 개념 및 예제에 대해 설명한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lhj8390.github.io/post/go/go-semaphore-basic/" /><meta property="og:image" content="https://lhj8390.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-07-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-25T00:00:00+00:00" /><meta property="og:site_name" content="lhj8390" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "semaphore 개념",
+        "headline": "semaphore 개념",
+        "alternativeHeadline": "",
+        "description": "
+      golang에서 semaphore의 개념 및 예제에 대해 설명한다.
+
+
+    ",
+        "inLanguage": "ko",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lhj8390.github.io\/post\/go\/go-semaphore-basic\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "lhj8390"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-07-25T00:00:00.00Z",
+        "datePublished": "2023-07-25T00:00:00.00Z",
+        "dateModified": "2023-07-25T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "lhj8390",
+            "url": "https://lhj8390.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/lhj8390.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://lhj8390.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/lhj8390.github.io\/post\/go\/go-semaphore-basic\/",
+        "wordCount" : "352",
+        "genre" : [ 
+      
+      "language"
+
+    ],
+        "keywords" : [ 
+      
+      "Go"
+
+    
+      
+        ,
+
+      
+      "Golang"
+
+    
+      
+        ,
+
+      
+      "semaphore"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--dark"
+
+    
+  >
+    <div class="wrapper">
+      <div class="search search--wrapper" id="searchWrapper" style="display: none;" onclick="openSearchPopup(event);">
+        <div id="searchbox">
+          <input id="searchInput" autofocus placeholder="search"
+              aria-label="search" type="search" autocomplete="off">
+          <ul id="searchResults" aria-label="search results"></ul>
+        </div>
+      </div>
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/cow.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">lhj8390</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>꾸준히 성장하자</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://de.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lhj8390/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:mail@example.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  
+    <div class="nav__list categories">
+      
+      
+      
+      
+        <a href="/categories/architecture" class="">
+          
+            <i class="fa-solid fa-sitemap"></i>
+          
+          Architecture 
+          <span>(17)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/design-pattern" class="">
+                
+                  <i class="fa-solid fa-diagram-project"></i>
+                
+                Design pattern
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/devops" class="">
+          
+            <i class="fa-solid fa-infinity"></i>
+          
+          Devops 
+          <span>(7)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/kubernetes" class="">
+                
+                  <i class="fa-solid fa-dharmachakra"></i>
+                
+                Kubernetes
+              </a>
+              
+              <a href="/subcategories/docker" class="">
+                
+                  <i class="fa-brands fa-docker"></i>
+                
+                Docker
+              </a>
+              
+              <a href="/subcategories/server" class="">
+                
+                  <i class="fa-solid fa-server"></i>
+                
+                Server
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/etc" class="">
+          
+            <i class="fas fa-comment-dots"></i>
+          
+          Etc 
+          <span>(1)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/algorithm" class="">
+                
+                  <i class="fa-solid fa-robot"></i>
+                
+                Algorithm
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/language" class="">
+          
+            <i class="fa-solid fa-code"></i>
+          
+          Language 
+          <span>(16)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/go" class="">
+                
+                  <i class="fa-brands fa-golang"></i>
+                
+                Go
+              </a>
+              
+            </div>
+         
+        
+      
+        <a href="/categories/web" class="">
+          
+            <i class="fa-solid fa-desktop"></i>
+          
+          Web 
+          <span>(25)</span>
+          <div class="icon down">
+            <i class="fa-solid fa-angle-down"></i>
+          </div>
+        </a>
+        
+        
+            <div class="expand__list">
+              
+              <a href="/subcategories/spring" class="">
+                
+                  <i class="fa-solid fa-leaf"></i>
+                
+                Spring
+              </a>
+              
+              <a href="/subcategories/react" class="">
+                
+                  <i class="fa-brands fa-react"></i>
+                
+                React
+              </a>
+              
+            </div>
+         
+        
+      
+    </div>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</div>
+<script>
+  const arrows = document.getElementsByClassName('down');
+  for (i = 0; i < arrows.length ; i++) {
+    arrows[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(this);
+      this.classList.toggle('up');
+      this.classList.toggle('down');
+      this.parentNode.nextElementSibling.classList.toggle('expand--open');
+    });
+  }
+
+  
+</script>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="menu 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <a role="button" id="searchIcon" class="search__icon" aria-label="search" onclick="openSearchPopup(event);">
+    <em class="fa-solid fa-magnifying-glass"></em>
+    <span>Search..</span>
+  </a>
+  <nav class="nav">
+     
+    <div class="nav__opener">
+      <div class="nav__list" id="navMenu">
+        
+        
+        
+        
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-sitemap"></i>
+            
+            Architecture 
+            <span>(17)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/design-pattern" class="">
+                  
+                    <i class="fa-solid fa-diagram-project"></i>
+                  
+                  Design pattern
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-infinity"></i>
+            
+            Devops 
+            <span>(7)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/kubernetes" class="">
+                  
+                    <i class="fa-solid fa-dharmachakra"></i>
+                  
+                  Kubernetes
+                </a>
+                
+                <a href="/subcategories/docker" class="">
+                  
+                    <i class="fa-brands fa-docker"></i>
+                  
+                  Docker
+                </a>
+                
+                <a href="/subcategories/server" class="">
+                  
+                    <i class="fa-solid fa-server"></i>
+                  
+                  Server
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fas fa-comment-dots"></i>
+            
+            Etc 
+            <span>(1)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/algorithm" class="">
+                  
+                    <i class="fa-solid fa-robot"></i>
+                  
+                  Algorithm
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-code"></i>
+            
+            Language 
+            <span>(16)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/go" class=" watched ">
+                  
+                    <i class="fa-brands fa-golang"></i>
+                  
+                  Go
+                </a>
+                
+              </div>
+          
+          
+        
+          <a class="nav__list-item" onclick="openMenu(this);">
+            
+              <i class="fa-solid fa-desktop"></i>
+            
+            Web 
+            <span>(25)</span>
+          </a>
+          
+          
+              <div class="expand__list">
+                
+                <a href="/subcategories/spring" class="">
+                  
+                    <i class="fa-solid fa-leaf"></i>
+                  
+                  Spring
+                </a>
+                
+                <a href="/subcategories/react" class="">
+                  
+                    <i class="fa-brands fa-react"></i>
+                  
+                  React
+                </a>
+                
+              </div>
+          
+          
+        
+      </div>
+    </div>
+    
+  </nav>
+  <nav class="nav nav--hidden">
+    <ul class="nav__list">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >홈</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >게시물</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      <li>
+        
+      </li>
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+
+    <div class="post__toc" id="tableOfContent">
+      <h3>Table of Contents</h3>
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#in-n-out">In-N-Out</a></li>
+      </ul>
+    </li>
+    <li><a href="#mutex-vs-semaphore">Mutex vs Semaphore</a></li>
+    <li><a href="#semaphore-package">Semaphore package</a>
+      <ul>
+        <li><a href="#semaphore-사용">Semaphore 사용</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post__content detail">
+      <h1>Semaphore 개념</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                25/7/2023
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">읽는 시간 2분</span>
+          </li>
+        </ul>
+
+      <blockquote>
+<p>Semaphore 란 여러 스레드 혹은 고루틴을 통해 공유 리소스에 대한 액세스를 제한하거나 제어하는 데에 사용할 수 있는 구성을 뜻한다.</p>
+</blockquote>
+<br/>
+<figure class="large"><img src="/images/semaphore/1.png"/>
+</figure>
+
+<p>일반적으로 고루틴을 사용한다면 N 개의 요청을 병렬적으로 동시에 호출할 수 있을 것이다. 하지만 이러한 요청은 네트워크 I/O 성능을 낮출 수 있다.
+이러한 상황을 해결하기 위해서는 동시에 실행하는 프로세스를 2개로 제한하고 프로세스를 N/2 번 반복할 수 있다. N 개의 요청을 동시에 처리하는 것보다 많은 시간이 걸리지만 네트워크가 한번에 2개의 요청만 처리하면 되기 때문에 I/O 네트워크 성능 부담을 줄일 수 있다.</p>
+<br/>
+<h3 id="in-n-out">In-N-Out</h3>
+<p>Semaphore 는 In-N-Out 개념을 활용한다.
+In-N-Out은 동시에 N 개의 자원에 대한 접근을 허용한다. 즉, N 개의 대기줄이 있고 각 줄은 FIFO 액세스를 허용하는 작은 대기열로 생각할 수 있다. Semaphore의 주요 관심사는 대기열의 작업이 아닌 N개의 접근 그 자체이다.
+한번에 N 개를 초과하는 요청이 들어왔을 경우에는 대기열에서 기다리도록 하여 동시에 실행할 수 있는 개수를 보장한다.</p>
+<br/>
+<h2 id="mutex-vs-semaphore">Mutex vs Semaphore</h2>
+<p>하나 이상의 스레드에서 자유롭게 액세스 할 수 있는 공유 리소스가 존재할 때, Mutex와 Semaphore 모두 공유 리소스에 대한 접근을 조절하는 동기화 기법이다.</p>
+<ul>
+<li>Semaphore : 공유된 자원의 데이터 혹은 임계영역(Critical Section) 등에 <strong>여러</strong> <strong>Process 혹은 Thread</strong>가 접근하는 것을 차단</li>
+<li>Mutex : 공유된 자원의 데이터 혹은 임계영역(Critical Section) 등에 <strong>하나의</strong> <strong>Process 혹은 Thread</strong>가 접근하는 것을 차단</li>
+</ul>
+<p>즉, Semaphore 는 동기화 대상이 하나 이상이고 Mutex는 동기화 대상이 하나라고 볼 수 있다.</p>
+<br/>
+<h2 id="semaphore-package">Semaphore package</h2>
+<p>go에서는 Semaphore 구현을 위한 패키지를 제공하고 있다.</p>
+<p><a href="https://pkg.go.dev/golang.org/x/sync/semaphore">https://pkg.go.dev/golang.org/x/sync/semaphore</a></p>
+<br/>
+<h3 id="semaphore-사용">Semaphore 사용</h3>
+<p>Semaphore package 를 import 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="kn">import</span> <span class="err">“</span><span class="nx">golang</span><span class="p">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">x</span><span class="o">/</span><span class="nx">sync</span><span class="o">/</span><span class="nx">semaphore</span><span class="err">”</span>
+</span></span></code></pre></div><br/>
+<p>Semaphore 을 생성하면서 최대 몇 개의 고루틴을 동시에 실행시킬 것인지 명시한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">// 동시에 실행할 고루틴 개수 지정
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">maxWorkers</span> <span class="o">:=</span> <span class="nx">runtime</span><span class="p">.</span><span class="nf">GOMAXPROCS</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">// 고루틴 개수를 사용하여 semaphore 객체 생성
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"></span><span class="nx">sem</span> <span class="o">:=</span> <span class="nx">semaphore</span><span class="p">.</span><span class="nf">NewWeighted</span><span class="p">(</span><span class="nb">int64</span><span class="p">(</span><span class="nx">maxWorkers</span><span class="p">))</span>
+</span></span></code></pre></div><br/>
+<p>이제 Semaphore를 사용하여 최대 maxWorkers 개의 고루틴이 동시에 실행하도록 제한해보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="nx">sem</span><span class="p">.</span><span class="nf">Acquire</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 한 개의 Semaphore 슬롯 획득
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"></span><span class="nx">sem</span><span class="p">.</span><span class="nf">Release</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 한 개의 Semaphore 슬롯 반환
+</span></span></span></code></pre></div><p>Semaphore의 슬롯을 획득하는 <code>Acquire</code> 함수와 슬롯을 반환하는 <code>Release</code> 함수를 사용할 수 있다. 만약 슬롯이 가득 찼다면 <code>Acquire</code> 함수는 하나의 고루틴이 종료될 때까지 블록된다.</p>
+<br/>
+<p>마지막으로 남아있는 모든 고루틴이 종료될 때까지 블록되었다가 모든 슬롯을 획득한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sem</span><span class="p">.</span><span class="nf">Acquire</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">maxWorkers</span><span class="p">));</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Failed to acquire semaphore: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>위의 로직은 모든 작업이 무사히 종료되었는지 확인하는 용도로 <code>sync.waitgroup</code> 등을 사용한다면 대체할 수 있다.</p>
+<br/>
+<p>전체 코드는 아래 링크에서 확인할 수 있다.
+<a href="https://github.com/lhj8390/go-practice/blob/7176dad5085b19b9c56d539ce26f664c114aeaec/semaphore/main.go">github 코드 보기</a></p>
+<p><br/><br/></p>
+
+
+<div class="related">
+  <div class="related--list">
+    
+      
+        <a href="/post/go/go-context-concepts/"><span><i class="fa-solid fa-angle-left"></i>이전 게시물</span> <p>Golang - context 개념 및 기본 예제</p></a>
+      
+
+    
+      
+        <a href="/post/go/go-use-select-basic/"><span>다음 게시물<i class="fa-solid fa-angle-right"></i></span> <p>Select 문 효과적으로 사용하기</p></a>
+      
+
+    
+  </div>
+</div>
+
+</div>
+    <div class="post__footer">
+      
+        <span><a class="category" href="/categories/language/">language</a></span>
+
+
+
+
+
+      
+
+      
+        <span><a class="tag" href="/tags/go/">Go</a><a class="tag" href="/tags/golang/">Golang</a><a class="tag" href="/tags/semaphore/">semaphore</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+  <script>
+    const toc = document.getElementById('tableOfContent');
+
+    const displayTocFromSize = function () {
+      if (window.innerWidth >= 1520) {        
+        toc.style.display = "block";
+      } 
+      else {
+        toc.style.display = "none";  
+      }
+    }
+
+    displayTocFromSize();
+    window.addEventListener('resize', displayTocFromSize);
+
+    var link = document.querySelectorAll('a[href*="#"]')
+
+    for (i = 0; i < link.length; i++) {
+      link[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        let id = decodeURI(this.href.split('/')[6].split('#')[1]);
+        const target = document.getElementById(id);
+
+        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+      });
+    }
+    
+  </script>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        lhj8390
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.972a2c29b7a36a3c40cc4798c8fab0dbae92c1089ab0691e84acbf0c7720ccb3.js"
+    integrity="sha256-lyosKbejajxAzEeYyPqw266SwQiasGkehKy/DHcgzLM="
+    crossorigin="anonymous"
+  ></script>
+
+
+<script
+  type="text/javascript"
+  src="/js/add-on.min.e362e6ee0984688a7bb1ecb0cf36d941f7949948e56e27124591c052f3b1616e.js"
+  integrity="sha256-42Lm7gmEaIp7seywzzbZQfeUmUjlbicSRZHAUvOxYW4="
+  crossorigin="anonymous"
+></script>
+
+</body>
+  <script>
+    const searchWrapper = document.getElementById('searchWrapper');
+  
+    const openSearchPopup = function (e) {
+      window.scrollTo(0, 0);
+      if (document.getElementById('searchInput') === e.target || document.getElementById('searchbox') === e.target)
+        return;
+      
+      if (searchWrapper.style.display == 'none') {
+        searchWrapper.style.display = 'block';
+        document.getElementsByClassName('body')[0].style.overflow = 'hidden';
+
+      }
+      else {
+        searchWrapper.style.display = 'none';
+        document.getElementsByClassName('body')[0].style.overflow = 'auto';
+      }
+    }
+
+    const openMenu = function (el) {
+      console.log(el);
+      el.nextElementSibling.classList.toggle('expand--open');
+    }
+
+    const expands = document.querySelectorAll('.expand__list');
+    for (i = 0; i < expands.length; i++) {
+      const nodes = expands[i].children;
+      const icon = expands[i].previousElementSibling.lastElementChild;
+
+      for (j = 0; j < nodes.length; j++) {
+        if (nodes[j].classList.contains('watched')) {
+          icon.classList.add('up');
+          icon.classList.add('down');
+          expands[i].classList.add('expand--open');
+          break;
+        }
+      }
+      
+    }
+    
+  </script>
+</html>
