@@ -3,34 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lhj8390.github.io/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2023-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/categories/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/categories/devops/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/devsecops/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/secure/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/server/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/subcategories/server/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/subcategories/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/post/server/sw-development-with-secure/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lhj8390.github.io/tags/</loc>
-    <lastmod>2023-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2023-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/go/</loc>
     <lastmod>2023-07-25T00:00:00+00:00</lastmod>
@@ -48,6 +24,12 @@
     <lastmod>2023-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/go/go-semaphore-basic/</loc>
+    <lastmod>2023-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/</loc>
+    <lastmod>2023-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/</loc>
     <lastmod>2023-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/tags/algorithm/</loc>
@@ -80,7 +62,16 @@
     <loc>https://lhj8390.github.io/tags/devops/</loc>
     <lastmod>2023-07-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://lhj8390.github.io/categories/devops/</loc>
+    <lastmod>2023-07-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://lhj8390.github.io/tags/ecs/</loc>
+    <lastmod>2023-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/tags/server/</loc>
+    <lastmod>2023-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lhj8390.github.io/subcategories/server/</loc>
     <lastmod>2023-07-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lhj8390.github.io/post/server/server_nacl_and_security_group/</loc>
